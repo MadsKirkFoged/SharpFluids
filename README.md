@@ -11,12 +11,14 @@ How to start:
 4. In your 'Program.cs' add to the top:
  
 using SharpFluids;
+
 using UnitsNet;
 
 
 5. Add in your main:
 
 Fluid test = new Fluid(FluidList.Ammonia);
+
 test.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
 
 
