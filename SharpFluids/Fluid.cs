@@ -7,7 +7,7 @@ namespace SharpFluids
 {
 
 
-    public partial class Fluid
+    public class Fluid
     {
 
         ///Fluid properties
@@ -406,7 +406,7 @@ namespace SharpFluids
 
 
         ///Update internal values        
-        private void UpdateStartValues()
+        protected void UpdateStartValues()
         {
 
             //Setting the constant values up
@@ -433,7 +433,7 @@ namespace SharpFluids
             
 
         }
-        private void UpdateValues()
+        protected void UpdateValues()
         {
 
             H = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
@@ -633,7 +633,7 @@ namespace SharpFluids
 
 
         //Checks
-        private void CheckFractionLimits(double fraction)
+        protected void CheckFractionLimits(double fraction)
         {
 
 
