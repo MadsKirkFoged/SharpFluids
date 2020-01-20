@@ -7,7 +7,7 @@ namespace SharpFluids
 {
 
 
-    public class Fluid
+    public partial class Fluid
     {
 
         ///Fluid properties
