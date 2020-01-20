@@ -83,8 +83,8 @@ namespace SharpFluids
         ///Fluid Limits
         public Temperature T_Max { get; set; }
         public Temperature T_Min { get; set; }
-        public Temperature T_Crit { get; private set; }
-        public SpecificEnergy H_Crit { get; private set; }
+        public Temperature T_Crit { get; protected set; }
+        public SpecificEnergy H_Crit { get; protected set; }
         public Pressure P_Crit { get; set; }
         public Pressure P_Min { get; set; }
         public Pressure P_Max { get; set; }
@@ -95,8 +95,8 @@ namespace SharpFluids
         /// Other values
         
         private AbstractState REF;      
-        public MediaType Media { get; private set; }
-        public bool FailState { get; private set; }
+        public MediaType Media { get; protected set; }
+        public bool FailState { get; protected set; }
 
 
         /// Constructors
