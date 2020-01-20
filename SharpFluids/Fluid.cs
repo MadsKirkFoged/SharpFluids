@@ -83,8 +83,8 @@ namespace SharpFluids
         ///Fluid Limits
         public Temperature T_Max { get; set; }
         public Temperature T_Min { get; set; }
-        public Temperature T_Crit { get; protected set; }
-        public SpecificEnergy H_Crit { get; protected set; }
+        public Temperature T_Crit { get; set; }
+        public SpecificEnergy H_Crit { get; set; }
         public Pressure P_Crit { get; set; }
         public Pressure P_Min { get; set; }
         public Pressure P_Max { get; set; }
@@ -95,8 +95,8 @@ namespace SharpFluids
         /// Other values
         
         private AbstractState REF;      
-        public MediaType Media { get; protected set; }
-        public bool FailState { get; protected set; }
+        public MediaType Media { get; set; }
+        public bool FailState { get; set; }
 
 
         /// Constructors
@@ -406,7 +406,7 @@ namespace SharpFluids
 
 
         ///Update internal values        
-        protected void UpdateStartValues()
+        public void UpdateStartValues()
         {
 
             //Setting the constant values up
@@ -433,7 +433,7 @@ namespace SharpFluids
             
 
         }
-        protected void UpdateValues()
+        public void UpdateValues()
         {
 
             H = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
