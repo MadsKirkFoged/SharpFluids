@@ -81,22 +81,22 @@ namespace SharpFluids
 
         
         ///Fluid Limits
-        public Temperature T_Max { get; set; }
-        public Temperature T_Min { get; set; }
-        public Temperature T_Crit { get; set; }
-        public SpecificEnergy H_Crit { get; set; }
-        public Pressure P_Crit { get; set; }
-        public Pressure P_Min { get; set; }
-        public Pressure P_Max { get; set; }
-        public double FractionMax { get; set; }
-        public double FractionMin { get; set; }
+        public Temperature T_Max { get; protected set; }
+        public Temperature T_Min { get; protected set; }
+        public Temperature T_Crit { get; protected set; }
+        public SpecificEnergy H_Crit { get; protected set; }
+        public Pressure P_Crit { get; protected set; }
+        public Pressure P_Min { get; protected set; }
+        public Pressure P_Max { get; protected set; }
+        public double FractionMax { get; protected set; }
+        public double FractionMin { get; protected set; }
 
 
         /// Other values
         
         private AbstractState REF;      
-        public MediaType Media { get; set; }
-        public bool FailState { get; set; }
+        public MediaType Media { get; protected set; }
+        public bool FailState { get; protected set; }
 
 
         /// Constructors
@@ -406,7 +406,7 @@ namespace SharpFluids
 
 
         ///Update internal values        
-        public void UpdateStartValues()
+        protected virtual void UpdateStartValues()
         {
 
             //Setting the constant values up
@@ -433,7 +433,7 @@ namespace SharpFluids
             
 
         }
-        public void UpdateValues()
+        protected virtual void UpdateValues()
         {
 
             H = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
@@ -448,7 +448,7 @@ namespace SharpFluids
             FailState = false;
 
         }
-        public void ZeroValues()
+        public virtual void ZeroValues()
         {
             H = SpecificEnergy.Zero;
             Temperature = Temperature.Zero;
@@ -798,7 +798,7 @@ namespace SharpFluids
             this.Dispose();
         }
 
-        
+     
 
     }
 
