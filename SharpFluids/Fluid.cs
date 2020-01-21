@@ -93,8 +93,8 @@ namespace SharpFluids
 
 
         /// Other values
-        
-        private AbstractState REF;      
+
+        protected AbstractState REF;
         public MediaType Media { get; protected set; }
         public bool FailState { get; protected set; }
 
