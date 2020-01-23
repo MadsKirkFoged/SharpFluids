@@ -1,6 +1,12 @@
 # SharpFluids
 Lightweight CoolProp C# Wrapper - for easy fluid properties lookups
 
+Lets say you want to know some properties of water;
+Density of Water at 13°C
+Boiling point of Co2 at 25bar
+..and many more options
+Then you have come to the right place!
+
 
 
 How to start:
@@ -10,16 +16,18 @@ How to start:
 3. Go to 'Browse' and search for 'SharpFluids' and press 'Install'
 4. In your 'Program.cs' add to the top:
  
-using SharpFluids;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnitsNet;
+using UnitsNet.Units;
 
 
 5. Add in your main:
 
-Fluid test = new Fluid(FluidList.Ammonia);
-
-test.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
-
-
-6. More information will be added later...
+//Find the Density of water at 13°C
+Fluid Water = new Fluid(FluidList.Water);
+Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
+Console.WriteLine("Density of water at 13°C: " + Water.RHO);
