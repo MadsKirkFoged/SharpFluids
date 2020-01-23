@@ -39,8 +39,17 @@ namespace SharpFluids
                 }
                 else if (Pressure > P_Crit)
                 {
-                    REF.update(input_pairs.HmassP_INPUTS, H_Crit.JoulesPerKilogram, Pressure.Pascals);
-                    return Temperature.FromKelvins(REF.T());
+                    try
+                    {
+                        REF.update(input_pairs.HmassP_INPUTS, H_Crit.JoulesPerKilogram, Pressure.Pascals);
+                        return Temperature.FromKelvins(REF.T());
+
+                    }
+                    catch (Exception)
+                    {
+
+                        return Temperature;
+                    }
                 }
                 else
                 {
