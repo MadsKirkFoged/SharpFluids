@@ -17,17 +17,27 @@ How to start:
 4. In your 'Program.cs' add to the top:
  
 using System;
+
 using System.Collections.Generic;
+
 using System.Linq;
+
 using System.Text;
+
 using System.Threading.Tasks;
+
 using UnitsNet;
+
 using UnitsNet.Units;
 
 
 5. Add in your main:
 
 //Find the Density of water at 13°C
+
 Fluid Water = new Fluid(FluidList.Water);
+
 Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
+
 Console.WriteLine("Density of water at 13°C: " + Water.RHO);
+
