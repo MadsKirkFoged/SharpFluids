@@ -158,6 +158,7 @@ namespace SharpFluids
         ///Updates
         public void UpdateDS(Density rho, Entropy entropy)
         {
+            CheckBeforeUpdate();
 
             if (rho > Density.Zero && entropy > Entropy.Zero)
             {
@@ -181,7 +182,7 @@ namespace SharpFluids
         }
         public void UpdateDP(Density rho, Pressure pressure)
         {
-
+            CheckBeforeUpdate();
             try
             {
                 REF.update(input_pairs.DmassP_INPUTS, rho.KilogramsPerCubicMeter, pressure.Pascals);
@@ -196,7 +197,7 @@ namespace SharpFluids
         }
         public void UpdateDT(Density rho, Temperature temperature)
         {
-
+            CheckBeforeUpdate();
             try
             {
                 REF.update(input_pairs.DmassT_INPUTS, rho.KilogramsPerCubicMeter, temperature.Kelvins);
@@ -211,7 +212,7 @@ namespace SharpFluids
         }
         public void UpdateDH(Density rho, SpecificEnergy enthalpy)
         {
-
+            CheckBeforeUpdate();
             try
             {
                 REF.update(input_pairs.DmassHmass_INPUTS, rho.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
@@ -226,8 +227,7 @@ namespace SharpFluids
         }
         public void UpdatePT(Pressure pressure, Temperature temperature)
         {
-
-
+            CheckBeforeUpdate();
             if (pressure > P_Min && temperature > T_Min)
             {
                 try
@@ -250,7 +250,7 @@ namespace SharpFluids
         public void UpdateXT(double quality, Temperature temperature)
         {
 
-
+            CheckBeforeUpdate();
             if (temperature >= T_Min)
             {
                 try
@@ -285,6 +285,7 @@ namespace SharpFluids
         }
         public void UpdatePS(Pressure pressure, Entropy entropy)
         {
+            CheckBeforeUpdate();
             if (pressure > Pressure.Zero && entropy != Entropy.Zero)
             {
                 try
@@ -305,7 +306,7 @@ namespace SharpFluids
         }
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy)
         {
-
+            CheckBeforeUpdate();
             if (pressure > Pressure.Zero && enthalpy > SpecificEnergy.Zero)
             {
                 try
@@ -328,7 +329,7 @@ namespace SharpFluids
         public void UpdatePX(Pressure pressure, double quality)
         {
 
-
+            CheckBeforeUpdate();
             if (pressure > Pressure.Zero && quality >= 0)
             {
 
@@ -360,7 +361,7 @@ namespace SharpFluids
         }
         public void UpdateHS(SpecificEnergy enthalpy, Entropy entropy)
         {
-
+            CheckBeforeUpdate();
             try
             {
                 REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
@@ -380,6 +381,7 @@ namespace SharpFluids
         //Returns without altering internal values
         public Pressure UpdateP_sat(Temperature temperature)
         {
+            CheckBeforeUpdate();
             if (temperature >= T_Min)
             {
                 try
@@ -729,7 +731,17 @@ namespace SharpFluids
 
 
         }
-        
+        private void CheckBeforeUpdate()
+        {
+
+            if (Media is null)
+            {
+                throw new System.InvalidOperationException("No Media is selected - Cant do an update on nothing!");
+            }
+
+
+
+        }
 
 
 
