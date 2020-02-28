@@ -583,17 +583,19 @@ namespace SharpFluids
             var type = Type.GetType();
             var memInfo = type.GetMember(Type.ToString());
             var attributes = memInfo[0].GetCustomAttributes(typeof(MediaType), false);
-            var test = (attributes.Length > 0) ? (MediaType)attributes[0] : null;
+            var localMedia = (attributes.Length > 0) ? (MediaType)attributes[0] : null;
 
-            Media = test;
+            SetNewMedia(localMedia);
 
-
-            REF = AbstractState.factory(Media.BackendType, Media.InternalName);
-
-
+        }
+        public void SetNewMedia(MediaType Type)
+        {
+            this.Media = Type;
+            REF = AbstractState.factory(Type.BackendType, Type.InternalName);
             UpdateStartValues();
 
         }
+
         public void SetFraction(double fraction)
         {
 
