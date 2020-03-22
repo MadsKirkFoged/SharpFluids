@@ -456,7 +456,16 @@ namespace SharpFluids
             RHO = Density.FromKilogramsPerCubicMeter(REF.rhomass());
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
-            Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
+
+            if (REF.conductivity() != double.NaN)
+            {
+                Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
+            }
+            else
+            {
+                Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(0);
+            }
+
             FailState = false;
 
         }
