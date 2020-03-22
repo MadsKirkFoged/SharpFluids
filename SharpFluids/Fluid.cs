@@ -18,7 +18,7 @@ namespace SharpFluids
             get
             {
 
-                if (Pressure >= P_Min && Pressure <= P_Crit)
+                if (Pressure >= P_Min && Pressure <= P_Crit && P_Min != P_Crit) //P_Min != P_Crit is a quick fix - We should create a check to see if the object has beed created correctly!
                 {
                     try
                     {
