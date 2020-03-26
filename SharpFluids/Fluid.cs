@@ -457,7 +457,7 @@ namespace SharpFluids
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
 
-            if (REF.conductivity() != double.NaN)
+            if (HasValue(REF.conductivity()))
             {
                 Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
             }
@@ -831,8 +831,12 @@ namespace SharpFluids
             this.Dispose();
         }
 
-     
+        //Other privates function
 
+        public bool HasValue(double value)
+        {
+            return !Double.IsNaN(value) && !Double.IsInfinity(value);
+        }
     }
 
 }
