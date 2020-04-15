@@ -336,7 +336,7 @@ namespace SharpFluids
 
                 try
                 {
-                    if (pressure >= P_Crit)
+                    if (pressure > P_Crit)
                     {
                         UpdatePT(P_Crit, T_Crit);
                         UpdatePH(pressure, H);
