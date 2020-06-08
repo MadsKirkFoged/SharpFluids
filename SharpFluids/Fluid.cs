@@ -87,8 +87,11 @@ namespace SharpFluids
         public DynamicViscosity Viscosity { get; set; }
         public ThermalConductivity Condutivity { get; set; }
         public SpecificEntropy Cp { get; set; }
+        public SpecificEntropy Cv { get; set; }
+        public double Prandtl { get; set; }
+        public ForcePerLength SurfaceTension { get; set; }
 
-        
+
         ///Fluid Limits
         public Temperature T_Max { get; protected set; }
         public Temperature T_Min { get; protected set; }
@@ -99,6 +102,7 @@ namespace SharpFluids
         public Pressure P_Max { get; protected set; }
         public double FractionMax { get; protected set; }
         public double FractionMin { get; protected set; }
+        
 
 
         /// Other values
@@ -455,7 +459,10 @@ namespace SharpFluids
             X = REF.Q();
             RHO = Density.FromKilogramsPerCubicMeter(REF.rhomass());
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
+            Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
+            Prandtl = REF.Prandtl();
+            SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
 
             if (HasValue(REF.conductivity()))
             {
@@ -478,7 +485,10 @@ namespace SharpFluids
             X = 0;
             RHO = Density.Zero;
             Cp = SpecificEntropy.Zero;
+            Cv = SpecificEntropy.Zero;
             MassFlow = MassFlow.Zero;
+            Prandtl = 0;
+            SurfaceTension = ForcePerLength.Zero;
             FailState = true;
         }
 
@@ -496,9 +506,12 @@ namespace SharpFluids
             this.X = other.X;
             this.RHO = other.RHO;
             this.Cp = other.Cp;
+            this.Cv = other.Cv;
             this.P_Crit = other.P_Crit;
             this.Viscosity = other.Viscosity;
             this.Condutivity = other.Condutivity;
+            this.Prandtl = other.Prandtl;
+            this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 
             //Copying Refrigerant type

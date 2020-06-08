@@ -47,8 +47,10 @@ namespace SharpFluids
 
             Console.WriteLine(ref1.Cp);
             Console.WriteLine(ref1.Temperature);
-
-
+            Console.WriteLine("Prandtl is : " +  ref1.Prandtl);
+            Console.WriteLine("Cp is : " + ref1.Cp);
+            Console.WriteLine("Cv is : " + ref1.Cv);
+            Console.WriteLine("Surface Tension is : " + ref1.SurfaceTension);
 
 
             //A Fluid that is a mix of Ammonia and water
