@@ -20,6 +20,8 @@ How to start:
 
 
 Fluid Water = new Fluid(FluidList.Water);
+
 Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
+
 Console.WriteLine("Density of water at 13°C: " + Water.RHO);
 
