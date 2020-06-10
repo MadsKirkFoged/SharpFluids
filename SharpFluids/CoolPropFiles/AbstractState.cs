@@ -9,6 +9,8 @@
 //------------------------------------------------------------------------------
 
 
+using System.Diagnostics;
+
 public class AbstractState : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
@@ -72,7 +74,7 @@ public class AbstractState : global::System.IDisposable {
 
   public virtual bool using_mass_fractions() {
     bool ret = CoolPropPINVOKE.AbstractState_using_mass_fractions(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -99,13 +101,13 @@ public class AbstractState : global::System.IDisposable {
 
   public void set_mass_fractions(DoubleVector mass_fractions) {
     CoolPropPINVOKE.AbstractState_set_mass_fractions(swigCPtr, DoubleVector.getCPtr(mass_fractions));
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
   }
 
     public void set_volu_fractions(DoubleVector volu_fractions)
     {
         CoolPropPINVOKE.AbstractState_set_volu_fractions(swigCPtr, DoubleVector.getCPtr(volu_fractions));
-        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     }
 
     //public DoubleVector mole_fractions_liquid() {
@@ -134,6 +136,9 @@ public class AbstractState : global::System.IDisposable {
 
     public virtual void update(input_pairs input_pair, double Value1, double Value2) {
     CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
+
+     
+
     if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -245,25 +250,25 @@ public class AbstractState : global::System.IDisposable {
 
   public double Tmin() {
     double ret = CoolPropPINVOKE.AbstractState_Tmin(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double Tmax() {
     double ret = CoolPropPINVOKE.AbstractState_Tmax(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double pmax() {
     double ret = CoolPropPINVOKE.AbstractState_pmax(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double Ttriple() {
     double ret = CoolPropPINVOKE.AbstractState_Ttriple(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -285,13 +290,13 @@ public class AbstractState : global::System.IDisposable {
 
   public double T_critical() {
     double ret = CoolPropPINVOKE.AbstractState_T_critical(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double p_critical() {
     double ret = CoolPropPINVOKE.AbstractState_p_critical(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -361,13 +366,13 @@ public class AbstractState : global::System.IDisposable {
 
   public double p_triple() {
     double ret = CoolPropPINVOKE.AbstractState_p_triple(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public string name() {
     string ret = CoolPropPINVOKE.AbstractState_name(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -380,7 +385,7 @@ public class AbstractState : global::System.IDisposable {
     public double keyed_output(parameters key)
     {
         double ret = CoolPropPINVOKE.AbstractState_keyed_output(swigCPtr, (int)key);
-        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;
     }
 
@@ -404,7 +409,7 @@ public class AbstractState : global::System.IDisposable {
 
     public double T() {
     double ret = CoolPropPINVOKE.AbstractState_T(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -416,19 +421,19 @@ public class AbstractState : global::System.IDisposable {
 
   public double rhomass() {
     double ret = CoolPropPINVOKE.AbstractState_rhomass(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double p() {
     double ret = CoolPropPINVOKE.AbstractState_p(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double Q() {
     double ret = CoolPropPINVOKE.AbstractState_Q(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -500,7 +505,7 @@ public class AbstractState : global::System.IDisposable {
 
   public double hmass() {
     double ret = CoolPropPINVOKE.AbstractState_hmass(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -524,7 +529,7 @@ public class AbstractState : global::System.IDisposable {
 
   public double smass() {
     double ret = CoolPropPINVOKE.AbstractState_smass(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -572,7 +577,7 @@ public class AbstractState : global::System.IDisposable {
 
   public double cpmass() {
     double ret = CoolPropPINVOKE.AbstractState_cpmass(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -597,7 +602,7 @@ public class AbstractState : global::System.IDisposable {
     public double cvmass()
     {
         double ret = CoolPropPINVOKE.AbstractState_cvmass(swigCPtr);
-        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;
     }
 
@@ -797,7 +802,7 @@ public class AbstractState : global::System.IDisposable {
 
     public double viscosity() {
     double ret = CoolPropPINVOKE.AbstractState_viscosity(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -808,7 +813,7 @@ public class AbstractState : global::System.IDisposable {
 
   public double conductivity() {
     double ret = CoolPropPINVOKE.AbstractState_conductivity(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -819,15 +824,22 @@ public class AbstractState : global::System.IDisposable {
 
     public double surface_tension()
     {
-        double ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
-        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        double ret = 0;
+
+        if (CoolPropPINVOKE.AbstractState_phase(swigCPtr) != 0)
+        {
+            ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
+        }
+        
+
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;
     }
 
     public double Prandtl()
     {
         double ret = CoolPropPINVOKE.AbstractState_Prandtl(swigCPtr);
-        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;
     }
 

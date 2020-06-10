@@ -251,6 +251,8 @@ namespace SharpFluids
                 FailState = true;
             }
 
+
+
         }
         public void UpdateXT(double quality, Temperature temperature)
         {
@@ -351,10 +353,10 @@ namespace SharpFluids
                         UpdateValues();
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePX");
+                    Debug.Print("Coolprop: Warning in UpdatePX " + e);
                 }
 
             }
@@ -462,16 +464,20 @@ namespace SharpFluids
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
-            SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
+
+            
+
+            if (HasValue(REF.surface_tension()))
+                SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
+            else
+                SurfaceTension = ForcePerLength.Zero;
+
 
             if (HasValue(REF.conductivity()))
-            {
                 Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
-            }
             else
-            {
-                Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(0);
-            }
+                Condutivity = ThermalConductivity.Zero;
+            
 
             FailState = false;
 
