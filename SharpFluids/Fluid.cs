@@ -173,10 +173,10 @@ namespace SharpFluids
                     UpdateValues();
 
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("CoolProp: Warning in UpdateDS");
+                    Debug.Print("CoolProp: Warning in UpdateDS" + e);
                 }
             }
             else
@@ -193,10 +193,10 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassP_INPUTS, rho.KilogramsPerCubicMeter, pressure.Pascals);
                 UpdateValues();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateDP");
+                Debug.Print("Coolprop: Warning in UpdateDP" + e);
             }
 
         }
@@ -208,10 +208,10 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassT_INPUTS, rho.KilogramsPerCubicMeter, temperature.Kelvins);
                 UpdateValues();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateDT");
+                Debug.Print("Coolprop: Warning in UpdateDT" + e);
             }
 
         }
@@ -223,10 +223,10 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassHmass_INPUTS, rho.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
                 UpdateValues();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateDH");
+                Debug.Print("Coolprop: Warning in UpdateDH" + e);
             }
 
         }
@@ -240,10 +240,10 @@ namespace SharpFluids
                     REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
                     UpdateValues();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePT");
+                    Debug.Print("Coolprop: Warning in UpdatePT " + e);
                 }
             }
             else
@@ -274,10 +274,10 @@ namespace SharpFluids
                         UpdateValues();
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdateXT");
+                    Debug.Print("Coolprop: Warning in UpdateXT" + e);
                 }
 
             }
@@ -300,10 +300,10 @@ namespace SharpFluids
                     REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
                     UpdateValues();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePS");
+                    Debug.Print("Coolprop: Warning in UpdatePS" + e);
                 }
             }
             else
@@ -321,10 +321,10 @@ namespace SharpFluids
                     REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
                     UpdateValues();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePH");
+                    Debug.Print("Coolprop: Warning in UpdatePH" + e);
                 }
             }
             else
@@ -374,10 +374,10 @@ namespace SharpFluids
                 REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
                 UpdateValues();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateHS");
+                Debug.Print("Coolprop: Warning in UpdateHS " + e);
             }
 
 
@@ -410,10 +410,10 @@ namespace SharpFluids
                         return Pressure.FromPascals(REF.p());
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     FailState = true;
-                    Debug.Print("Refrigerant: Warning in UpdateXT");
+                    Debug.Print("Refrigerant: Warning in UpdateXT" + e);
                 }
 
             }
