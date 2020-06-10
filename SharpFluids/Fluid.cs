@@ -466,11 +466,7 @@ namespace SharpFluids
             Prandtl = REF.Prandtl();
 
             
-
-            if (HasValue(REF.surface_tension()))
-                SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-            else
-                SurfaceTension = ForcePerLength.Zero;
+            SurfaceTension = ForcePerLength.Zero;
 
 
             if (HasValue(REF.conductivity()))
