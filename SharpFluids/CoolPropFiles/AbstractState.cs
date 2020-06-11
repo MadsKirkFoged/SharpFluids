@@ -819,19 +819,17 @@ public class AbstractState : global::System.IDisposable {
     //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     //}
 
-    //public double surface_tension()
-    //{
-    //    double ret = 0;
+    public double surface_tension()
+    {
+        double ret = 0;
 
-    //    if (CoolPropPINVOKE.AbstractState_phase(swigCPtr) != 0)
-    //    {
-    //        ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
-    //    }
+
+        ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
         
 
-    //    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    //    return ret;
-    //}
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
     public double Prandtl()
     {

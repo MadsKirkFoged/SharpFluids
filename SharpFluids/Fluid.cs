@@ -89,7 +89,17 @@ namespace SharpFluids
         public SpecificEntropy Cp { get; set; }
         public SpecificEntropy Cv { get; set; }
         public double Prandtl { get; set; }
-        public ForcePerLength SurfaceTension { get; set; }
+        public ForcePerLength SurfaceTension 
+        { 
+            get {
+                
+                return ForcePerLength.FromNewtonsPerMeter(REF.surface_tension()); 
+            
+            
+            }
+            private set {  } //Cant be set!
+
+        }
 
 
         ///Fluid Limits
@@ -464,9 +474,8 @@ namespace SharpFluids
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
-
             
-            SurfaceTension = ForcePerLength.Zero;
+            //SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
 
 
             if (HasValue(REF.conductivity()))
@@ -513,7 +522,7 @@ namespace SharpFluids
             this.Viscosity = other.Viscosity;
             this.Condutivity = other.Condutivity;
             this.Prandtl = other.Prandtl;
-            this.SurfaceTension = other.SurfaceTension;
+            //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 
             //Copying Refrigerant type
