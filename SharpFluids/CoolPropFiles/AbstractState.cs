@@ -823,9 +823,10 @@ public class AbstractState : global::System.IDisposable {
     {
         double ret = 0;
 
-
-        ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
-        
+        if (0 < Q() && Q() < 1)
+        {
+            ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
+        }        
 
         if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;

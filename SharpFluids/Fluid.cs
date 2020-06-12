@@ -89,17 +89,17 @@ namespace SharpFluids
         public SpecificEntropy Cp { get; set; }
         public SpecificEntropy Cv { get; set; }
         public double Prandtl { get; set; }
-        public ForcePerLength SurfaceTension 
-        { 
-            get {
-                
-                return ForcePerLength.FromNewtonsPerMeter(REF.surface_tension()); 
-            
-            
-            }
-            private set {  } //Cant be set!
+        public ForcePerLength SurfaceTension { get; set; }
+        //{ 
+        //    get {
 
-        }
+        //        return ForcePerLength.FromNewtonsPerMeter(REF.surface_tension()); 
+
+
+        //    }
+        //    private set {  } //Cant be set!
+
+        //}
 
 
         ///Fluid Limits
@@ -475,7 +475,7 @@ namespace SharpFluids
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             
-            //SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
+            SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
 
 
             if (HasValue(REF.conductivity()))
