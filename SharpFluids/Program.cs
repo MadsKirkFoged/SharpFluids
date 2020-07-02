@@ -14,8 +14,7 @@ namespace SharpFluids
 
         static void Main(string[] args)
         {
-
-           
+                       
             //Find the Density of water at 13°C
             Fluid Water = new Fluid(FluidList.Water);
             Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
