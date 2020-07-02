@@ -17,7 +17,7 @@
   </metadata>
   
 	<files>
-		<file src="..\SharpFluids\build\x86\CoolProp.dll" target="build\" />
+		<file src="..\SharpFluids\CoolProp.dll" target="build\" />
 		<file src="..\SharpFluids\build\SharpFluids.targets" target="build\" />
     </files>
 	
