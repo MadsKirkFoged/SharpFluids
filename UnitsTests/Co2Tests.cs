@@ -37,7 +37,7 @@ namespace UnitsTests
             Assert.AreEqual(5.1796434344772573, Co2.P_Min.Bars, 0.0001);
             Assert.AreEqual(66.78620802621117, Co2.RHO.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.45619347847526537, Co2.S.KilocaloriesPerKelvin, 0.0001);
-            Assert.AreEqual(0.006762279814496573, Co2.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(0, Co2.SurfaceTension.NewtonsPerMeter, 0.0001);
             Assert.AreEqual(-12.01316976352382, Co2.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(-12.013169763523649, Co2.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(30.978200000000015, Co2.T_Crit.DegreesCelsius, 0.0001);

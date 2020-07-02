@@ -37,7 +37,7 @@ namespace UnitsTests
             Assert.AreEqual(0.0061165480089686846, Water.P_Min.Bars, 0.0001);
             Assert.AreEqual(1.650819966799242, Water.RHO.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(1.6710365869337238, Water.S.KilocaloriesPerKelvin, 0.0001);
-            Assert.AreEqual(0.052144997752313106, Water.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(0, Water.SurfaceTension.NewtonsPerMeter, 0.0001);
             Assert.AreEqual(133.522420460943, Water.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(133.52242046094256, Water.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(373.946, Water.T_Crit.DegreesCelsius, 0.0001);
