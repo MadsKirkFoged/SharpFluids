@@ -37,10 +37,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'byPrereleaseNumber'
-    majorVersion: '1'
-    minorVersion: '1'
-    patchVersion: '1'
+    versioningScheme: 'byBuildNumber'
 
 
 - task: NuGetCommand@2
