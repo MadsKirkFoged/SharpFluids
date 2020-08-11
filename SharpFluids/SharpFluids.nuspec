@@ -14,6 +14,10 @@
     <copyright>Open Source</copyright>
     <tags>CoolProp Fluid SharpFluids REFPROP Thermodynamics</tags>
 
+    <dependencies>
+      <dependency id="UnitsNet" version="4.69.0" />
+    </dependencies>
+
   </metadata>
   
 	<files>
