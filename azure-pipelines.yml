@@ -18,7 +18,7 @@ steps:
 - task: versioncounter@1
   inputs:
     VersionVariable: 'Version'
-    DevOpsPat: 'x7qrjgmngxm2jtvvny3ipjw2ddqkut5f2vyloqt2yrrz6apiqwoq'
+    DevOpsPat: '$(devops-pat-versionnumber)'
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: 
