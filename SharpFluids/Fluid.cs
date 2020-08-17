@@ -630,7 +630,6 @@ namespace SharpFluids
             UpdateStartValues();
 
         }
-
         public void SetFraction(double fraction)
         {
 
