@@ -89,6 +89,7 @@ namespace SharpFluids
         public SpecificEntropy Cp { get; set; }
         public SpecificEntropy Cv { get; set; }
         public double Prandtl { get; set; }
+        public Speed SoundSpeed { get; set; }
         public ForcePerLength SurfaceTension { get; set; }
         //{ 
         //    get {
@@ -474,7 +475,7 @@ namespace SharpFluids
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
-            
+            SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
 
 

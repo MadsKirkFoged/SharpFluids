@@ -663,11 +663,11 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    //public double speed_sound() {
-    //  double ret = CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr);
-    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    //  return ret;
-    //}
+    public double speed_sound() {
+      double ret = CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr);
+      if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
 
     //public double isothermal_compressibility() {
     //  double ret = CoolPropPINVOKE.AbstractState_isothermal_compressibility(swigCPtr);

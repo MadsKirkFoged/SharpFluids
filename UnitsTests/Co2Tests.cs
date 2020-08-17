@@ -45,7 +45,7 @@ namespace UnitsTests
             Assert.AreEqual(-56.557999999999964, Co2.T_Min.DegreesCelsius, 0.0001);
             Assert.AreEqual(1.3701931500680655E-05, Co2.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(X, Co2.X, 0.0001);
-
+            Assert.AreEqual(217.753745740, Co2.SoundSpeed.MetersPerSecond, 0.0001);
         }
     }
 }
