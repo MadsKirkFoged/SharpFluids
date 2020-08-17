@@ -58,6 +58,7 @@ namespace SharpFluids
             //A Fluid that is a mix of Ammonia and water
             Fluid ref2 = new Fluid(FluidList.MixAmmoniaAQ);
 
+
             //Set the fraction between ammonia(80%) and water(20%)
             ref2.SetFraction(0.2);
 

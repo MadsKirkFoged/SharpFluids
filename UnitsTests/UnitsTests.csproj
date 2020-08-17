@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmmoniaTests.cs" />
     <Compile Include="WaterTests.cs" />
     <Compile Include="Co2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
