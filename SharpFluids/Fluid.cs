@@ -668,8 +668,18 @@ namespace SharpFluids
 
             if (MassFlow != MassFlow.Zero)
             {
-                SpecificEnergy local = ((H * MassFlow) + powerToBeAdded) / MassFlow;
-                UpdatePH(Pressure, local);
+                try 
+	            {	        
+                    SpecificEnergy local = ((H * MassFlow) + powerToBeAdded) / MassFlow;
+                    UpdatePH(Pressure, local);
+		
+	            }
+	            catch (Exception e)
+	            {
+
+		            FailState = true;
+                    Debug.Print("CoolProp: Warning in AddPower" + e);
+	            }
 
             }
         }
