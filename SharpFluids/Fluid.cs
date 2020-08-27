@@ -437,6 +437,7 @@ namespace SharpFluids
         ///Update internal values        
         protected virtual void UpdateStartValues()
         {
+            FailState = true;
 
             //Setting the constant values up
             T_Max = Temperature.FromKelvins(REF.Tmax());
