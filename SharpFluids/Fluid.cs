@@ -65,7 +65,8 @@ namespace SharpFluids
         }
         public Pressure Pressure { get; set; }
         public SpecificEnergy H { get; set; } //Also called Enthalpy 
-        public MassFlow MassFlow { get; set; }      
+        public MassFlow MassFlow { get; set; }
+        public double MW { get; set; }
         public VolumeFlow VolumeFlow
         {
             get
@@ -477,6 +478,7 @@ namespace SharpFluids
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
+            MW = REF.molar_mass()*1000;
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
 
 
@@ -524,6 +526,8 @@ namespace SharpFluids
             this.Viscosity = other.Viscosity;
             this.Condutivity = other.Condutivity;
             this.Prandtl = other.Prandtl;
+            this.SoundSpeed = other.SoundSpeed;
+            this.MW = other.MW;
             //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 
