@@ -64,7 +64,11 @@ namespace SharpFluids
 
         }
         public Pressure Pressure { get; set; }
+
+        [Obsolete("Rename to Enthalpy instead.")]
         public SpecificEnergy H { get; set; } //Also called Enthalpy 
+        public SpecificEnergy Enthalpy { get; set; } //Also called Enthalpy 
+
         public MassFlow MassFlow { get; set; }      
         public VolumeFlow VolumeFlow
         {
@@ -81,27 +85,32 @@ namespace SharpFluids
                 }
             }
         }
+        
+         [Obsolete("Rename to Entropy instead.")]
         public Entropy S { get; set; }
+        public Entropy Entropy { get; set; }
+
+
+        
+        [Obsolete("Rename to Quality instead.")]
         public double X { get; set; }
+        public double Quality { get; set; }
+
+        [Obsolete("Rename to Density instead.")]
         public Density RHO { get; set; }
+        public Density Density { get; set; }
+
         public DynamicViscosity Viscosity { get; set; }
+
+        [Obsolete("Rename to Conductivity instead.")]
         public ThermalConductivity Condutivity { get; set; }
+        public ThermalConductivity Conductivity { get; set; }
         public SpecificEntropy Cp { get; set; }
         public SpecificEntropy Cv { get; set; }
         public double Prandtl { get; set; }
         public Speed SoundSpeed { get; set; }
         public ForcePerLength SurfaceTension { get; set; }
-        //{ 
-        //    get {
-
-        //        return ForcePerLength.FromNewtonsPerMeter(REF.surface_tension()); 
-
-
-        //    }
-        //    private set {  } //Cant be set!
-
-        //}
-
+        
 
         ///Fluid Limits
         public Temperature T_Max { get; protected set; }
@@ -467,11 +476,15 @@ namespace SharpFluids
         {
 
             H = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+            Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
             Temperature = Temperature.FromKelvins(REF.T());
             Pressure = Pressure.FromPascals(REF.p());
             S = Entropy.FromJoulesPerKelvin(REF.smass());
+            Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
             X = REF.Q();
+            Quality = REF.Q();
             RHO = Density.FromKilogramsPerCubicMeter(REF.rhomass());
+            Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
@@ -481,9 +494,9 @@ namespace SharpFluids
 
 
             if (HasValue(REF.conductivity()))
-                Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
+                Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
             else
-                Condutivity = ThermalConductivity.Zero;
+                Conductivity = ThermalConductivity.Zero;
             
 
             FailState = false;
@@ -522,7 +535,7 @@ namespace SharpFluids
             this.Cv = other.Cv;
             this.P_Crit = other.P_Crit;
             this.Viscosity = other.Viscosity;
-            this.Condutivity = other.Condutivity;
+            this.Conductivity = other.Conductivity;
             this.Prandtl = other.Prandtl;
             //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
