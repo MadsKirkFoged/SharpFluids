@@ -75,9 +75,9 @@ namespace SharpFluids
             get
             {
                 //Calculate the volumeflow
-                if (RHO != Density.Zero)
+                if (Density != Density.Zero)
                 {
-                    return MassFlow / RHO;
+                    return MassFlow / Density;
                 }
                 else
                 {
@@ -286,7 +286,7 @@ namespace SharpFluids
                     if (temperature >= T_Crit)
                     {
                         UpdatePT(P_Crit, T_Crit);
-                        UpdateHT(H, temperature);
+                        UpdateHT(Enthalpy, temperature);
                     }
                     else
                     {
@@ -365,7 +365,7 @@ namespace SharpFluids
                     if (pressure > P_Crit)
                     {
                         UpdatePT(P_Crit, T_Crit);
-                        UpdatePH(pressure, H);
+                        UpdatePH(pressure, Enthalpy);
                     }
                     else
                     {
@@ -505,11 +505,15 @@ namespace SharpFluids
         public virtual void ZeroValues()
         {
             H = SpecificEnergy.Zero;
+            Enthalpy = SpecificEnergy.Zero;
             Temperature = Temperature.Zero;
             Pressure = Pressure.Zero;
             S = Entropy.Zero;
+            Entropy = Entropy.Zero;
             X = 0;
+            Quality = 0;
             RHO = Density.Zero;
+            Density = Density.Zero;
             Cp = SpecificEntropy.Zero;
             Cv = SpecificEntropy.Zero;
             MassFlow = MassFlow.Zero;
@@ -525,12 +529,16 @@ namespace SharpFluids
         public void Copy(Fluid other)
         {
             this.H = other.H;
+            this.Enthalpy = other.Enthalpy;
             this.MassFlow = other.MassFlow;
             this.Pressure = other.Pressure;
             this.Temperature = other.Temperature;
             this.S = other.S;
+            this.Entropy = other.Entropy;
             this.X = other.X;
+            this.Quality = other.Quality;
             this.RHO = other.RHO;
+            this.Density = other.Density;
             this.Cp = other.Cp;
             this.Cv = other.Cv;
             this.P_Crit = other.P_Crit;
@@ -559,12 +567,12 @@ namespace SharpFluids
             //After the mixing an Update should be run
 
 
-            if (this.H == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.S == Entropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
+            if (this.Enthalpy == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.Entropy == Entropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
             {
                 this.Copy(other);
 
             }
-            else if (other.H == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.S == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
+            else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
 
                 //Do nothing
@@ -575,7 +583,7 @@ namespace SharpFluids
                 if ((other.MassFlow + this.MassFlow) != MassFlow.Zero)
                 {
                     //Calculating the average H weighted on the massflow
-                    this.H = other.H * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.H * (this.MassFlow / (other.MassFlow + this.MassFlow));
+                    this.Enthalpy = other.Enthalpy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Enthalpy * (this.MassFlow / (other.MassFlow + this.MassFlow));
 
 
                     //Calculating the average P weighted on the massflow
@@ -583,7 +591,7 @@ namespace SharpFluids
 
 
                     //Calculating the average S weighted on the massflow
-                    this.S = other.S * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.S * (this.MassFlow / (other.MassFlow + this.MassFlow));
+                    this.Entropy = other.Entropy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Entropy * (this.MassFlow / (other.MassFlow + this.MassFlow));
 
                     //Calculating the average T weighted on the massflow
                     this.Temperature = Temperature.FromKelvins(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Temperature.Kelvins * (this.MassFlow / (other.MassFlow + this.MassFlow)));
@@ -684,7 +692,7 @@ namespace SharpFluids
             {
                 try 
 	            {	        
-                    SpecificEnergy local = ((H * MassFlow) + powerToBeAdded) / MassFlow;
+                    SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
                     UpdatePH(Pressure, local);
 		
 	            }
@@ -757,28 +765,28 @@ namespace SharpFluids
             }
 
             //Entalphy 
-            if (Double.IsNaN(H.Value))
+            if (Double.IsNaN(Enthalpy.Value))
             {
-                H = SpecificEnergy.Zero;
+                Enthalpy = SpecificEnergy.Zero;
             }
 
             //Entropy 
-            if (Double.IsNaN(S.Value))
+            if (Double.IsNaN(Entropy.Value))
             {
-                S = Entropy.Zero;
+                Entropy = Entropy.Zero;
             }
 
             //X
-            if (Double.IsNaN(X))
+            if (Double.IsNaN(Quality))
             {
-                X = 1;
+                Quality = 1;
 
             }
 
             //Density
-            if (Double.IsNaN(RHO.Value))
+            if (Double.IsNaN(Density.Value))
             {
-                RHO = Density.Zero;
+                Density = Density.Zero;
             }
 
 
@@ -823,7 +831,7 @@ namespace SharpFluids
             }
 
 
-            SpecificEnergy HDiss = (other1.H - other2.H);
+            SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy);
             if (HDiss < SpecificEnergy.Zero)
             {
                 HDiss *= -1;
