@@ -85,8 +85,9 @@ namespace SharpFluids
                 }
             }
         }
-        
-         [Obsolete("Rename to Entropy instead.")]
+        public MolarMass MolarMass { get; set; }
+
+        [Obsolete("Rename to Entropy instead.")]
         public Entropy S { get; set; }
         public Entropy Entropy { get; set; }
 
@@ -490,6 +491,7 @@ namespace SharpFluids
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
+            MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
 
 
@@ -518,6 +520,7 @@ namespace SharpFluids
             Cv = SpecificEntropy.Zero;
             MassFlow = MassFlow.Zero;
             Prandtl = 0;
+            MolarMass = MolarMass.Zero;
             SurfaceTension = ForcePerLength.Zero;
             FailState = true;
         }
@@ -545,6 +548,7 @@ namespace SharpFluids
             this.Viscosity = other.Viscosity;
             this.Conductivity = other.Conductivity;
             this.Prandtl = other.Prandtl;
+            this.MolarMass = other.MolarMass;
             //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 

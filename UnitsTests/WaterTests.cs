@@ -46,6 +46,7 @@ namespace UnitsTests
             Assert.AreEqual(1.3394303713738338E-05, Water.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(X, Water.Quality, 0.0001);
             Assert.AreEqual(487.367740010, Water.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(18.015268, Water.MolarMass.GramsPerMole, 0.0001);
         }
 
         [TestMethod]
@@ -86,6 +87,7 @@ namespace UnitsTests
             Assert.AreEqual(1.7666140657249425E-05, Water.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(-1, Water.Quality, 0.0001);
             Assert.AreEqual(551.279827045, Water.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(18.015268, Water.MolarMass.GramsPerMole, 0.0001);
 
         }
 

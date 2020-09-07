@@ -434,73 +434,74 @@ public class AbstractState : global::System.IDisposable {
     return ret;
   }
 
-  //public double tau() {
-  //  double ret = CoolPropPINVOKE.AbstractState_tau(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double tau() {
+    //  double ret = CoolPropPINVOKE.AbstractState_tau(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double delta() {
-  //  double ret = CoolPropPINVOKE.AbstractState_delta(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double delta() {
+    //  double ret = CoolPropPINVOKE.AbstractState_delta(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double molar_mass() {
-  //  double ret = CoolPropPINVOKE.AbstractState_molar_mass(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    public double molar_mass()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_molar_mass(swigCPtr);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public double acentric_factor() {
-  //  double ret = CoolPropPINVOKE.AbstractState_acentric_factor(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double acentric_factor() {
+    //  double ret = CoolPropPINVOKE.AbstractState_acentric_factor(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double gas_constant() {
-  //  double ret = CoolPropPINVOKE.AbstractState_gas_constant(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double gas_constant() {
+    //  double ret = CoolPropPINVOKE.AbstractState_gas_constant(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double Bvirial() {
-  //  double ret = CoolPropPINVOKE.AbstractState_Bvirial(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double Bvirial() {
+    //  double ret = CoolPropPINVOKE.AbstractState_Bvirial(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double dBvirial_dT() {
-  //  double ret = CoolPropPINVOKE.AbstractState_dBvirial_dT(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double dBvirial_dT() {
+    //  double ret = CoolPropPINVOKE.AbstractState_dBvirial_dT(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double Cvirial() {
-  //  double ret = CoolPropPINVOKE.AbstractState_Cvirial(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double Cvirial() {
+    //  double ret = CoolPropPINVOKE.AbstractState_Cvirial(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double dCvirial_dT() {
-  //  double ret = CoolPropPINVOKE.AbstractState_dCvirial_dT(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double dCvirial_dT() {
+    //  double ret = CoolPropPINVOKE.AbstractState_dCvirial_dT(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double compressibility_factor() {
-  //  double ret = CoolPropPINVOKE.AbstractState_compressibility_factor(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double compressibility_factor() {
+    //  double ret = CoolPropPINVOKE.AbstractState_compressibility_factor(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double hmolar() {
-  //  double ret = CoolPropPINVOKE.AbstractState_hmolar(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double hmolar() {
+    //  double ret = CoolPropPINVOKE.AbstractState_hmolar(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double hmass() {
+    public double hmass() {
     double ret = CoolPropPINVOKE.AbstractState_hmass(swigCPtr);
     //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     return ret;

@@ -48,6 +48,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -89,6 +90,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -130,6 +132,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -171,6 +174,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -212,6 +216,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -254,6 +259,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -296,6 +302,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -338,6 +345,7 @@ namespace UnitsTests
             Assert.AreEqual(1.2855603897799563E-05, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(-1, R717.Quality, 0.0001);
             Assert.AreEqual(470.71491332048453, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
         [TestMethod]
@@ -379,6 +387,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
 
 
@@ -422,6 +431,7 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
         }
     
     
