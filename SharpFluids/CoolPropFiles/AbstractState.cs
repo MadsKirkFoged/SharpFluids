@@ -446,11 +446,11 @@ public class AbstractState : global::System.IDisposable {
   //  return ret;
   //}
 
-  //public double molar_mass() {
-  //  double ret = CoolPropPINVOKE.AbstractState_molar_mass(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+  public double molar_mass() {
+    double ret = CoolPropPINVOKE.AbstractState_molar_mass(swigCPtr);
+    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
 
   //public double acentric_factor() {
   //  double ret = CoolPropPINVOKE.AbstractState_acentric_factor(swigCPtr);
