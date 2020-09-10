@@ -48,7 +48,10 @@ namespace UnitsTests
             Assert.AreEqual(9.6030387686839971E-06, R717.Viscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
-            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+
+            Assert.AreEqual(17.03052,R717.MolarMass.GramsPerMole,0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+
         }
 
         [TestMethod]
@@ -91,6 +94,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
         [TestMethod]
@@ -133,6 +137,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
         [TestMethod]
@@ -175,6 +180,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
         [TestMethod]
@@ -186,7 +192,7 @@ namespace UnitsTests
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
             Entropy setEntropy = Entropy.FromJoulesPerKelvin(3835.1912271790293);
 
-
+            
 
             //Act
             R717.UpdateHS(setEnthalpy, setEntropy);
@@ -217,6 +223,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
         [TestMethod]
@@ -260,6 +267,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
         [TestMethod]
@@ -303,6 +311,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
         [TestMethod]
@@ -346,6 +355,8 @@ namespace UnitsTests
             Assert.AreEqual(-1, R717.Quality, 0.0001);
             Assert.AreEqual(470.71491332048453, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.954489267, R717.Compressibility, 0.0001);
+
         }
 
         [TestMethod]
@@ -388,6 +399,7 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
         }
 
 
@@ -432,6 +444,8 @@ namespace UnitsTests
             Assert.AreEqual(0.5, R717.Quality, 0.0001);
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+
         }
     
     
