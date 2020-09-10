@@ -110,6 +110,7 @@ namespace SharpFluids
         public SpecificEntropy Cv { get; set; }
         public double Prandtl { get; set; }
         public Speed SoundSpeed { get; set; }
+        public double Compressibility { get; set; }
         public ForcePerLength SurfaceTension { get; set; }
         
 
@@ -493,7 +494,7 @@ namespace SharpFluids
             SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
             MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-
+            Compressibility = REF.compressibility_factor();
 
             if (HasValue(REF.conductivity()))
                 Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
@@ -549,6 +550,7 @@ namespace SharpFluids
             this.Conductivity = other.Conductivity;
             this.Prandtl = other.Prandtl;
             this.MolarMass = other.MolarMass;
+            this.Compressibility = other.Compressibility;
             //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 

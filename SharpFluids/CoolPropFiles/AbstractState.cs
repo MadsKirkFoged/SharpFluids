@@ -489,11 +489,13 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    //public double compressibility_factor() {
-    //  double ret = CoolPropPINVOKE.AbstractState_compressibility_factor(swigCPtr);
-    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    //  return ret;
-    //}
+
+  public double compressibility_factor() {
+    double ret = CoolPropPINVOKE.AbstractState_compressibility_factor(swigCPtr);
+    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
 
     //public double hmolar() {
     //  double ret = CoolPropPINVOKE.AbstractState_hmolar(swigCPtr);
