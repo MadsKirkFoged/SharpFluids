@@ -551,11 +551,11 @@ public class AbstractState : global::System.IDisposable {
   //  return ret;
   //}
 
-  //public double umass() {
-  //  double ret = CoolPropPINVOKE.AbstractState_umass(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+  public double umass() {
+    double ret = CoolPropPINVOKE.AbstractState_umass(swigCPtr);
+    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
 
   //public double umolar_excess() {
   //  double ret = CoolPropPINVOKE.AbstractState_umolar_excess(swigCPtr);
