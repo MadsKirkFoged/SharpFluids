@@ -112,6 +112,7 @@ namespace SharpFluids
         public Speed SoundSpeed { get; set; }
         public double Compressibility { get; set; }
         public ForcePerLength SurfaceTension { get; set; }
+        public SpecificEnergy InternalEnergy { get; set; }
         
 
         ///Fluid Limits
@@ -495,6 +496,7 @@ namespace SharpFluids
             MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
             Compressibility = REF.compressibility_factor();
+            InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
 
             if (HasValue(REF.conductivity()))
                 Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
@@ -569,7 +571,7 @@ namespace SharpFluids
         public void AddTo(Fluid other)
         {
 
-            //This makes a simple mixing based on the massflow (weigted)
+            //This makes a simple mixing based on the massflow (weighted)
             //After the mixing an Update should be run
 
 

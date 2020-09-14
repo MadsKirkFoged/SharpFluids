@@ -51,6 +51,7 @@ namespace UnitsTests
 
             Assert.AreEqual(17.03052,R717.MolarMass.GramsPerMole,0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
 
         }
 
@@ -95,6 +96,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
         [TestMethod]
@@ -138,6 +140,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
         [TestMethod]
@@ -181,6 +184,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
         [TestMethod]
@@ -224,6 +228,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
         [TestMethod]
@@ -268,6 +273,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
         [TestMethod]
@@ -312,6 +318,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
         [TestMethod]
@@ -356,6 +363,7 @@ namespace UnitsTests
             Assert.AreEqual(470.71491332048453, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.954489267, R717.Compressibility, 0.0001);
+            Assert.AreEqual(1652714.6853, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
 
         }
 
@@ -400,6 +408,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
 
 
@@ -445,7 +454,7 @@ namespace UnitsTests
             Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
-
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
         }
     
     
