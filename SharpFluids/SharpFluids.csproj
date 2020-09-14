@@ -97,6 +97,11 @@
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CoolProp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -112,12 +117,6 @@
     <PackageReference Include="UnitsNet">
       <Version>4.69.0</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CoolPropFiles\DLL\32bit\CoolProp.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CoolPropFiles\DLL\64bit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
