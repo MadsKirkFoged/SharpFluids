@@ -64,6 +64,7 @@ namespace SharpFluids
 
         }
         public Pressure Pressure { get; set; }
+
         public SpecificEnergy H { get; set; } //Also called Enthalpy 
         public MassFlow MassFlow { get; set; }
         public MolarMass MolarMass { get; set; }
