@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Diagnostics;
 using UnitsNet;
 
@@ -57,27 +56,24 @@ namespace SharpFluids
                 }
 
 
-                
+
             }
 
 
 
         }
         public Pressure Pressure { get; set; }
-
-        [Obsolete("Rename to Enthalpy instead.")]
         public SpecificEnergy H { get; set; } //Also called Enthalpy 
-        public SpecificEnergy Enthalpy { get; set; } //Also called Enthalpy 
-
-        public MassFlow MassFlow { get; set; }      
+        public MassFlow MassFlow { get; set; }
+        public double MW { get; set; }
         public VolumeFlow VolumeFlow
         {
             get
             {
                 //Calculate the volumeflow
-                if (Density != Density.Zero)
+                if (RHO != Density.Zero)
                 {
-                    return MassFlow / Density;
+                    return MassFlow / RHO;
                 }
                 else
                 {
@@ -85,35 +81,27 @@ namespace SharpFluids
                 }
             }
         }
-        public MolarMass MolarMass { get; set; }
-
-        [Obsolete("Rename to Entropy instead.")]
         public Entropy S { get; set; }
-        public Entropy Entropy { get; set; }
-
-
-        
-        [Obsolete("Rename to Quality instead.")]
         public double X { get; set; }
-        public double Quality { get; set; }
-
-        [Obsolete("Rename to Density instead.")]
         public Density RHO { get; set; }
-        public Density Density { get; set; }
-
         public DynamicViscosity Viscosity { get; set; }
-
-        [Obsolete("Rename to Conductivity instead.")]
         public ThermalConductivity Condutivity { get; set; }
-        public ThermalConductivity Conductivity { get; set; }
         public SpecificEntropy Cp { get; set; }
         public SpecificEntropy Cv { get; set; }
         public double Prandtl { get; set; }
         public Speed SoundSpeed { get; set; }
-        public double Compressibility { get; set; }
         public ForcePerLength SurfaceTension { get; set; }
-        public SpecificEnergy InternalEnergy { get; set; }
-        
+        //{ 
+        //    get {
+
+        //        return ForcePerLength.FromNewtonsPerMeter(REF.surface_tension()); 
+
+
+        //    }
+        //    private set {  } //Cant be set!
+
+        //}
+
 
         ///Fluid Limits
         public Temperature T_Max { get; protected set; }
@@ -125,7 +113,7 @@ namespace SharpFluids
         public Pressure P_Max { get; protected set; }
         public double FractionMax { get; protected set; }
         public double FractionMin { get; protected set; }
-        
+
 
 
         /// Other values
@@ -289,7 +277,7 @@ namespace SharpFluids
                     if (temperature >= T_Crit)
                     {
                         UpdatePT(P_Crit, T_Crit);
-                        UpdateHT(Enthalpy, temperature);
+                        UpdateHT(H, temperature);
                     }
                     else
                     {
@@ -368,7 +356,7 @@ namespace SharpFluids
                     if (pressure > P_Crit)
                     {
                         UpdatePT(P_Crit, T_Crit);
-                        UpdatePH(pressure, Enthalpy);
+                        UpdatePH(pressure, H);
                     }
                     else
                     {
@@ -467,42 +455,37 @@ namespace SharpFluids
                 REF.update(input_pairs.PT_INPUTS, P_Crit.Pascals, T_Crit.Kelvins);
                 H_Crit = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
 
-            }   
-            
+            }
+
 
 
             //Setting Max/min Mass- or volfraction
-            
+
 
         }
         protected virtual void UpdateValues()
         {
 
             H = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
-            Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
             Temperature = Temperature.FromKelvins(REF.T());
             Pressure = Pressure.FromPascals(REF.p());
             S = Entropy.FromJoulesPerKelvin(REF.smass());
-            Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
             X = REF.Q();
-            Quality = REF.Q();
             RHO = Density.FromKilogramsPerCubicMeter(REF.rhomass());
-            Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
-            MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+            MW = REF.molar_mass() * 1000;
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-            Compressibility = REF.compressibility_factor();
-            InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
+
 
             if (HasValue(REF.conductivity()))
-                Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
+                Condutivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
             else
-                Conductivity = ThermalConductivity.Zero;
-            
+                Condutivity = ThermalConductivity.Zero;
+
 
             FailState = false;
 
@@ -510,20 +493,15 @@ namespace SharpFluids
         public virtual void ZeroValues()
         {
             H = SpecificEnergy.Zero;
-            Enthalpy = SpecificEnergy.Zero;
             Temperature = Temperature.Zero;
             Pressure = Pressure.Zero;
             S = Entropy.Zero;
-            Entropy = Entropy.Zero;
             X = 0;
-            Quality = 0;
             RHO = Density.Zero;
-            Density = Density.Zero;
             Cp = SpecificEntropy.Zero;
             Cv = SpecificEntropy.Zero;
             MassFlow = MassFlow.Zero;
             Prandtl = 0;
-            MolarMass = MolarMass.Zero;
             SurfaceTension = ForcePerLength.Zero;
             FailState = true;
         }
@@ -535,24 +513,20 @@ namespace SharpFluids
         public void Copy(Fluid other)
         {
             this.H = other.H;
-            this.Enthalpy = other.Enthalpy;
             this.MassFlow = other.MassFlow;
             this.Pressure = other.Pressure;
             this.Temperature = other.Temperature;
             this.S = other.S;
-            this.Entropy = other.Entropy;
             this.X = other.X;
-            this.Quality = other.Quality;
             this.RHO = other.RHO;
-            this.Density = other.Density;
             this.Cp = other.Cp;
             this.Cv = other.Cv;
             this.P_Crit = other.P_Crit;
             this.Viscosity = other.Viscosity;
-            this.Conductivity = other.Conductivity;
+            this.Condutivity = other.Condutivity;
             this.Prandtl = other.Prandtl;
-            this.MolarMass = other.MolarMass;
-            this.Compressibility = other.Compressibility;
+            this.SoundSpeed = other.SoundSpeed;
+            this.MW = other.MW;
             //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 
@@ -571,16 +545,16 @@ namespace SharpFluids
         public void AddTo(Fluid other)
         {
 
-            //This makes a simple mixing based on the massflow (weighted)
+            //This makes a simple mixing based on the massflow (weigted)
             //After the mixing an Update should be run
 
 
-            if (this.Enthalpy == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.Entropy == Entropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
+            if (this.H == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.S == Entropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
             {
                 this.Copy(other);
 
             }
-            else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
+            else if (other.H == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.S == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
 
                 //Do nothing
@@ -591,7 +565,7 @@ namespace SharpFluids
                 if ((other.MassFlow + this.MassFlow) != MassFlow.Zero)
                 {
                     //Calculating the average H weighted on the massflow
-                    this.Enthalpy = other.Enthalpy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Enthalpy * (this.MassFlow / (other.MassFlow + this.MassFlow));
+                    this.H = other.H * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.H * (this.MassFlow / (other.MassFlow + this.MassFlow));
 
 
                     //Calculating the average P weighted on the massflow
@@ -599,7 +573,7 @@ namespace SharpFluids
 
 
                     //Calculating the average S weighted on the massflow
-                    this.Entropy = other.Entropy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Entropy * (this.MassFlow / (other.MassFlow + this.MassFlow));
+                    this.S = other.S * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.S * (this.MassFlow / (other.MassFlow + this.MassFlow));
 
                     //Calculating the average T weighted on the massflow
                     this.Temperature = Temperature.FromKelvins(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Temperature.Kelvins * (this.MassFlow / (other.MassFlow + this.MassFlow)));
@@ -671,7 +645,7 @@ namespace SharpFluids
 
                 REF.set_mass_fractions(new DoubleVector(new double[] { fraction }));
 
-                
+
 
 
 
@@ -698,18 +672,18 @@ namespace SharpFluids
 
             if (MassFlow != MassFlow.Zero)
             {
-                try 
-	            {	        
-                    SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
+                try
+                {
+                    SpecificEnergy local = ((H * MassFlow) + powerToBeAdded) / MassFlow;
                     UpdatePH(Pressure, local);
-		
-	            }
-	            catch (Exception e)
-	            {
 
-		            FailState = true;
+                }
+                catch (Exception e)
+                {
+
+                    FailState = true;
                     Debug.Print("CoolProp: Warning in AddPower" + e);
-	            }
+                }
 
             }
         }
@@ -727,7 +701,7 @@ namespace SharpFluids
             if (Media.BackendType == "INCOMP")
             {
 
-                
+
 
                 double min = REF.keyed_output(parameters.ifraction_min);
                 double max = REF.keyed_output(parameters.ifraction_max);
@@ -773,28 +747,28 @@ namespace SharpFluids
             }
 
             //Entalphy 
-            if (Double.IsNaN(Enthalpy.Value))
+            if (Double.IsNaN(H.Value))
             {
-                Enthalpy = SpecificEnergy.Zero;
+                H = SpecificEnergy.Zero;
             }
 
             //Entropy 
-            if (Double.IsNaN(Entropy.Value))
+            if (Double.IsNaN(S.Value))
             {
-                Entropy = Entropy.Zero;
+                S = Entropy.Zero;
             }
 
             //X
-            if (Double.IsNaN(Quality))
+            if (Double.IsNaN(X))
             {
-                Quality = 1;
+                X = 1;
 
             }
 
             //Density
-            if (Double.IsNaN(Density.Value))
+            if (Double.IsNaN(RHO.Value))
             {
-                Density = Density.Zero;
+                RHO = Density.Zero;
             }
 
 
@@ -839,7 +813,7 @@ namespace SharpFluids
             }
 
 
-            SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy);
+            SpecificEnergy HDiss = (other1.H - other2.H);
             if (HDiss < SpecificEnergy.Zero)
             {
                 HDiss *= -1;
