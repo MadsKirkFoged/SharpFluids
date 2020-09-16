@@ -65,7 +65,7 @@ namespace SharpFluids
         public Pressure Pressure { get; set; }
         public SpecificEnergy H { get; set; } //Also called Enthalpy 
         public MassFlow MassFlow { get; set; }
-        public double MW { get; set; }
+
         public VolumeFlow VolumeFlow
         {
             get
@@ -91,16 +91,13 @@ namespace SharpFluids
         public double Prandtl { get; set; }
         public Speed SoundSpeed { get; set; }
         public ForcePerLength SurfaceTension { get; set; }
-        //{ 
-        //    get {
 
-        //        return ForcePerLength.FromNewtonsPerMeter(REF.surface_tension()); 
+        public MolarMass MolarMass { get; set; }
+        public double Compressibility { get; set; }
+        public SpecificEnergy InternalEnergy { get; set; }
 
 
-        //    }
-        //    private set {  } //Cant be set!
 
-        //}
 
 
         ///Fluid Limits
@@ -477,8 +474,12 @@ namespace SharpFluids
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
-            MW = REF.molar_mass() * 1000;
+
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
+
+            MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+            Compressibility = REF.compressibility_factor();
+            InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
 
 
             if (HasValue(REF.conductivity()))
@@ -504,6 +505,10 @@ namespace SharpFluids
             Prandtl = 0;
             SurfaceTension = ForcePerLength.Zero;
             FailState = true;
+
+            MolarMass = MolarMass.Zero;
+            Compressibility = 0;
+            InternalEnergy = SpecificEnergy.Zero;
         }
 
 
@@ -526,9 +531,13 @@ namespace SharpFluids
             this.Condutivity = other.Condutivity;
             this.Prandtl = other.Prandtl;
             this.SoundSpeed = other.SoundSpeed;
-            this.MW = other.MW;
             //this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
+
+            this.MolarMass = other.MolarMass;
+            this.Compressibility = other.Compressibility;
+            this.InternalEnergy = other.InternalEnergy;
+
 
             //Copying Refrigerant type
             CopyType(other);
