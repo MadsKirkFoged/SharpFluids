@@ -21,7 +21,7 @@
   </metadata>
   
 	<files>
-		<file src="..\SharpFluids\CoolProp.dll" target="build\" />
+		<file src="..\SharpFluids\CoolPropFiles\DLL\32bit\CoolProp.dll" target="build\" />
 		<file src="..\SharpFluids\build\SharpFluids.targets" target="build\" />
   
     <file src="bin\release\SharpFluids.dll" target="lib\net462" />
