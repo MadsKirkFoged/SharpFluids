@@ -798,19 +798,11 @@ namespace SharpFluids
             {
                 Enthalpy = SpecificEnergy.Zero;
             }
-            if (Double.IsNaN(H.Value))
-            {
-                H = SpecificEnergy.Zero;
-            }
 
             //Entropy 
             if (Double.IsNaN(Entropy.Value))
             {
                 Entropy = Entropy.Zero;
-            }
-            if (Double.IsNaN(S.Value))
-            {
-                S = Entropy.Zero;
             }
 
             //X
@@ -819,20 +811,11 @@ namespace SharpFluids
                 Quality = 1;
 
             }
-            if (Double.IsNaN(X))
-            {
-                X = 1;
-
-            }
 
             //Density
             if (Double.IsNaN(Density.Value))
             {
                 Density = Density.Zero;
-            }            
-            if (Double.IsNaN(RHO.Value))
-            {
-                RHO = Density.Zero;
             }
 
 
