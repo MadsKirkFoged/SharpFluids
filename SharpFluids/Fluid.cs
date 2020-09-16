@@ -171,21 +171,13 @@ namespace SharpFluids
 
             Media = test;
 
-            try
-            {
+            
+            
                 REF = AbstractState.factory(test.BackendType, test.InternalName);
 
-            }
-            catch (BadImageFormatException e)
-            {
+            
+           
 
-                throw new System.BadImageFormatException("This only supports 32bit - Set Platform to x86 and retry",e);
-            }
-            catch (DllNotFoundException e)
-            {
-
-                throw new System.DllNotFoundException("We could not find 'CoolProp.DLL' in the output folder!", e);
-            }
 
             //DoubleVector z = new DoubleVector(new double[] { 1 });
             //REF.set_mole_fractions(z);
@@ -492,25 +484,29 @@ namespace SharpFluids
         protected virtual void UpdateValues()
         {
 
-            H = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+            H =        SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
             Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
             Temperature = Temperature.FromKelvins(REF.T());
             Pressure = Pressure.FromPascals(REF.p());
-            S = Entropy.FromJoulesPerKelvin(REF.smass());
-            Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
-            X = REF.Q();
-            Quality = REF.Q();
-            RHO = Density.FromKilogramsPerCubicMeter(REF.rhomass());
-            Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
+
+            S =         Entropy.FromJoulesPerKelvin(REF.smass());
+            Entropy =   Entropy.FromJoulesPerKelvin(REF.smass());
+
+            X =         REF.Q();
+            Quality =   REF.Q();
+
+            RHO =       Density.FromKilogramsPerCubicMeter(REF.rhomass());
+            Density =   Density.FromKilogramsPerCubicMeter(REF.rhomass());
+
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
-            MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+            //MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-            Compressibility = REF.compressibility_factor();
-            InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
+            //Compressibility = REF.compressibility_factor();
+            //InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
 
             if (HasValue(REF.conductivity()))
                 Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
@@ -523,16 +519,21 @@ namespace SharpFluids
         }
         public virtual void ZeroValues()
         {
-            H = SpecificEnergy.Zero;
-            Enthalpy = SpecificEnergy.Zero;
+            H =         SpecificEnergy.Zero;
+            Enthalpy =  SpecificEnergy.Zero;
+
             Temperature = Temperature.Zero;
             Pressure = Pressure.Zero;
-            S = Entropy.Zero;
-            Entropy = Entropy.Zero;
-            X = 0;
-            Quality = 0;
-            RHO = Density.Zero;
-            Density = Density.Zero;
+
+            S =         Entropy.Zero;
+            Entropy =   Entropy.Zero;
+
+            X =         0;
+            Quality =   0;
+
+            RHO =       Density.Zero;
+            Density =   Density.Zero;
+
             Cp = SpecificEntropy.Zero;
             Cv = SpecificEntropy.Zero;
             MassFlow = MassFlow.Zero;
@@ -548,17 +549,23 @@ namespace SharpFluids
         ///Method with another 'Fluid' as input
         public void Copy(Fluid other)
         {
-            this.H = other.H;
+            this.H =        other.H;
             this.Enthalpy = other.Enthalpy;
+
             this.MassFlow = other.MassFlow;
             this.Pressure = other.Pressure;
             this.Temperature = other.Temperature;
-            this.S = other.S;
-            this.Entropy = other.Entropy;
-            this.X = other.X;
-            this.Quality = other.Quality;
-            this.RHO = other.RHO;
-            this.Density = other.Density;
+
+            this.S =        other.S;
+            this.Entropy =  other.Entropy;
+
+            this.X =        other.X;
+            this.Quality =  other.Quality;
+
+            this.RHO =      other.RHO;
+            this.Density =  other.Density;
+
+
             this.Cp = other.Cp;
             this.Cv = other.Cv;
             this.P_Crit = other.P_Crit;
