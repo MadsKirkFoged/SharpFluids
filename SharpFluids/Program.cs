@@ -20,7 +20,7 @@ namespace SharpFluids
             //Find the Density of water at 13°C
             Fluid Water = new Fluid(FluidList.Water);
             Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
-            Console.WriteLine("Density of water at 13°C: " + Water.RHO);
+            Console.WriteLine("Density of water at 13°C: " + Water.Density);
 
             //Giving water a Massflow
             Water.MassFlow = MassFlow.FromKilogramsPerHour(100);
@@ -65,7 +65,7 @@ namespace SharpFluids
             //Update it with 10bars and 10°C
             ref2.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
 
-            Console.WriteLine(ref2.RHO);
+            Console.WriteLine(ref2.Density);
 
             Console.ReadKey();
 
