@@ -171,21 +171,7 @@ namespace SharpFluids
 
             Media = test;
 
-            try
-            {
-                REF = AbstractState.factory(test.BackendType, test.InternalName);
-
-            }
-            catch (BadImageFormatException e)
-            {
-
-                throw new System.BadImageFormatException("This only supports 32bit - Set Platform to x86 and retry",e);
-            }
-            catch (DllNotFoundException e)
-            {
-
-                throw new System.DllNotFoundException("We could not find 'CoolProp.DLL' in the output folder!", e);
-            }
+            REF = AbstractState.factory(test.BackendType, test.InternalName);
 
             //DoubleVector z = new DoubleVector(new double[] { 1 });
             //REF.set_mole_fractions(z);
