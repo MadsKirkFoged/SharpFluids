@@ -125,7 +125,7 @@ namespace SharpFluids
         {
 
             //No fluid is selected! Trying to set AMMONIA as default
-            REF = AbstractState.factory("HEOS", "AMMONIA");
+            //REF = AbstractState.factory("HEOS", "AMMONIA");
 
 
         }
