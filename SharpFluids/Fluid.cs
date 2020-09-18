@@ -478,8 +478,11 @@ namespace SharpFluids
             MassFlow = MassFlow.Zero;
             Prandtl = 0;
             SurfaceTension = ForcePerLength.Zero;
+            SoundSpeed = Speed.Zero;
             FailState = true;
 
+            Viscosity = DynamicViscosity.Zero;
+            Conductivity = ThermalConductivity.Zero;
             MolarMass = MolarMass.Zero;
             Compressibility = 0;
             InternalEnergy = SpecificEnergy.Zero;
@@ -491,6 +494,10 @@ namespace SharpFluids
         ///Method with another 'Fluid' as input
         public void Copy(Fluid other)
         {
+            //Copying Refrigerant type
+            CopyType(other);
+
+
             this.Enthalpy = other.Enthalpy;
             this.MassFlow = other.MassFlow;
             this.Pressure = other.Pressure;
@@ -505,7 +512,7 @@ namespace SharpFluids
             this.Conductivity = other.Conductivity;
             this.Prandtl = other.Prandtl;
             this.SoundSpeed = other.SoundSpeed;
-            //this.SurfaceTension = other.SurfaceTension;
+            this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
 
             this.MolarMass = other.MolarMass;
@@ -513,19 +520,24 @@ namespace SharpFluids
             this.InternalEnergy = other.InternalEnergy;
 
 
-            //Copying Refrigerant type
-            CopyType(other);
 
         }
         public void CopyType(Fluid other)
         {
-
+            //Null check
             if (!(other.Media is null))
             {
-                SetNewMedia(other.Media);
+                //Actually changing media
+                if (this.Media != other.Media)
+                {
+                    //Since we are changing media when the old values doesn't make sense to keep
+                    ZeroValues();
+
+                    //Set new media
+                    SetNewMedia(other.Media);
+
+                }
             }
-
-
         }
         public void AddTo(Fluid other)
         {

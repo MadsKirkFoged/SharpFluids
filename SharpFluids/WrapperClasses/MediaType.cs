@@ -55,6 +55,32 @@ namespace SharpFluids
         }
 
 
+        public static bool operator ==(MediaType other1, MediaType other2)
+        {
+
+            if (other1 is null || other2 is null)
+            {
+                return false;
+            }  
+            else if 
+               (other1.BackendType == other2.BackendType &&
+                other1.InternalName == other2.InternalName &&
+                other1.MassFration == other2.MassFration &&
+                other1.Mix == other2.Mix)
+            {
+                return true;
+            }
+
+            return false;
+
+
+        }
+        public static bool operator !=(MediaType other1, MediaType other2)
+        {
+
+            return !(other1 == other2);
+        }
+
 
 
 
