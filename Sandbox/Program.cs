@@ -109,6 +109,9 @@ namespace Sandbox
 
             Console.WriteLine(ref2.Density);
 
+            Fluid ref5 = new Fluid();
+            ref5.Copy(ref4);
+
             Console.ReadKey();
         }
     }

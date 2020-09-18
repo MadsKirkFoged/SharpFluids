@@ -519,7 +519,13 @@ namespace SharpFluids
         }
         public void CopyType(Fluid other)
         {
-            SetNewMedia(other.Media);
+
+            if (!(other.Media is null))
+            {
+                SetNewMedia(other.Media);
+            }
+
+
         }
         public void AddTo(Fluid other)
         {
