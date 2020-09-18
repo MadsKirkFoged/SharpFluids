@@ -25,6 +25,11 @@ namespace SharpFluids
         public MixType Mix { get; set; }
 
 
+        public MediaType()
+        {
+
+        }
+            
 
         public MediaType(string backendType, string internalName, MixType mix = MixType.Mass, double massFration = 1)
         {
@@ -39,6 +44,15 @@ namespace SharpFluids
 
         }
 
+
+        public void Copy(MediaType other)
+        {
+
+            BackendType = other.BackendType;
+            InternalName = other.InternalName;
+            MassFration = other.MassFration;
+            Mix = other.Mix;
+        }
 
 
 

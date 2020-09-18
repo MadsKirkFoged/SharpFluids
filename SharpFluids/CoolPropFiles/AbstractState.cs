@@ -11,98 +11,116 @@
 
 using System.Diagnostics;
 
-public class AbstractState : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+public class AbstractState : global::System.IDisposable
+{
+    public global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    public bool swigCMemOwn;
 
-  internal AbstractState(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
+    internal AbstractState()
+    {
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AbstractState obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~AbstractState() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          CoolPropPINVOKE.delete_AbstractState(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
     }
-  }
 
-  public static AbstractState factory(string backend, string fluid_names) {
-    global::System.IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_0(backend, fluid_names);
-    AbstractState ret = (cPtr == global::System.IntPtr.Zero) ? null : new AbstractState(cPtr, false);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
 
-  //public static AbstractState factory(string backend, StringVector fluid_names) {
-  //  global::System.IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_1(backend, StringVector.getCPtr(fluid_names));
-  //  AbstractState ret = (cPtr == global::System.IntPtr.Zero) ? null : new AbstractState(cPtr, false);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    internal AbstractState(global::System.IntPtr cPtr, bool cMemoryOwn)
+    {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
 
-  //public void set_T(double T) {
-  //  CoolPropPINVOKE.AbstractState_set_T(swigCPtr, T);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AbstractState obj)
+    {
+        return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
 
-  public virtual string backend_name() {
-    string ret = CoolPropPINVOKE.AbstractState_backend_name(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    ~AbstractState()
+    {
+        Dispose();
+    }
 
-  //public virtual bool using_mole_fractions() {
-  //  bool ret = CoolPropPINVOKE.AbstractState_using_mole_fractions(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    public virtual void Dispose()
+    {
+        lock (this)
+        {
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    CoolPropPINVOKE.delete_AbstractState(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            global::System.GC.SuppressFinalize(this);
+        }
+    }
 
-  public virtual bool using_mass_fractions() {
-    bool ret = CoolPropPINVOKE.AbstractState_using_mass_fractions(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public static AbstractState factory(string backend, string fluid_names)
+    {
+        global::System.IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_0(backend, fluid_names);
+        AbstractState ret = (cPtr == global::System.IntPtr.Zero) ? null : new AbstractState(cPtr, false);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public virtual bool using_volu_fractions() {
-  //  bool ret = CoolPropPINVOKE.AbstractState_using_volu_fractions(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public static AbstractState factory(string backend, StringVector fluid_names) {
+    //  global::System.IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_1(backend, StringVector.getCPtr(fluid_names));
+    //  AbstractState ret = (cPtr == global::System.IntPtr.Zero) ? null : new AbstractState(cPtr, false);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual void set_reference_stateS(string reference_state) {
-  //  CoolPropPINVOKE.AbstractState_set_reference_stateS(swigCPtr, reference_state);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public void set_T(double T) {
+    //  CoolPropPINVOKE.AbstractState_set_T(swigCPtr, T);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual void set_reference_stateD(double T, double rhomolar, double hmolar0, double smolar0) {
-  //  CoolPropPINVOKE.AbstractState_set_reference_stateD(swigCPtr, T, rhomolar, hmolar0, smolar0);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    public virtual string backend_name()
+    {
+        string ret = CoolPropPINVOKE.AbstractState_backend_name(swigCPtr);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public void set_mole_fractions(DoubleVector mole_fractions) {
-  //  CoolPropPINVOKE.AbstractState_set_mole_fractions(swigCPtr, DoubleVector.getCPtr(mole_fractions));
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual bool using_mole_fractions() {
+    //  bool ret = CoolPropPINVOKE.AbstractState_using_mole_fractions(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public void set_mass_fractions(DoubleVector mass_fractions) {
-    CoolPropPINVOKE.AbstractState_set_mass_fractions(swigCPtr, DoubleVector.getCPtr(mass_fractions));
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  }
+    public virtual bool using_mass_fractions()
+    {
+        bool ret = CoolPropPINVOKE.AbstractState_using_mass_fractions(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
+
+    //public virtual bool using_volu_fractions() {
+    //  bool ret = CoolPropPINVOKE.AbstractState_using_volu_fractions(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
+
+    //public virtual void set_reference_stateS(string reference_state) {
+    //  CoolPropPINVOKE.AbstractState_set_reference_stateS(swigCPtr, reference_state);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
+
+    //public virtual void set_reference_stateD(double T, double rhomolar, double hmolar0, double smolar0) {
+    //  CoolPropPINVOKE.AbstractState_set_reference_stateD(swigCPtr, T, rhomolar, hmolar0, smolar0);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
+
+    //public void set_mole_fractions(DoubleVector mole_fractions) {
+    //  CoolPropPINVOKE.AbstractState_set_mole_fractions(swigCPtr, DoubleVector.getCPtr(mole_fractions));
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
+
+    public void set_mass_fractions(DoubleVector mass_fractions)
+    {
+        CoolPropPINVOKE.AbstractState_set_mass_fractions(swigCPtr, DoubleVector.getCPtr(mass_fractions));
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    }
 
     public void set_volu_fractions(DoubleVector volu_fractions)
     {
@@ -134,244 +152,254 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    public virtual void update(input_pairs input_pair, double Value1, double Value2) {
-    CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  }
+    public virtual void update(input_pairs input_pair, double Value1, double Value2)
+    {
+        CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    }
 
-  //public virtual void update_with_guesses(input_pairs input_pair, double Value1, double Value2, GuessesStructure guesses) {
-  //  CoolPropPINVOKE.AbstractState_update_with_guesses(swigCPtr, (int)input_pair, Value1, Value2, GuessesStructure.getCPtr(guesses));
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void update_with_guesses(input_pairs input_pair, double Value1, double Value2, GuessesStructure guesses) {
+    //  CoolPropPINVOKE.AbstractState_update_with_guesses(swigCPtr, (int)input_pair, Value1, Value2, GuessesStructure.getCPtr(guesses));
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual bool available_in_high_level() {
-  //  bool ret = CoolPropPINVOKE.AbstractState_available_in_high_level(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual bool available_in_high_level() {
+    //  bool ret = CoolPropPINVOKE.AbstractState_available_in_high_level(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual string fluid_param_string(string arg0) {
-  //  string ret = CoolPropPINVOKE.AbstractState_fluid_param_string(swigCPtr, arg0);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual string fluid_param_string(string arg0) {
+    //  string ret = CoolPropPINVOKE.AbstractState_fluid_param_string(swigCPtr, arg0);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public StringVector fluid_names() {
-  //  StringVector ret = new StringVector(CoolPropPINVOKE.AbstractState_fluid_names(swigCPtr), true);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public StringVector fluid_names() {
+    //  StringVector ret = new StringVector(CoolPropPINVOKE.AbstractState_fluid_names(swigCPtr), true);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual double get_fluid_constant(uint i, parameters param) {
-  //  double ret = CoolPropPINVOKE.AbstractState_get_fluid_constant(swigCPtr, i, (int)param);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual double get_fluid_constant(uint i, parameters param) {
+    //  double ret = CoolPropPINVOKE.AbstractState_get_fluid_constant(swigCPtr, i, (int)param);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual void set_binary_interaction_double(string CAS1, string CAS2, string parameter, double value) {
-  //  CoolPropPINVOKE.AbstractState_set_binary_interaction_double__SWIG_0(swigCPtr, CAS1, CAS2, parameter, value);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void set_binary_interaction_double(string CAS1, string CAS2, string parameter, double value) {
+    //  CoolPropPINVOKE.AbstractState_set_binary_interaction_double__SWIG_0(swigCPtr, CAS1, CAS2, parameter, value);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual void set_binary_interaction_double(uint i, uint j, string parameter, double value) {
-  //  CoolPropPINVOKE.AbstractState_set_binary_interaction_double__SWIG_1(swigCPtr, i, j, parameter, value);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void set_binary_interaction_double(uint i, uint j, string parameter, double value) {
+    //  CoolPropPINVOKE.AbstractState_set_binary_interaction_double__SWIG_1(swigCPtr, i, j, parameter, value);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual void set_binary_interaction_string(string CAS1, string CAS2, string parameter, string value) {
-  //  CoolPropPINVOKE.AbstractState_set_binary_interaction_string__SWIG_0(swigCPtr, CAS1, CAS2, parameter, value);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void set_binary_interaction_string(string CAS1, string CAS2, string parameter, string value) {
+    //  CoolPropPINVOKE.AbstractState_set_binary_interaction_string__SWIG_0(swigCPtr, CAS1, CAS2, parameter, value);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual void set_binary_interaction_string(uint i, uint j, string parameter, string value) {
-  //  CoolPropPINVOKE.AbstractState_set_binary_interaction_string__SWIG_1(swigCPtr, i, j, parameter, value);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void set_binary_interaction_string(uint i, uint j, string parameter, string value) {
+    //  CoolPropPINVOKE.AbstractState_set_binary_interaction_string__SWIG_1(swigCPtr, i, j, parameter, value);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual double get_binary_interaction_double(string CAS1, string CAS2, string parameter) {
-  //  double ret = CoolPropPINVOKE.AbstractState_get_binary_interaction_double__SWIG_0(swigCPtr, CAS1, CAS2, parameter);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual double get_binary_interaction_double(string CAS1, string CAS2, string parameter) {
+    //  double ret = CoolPropPINVOKE.AbstractState_get_binary_interaction_double__SWIG_0(swigCPtr, CAS1, CAS2, parameter);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual double get_binary_interaction_double(uint i, uint j, string parameter) {
-  //  double ret = CoolPropPINVOKE.AbstractState_get_binary_interaction_double__SWIG_1(swigCPtr, i, j, parameter);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual double get_binary_interaction_double(uint i, uint j, string parameter) {
+    //  double ret = CoolPropPINVOKE.AbstractState_get_binary_interaction_double__SWIG_1(swigCPtr, i, j, parameter);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual string get_binary_interaction_string(string CAS1, string CAS2, string parameter) {
-  //  string ret = CoolPropPINVOKE.AbstractState_get_binary_interaction_string(swigCPtr, CAS1, CAS2, parameter);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual string get_binary_interaction_string(string CAS1, string CAS2, string parameter) {
+    //  string ret = CoolPropPINVOKE.AbstractState_get_binary_interaction_string(swigCPtr, CAS1, CAS2, parameter);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public virtual void apply_simple_mixing_rule(uint i, uint j, string model) {
-  //  CoolPropPINVOKE.AbstractState_apply_simple_mixing_rule(swigCPtr, i, j, model);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void apply_simple_mixing_rule(uint i, uint j, string model) {
+    //  CoolPropPINVOKE.AbstractState_apply_simple_mixing_rule(swigCPtr, i, j, model);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual void set_cubic_alpha_C(uint i, string parameter, double c1, double c2, double c3) {
-  //  CoolPropPINVOKE.AbstractState_set_cubic_alpha_C(swigCPtr, i, parameter, c1, c2, c3);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void set_cubic_alpha_C(uint i, string parameter, double c1, double c2, double c3) {
+    //  CoolPropPINVOKE.AbstractState_set_cubic_alpha_C(swigCPtr, i, parameter, c1, c2, c3);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual void set_fluid_parameter_double(uint i, string parameter, double value) {
-  //  CoolPropPINVOKE.AbstractState_set_fluid_parameter_double(swigCPtr, i, parameter, value);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public virtual void set_fluid_parameter_double(uint i, string parameter, double value) {
+    //  CoolPropPINVOKE.AbstractState_set_fluid_parameter_double(swigCPtr, i, parameter, value);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public virtual double get_fluid_parameter_double(uint i, string parameter) {
-  //  double ret = CoolPropPINVOKE.AbstractState_get_fluid_parameter_double(swigCPtr, i, parameter);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual double get_fluid_parameter_double(uint i, string parameter) {
+    //  double ret = CoolPropPINVOKE.AbstractState_get_fluid_parameter_double(swigCPtr, i, parameter);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public virtual bool clear() {
-    bool ret = CoolPropPINVOKE.AbstractState_clear(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public virtual bool clear()
+    {
+        bool ret = CoolPropPINVOKE.AbstractState_clear(swigCPtr);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public virtual SimpleState get_reducing_state() {
-  //  SimpleState ret = new SimpleState(CoolPropPINVOKE.AbstractState_get_reducing_state(swigCPtr), false);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public virtual SimpleState get_reducing_state() {
+    //  SimpleState ret = new SimpleState(CoolPropPINVOKE.AbstractState_get_reducing_state(swigCPtr), false);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public SimpleState get_state(string state) {
-  //  SimpleState ret = new SimpleState(CoolPropPINVOKE.AbstractState_get_state(swigCPtr, state), false);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public SimpleState get_state(string state) {
+    //  SimpleState ret = new SimpleState(CoolPropPINVOKE.AbstractState_get_state(swigCPtr, state), false);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double Tmin() {
-    double ret = CoolPropPINVOKE.AbstractState_Tmin(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double Tmin()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_Tmin(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public double Tmax() {
-    double ret = CoolPropPINVOKE.AbstractState_Tmax(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double Tmax()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_Tmax(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public double pmax() {
-    double ret = CoolPropPINVOKE.AbstractState_pmax(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double pmax()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_pmax(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public double Ttriple() {
-    double ret = CoolPropPINVOKE.AbstractState_Ttriple(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double Ttriple()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_Ttriple(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public phases phase() {
-  //  phases ret = (phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public phases phase() {
+    //  phases ret = (phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public void specify_phase(phases phase) {
-  //  CoolPropPINVOKE.AbstractState_specify_phase(swigCPtr, (int)phase);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public void specify_phase(phases phase) {
+    //  CoolPropPINVOKE.AbstractState_specify_phase(swigCPtr, (int)phase);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public void unspecify_phase() {
-  //  CoolPropPINVOKE.AbstractState_unspecify_phase(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public void unspecify_phase() {
+    //  CoolPropPINVOKE.AbstractState_unspecify_phase(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  public double T_critical() {
-    double ret = CoolPropPINVOKE.AbstractState_T_critical(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double T_critical()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_T_critical(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public double p_critical() {
-    double ret = CoolPropPINVOKE.AbstractState_p_critical(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double p_critical()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_p_critical(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public double rhomolar_critical() {
-  //  double ret = CoolPropPINVOKE.AbstractState_rhomolar_critical(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double rhomolar_critical() {
+    //  double ret = CoolPropPINVOKE.AbstractState_rhomolar_critical(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double rhomass_critical() {
-  //  double ret = CoolPropPINVOKE.AbstractState_rhomass_critical(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double rhomass_critical() {
+    //  double ret = CoolPropPINVOKE.AbstractState_rhomass_critical(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public SWIGTYPE_p_std__vectorT_CoolProp__CriticalState_t all_critical_points() {
-  //  SWIGTYPE_p_std__vectorT_CoolProp__CriticalState_t ret = new SWIGTYPE_p_std__vectorT_CoolProp__CriticalState_t(CoolPropPINVOKE.AbstractState_all_critical_points(swigCPtr), true);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public SWIGTYPE_p_std__vectorT_CoolProp__CriticalState_t all_critical_points() {
+    //  SWIGTYPE_p_std__vectorT_CoolProp__CriticalState_t ret = new SWIGTYPE_p_std__vectorT_CoolProp__CriticalState_t(CoolPropPINVOKE.AbstractState_all_critical_points(swigCPtr), true);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public void build_spinodal() {
-  //  CoolPropPINVOKE.AbstractState_build_spinodal(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public void build_spinodal() {
+    //  CoolPropPINVOKE.AbstractState_build_spinodal(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public SpinodalData get_spinodal_data() {
-  //  SpinodalData ret = new SpinodalData(CoolPropPINVOKE.AbstractState_get_spinodal_data(swigCPtr), true);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public SpinodalData get_spinodal_data() {
+    //  SpinodalData ret = new SpinodalData(CoolPropPINVOKE.AbstractState_get_spinodal_data(swigCPtr), true);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public void criticality_contour_values(SWIGTYPE_p_double L1star, SWIGTYPE_p_double M1star) {
-  //  CoolPropPINVOKE.AbstractState_criticality_contour_values(swigCPtr, SWIGTYPE_p_double.getCPtr(L1star), SWIGTYPE_p_double.getCPtr(M1star));
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public void criticality_contour_values(SWIGTYPE_p_double L1star, SWIGTYPE_p_double M1star) {
+    //  CoolPropPINVOKE.AbstractState_criticality_contour_values(swigCPtr, SWIGTYPE_p_double.getCPtr(L1star), SWIGTYPE_p_double.getCPtr(M1star));
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  //public double tangent_plane_distance(double T, double p, DoubleVector w, double rhomolar_guess) {
-  //  double ret = CoolPropPINVOKE.AbstractState_tangent_plane_distance__SWIG_0(swigCPtr, T, p, DoubleVector.getCPtr(w), rhomolar_guess);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double tangent_plane_distance(double T, double p, DoubleVector w, double rhomolar_guess) {
+    //  double ret = CoolPropPINVOKE.AbstractState_tangent_plane_distance__SWIG_0(swigCPtr, T, p, DoubleVector.getCPtr(w), rhomolar_guess);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double tangent_plane_distance(double T, double p, DoubleVector w) {
-  //  double ret = CoolPropPINVOKE.AbstractState_tangent_plane_distance__SWIG_1(swigCPtr, T, p, DoubleVector.getCPtr(w));
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double tangent_plane_distance(double T, double p, DoubleVector w) {
+    //  double ret = CoolPropPINVOKE.AbstractState_tangent_plane_distance__SWIG_1(swigCPtr, T, p, DoubleVector.getCPtr(w));
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double T_reducing() {
-  //  double ret = CoolPropPINVOKE.AbstractState_T_reducing(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double T_reducing() {
+    //  double ret = CoolPropPINVOKE.AbstractState_T_reducing(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double rhomolar_reducing() {
-  //  double ret = CoolPropPINVOKE.AbstractState_rhomolar_reducing(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double rhomolar_reducing() {
+    //  double ret = CoolPropPINVOKE.AbstractState_rhomolar_reducing(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double rhomass_reducing() {
-  //  double ret = CoolPropPINVOKE.AbstractState_rhomass_reducing(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double rhomass_reducing() {
+    //  double ret = CoolPropPINVOKE.AbstractState_rhomass_reducing(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double p_triple() {
-    double ret = CoolPropPINVOKE.AbstractState_p_triple(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double p_triple()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_p_triple(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public string name() {
-    string ret = CoolPropPINVOKE.AbstractState_name(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public string name()
+    {
+        string ret = CoolPropPINVOKE.AbstractState_name(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
     //public double dipole_moment() {
     //  double ret = CoolPropPINVOKE.AbstractState_dipole_moment(swigCPtr);
@@ -404,35 +432,39 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    public double T() {
-    double ret = CoolPropPINVOKE.AbstractState_T(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double T()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_T(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public double rhomolar() {
-  //  double ret = CoolPropPINVOKE.AbstractState_rhomolar(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double rhomolar() {
+    //  double ret = CoolPropPINVOKE.AbstractState_rhomolar(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double rhomass() {
-    double ret = CoolPropPINVOKE.AbstractState_rhomass(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double rhomass()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_rhomass(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public double p() {
-    double ret = CoolPropPINVOKE.AbstractState_p(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double p()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_p(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  public double Q() {
-    double ret = CoolPropPINVOKE.AbstractState_Q(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double Q()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_Q(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
     //public double tau() {
     //  double ret = CoolPropPINVOKE.AbstractState_tau(swigCPtr);
@@ -490,11 +522,12 @@ public class AbstractState : global::System.IDisposable {
     //}
 
 
-  public double compressibility_factor() {
-    double ret = CoolPropPINVOKE.AbstractState_compressibility_factor(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double compressibility_factor()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_compressibility_factor(swigCPtr);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
 
     //public double hmolar() {
@@ -503,83 +536,87 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    public double hmass() {
-    double ret = CoolPropPINVOKE.AbstractState_hmass(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double hmass()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_hmass(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public double hmolar_excess() {
-  //  double ret = CoolPropPINVOKE.AbstractState_hmolar_excess(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double hmolar_excess() {
+    //  double ret = CoolPropPINVOKE.AbstractState_hmolar_excess(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double hmass_excess() {
-  //  double ret = CoolPropPINVOKE.AbstractState_hmass_excess(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double hmass_excess() {
+    //  double ret = CoolPropPINVOKE.AbstractState_hmass_excess(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double smolar() {
-  //  double ret = CoolPropPINVOKE.AbstractState_smolar(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double smolar() {
+    //  double ret = CoolPropPINVOKE.AbstractState_smolar(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double smass() {
-    double ret = CoolPropPINVOKE.AbstractState_smass(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double smass()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_smass(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public double smolar_excess() {
-  //  double ret = CoolPropPINVOKE.AbstractState_smolar_excess(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double smolar_excess() {
+    //  double ret = CoolPropPINVOKE.AbstractState_smolar_excess(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double smass_excess() {
-  //  double ret = CoolPropPINVOKE.AbstractState_smass_excess(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double smass_excess() {
+    //  double ret = CoolPropPINVOKE.AbstractState_smass_excess(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double umolar() {
-  //  double ret = CoolPropPINVOKE.AbstractState_umolar(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double umolar() {
+    //  double ret = CoolPropPINVOKE.AbstractState_umolar(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double umass() {
-    double ret = CoolPropPINVOKE.AbstractState_umass(swigCPtr);
-    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double umass()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_umass(swigCPtr);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public double umolar_excess() {
-  //  double ret = CoolPropPINVOKE.AbstractState_umolar_excess(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double umolar_excess() {
+    //  double ret = CoolPropPINVOKE.AbstractState_umolar_excess(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double umass_excess() {
-  //  double ret = CoolPropPINVOKE.AbstractState_umass_excess(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double umass_excess() {
+    //  double ret = CoolPropPINVOKE.AbstractState_umass_excess(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  //public double cpmolar() {
-  //  double ret = CoolPropPINVOKE.AbstractState_cpmolar(swigCPtr);
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //  return ret;
-  //}
+    //public double cpmolar() {
+    //  double ret = CoolPropPINVOKE.AbstractState_cpmolar(swigCPtr);
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //  return ret;
+    //}
 
-  public double cpmass() {
-    double ret = CoolPropPINVOKE.AbstractState_cpmass(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double cpmass()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_cpmass(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
     //public double cp0molar() {
     //  double ret = CoolPropPINVOKE.AbstractState_cp0molar(swigCPtr);
@@ -666,10 +703,11 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    public double speed_sound() {
-      double ret = CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr);
-      if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
+    public double speed_sound()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr);
+        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
     }
 
     //public double isothermal_compressibility() {
@@ -800,22 +838,24 @@ public class AbstractState : global::System.IDisposable {
     //  return ret;
     //}
 
-    public double viscosity() {
-    double ret = CoolPropPINVOKE.AbstractState_viscosity(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double viscosity()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_viscosity(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
-  //public void viscosity_contributions(SWIGTYPE_p_CoolPropDbl dilute, SWIGTYPE_p_CoolPropDbl initial_density, SWIGTYPE_p_CoolPropDbl residual, SWIGTYPE_p_CoolPropDbl critical) {
-  //  CoolPropPINVOKE.AbstractState_viscosity_contributions(swigCPtr, SWIGTYPE_p_CoolPropDbl.getCPtr(dilute), SWIGTYPE_p_CoolPropDbl.getCPtr(initial_density), SWIGTYPE_p_CoolPropDbl.getCPtr(residual), SWIGTYPE_p_CoolPropDbl.getCPtr(critical));
-  //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-  //}
+    //public void viscosity_contributions(SWIGTYPE_p_CoolPropDbl dilute, SWIGTYPE_p_CoolPropDbl initial_density, SWIGTYPE_p_CoolPropDbl residual, SWIGTYPE_p_CoolPropDbl critical) {
+    //  CoolPropPINVOKE.AbstractState_viscosity_contributions(swigCPtr, SWIGTYPE_p_CoolPropDbl.getCPtr(dilute), SWIGTYPE_p_CoolPropDbl.getCPtr(initial_density), SWIGTYPE_p_CoolPropDbl.getCPtr(residual), SWIGTYPE_p_CoolPropDbl.getCPtr(critical));
+    //  if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
 
-  public double conductivity() {
-    double ret = CoolPropPINVOKE.AbstractState_conductivity(swigCPtr);
-    //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public double conductivity()
+    {
+        double ret = CoolPropPINVOKE.AbstractState_conductivity(swigCPtr);
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+    }
 
     //public void conductivity_contributions(SWIGTYPE_p_CoolPropDbl dilute, SWIGTYPE_p_CoolPropDbl initial_density, SWIGTYPE_p_CoolPropDbl residual, SWIGTYPE_p_CoolPropDbl critical) {
     //  CoolPropPINVOKE.AbstractState_conductivity_contributions(swigCPtr, SWIGTYPE_p_CoolPropDbl.getCPtr(dilute), SWIGTYPE_p_CoolPropDbl.getCPtr(initial_density), SWIGTYPE_p_CoolPropDbl.getCPtr(residual), SWIGTYPE_p_CoolPropDbl.getCPtr(critical));
@@ -829,7 +869,7 @@ public class AbstractState : global::System.IDisposable {
         if (0 < Q() && Q() < 1)
         {
             ret = CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr);
-        }        
+        }
 
         if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;

@@ -64,6 +64,49 @@ namespace Sandbox
             //Update it with 10bars and 10°C
             ref2.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
 
+
+            //Copy fluid type
+            Fluid ref3 = new Fluid();
+            ref3.CopyType(ref1);
+            ref3.UpdatePX(Pressure.FromBars(25), 1);
+
+            Console.WriteLine(ref3.Cp);
+            Console.WriteLine(ref3.Temperature);
+            Console.WriteLine("Prandtl is : " + ref3.Prandtl);
+            Console.WriteLine("Cp is : " + ref3.Cp);
+            Console.WriteLine("Cv is : " + ref3.Cv);
+            Console.WriteLine("Surface Tension is : " + ref3.SurfaceTension);
+
+            //Saving and loading to JSON
+            Fluid ref4 = new Fluid();
+            string JSON = ref3.SaveAsJSON();
+            ref4 = ref4.LoadFromJSON(JSON);
+
+            Console.WriteLine(ref4.Cp);
+            Console.WriteLine(ref4.Temperature);
+            Console.WriteLine("Prandtl is : " + ref4.Prandtl);
+            Console.WriteLine("Cp is : " + ref4.Cp);
+            Console.WriteLine("Cv is : " + ref4.Cv);
+            Console.WriteLine("Surface Tension is : " + ref4.SurfaceTension);
+
+            ref4.UpdatePX(Pressure.FromBars(45), 1);
+
+            Console.WriteLine(ref4.Cp);
+            Console.WriteLine(ref4.Temperature);
+            Console.WriteLine("Prandtl is : " + ref4.Prandtl);
+            Console.WriteLine("Cp is : " + ref4.Cp);
+            Console.WriteLine("Cv is : " + ref4.Cv);
+            Console.WriteLine("Surface Tension is : " + ref4.SurfaceTension);
+
+            ref4.UpdatePX(Pressure.FromBars(25), 1);
+
+            Console.WriteLine(ref4.Cp);
+            Console.WriteLine(ref4.Temperature);
+            Console.WriteLine("Prandtl is : " + ref4.Prandtl);
+            Console.WriteLine("Cp is : " + ref4.Cp);
+            Console.WriteLine("Cv is : " + ref4.Cv);
+            Console.WriteLine("Surface Tension is : " + ref4.SurfaceTension);
+
             Console.WriteLine(ref2.Density);
 
             Console.ReadKey();

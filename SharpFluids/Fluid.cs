@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using UnitsNet;
+using UnitsNet.Serialization.JsonNet;
+using Newtonsoft.Json;
+using JsonNet.ContractResolvers;
 
 namespace SharpFluids
 {
@@ -123,47 +126,14 @@ namespace SharpFluids
         /// Constructors
         public Fluid()
         {
-
-            //No fluid is selected! Trying to set AMMONIA as default
-            //REF = AbstractState.factory("HEOS", "AMMONIA");
-
-
         }
         public Fluid(MediaType Type)
         {
-
-            REF = AbstractState.factory(Type.BackendType, Type.InternalName);
-
-            //DoubleVector z = new DoubleVector(new double[] { 1 });
-            //REF.set_mole_fractions(z);
-
-            //REF.set_mass_fractions(z);
-
-            Media = Type;
-
-
-            UpdateStartValues();
-
+            SetNewMedia(Type);
         }
-        public Fluid(FluidList Type)
+        public Fluid(FluidList Type) :this(FluidListToMediaType(Type))
         {
 
-
-            var type = Type.GetType();
-            var memInfo = type.GetMember(Type.ToString());
-            var attributes = memInfo[0].GetCustomAttributes(typeof(MediaType), false);
-            var test = (attributes.Length > 0) ? (MediaType)attributes[0] : null;
-
-            Media = test;
-
-            REF = AbstractState.factory(test.BackendType, test.InternalName);
-
-            //DoubleVector z = new DoubleVector(new double[] { 1 });
-            //REF.set_mole_fractions(z);
-
-            //REF.set_mass_fractions(z);
-
-            UpdateStartValues();
         }
 
 
@@ -473,13 +443,17 @@ namespace SharpFluids
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
             Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
-            SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
-
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-
-            MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
-            Compressibility = REF.compressibility_factor();
             InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
+
+
+            if (Media.BackendType == "HEOS")
+            {         
+                //Mixed fluids does not have these properties 
+                SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
+                MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+                Compressibility = REF.compressibility_factor();
+            }
 
 
             if (HasValue(REF.conductivity()))
@@ -545,11 +519,7 @@ namespace SharpFluids
         }
         public void CopyType(Fluid other)
         {
-            if (this.REF?.name() != other?.REF?.name() && !(other.REF is null))
-            {
-                this.REF = AbstractState.factory("HEOS", other.REF.name());
-                UpdateStartValues();
-            }
+            SetNewMedia(other.Media);
         }
         public void AddTo(Fluid other)
         {
@@ -627,19 +597,16 @@ namespace SharpFluids
         }
         public void SetNewMedia(FluidList Type)
         {
-
-            var type = Type.GetType();
-            var memInfo = type.GetMember(Type.ToString());
-            var attributes = memInfo[0].GetCustomAttributes(typeof(MediaType), false);
-            var localMedia = (attributes.Length > 0) ? (MediaType)attributes[0] : null;
-
-            SetNewMedia(localMedia);
-
+            SetNewMedia(FluidListToMediaType(Type));
         }
         public void SetNewMedia(MediaType Type)
         {
-            this.Media = Type;
-            REF = AbstractState.factory(Type.BackendType, Type.InternalName);
+
+            if (Media is null)            
+                Media = new MediaType();            
+            
+            Media.Copy(Type);
+            REF = AbstractState.factory(Media.BackendType, Media.InternalName);
             UpdateStartValues();
 
         }
@@ -670,7 +637,18 @@ namespace SharpFluids
 
 
         }
+        public static MediaType FluidListToMediaType(FluidList Type)
+        {
 
+            //This Converts FluidList object to MediaType object
+
+            var type = Type.GetType();
+            var memInfo = type.GetMember(Type.ToString());
+            var attributes = memInfo[0].GetCustomAttributes(typeof(MediaType), false);
+            return (attributes.Length > 0) ? (MediaType)attributes[0] : null;
+
+
+        }
 
 
 
@@ -876,6 +854,33 @@ namespace SharpFluids
             REF.Dispose();
             REF = null;
             this.Dispose();
+        }
+
+        //JSON
+        public JsonSerializerSettings ReturnJSONSettings()
+        {
+            //Setting for both UnitsNet and PreserveReferences
+            var JsonSettings = new JsonSerializerSettings
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                TypeNameHandling = TypeNameHandling.All,
+                ContractResolver = new PrivateSetterContractResolver(),
+
+            };
+
+            JsonSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+
+            return JsonSettings;
+        }
+
+        public string SaveAsJSON()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented, ReturnJSONSettings());
+        }
+
+        public Fluid LoadFromJSON(string json)
+        {
+            return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
         }
 
         //Other privates function
