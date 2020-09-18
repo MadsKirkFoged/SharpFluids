@@ -607,13 +607,15 @@ namespace SharpFluids
         }
         public void SetNewMedia(MediaType Type)
         {
-
-            if (Media is null)            
-                Media = new MediaType();            
+            if (!(Type is null))
+            {
+                if (Media is null)            
+                    Media = new MediaType();            
             
-            Media.Copy(Type);
-            REF = AbstractState.factory(Media.BackendType, Media.InternalName);
-            UpdateStartValues();
+                Media.Copy(Type);
+                REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+                UpdateStartValues();
+            }
 
         }
         public void SetFraction(double fraction)
