@@ -16,11 +16,13 @@ namespace UnitsTests
             Fluid Co2 = new Fluid(FluidList.CO2);
             Pressure setPressure = Pressure.FromBars(25);
             double X = 1;
+            Mass SetMass = Mass.FromKilograms(43);
 
 
 
             //Act
             Co2.UpdatePX(setPressure, X);
+            Co2.Mass = SetMass;
 
 
 
@@ -50,6 +52,9 @@ namespace UnitsTests
             Assert.AreEqual(44.0098, Co2.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.758748472112, Co2.Compressibility, 0.0001);
             Assert.AreEqual(398229.047133, Co2.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(43, Co2.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(0.64384550749046954, Co2.Volume.CubicMeters, 0.0001);
         }
 
 
@@ -62,12 +67,12 @@ namespace UnitsTests
             Fluid Co2 = new Fluid(FluidList.CO2);
             Pressure setPressure = Pressure.FromBars(50);
             Temperature setTemperature = Temperature.FromDegreesCelsius(0);
-
+            Mass SetMass = Mass.FromKilograms(43);
 
 
             //Act
             Co2.UpdatePT(setPressure, setTemperature);
-
+            Co2.Mass = SetMass;
 
 
             //Assert
@@ -96,6 +101,8 @@ namespace UnitsTests
             Assert.AreEqual(44.0098, Co2.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.103018421004, Co2.Compressibility, 0.0001);
             Assert.AreEqual(193217.294462, Co2.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(43, Co2.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(0.045719535578296049, Co2.Volume.CubicMeters, 0.0001);
         }
 
 
@@ -107,12 +114,12 @@ namespace UnitsTests
             Fluid Co2 = new Fluid(FluidList.CO2);
             Pressure setPressure = Pressure.FromBars(50);
             Temperature setTemperature = Temperature.FromDegreesCelsius(40);
-
+            Mass SetMass = Mass.FromKilograms(43);
 
 
             //Act
             Co2.UpdatePT(setPressure, setTemperature);
-
+            Co2.Mass = SetMass;
 
 
             //Assert
@@ -141,6 +148,8 @@ namespace UnitsTests
             Assert.AreEqual(44.0098, Co2.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.747569438228, Co2.Compressibility, 0.0001);
             Assert.AreEqual(422898.513161, Co2.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(43, Co2.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(0.38035547387447732, Co2.Volume.CubicMeters, 0.0001);
         }
 
         [TestMethod]
@@ -151,12 +160,12 @@ namespace UnitsTests
             Fluid Co2 = new Fluid(FluidList.CO2);
             Pressure setPressure = Pressure.FromBars(90);
             Temperature setTemperature = Temperature.FromDegreesCelsius(30);
-
+            Mass SetMass = Mass.FromKilograms(43);
 
 
             //Act
             Co2.UpdatePT(setPressure, setTemperature);
-
+            Co2.Mass = SetMass;
 
 
             //Assert
@@ -186,6 +195,8 @@ namespace UnitsTests
             Assert.AreEqual(44.0098, Co2.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.211127165113, Co2.Compressibility, 0.0001);
             Assert.AreEqual(264226.960051, Co2.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(43, Co2.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(0.0577716671011539, Co2.Volume.CubicMeters, 0.0001);
         }
 
 
@@ -197,12 +208,12 @@ namespace UnitsTests
             Fluid Co2 = new Fluid(FluidList.CO2);
             Pressure setPressure = Co2.P_Crit;
             Temperature setTemperature = Co2.T_Crit;
-
+            Mass SetMass = Mass.FromKilograms(43);
 
 
             //Act
             Co2.UpdatePT(setPressure, setTemperature);
-
+            Co2.Mass = SetMass;
 
 
             //Assert
@@ -232,6 +243,8 @@ namespace UnitsTests
             Assert.AreEqual(44.0098, Co2.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.266941985609, Co2.Compressibility, 0.0001);
             Assert.AreEqual(313800.3176, Co2.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(43, Co2.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(0.089398735617505692, Co2.Volume.CubicMeters, 0.0001);
         }
 
 
@@ -243,12 +256,12 @@ namespace UnitsTests
             Fluid Co2 = new Fluid(FluidList.CO2);
             Pressure setPressure = Pressure.FromBars(25);
             double X = 0.5;
-
+            Mass SetMass = Mass.FromKilograms(43);
 
 
             //Act
             Co2.UpdatePX(setPressure, X);
-
+            Co2.Mass = SetMass;
 
 
             //Assert
@@ -276,6 +289,8 @@ namespace UnitsTests
             Assert.AreEqual(185.85700925081477, Co2.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(44.0098, Co2.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.557960456, Co2.Compressibility, 0.0001);
+            Assert.AreEqual(43, Co2.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(0.34356999792718357, Co2.Volume.CubicMeters, 0.0001);
         }
 
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnitsNet;
 using UnitsNet.Units;
 using SharpFluids;
+using Newtonsoft.Json;
 
 namespace Sandbox
 {
@@ -37,6 +38,11 @@ namespace Sandbox
             //Display Dynamic Viscosity of the water
             Console.WriteLine("Dynamic Viscosity of this water is: " + Water.Viscosity);
 
+            //Way to save and load the Fluid into JSON
+            string test = JsonConvert.SerializeObject(Water);
+
+            Fluid Water2 = new Fluid();
+            Water2 = Water2.LoadFromJSON(test);
 
 
 

@@ -17,11 +17,12 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
             //Act
             R717.UpdateDH(setDensity, setEnthalpy);
+            R717.MassFlow = setMassFlow;
 
 
 
@@ -52,6 +53,9 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -62,11 +66,13 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
             Pressure setPressure = Pressure.FromBars(10);
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
 
             //Act
             R717.UpdateDP(setDensity, setPressure);
+            R717.MassFlow = setMassFlow;
 
 
 
@@ -97,6 +103,9 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -107,12 +116,12 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
             Entropy setEntropy = Entropy.FromJoulesPerKelvin(3835.1912271790293);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
             //Act
             R717.UpdateDS(setDensity, setEntropy);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -142,6 +151,9 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -152,12 +164,12 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
             Temperature setTemperature = Temperature.FromDegreesCelsius(24.8950920654342);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
             //Act
             R717.UpdateDT(setDensity, setTemperature);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -187,6 +199,9 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -197,12 +212,12 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
             Entropy setEntropy = Entropy.FromJoulesPerKelvin(3835.1912271790293);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
             //Act
             R717.UpdateHS(setEnthalpy, setEntropy);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -232,6 +247,9 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -242,13 +260,13 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(10);
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
 
             //Act
             R717.UpdatePH(setPressure, setEnthalpy);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -278,6 +296,8 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -288,13 +308,13 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(10);
             Entropy setEntropy = Entropy.FromJoulesPerKelvin(3835.1912271790293);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
 
             //Act
             R717.UpdatePS(setPressure, setEntropy);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -324,6 +344,8 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -334,13 +356,13 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(10);
             Temperature setTemperature = Temperature.FromDegreesCelsius(100);
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
 
             //Act
             R717.UpdatePT(setPressure, setTemperature);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -370,6 +392,8 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.954489267, R717.Compressibility, 0.0001);
             Assert.AreEqual(1652714.6853, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.34777458044666265, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
         [TestMethod]
@@ -380,12 +404,12 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(10);
             double X = 0.5;
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
             //Act
             R717.UpdatePX(setPressure, X);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -415,6 +439,8 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
 
@@ -427,12 +453,12 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Temperature setTemperature = Temperature.FromDegreesCelsius(24.8950920654342);
             double X = 0.5;
-
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
             //Act
             R717.UpdateXT(X, setTemperature);
-
+            R717.MassFlow = setMassFlow;
 
 
             //Assert
@@ -462,6 +488,8 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
 

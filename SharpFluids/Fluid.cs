@@ -12,8 +12,134 @@ namespace SharpFluids
     public class Fluid
     {
 
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        private Mass _mass;
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        private MassFlow _massflow;
+       
+        
         ///Fluid properties
+        ///
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Temperature Temperature { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public Pressure Pressure { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public SpecificEnergy Enthalpy { get; set; } //Also called Enthalpy 
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public Entropy Entropy { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public Density Density { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public DynamicViscosity Viscosity { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public ThermalConductivity Conductivity { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public SpecificEntropy Cp { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public SpecificEntropy Cv { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public Speed SoundSpeed { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public ForcePerLength SurfaceTension { get; set; }
+
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public MolarMass MolarMass { get; set; }
+       
+
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        public SpecificEnergy InternalEnergy { get; set; }
+        
+
+        [JsonProperty]
+        public double Prandtl { get; set; }
+
+        [JsonProperty]
+        public double Compressibility { get; set; }
+
+        [JsonProperty]
+        public double Quality { get; set; }
+
+
+
+
+        [JsonIgnore]
+        public MassFlow MassFlow 
+        {
+            get { return _massflow; }
+
+            set 
+            {
+
+                if (Mass == Mass.Zero)
+                {
+                    _massflow = value;
+                }
+                else
+                {
+                    throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
+                }
+
+            } 
+        }
+
+        [JsonIgnore]
+        public Mass Mass
+        {
+            get { return _mass; }
+
+            set
+            {
+
+                if (MassFlow == MassFlow.Zero)
+                {
+                    _mass = value;
+                }
+                else
+                {
+                    throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
+                }
+
+            }
+        }
+
+        [JsonIgnore]
         public Temperature Tsat
         {
 
@@ -65,61 +191,77 @@ namespace SharpFluids
 
 
         }
-        public Pressure Pressure { get; set; }
-        public SpecificEnergy Enthalpy { get; set; } //Also called Enthalpy 
-        public MassFlow MassFlow { get; set; }
 
+        [JsonIgnore]
+        public Volume Volume
+        {
+            get
+            {
+                //Calculate the volume
+                if (Density != Density.Zero)                
+                    return Mass / Density;                
+                else               
+                    return Volume.Zero;
+                
+            }
+        }
+
+        [JsonIgnore]
         public VolumeFlow VolumeFlow
         {
             get
             {
                 //Calculate the volumeflow
-                if (Density != Density.Zero)
-                {
-                    return MassFlow / Density;
-                }
-                else
-                {
+                if (Density != Density.Zero)                
+                    return MassFlow / Density;                
+                else                
                     return VolumeFlow.Zero;
-                }
+                
             }
         }
-        public Entropy Entropy { get; set; }
-        public double Quality { get; set; }
-        public Density Density { get; set; }
-        public DynamicViscosity Viscosity { get; set; }
-        public ThermalConductivity Conductivity { get; set; }
-        public SpecificEntropy Cp { get; set; }
-        public SpecificEntropy Cv { get; set; }
-        public double Prandtl { get; set; }
-        public Speed SoundSpeed { get; set; }
-        public ForcePerLength SurfaceTension { get; set; }
-
-        public MolarMass MolarMass { get; set; }
-        public double Compressibility { get; set; }
-        public SpecificEnergy InternalEnergy { get; set; }
-
 
 
 
 
         ///Fluid Limits
+        [JsonIgnore]
         public Temperature T_Max { get; protected set; }
+
+        [JsonIgnore]
         public Temperature T_Min { get; protected set; }
+
+        [JsonIgnore]
         public Temperature T_Crit { get; protected set; }
+
+        [JsonIgnore]
         public SpecificEnergy H_Crit { get; protected set; }
+
+        [JsonIgnore]
         public Pressure P_Crit { get; protected set; }
+
+        [JsonIgnore]
         public Pressure P_Min { get; protected set; }
+
+        [JsonIgnore]
         public Pressure P_Max { get; protected set; }
+
+        [JsonProperty]
         public double FractionMax { get; protected set; }
+
+        [JsonProperty]
         public double FractionMin { get; protected set; }
 
 
 
         /// Other values
 
-        public AbstractState REF { get; set; }
+        [JsonIgnore]
+        private AbstractState REF;
+
+        [JsonProperty]
         public MediaType Media { get; protected set; }
+
+        [JsonProperty]
         public bool FailState { get; protected set; }
 
 
@@ -127,9 +269,11 @@ namespace SharpFluids
         public Fluid()
         {
         }
-        public Fluid(MediaType Type)
+
+        [JsonConstructor]
+        public Fluid(MediaType Media)
         {
-            SetNewMedia(Type);
+            SetNewMedia(Media);
         }
         public Fluid(FluidList Type) :this(FluidListToMediaType(Type))
         {
@@ -476,6 +620,7 @@ namespace SharpFluids
             Cp = SpecificEntropy.Zero;
             Cv = SpecificEntropy.Zero;
             MassFlow = MassFlow.Zero;
+            Mass = Mass.Zero;
             Prandtl = 0;
             SurfaceTension = ForcePerLength.Zero;
             SoundSpeed = Speed.Zero;
@@ -500,6 +645,7 @@ namespace SharpFluids
 
             this.Enthalpy = other.Enthalpy;
             this.MassFlow = other.MassFlow;
+            this.Mass = other.Mass;
             this.Pressure = other.Pressure;
             this.Temperature = other.Temperature;
             this.Entropy = other.Entropy;
@@ -541,6 +687,7 @@ namespace SharpFluids
         }
         public void AddTo(Fluid other)
         {
+            //TODO Should also work if Mass is selected
 
             //This makes a simple mixing based on the massflow (weigted)
             //After the mixing an Update should be run
@@ -675,6 +822,8 @@ namespace SharpFluids
         ///Methods to manipulate with 'This Fluid'
         public void AddPower(Power powerToBeAdded)
         {
+
+            //TODO If mass is selected!
             //Finding the new H
 
             if (MassFlow != MassFlow.Zero)
@@ -696,6 +845,8 @@ namespace SharpFluids
         }
         public void RemovePower(Power powerToBeRemoved)
         {
+            //TODO: If mass is selected 
+
             AddPower(powerToBeRemoved * -1);
         }
 
@@ -806,6 +957,8 @@ namespace SharpFluids
         public static bool operator ==(Fluid other1, Fluid other2)
         {
 
+            //TODO If mass is selected!
+
             MassFlow MassFlowTolerance = MassFlow.FromKilogramsPerSecond(0.00001);
             SpecificEnergy HTolerance = SpecificEnergy.FromKilojoulesPerKilogram(0.001);
             Pressure PTolerance = Pressure.FromBars(0.001);
@@ -879,6 +1032,9 @@ namespace SharpFluids
         //JSON
         public JsonSerializerSettings ReturnJSONSettings()
         {
+
+            //We might not have to use this anymore!
+
             //Setting for both UnitsNet and PreserveReferences
             var JsonSettings = new JsonSerializerSettings
             {
@@ -895,12 +1051,14 @@ namespace SharpFluids
 
         public string SaveAsJSON()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented, ReturnJSONSettings());
+            //return JsonConvert.SerializeObject(this, Formatting.Indented, ReturnJSONSettings());
+            return JsonConvert.SerializeObject(this);
         }
 
         public Fluid LoadFromJSON(string json)
         {
-            return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
+            //return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
+            return JsonConvert.DeserializeObject<Fluid>(json);
         }
 
         //Other privates function

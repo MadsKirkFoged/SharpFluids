@@ -10,16 +10,18 @@ namespace UnitsTests
     {
 
         [TestMethod]
-        public void IntoJsonAndBackAgain()
+        public void IntoJsonAndBackAgainMassFlow()
         {
 
             //Arrange
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
             //Act
             R717.UpdateDH(setDensity, setEnthalpy);
+            R717.MassFlow = setMassFlow;
 
             //Save as JSON
             string json = R717.SaveAsJSON();
@@ -58,6 +60,8 @@ namespace UnitsTests
             Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
             Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
             Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
 
             //Assert JSON
             Assert.AreEqual(R717JSON.P_Min.Bars, R717.P_Min.Bars, 0.0001);
@@ -83,9 +87,43 @@ namespace UnitsTests
             Assert.AreEqual(R717JSON.Quality, R717.Quality, 0.0001);
             Assert.AreEqual(R717JSON.SoundSpeed.MetersPerSecond, R717.SoundSpeed.MetersPerSecond, 0.0001);
 
-            Assert.AreEqual(R717.MolarMass.GramsPerMole, R717.MolarMass.GramsPerMole, 0.001);
-            Assert.AreEqual(R717.Compressibility, R717.Compressibility, 0.0001);
-            Assert.AreEqual(R717.InternalEnergy.JoulesPerKilogram, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(R717JSON.MolarMass.GramsPerMole, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(R717JSON.Compressibility, R717.Compressibility, 0.0001);
+            Assert.AreEqual(R717JSON.InternalEnergy.JoulesPerKilogram, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
+        }
+
+        [TestMethod]
+        public void IntoJsonAndBackAgainMass()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            Mass setMass = Mass.FromKilograms(43);
+
+            //Act
+            R717.UpdateDH(setDensity, setEnthalpy);
+            R717.Mass = setMass;
+
+            //Save as JSON
+            string json = R717.SaveAsJSON();
+
+
+            //Start new fluid and load as json
+            Fluid R717JSON = new Fluid();
+            R717JSON = R717JSON.LoadFromJSON(json);
+
+
+            Assert.AreEqual(43, R717.Mass.Kilograms, 0.0001);
+            Assert.AreEqual(2.7983448848467454, R717.Volume.CubicMeters, 0.0001);
+
+            //Assert JSON          
+            Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
         }
 
 
