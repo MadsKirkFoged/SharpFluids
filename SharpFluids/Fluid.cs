@@ -10,7 +10,7 @@ namespace SharpFluids
 
 
     /// <summary>
-    /// A Fluid object carries the condition and properties of a fluid.        
+    /// A <paramref name="Fluid"/> object carries the condition and properties of a fluid.        
     /// <br> You use the Update functions to change the fluids condition.</br>
     /// <br> Example:</br>
     /// </summary>
@@ -799,7 +799,7 @@ namespace SharpFluids
         /// <remarks>
         /// This does not alter the state of the <paramref name="Fluid"/>
         /// </remarks> 
-        ///<param name="temperature">The JSON data to read from</param>
+        ///<param name="temperature"> <paramref name="Temperature"/> </param>
         /// <returns>Saturation pressure</returns>
         public Pressure UpdateP_sat(Temperature temperature)
         {
