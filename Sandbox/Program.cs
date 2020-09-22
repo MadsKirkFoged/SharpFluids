@@ -22,8 +22,12 @@ namespace Sandbox
             Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
             Console.WriteLine("Density of water at 13°C: " + Water.Density);
 
-            //Giving water a Massflow
-            Water.MassFlow = MassFlow.FromKilogramsPerHour(100);
+            Water.UpdateHS(SpecificEnergy.FromJoulesPerKilogram(54697.59), Entropy.FromJoulesPerKelvin(195.27));
+
+
+
+                 //Giving water a Massflow
+                 Water.MassFlow = MassFlow.FromKilogramsPerHour(100);
 
             //What is the volumeFlow for this water?
             Console.WriteLine("VolumeFlow of the water: " + Water.VolumeFlow);
@@ -58,6 +62,7 @@ namespace Sandbox
             Console.WriteLine("Cp is : " + ref1.Cp);
             Console.WriteLine("Cv is : " + ref1.Cv);
             Console.WriteLine("Surface Tension is : " + ref1.SurfaceTension);
+            Console.WriteLine("Density is : " + ref1.Density);
 
 
             //A Fluid that is a mix of Ammonia and water
