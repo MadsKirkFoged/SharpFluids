@@ -10,17 +10,14 @@ namespace SharpFluids
 
 
     /// <summary>
-    /// A <paramref name="Fluid"/> object carries the condition and properties of a fluid.        
+    /// A <see cref="Fluid"/> object carries the condition and properties of a real fluid.        
     /// <br> You use the Update functions to change the fluids condition.</br>
     /// <br> Example:</br>
+    /// <br> </br>
+    /// <br><c> <see cref="Fluid"/> Water = <see langword="new" /> <see cref="Fluid"/>(<see cref="FluidList"/>.Water); </c></br>
+    /// <br><c><see langword="Debug" />.Print("Density of water is: " + Water.Density);</c></br>
     /// </summary>
-    /// <remarks>
-    /// <Code>
-    /// <paramref name="Fluid"/> Water = new <paramref name="Fluid"/>(FluidList.Water);
-    /// <br>Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));</br>
-    /// <para> Debug.Print("Density of the water is: " + Water.Density);</para>
-    /// </Code>
-    /// </remarks>
+
 
     public class Fluid
     {
@@ -33,7 +30,7 @@ namespace SharpFluids
         private MassFlow _massflow;
 
         /// <summary>
-        /// Get the <paramref name="Temperature"/> of the fluid.
+        /// Get the <see cref="UnitsNet.Temperature"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -41,7 +38,7 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <paramref name="Pressure"/> of the fluid.
+        /// Get the <see cref="UnitsNet.Pressure"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -49,8 +46,8 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <paramref name="Enthalpy"/> of the fluid. 
-        /// <br>Engineers may refers to this a "H".<br/>
+        /// Get the <see cref="UnitsNet.SpecificEnergy"/> of the <see cref="Fluid"/>. 
+        /// <br> <see cref="UnitsNet.SpecificEnergy"/> is also called Enthalpy or H </br>
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -58,8 +55,8 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <paramref name="Entropy"/> of the fluid. 
-        /// <br>Engineers may refers to this a "S".<br/>
+        /// Get the <see cref="UnitsNet.Entropy"/> of the <see cref="Fluid"/>. 
+        /// <br>Engineers may refers to this as "S".</br>
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -67,8 +64,8 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <paramref name="Density"/> of the fluid. 
-        /// <br>Engineers may refers to this a "RHO".<br/>
+        /// Get the <see cref="UnitsNet.Density"/> of the <see cref="Fluid"/>. 
+        /// <br>Engineers may refers to this as "RHO".</br>
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -76,113 +73,99 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <paramref name="Viscosity"/> of the fluid. 
-        /// <br>This is the DynamicViscosity.<br/>
+        /// Get the <see cref="UnitsNet.DynamicViscosity"/> of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
-        public DynamicViscosity Viscosity { get; private set; }
+        public DynamicViscosity DynamicViscosity { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="Conductivity"/> of the fluid. 
+        /// Get the <see cref="UnitsNet.ThermalConductivity"/> of the <see cref="Fluid"/>. 
+        /// <br> <see cref="UnitsNet.ThermalConductivity"/> is also just called Conductivity</br>
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public ThermalConductivity Conductivity { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="Cp"/> of the fluid. 
+        /// Get the Cp of the <see cref="Fluid"/>. 
+        /// <br>Engineers may refers to this as "Heat capacity at constant pressure".</br>
         /// </summary>
-        /// <remarks>
-        /// Engineers may refers to this a "Heat capacity at constant pressure".
-        /// </remarks>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public SpecificEntropy Cp { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="Cv"/> of the fluid. 
+        /// Get the Cv of the <see cref="Fluid"/>. 
+        /// <br>Engineers may refers to this as "Heat capacity at constant volume".</br>
         /// </summary>
-        /// <remarks>
-        /// Engineers may refers to this a "Heat capacity at constant volume".
-        /// </remarks>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public SpecificEntropy Cv { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="SoundSpeed"/> of the fluid. 
+        /// Get the <see cref="UnitsNet.Speed"/> of Sound of the <see cref="Fluid"/>. 
         /// </summary>
-        /// <remarks>
-        /// Speed of sound in the fluid.
-        /// </remarks>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Speed SoundSpeed { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="SurfaceTension"/> of the fluid. 
+        /// Get the Surface Tension of the <see cref="Fluid"/>. 
+        /// <br>This is only valid when the <see cref="Fluid"/> is a mixture of gas and liquid!</br>
         /// </summary>
-        /// <remarks>
-        /// Surface tension of the fluid
-        /// <br>This is only valid when the <paramref name="Fluid"/> is a mixture of gas and liquid!.</br>
-        /// </remarks>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public ForcePerLength SurfaceTension { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="MolarMass"/> of the fluid. 
+        /// Get the <see cref="UnitsNet.MolarMass"/> of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public MolarMass MolarMass { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="InternalEnergy"/> of the fluid. 
+        /// Get the Internal Energy of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public SpecificEnergy InternalEnergy { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="Prandtl"/> of the fluid. 
-        /// </summary>
-        /// <remarks>
-        /// Engineers may refers to this as "Prandtl number" or "Pr".
-        /// </remarks> 
+        /// Get the Prandtl number of the <see cref="Fluid"/>. 
+        /// <br>Engineers may refers to this as "Pr".</br>
+        /// <br>Note that Prandtl number is dimensionless and is therefore a <see langword="double" /></br>
+        /// </summary> 
         [JsonProperty]
         public double Prandtl { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="Prandtl"/> of the fluid. 
+        /// Get the Compressibility of the <see cref="Fluid"/>. 
+        /// <br>Engineers may refers to this as 'coefficient of compressibility' or 'isothermal compressibility'.</br>
+        /// <br>Note that Compressibility is dimensionless and is therefore a <see langword="double" /></br>
         /// </summary>
-        /// <remarks>
-        /// Engineers may refers to this as coefficient of compressibility or isothermal compressibility.
-        /// </remarks> 
         [JsonProperty]
         public double Compressibility { get; private set; }
 
         /// <summary>
-        /// Get the <paramref name="Quality"/> of the fluid. 
-        /// </summary>
-        /// <remarks>
-        /// Mass fraction of vapour
+        /// Get the Quality of the <see cref="Fluid"/>. 
+        /// <br>It is the Mass fraction of vapour in fluid</br>
         /// <br>Quality = 0 => 0% vapour</br>
         /// <br>Quality = 1 => 100% vapour</br>
         /// <br>Engineers may refers to this as "X".</br>
-        /// </remarks> 
+        /// </summary> 
         [JsonProperty]
         public double Quality { get; private set; }
 
 
 
         /// <summary>
-        /// Set the <paramref name="MassFlow"/> of the fluid. 
+        /// Set the <see cref="UnitsNet.MassFlow"/> of the <see cref="Fluid"/>. 
+        /// <br> The <see cref="UnitsNet.MassFlow"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
+        /// <br>You can choose between using <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> when defining a fluid.</br>
+        /// <br>Once the <see cref="UnitsNet.MassFlow"/> is set you cannot set the <see cref="UnitsNet.Mass"/> anymore.</br>
         /// </summary>
-        /// <remarks>
-        /// You can choose between using <paramref name="MassFlow"/> or <paramref name="Mass"/> when defining a fluid.
-        /// </remarks> 
         [JsonIgnore]
         public MassFlow MassFlow 
         {
@@ -204,11 +187,11 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Set the <paramref name="Mass"/> of the fluid. 
+        /// Set the <see cref="UnitsNet.Mass"/> of the <see cref="Fluid"/>. 
+        /// <br> The <see cref="UnitsNet.Mass"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
+        /// <br>You can choose between using <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> when defining a fluid.</br>
+        /// <br>Once the <see cref="UnitsNet.Mass"/> is set you cannot set the <see cref="UnitsNet.MassFlow"/> anymore.</br>
         /// </summary>
-        /// <remarks>
-        /// You can choose between using <paramref name="MassFlow"/> or <paramref name="Mass"/> when defining a fluid.
-        /// </remarks> 
         [JsonIgnore]
         public Mass Mass
         {
@@ -230,11 +213,9 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Get the Saturation temperature of the fluid. 
+        /// Get the Saturation temperature of the <see cref="Fluid"/>. 
+        /// <br>Beware: If you are above the critical pressure of the <see cref="Fluid"/> this will just return the Saturation temperature AT the critical pressure!</br>
         /// </summary>
-        /// <remarks>
-        /// Beware: If you are above the critical pressure of the <paramref name="Fluid"/> this will just return Saturation temperature at the critical pressure!
-        /// </remarks> 
         [JsonIgnore]
         public Temperature Tsat
         {
@@ -242,7 +223,7 @@ namespace SharpFluids
             get
             {
 
-                if (Pressure >= P_Min && Pressure <= P_Crit && P_Min != P_Crit) //P_Min != P_Crit is a quick fix - We should create a check to see if the object has beed created correctly!
+                if (Pressure >= LimitPressureMin && Pressure <= CriticalPressure && LimitPressureMin != CriticalPressure) //P_Min != P_Crit is a quick fix - We should create a check to see if the object has beed created correctly!
                 {
                     try
                     {
@@ -261,11 +242,11 @@ namespace SharpFluids
                         return Temperature;
                     }
                 }
-                else if (Pressure > P_Crit)
+                else if (Pressure > CriticalPressure)
                 {
                     try
                     {
-                        REF.update(input_pairs.HmassP_INPUTS, H_Crit.JoulesPerKilogram, Pressure.Pascals);
+                        REF.update(input_pairs.HmassP_INPUTS, CriticalEnthalpy.JoulesPerKilogram, Pressure.Pascals);
                         return Temperature.FromKelvins(REF.T());
 
                     }
@@ -290,11 +271,9 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <paramref name="Volume"/> of the fluid. 
+        /// Get the <see cref="UnitsNet.Volume"/> of the <see cref="Fluid"/>. 
+        /// <br>This can ONLY be used when the <see cref="UnitsNet.Mass"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
-        /// <remarks>
-        /// This is used when the <paramref name="Mass"/> of the <paramref name="Fluid"/> is set
-        /// </remarks> 
         [JsonIgnore]
         public Volume Volume
         {
@@ -310,11 +289,9 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Get the <paramref name="VolumeFlow"/> of the fluid. 
+        /// Get the <see cref="UnitsNet.VolumeFlow"/> of the fluid. 
+        /// <br>This can ONLY be used when the <see cref="UnitsNet.MassFlow"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
-        /// <remarks>
-        /// This is used when the <paramref name="MassFlow"/> of the <paramref name="Fluid"/> is set
-        /// </remarks> 
         [JsonIgnore]
         public VolumeFlow VolumeFlow
         {
@@ -333,55 +310,55 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// The top limit temperature of the selected <paramref name="Fluid"/>.
+        /// This library's maximum <see cref="UnitsNet.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public Temperature T_Max { get; private set; }
+        public Temperature LimitTemperatureMax { get; private set; }
 
         /// <summary>
-        /// The lower limit temperature of the selected <paramref name="Fluid"/>.
+        /// This library's minimum <see cref="UnitsNet.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public Temperature T_Min { get; private set; }
+        public Temperature LimitTemperatureMin { get; private set; }
 
         /// <summary>
-        /// <paramref name="Temperature"/> at the critical point
+        /// <see cref="UnitsNet.Temperature"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public Temperature T_Crit { get; private set; }
+        public Temperature CriticalTemperature { get; private set; }
 
         /// <summary>
-        /// <paramref name="Enthalpy"/> at the critical point
+        /// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public SpecificEnergy H_Crit { get; private set; }
+        public SpecificEnergy CriticalEnthalpy { get; private set; }
 
         /// <summary>
-        /// <paramref name="Pressure"/> at the critical point
+        /// <see cref="UnitsNet.Pressure"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public Pressure P_Crit { get; private set; }
+        public Pressure CriticalPressure { get; private set; }
 
         /// <summary>
-        /// The lower limit <paramref name="Pressure"/> of the selected <paramref name="Fluid"/>.
+        /// This library's minimum <see cref="UnitsNet.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public Pressure P_Min { get; private set; }
+        public Pressure LimitPressureMin { get; private set; }
 
         /// <summary>
-        /// The top limit <paramref name="Pressure"/> of the selected <paramref name="Fluid"/>.
+        /// This library's maximum <see cref="UnitsNet.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonIgnore]
-        public Pressure P_Max { get; private set; }
+        public Pressure LimitPressureMax { get; private set; }
 
         /// <summary>
-        /// The top limit <paramref name="FractionMax"/> of the selected <paramref name="Fluid"/>.
+        /// This library's maximum fraction for the selected mixture of <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty]
         public double FractionMax { get; private set; }
 
         /// <summary>
-        /// The lower limit <paramref name="FractionMin"/> of the selected <paramref name="Fluid"/>.
+        /// This library's minimum fraction for the selected mixture of <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty]
         public double FractionMin { get; private set; }
@@ -396,41 +373,34 @@ namespace SharpFluids
         private AbstractState REF;
 
         /// <summary>
-        /// Get the selected fluid type that is set to the <paramref name="Fluid"/>
+        /// Get the fluid type of the <see cref="Fluid"/>
+        /// <br>The full list can be seen on <see cref="FluidList"/></br><br></br>
+        /// <br>Example: <see cref="FluidList.Water"/></br> or <see cref="FluidList.CO2"/>
         /// </summary>
-        /// <remarks>
-        /// The full list can be seen on the <paramref name="FluidList"/>
-        /// </remarks> 
         [JsonProperty]
         public MediaType Media { get; private set; }
 
         /// <summary>
-        /// When an <paramref name="Update"/> fails this it set to <paramref name="True"/>
+        /// When an Update fails this it set to <see langword="true"/>
         /// </summary>
         [JsonProperty]
         public bool FailState { get; private set; }
 
 
         /// <summary>
-        /// Set an empty <paramref name="Fluid"/> that does not have a fluid type!
+        /// Create an empty <see cref="Fluid"/> that does not have a fluid type!
+        /// <br>You would normally use this:</br><br></br>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
         /// </summary>
-        /// <remarks>
-        /// <Code>
-        /// <br>You would normally use this:</br>
-        /// <br><paramref name="Fluid"/> Water = new <paramref name="Fluid"/>(<paramref name="FluidList"/>.Water);</br>
-        /// </Code>
-        /// </remarks> 
         public Fluid()
         {
         }
 
         /// <summary>
-        /// Set an <paramref name="Fluid"/> with a fluid type!
-        /// </summary>
-        /// <remarks>
+        /// Create a <see cref="Fluid"/> with a fluid type!
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// </remarks> 
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
+        /// </summary>
         [JsonConstructor]
         public Fluid(MediaType Media)
         {
@@ -438,12 +408,10 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Set an <paramref name="Fluid"/> with a fluid type!
-        /// </summary>
-        /// <remarks>
+        /// Create an new <see cref="Fluid"/> with a fluid type!
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// </remarks> 
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
+        /// </summary>
         public Fluid(FluidList Type) :this(FluidListToMediaType(Type))
         {
 
@@ -451,15 +419,13 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Density"/> and the <paramref name="Entropy"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Density"/> and the <see cref="UnitsNet.Entropy"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdateDS(Density.FromKilogramsPerCubicMeter(999.38), Entropy.FromJoulesPerKelvin(195.27));</c></br>
-        /// </remarks> 
-        /// <param name = "density" > The <paramref name="Density"/> used in the update</param>
-        /// <param name = "entropy" > The <paramref name="Entropy"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdateDS(<see cref="UnitsNet.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="UnitsNet.Entropy"/>.FromJoulesPerKelvin(195.27));</c></br>
+        /// </summary> 
+        /// <param name = "density" > The <see cref="UnitsNet.Density"/> used in the update</param>
+        /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
         public void UpdateDS(Density density, Entropy entropy)
         {
             CheckBeforeUpdate();
@@ -487,15 +453,13 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Density"/> and the <paramref name="Pressure"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Density"/> and the <see cref="UnitsNet.Pressure"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdateDP(Density.FromKilogramsPerCubicMeter(999.38), Pressure.FromBars(1.013));</c></br>
-        /// </remarks> 
-        /// <param name = "density" > The <paramref name="Density"/> used in the update</param>
-        /// <param name = "pressure" > The <paramref name="Pressure"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdateDP(<see cref="UnitsNet.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="UnitsNet.Pressure"/>.FromBars(1.013));</c></br>
+        /// </summary>
+        /// <param name = "density" > The <see cref="UnitsNet.Density"/> used in the update</param>
+        /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         public void UpdateDP(Density density, Pressure pressure)
         {
             CheckBeforeUpdate();
@@ -513,15 +477,13 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Density"/> and the <paramref name="Temperature"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Density"/> and the <see cref="UnitsNet.Temperature"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdateDT(Density.FromKilogramsPerCubicMeter(999.38), Temperature.FromDegreesCelsius(13));</c></br>
-        /// </remarks> 
-        /// <param name = "density" > The <paramref name="Density"/> used in the update</param>
-        /// <param name = "temperature" > The <paramref name="Temperature"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdateDT(<see cref="UnitsNet.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="UnitsNet.Temperature"/>.FromDegreesCelsius(13));</c></br>
+        /// </summary>
+        /// <param name = "density" > The <see cref="UnitsNet.Density"/> used in the update</param>
+        /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdateDT(Density density, Temperature temperature)
         {
             CheckBeforeUpdate();
@@ -540,15 +502,13 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Density"/> and the <paramref name="Enthalpy"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Density"/> and the Enthalpy<br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdateDH(Density.FromKilogramsPerCubicMeter(999.38), SpecificEnergy.FromJoulesPerKilogram(54697.59));</c></br>
-        /// </remarks> 
-        /// <param name = "density" > The <paramref name="Density"/> used in the update</param>
-        /// <param name = "enthalpy" > The <paramref name="Enthalpy"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdateDH(<see cref="UnitsNet.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="UnitsNet.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59));</c></br>
+        /// </summary>
+        /// <param name = "density" > The <see cref="UnitsNet.Density"/> used in the update</param>
+        /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public void UpdateDH(Density density, SpecificEnergy enthalpy)
         {
             CheckBeforeUpdate();
@@ -566,19 +526,17 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Pressure"/> and the <paramref name="Temperature"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the <see cref="UnitsNet.Temperature"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));</c></br>
-        /// </remarks> 
-        /// <param name = "pressure" > The <paramref name="Pressure"/> used in the update</param>
-        /// <param name = "temperature" > The <paramref name="Temperature"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdatePT(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.Temperature"/>.FromDegreesCelsius(13));</c></br>
+        /// </summary>
+        /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
+        /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdatePT(Pressure pressure, Temperature temperature)
         {
             CheckBeforeUpdate();
-            if (pressure > P_Min && temperature > T_Min)
+            if (pressure > LimitPressureMin && temperature > LimitTemperatureMin)
             {
                 try
                 {
@@ -602,27 +560,25 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Quality"/> and the <paramref name="Temperature"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the Quality and the <see cref="UnitsNet.Temperature"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid CO2 = new Fluid(FluidList.CO2);</c></br>
-        /// <br><c>CO2.UpdateXT(0.7, Temperature.FromDegreesCelsius(13));</c></br>
-        /// </remarks> 
-        /// <param name = "quality" > The <paramref name="Quality"/> used in the update</param>
-        /// <param name = "temperature" > The <paramref name="Temperature"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> CO2 = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.CO2"/>);</c></br>
+        /// <br><c>CO2.UpdateXT(0.7, <see cref="UnitsNet.Temperature"/>.FromDegreesCelsius(13));</c></br>
+        /// </summary>
+        /// <param name = "quality" > The Quality used in the update</param>
+        /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdateXT(double quality, Temperature temperature)
         {
 
             CheckBeforeUpdate();
-            if (temperature >= T_Min)
+            if (temperature >= LimitTemperatureMin)
             {
                 try
                 {
                     //If we are above transcritical
-                    if (temperature >= T_Crit)
+                    if (temperature >= CriticalTemperature)
                     {
-                        UpdatePT(P_Crit, T_Crit);
+                        UpdatePT(CriticalPressure, CriticalTemperature);
                         UpdateHT(Enthalpy, temperature);
                     }
                     else
@@ -647,24 +603,23 @@ namespace SharpFluids
         /// <summary>
         /// Not yet supported by CoolProp!
         /// </summary>        ///
-        /// <param name = "enthalpy" > The <paramref name="Enthalpy"/> used in the update</param>
-        /// <param name = "temperature" > The <paramref name="Temperature"/> used in the update</param>
+        /// <param name = "enthalpy" > The Enthalpy used in the update</param>
+        /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         private void UpdateHT(SpecificEnergy enthalpy, Temperature temperature)
         {
             //Not yet supported by CoolProp!
+            throw new NotImplementedException("Not yet supported by CoolProp");
         }
 
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Pressure"/> and the <paramref name="Entropy"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the <see cref="UnitsNet.Entropy"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdatePS(Pressure.FromBars(1.013), Entropy.FromJoulesPerKelvin(195.27));</c></br>
-        /// </remarks> 
-        /// <param name = "pressure" > The <paramref name="Pressure"/> used in the update</param>
-        /// <param name = "entropy" > The <paramref name="Entropy"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdatePS(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.Entropy"/>.FromJoulesPerKelvin(195.27));</c></br>
+        /// </summary>
+        /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
+        /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
         public void UpdatePS(Pressure pressure, Entropy entropy)
         {
             CheckBeforeUpdate();
@@ -688,15 +643,13 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Pressure"/> and the <paramref name="Enthalpy"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the Enthalpy<br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdatePH(Pressure.FromBars(1.013), SpecificEnergy.FromJoulesPerKilogram(54697.59));</c></br>
-        /// </remarks> 
-        /// <param name = "pressure" > The <paramref name="Pressure"/> used in the update</param>
-        /// <param name = "enthalpy" > The <paramref name="Enthalpy"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdatePH(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59));</c></br>
+        /// </summary>
+        /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
+        /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy)
         {
             CheckBeforeUpdate();
@@ -721,15 +674,13 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Pressure"/> and the <paramref name="Quality"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the Quality<br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid CO2 = new Fluid(FluidList.CO2);</c></br>
-        /// <br><c>CO2.UpdatePX(Pressure.FromBars(25), 0.7);</c></br>
-        /// </remarks> 
-        /// <param name = "pressure" > The <paramref name="Pressure"/> used in the update</param>
-        /// <param name = "quality" > The <paramref name="Quality"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> CO2 = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.CO2"/>);</c></br>
+        /// <br><c>CO2.UpdatePX(<see cref="UnitsNet.Pressure"/>.FromBars(25), 0.7);</c></br>
+        /// </summary>
+        /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
+        /// <param name = "quality" > The Quality used in the update</param>
         public void UpdatePX(Pressure pressure, double quality)
         {
 
@@ -739,9 +690,9 @@ namespace SharpFluids
 
                 try
                 {
-                    if (pressure > P_Crit)
+                    if (pressure > CriticalPressure)
                     {
-                        UpdatePT(P_Crit, T_Crit);
+                        UpdatePT(CriticalPressure, CriticalTemperature);
                         UpdatePH(pressure, Enthalpy);
                     }
                     else
@@ -765,15 +716,13 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Update the condition of the <paramref name="Fluid"/> when you know the <paramref name="Enthalpy"/> and the <paramref name="Entropy"/>
-        /// </summary>
-        /// <remarks>
+        /// Update the condition of the <see cref="Fluid"/> when you know the Enthalpy and the <see cref="UnitsNet.Entropy"/><br></br>
         /// <br>Exemple:</br>
-        /// <br><c>Fluid Water = new Fluid(FluidList.Water);</c></br>
-        /// <br><c>Water.UpdateHS(SpecificEnergy.FromJoulesPerKilogram(54697.59), Entropy.FromJoulesPerKelvin(195.27));</c></br>
-        /// </remarks> 
-        /// <param name = "enthalpy" > The <paramref name="Enthalpy"/> used in the update</param>
-        /// <param name = "entropy" > The <paramref name="Entropy"/> used in the update</param>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdateHS(<see cref="UnitsNet.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59), <see cref="UnitsNet.Entropy"/>.FromJoulesPerKelvin(195.27));</c></br>
+        /// </summary> 
+        /// <param name = "enthalpy" > The Enthalpy used in the update</param>
+        /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
         public void UpdateHS(SpecificEnergy enthalpy, Entropy entropy)
         {
             CheckBeforeUpdate();
@@ -794,22 +743,20 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Use the selected <paramref name="Fluid"/> to return the Saturation pressure
-        /// </summary>
-        /// <remarks>
-        /// This does not alter the state of the <paramref name="Fluid"/>
-        /// </remarks> 
-        ///<param name="temperature"> <paramref name="Temperature"/> </param>
+        /// Get the Saturation pressure of <see cref="Fluid"/>
+        /// <br>This does not alter the condition of the <see cref="Fluid"/></br>
+        /// </summary> 
         /// <returns>Saturation pressure</returns>
+        ///<param name="temperature"> <see cref="UnitsNet.Temperature"/> </param>
         public Pressure UpdateP_sat(Temperature temperature)
         {
             CheckBeforeUpdate();
-            if (temperature >= T_Min)
+            if (temperature >= LimitTemperatureMin)
             {
                 try
                 {
                     //If we are above transcritical
-                    if (temperature >= T_Crit)
+                    if (temperature >= CriticalTemperature)
                     {
 
                         //Need to fix this!
@@ -839,27 +786,28 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Updates the start values of the <paramref name="Fluid"/>
+        /// Updates the constants of the <see cref="Fluid"/>
+        /// <br><see cref="Fluid"/> constants are Limits and Criticalpoint values</br>
         /// </summary>   
-        protected virtual void UpdateStartValues()
+        protected virtual void UpdateFluidConstants()
         {
             FailState = true;
 
             //Setting the constant values up
-            T_Max = Temperature.FromKelvins(REF.Tmax());
-            T_Min = Temperature.FromKelvins(REF.Tmin());
+            LimitTemperatureMax = Temperature.FromKelvins(REF.Tmax());
+            LimitTemperatureMin = Temperature.FromKelvins(REF.Tmin());
 
 
             if (REF.backend_name() == "HelmholtzEOSBackend")
             {
-                T_Crit = Temperature.FromKelvins(REF.T_critical());
-                P_Crit = Pressure.FromPascals(REF.p_critical());
-                P_Min = Pressure.FromPascals(REF.p_triple());
-                P_Max = Pressure.FromPascals(REF.pmax());
+                CriticalTemperature = Temperature.FromKelvins(REF.T_critical());
+                CriticalPressure = Pressure.FromPascals(REF.p_critical());
+                LimitPressureMin = Pressure.FromPascals(REF.p_triple());
+                LimitPressureMax = Pressure.FromPascals(REF.pmax());
 
                 //Finding H_crit
-                REF.update(input_pairs.PT_INPUTS, P_Crit.Pascals, T_Crit.Kelvins);
-                H_Crit = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+                REF.update(input_pairs.PT_INPUTS, CriticalPressure.Pascals, CriticalTemperature.Kelvins);
+                CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
 
             }
 
@@ -871,7 +819,7 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Updates the values of the <paramref name="Fluid"/> after an update
+        /// Updates the values of the <see cref="Fluid"/> after an update
         /// </summary>   
         protected virtual void UpdateValues()
         {
@@ -884,7 +832,7 @@ namespace SharpFluids
             Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
             Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
             Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
-            Viscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
+            DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
             Prandtl = REF.Prandtl();
             SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
             InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
@@ -909,7 +857,10 @@ namespace SharpFluids
 
         }
 
-        public virtual void ZeroValues()
+        /// <summary>
+        /// Set all values of <see cref="Fluid"/> to Zero
+        /// </summary>   
+        public virtual void SetValuesToZero()
         {
             Enthalpy = SpecificEnergy.Zero;
             Temperature = Temperature.Zero;
@@ -926,7 +877,7 @@ namespace SharpFluids
             SoundSpeed = Speed.Zero;
             FailState = true;
 
-            Viscosity = DynamicViscosity.Zero;
+            DynamicViscosity = DynamicViscosity.Zero;
             Conductivity = ThermalConductivity.Zero;
             MolarMass = MolarMass.Zero;
             Compressibility = 0;
@@ -937,9 +888,9 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Copy all the values from <paramref name="other"/> to this <paramref name="Fluid"/>
+        /// Copy all the values from <paramref name="other"/> to this <see cref="Fluid"/>
         /// </summary>  
-        /// <param name="other"><paramref name="Fluid"/> to be copied from</param>
+        /// <param name="other"><see cref="Fluid"/> to be copied from</param>
         public void Copy(Fluid other)
         {
             //Copying Refrigerant type
@@ -956,8 +907,8 @@ namespace SharpFluids
             this.Density = other.Density;
             this.Cp = other.Cp;
             this.Cv = other.Cv;
-            this.P_Crit = other.P_Crit;
-            this.Viscosity = other.Viscosity;
+            this.CriticalPressure = other.CriticalPressure;
+            this.DynamicViscosity = other.DynamicViscosity;
             this.Conductivity = other.Conductivity;
             this.Prandtl = other.Prandtl;
             this.SoundSpeed = other.SoundSpeed;
@@ -973,9 +924,9 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Copy just the type of fluid from <paramref name="other"/> to this <paramref name="Fluid"/>
+        /// Copy just the type of fluid from <paramref name="other"/> to this <see cref="Fluid"/>
         /// </summary>  
-        /// <param name="other"><paramref name="Fluid"/> to be copied from</param>
+        /// <param name="other"><see cref="Fluid"/> to be copied from</param>
         public void CopyType(Fluid other)
         {
             //Null check
@@ -985,7 +936,7 @@ namespace SharpFluids
                 if (this.Media != other.Media)
                 {
                     //Since we are changing media when the old values doesn't make sense to keep
-                    ZeroValues();
+                    SetValuesToZero();
 
                     //Set new media
                     SetNewMedia(other.Media);
@@ -995,13 +946,11 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Mixing <paramref name="other"/> into this <paramref name="Fluid"/>
+        /// Mixing <paramref name="other"/> into this <see cref="Fluid"/>
+        /// <br>This makes a simple mixing based on <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> </br>
+        /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
         /// </summary> 
-        /// <remarks>
-        /// This makes a simple mixing based on the Massflow or the Mass 
-        /// <br>Both <paramref name="Fluid"/> should use either Massflow or the Mass!</br>
-        /// </remarks> 
-        /// <param name="other"><paramref name="Fluid"/> to be copied from</param>
+        /// <param name="other"><see cref="Fluid"/> to be copied from</param>
         public void AddTo(Fluid other)
         {
             //TODO Should also work if Mass is selected
@@ -1050,15 +999,15 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Check if two <paramref name="Fluid"/> have almost the same <paramref name="MassFlow"/> or <paramref name="Mass"/>
-        /// </summary> 
-        /// <remarks>
-        /// <br>Both <paramref name="Fluid"/> should use either Massflow or the Mass!</br>
-        /// <br>tolerence is set to: 0.00001 [kg/s] or 0.00001 [kg]</br>
-        /// </remarks>
-        /// <param name="other"><paramref name="Fluid"/> to be copied from</param> 
+        /// Check if two <see cref="Fluid"/> have almost the same <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>
+        /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
+        /// <br>Tolerence is set to: 0.00001 [kg/s] or 0.00001 [kg]</br>
+        /// </summary>
+        /// <param name="other"><see cref="Fluid"/> to be copied from</param> 
         public bool MassBalance(Fluid other)
         {
+
+            //TODO Split this up in MassFlow and Mass
 
             MassFlow tolerence = MassFlow.FromKilogramsPerSecond(0.00001);
 
@@ -1075,7 +1024,7 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Set a new fluid type to the <paramref name="Fluid"/>
+        /// Set a new fluid type to the <see cref="Fluid"/>
         /// </summary> 
         public void SetNewType(string RefType)
         {
@@ -1083,22 +1032,22 @@ namespace SharpFluids
             {
                 Debug.Print(REF.name());
                 REF = AbstractState.factory("HEOS", RefType);
-                UpdateStartValues();
+                UpdateFluidConstants();
 
                 Debug.Print(REF.name());
             }
         }
-        
+
         /// <summary>
-        /// Set a new fluid type to the <paramref name="Fluid"/>
+        /// Set a new fluid type to the <see cref="Fluid"/>
         /// </summary> 
         public void SetNewMedia(FluidList Type)
         {
             SetNewMedia(FluidListToMediaType(Type));
         }
-        
+
         /// <summary>
-        /// Set a new fluid type to the <paramref name="Fluid"/>
+        /// Set a new fluid type to the <see cref="Fluid"/>
         /// </summary> 
         public void SetNewMedia(MediaType Type)
         {
@@ -1109,17 +1058,15 @@ namespace SharpFluids
             
                 Media.Copy(Type);
                 REF = AbstractState.factory(Media.BackendType, Media.InternalName);
-                UpdateStartValues();
+                UpdateFluidConstants();
             }
 
         }
 
         /// <summary>
-        /// Set a mass fraction to the <paramref name="Fluid"/>
-        /// </summary> 
-        /// <remarks>
+        /// Set a mass fraction to the <see cref="Fluid"/>
         /// <br>It might work but it is still in Beta!</br>
-        /// </remarks>
+        /// </summary>
         public void SetFraction(double fraction)
         {
 
@@ -1147,6 +1094,10 @@ namespace SharpFluids
 
 
         }
+
+        /// <summary>
+        /// Converts <see cref="FluidList"/> to <see cref="MediaType"/>
+        /// </summary>
         public static MediaType FluidListToMediaType(FluidList Type)
         {
 
@@ -1162,11 +1113,9 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Add <paramref name="Power"/> to the <paramref name="Fluid"/>
-        /// </summary> 
-        /// <remarks>
-        /// <br>This does only work when using <paramref name="MassFlow"/></br>
-        /// </remarks>
+        /// Add <see cref="UnitsNet.Power"/> to the <see cref="Fluid"/>
+        /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        /// </summary>
         public void AddPower(Power powerToBeAdded)
         {
 
@@ -1192,10 +1141,10 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Remove <paramref name="Power"/> from the <paramref name="Fluid"/>
+        /// Remove <see cref="UnitsNet.Power"/> from the <see cref="Fluid"/>
         /// </summary> 
         /// <remarks>
-        /// <br>This does only work when using <paramref name="MassFlow"/></br>
+        /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
         /// </remarks>
         public void RemovePower(Power powerToBeRemoved)
         {
@@ -1205,7 +1154,9 @@ namespace SharpFluids
         }
 
 
-        //Checks
+        /// <summary>
+        /// Fractions er still in Beta! And is not yet tested!
+        /// </summary> 
         protected void CheckFractionLimits(double fraction)
         {
 
@@ -1213,13 +1164,8 @@ namespace SharpFluids
             if (Media.BackendType == "INCOMP")
             {
 
-
-
                 double min = REF.keyed_output(parameters.ifraction_min);
                 double max = REF.keyed_output(parameters.ifraction_max);
-
-
-
 
                 if (fraction < min)
                 {
@@ -1230,12 +1176,16 @@ namespace SharpFluids
                     throw new System.ArgumentException("Selected fraction is above the limit");
                 }
 
-
             }
 
         }
+        
+
         public void CheckForNaN()
         {
+
+            //TODO I think this just be done in the UpdateValues!
+
             //Temperature 
             if (Double.IsNaN(Temperature.Value))
             {
@@ -1308,7 +1258,7 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Checks if the two <paramref name="Fluid"/> are almost then same
+        /// Checks if the two <see cref="Fluid"/> are almost then same
         /// </summary>
         public static bool operator ==(Fluid other1, Fluid other2)
         {
@@ -1385,7 +1335,9 @@ namespace SharpFluids
             this.Dispose();
         }
 
-        //JSON
+        /// <summary>
+        /// Not in use anymore
+        /// </summary>
         public JsonSerializerSettings ReturnJSONSettings()
         {
 

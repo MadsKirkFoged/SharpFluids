@@ -7,6 +7,7 @@ using UnitsNet;
 using UnitsNet.Units;
 using SharpFluids;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Sandbox
 {
@@ -22,9 +23,11 @@ namespace Sandbox
             Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
             Console.WriteLine("Density of water at 13°C: " + Water.Density);
 
+            
+
             Water.UpdateHS(SpecificEnergy.FromJoulesPerKilogram(54697.59), Entropy.FromJoulesPerKelvin(195.27));
 
-
+            Debug.Print("Density of water is: " + Water.Density);
 
                  //Giving water a Massflow
                  Water.MassFlow = MassFlow.FromKilogramsPerHour(100);
@@ -40,7 +43,7 @@ namespace Sandbox
             Console.WriteLine("Boiling point of this water is: " + Water.Temperature.ToUnit(TemperatureUnit.DegreeCelsius));
 
             //Display Dynamic Viscosity of the water
-            Console.WriteLine("Dynamic Viscosity of this water is: " + Water.Viscosity);
+            Console.WriteLine("Dynamic Viscosity of this water is: " + Water.DynamicViscosity);
 
             //Way to save and load the Fluid into JSON
             string test = JsonConvert.SerializeObject(Water);
