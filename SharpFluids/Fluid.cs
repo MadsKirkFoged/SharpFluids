@@ -10,7 +10,7 @@ namespace SharpFluids
 
 
     /// <summary>
-    /// A <see cref="Fluid"/> object carries the condition and properties of a real fluid.        
+    /// A <see cref="Fluid"/> object carries the condition and properties of a real fluid.         
     /// <br> To change the <see cref="Fluid"/> condition use a Update function:</br>
     /// <br> <see cref="UpdateDS"/></br>
     /// <br> <see cref="UpdatePT"/></br>
