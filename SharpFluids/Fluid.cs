@@ -11,10 +11,14 @@ namespace SharpFluids
 
     /// <summary>
     /// A <see cref="Fluid"/> object carries the condition and properties of a real fluid.        
-    /// <br> You use the Update functions to change the fluids condition.</br>
+    /// <br> To change the <see cref="Fluid"/> condition use a Update function:</br>
+    /// <br> <see cref="UpdateDS"/></br>
+    /// <br> <see cref="UpdatePT"/></br>
+    /// <br> ..more to select</br>
     /// <br> Example:</br>
     /// <br> </br>
     /// <br><c> <see cref="Fluid"/> Water = <see langword="new" /> <see cref="Fluid"/>(<see cref="FluidList"/>.Water); </c></br>
+    /// <br><c>Water.UpdatePT(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.Temperature"/>.FromDegreesCelsius(13));</c></br>
     /// <br><c><see langword="Debug" />.Print("Density of water is: " + Water.Density);</c></br>
     /// </summary>
 
