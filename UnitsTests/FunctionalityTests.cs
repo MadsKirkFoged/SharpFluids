@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using SharpFluids;
 using UnitsNet;
 
@@ -24,12 +25,12 @@ namespace UnitsTests
             R717.MassFlow = setMassFlow;
 
             //Save as JSON
-            string json = R717.SaveAsJSON();
+            string json = JsonConvert.SerializeObject(R717);
 
 
             //Start new fluid and load as json
-            Fluid R717JSON = new Fluid();
-            R717JSON = R717JSON.LoadFromJSON(json);
+            //Fluid R717JSON = new Fluid();
+            Fluid R717JSON = JsonConvert.DeserializeObject<Fluid>(json);
 
 
 
@@ -110,12 +111,11 @@ namespace UnitsTests
             R717.Mass = setMass;
 
             //Save as JSON
-            string json = R717.SaveAsJSON();
+            string json = JsonConvert.SerializeObject(R717);
 
 
             //Start new fluid and load as json
-            Fluid R717JSON = new Fluid();
-            R717JSON = R717JSON.LoadFromJSON(json);
+            Fluid R717JSON = JsonConvert.DeserializeObject<Fluid>(json);
 
 
             Assert.AreEqual(43, R717.Mass.Kilograms, 0.0001);
