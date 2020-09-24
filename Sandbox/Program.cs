@@ -29,8 +29,8 @@ namespace Sandbox
 
             Debug.Print("Density of water is: " + Water.Density);
 
-                 //Giving water a Massflow
-                 Water.MassFlow = MassFlow.FromKilogramsPerHour(100);
+            //Giving water a Massflow
+            Water.MassFlow = MassFlow.FromKilogramsPerHour(100);
 
             //What is the volumeFlow for this water?
             Console.WriteLine("VolumeFlow of the water: " + Water.VolumeFlow);

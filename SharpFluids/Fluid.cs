@@ -178,7 +178,7 @@ namespace SharpFluids
             set 
             {
 
-                if (Mass == Mass.Zero)
+                if (Mass == Mass.Zero || value == MassFlow.Zero)
                 {
                     _massflow = value;
                 }
@@ -204,7 +204,7 @@ namespace SharpFluids
             set
             {
 
-                if (MassFlow == MassFlow.Zero)
+                if (MassFlow == MassFlow.Zero || value == Mass.Zero)
                 {
                     _mass = value;
                 }
