@@ -65,35 +65,35 @@ namespace UnitsTests
             Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
 
             //Assert JSON
-            Assert.AreEqual(R717JSON.LimitPressureMin.Bars, R717.LimitPressureMin.Bars, 0.0001);
-            Assert.AreEqual(R717JSON.LimitPressureMax.Bars, R717.LimitPressureMax.Bars, 0.0001);
-            Assert.AreEqual(R717JSON.CriticalPressure.Bars, R717.CriticalPressure.Bars, 0.0001);
-            Assert.AreEqual(R717JSON.LimitTemperatureMin.DegreesCelsius, R717.LimitTemperatureMin.DegreesCelsius, 0.0001);
-            Assert.AreEqual(R717JSON.CriticalTemperature.DegreesCelsius, R717.CriticalTemperature.DegreesCelsius, 0.0001);
-            Assert.AreEqual(R717JSON.LimitTemperatureMax.DegreesCelsius, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
-            Assert.AreEqual(R717JSON.CriticalEnthalpy.JoulesPerKilogram, R717.CriticalEnthalpy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(R717JSON.LimitPressureMin.Bars, R717.LimitPressureMin.Bars);
+            Assert.AreEqual(R717JSON.LimitPressureMax.Bars, R717.LimitPressureMax.Bars);
+            Assert.AreEqual(R717JSON.CriticalPressure.Bars, R717.CriticalPressure.Bars);
+            Assert.AreEqual(R717JSON.LimitTemperatureMin.DegreesCelsius, R717.LimitTemperatureMin.DegreesCelsius);
+            Assert.AreEqual(R717JSON.CriticalTemperature.DegreesCelsius, R717.CriticalTemperature.DegreesCelsius);
+            Assert.AreEqual(R717JSON.LimitTemperatureMax.DegreesCelsius, R717.LimitTemperatureMax.DegreesCelsius);
+            Assert.AreEqual(R717JSON.CriticalEnthalpy.JoulesPerKilogram, R717.CriticalEnthalpy.JoulesPerKilogram);
 
-            Assert.AreEqual(R717JSON.Conductivity.WattsPerMeterKelvin, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
-            Assert.AreEqual(R717JSON.Cp.JoulesPerKilogramKelvin, R717.Cp.JoulesPerKilogramKelvin, 0.0001);
-            Assert.AreEqual(R717JSON.Cv.JoulesPerKilogramKelvin, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
-            Assert.AreEqual(R717JSON.Enthalpy.JoulesPerKilogram, R717.Enthalpy.JoulesPerKilogram, 0.0001);
-            Assert.AreEqual(R717JSON.Prandtl, R717.Prandtl, 0.0001);
-            Assert.AreEqual(R717JSON.Pressure.Bars, R717.Pressure.Bars, 0.0001);
-            Assert.AreEqual(R717JSON.Density.KilogramsPerCubicMeter, R717.Density.KilogramsPerCubicMeter, 0.0001);
-            Assert.AreEqual(R717JSON.Entropy.KilocaloriesPerKelvin, R717.Entropy.KilocaloriesPerKelvin, 0.0001);
-            Assert.AreEqual(R717JSON.SurfaceTension.NewtonsPerMeter, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
-            Assert.AreEqual(R717JSON.Temperature.DegreesCelsius, R717.Temperature.DegreesCelsius, 0.0001);
-            Assert.AreEqual(R717JSON.Tsat.DegreesCelsius, R717.Tsat.DegreesCelsius, 0.0001);
-            Assert.AreEqual(R717JSON.DynamicViscosity.NewtonSecondsPerMeterSquared, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
-            Assert.AreEqual(R717JSON.Quality, R717.Quality, 0.0001);
-            Assert.AreEqual(R717JSON.SoundSpeed.MetersPerSecond, R717.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(R717JSON.Conductivity.WattsPerMeterKelvin, R717.Conductivity.WattsPerMeterKelvin);
+            Assert.AreEqual(R717JSON.Cp.JoulesPerKilogramKelvin, R717.Cp.JoulesPerKilogramKelvin);
+            Assert.AreEqual(R717JSON.Cv.JoulesPerKilogramKelvin, R717.Cv.JoulesPerKilogramKelvin);
+            Assert.AreEqual(R717JSON.Enthalpy.JoulesPerKilogram, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(R717JSON.Prandtl, R717.Prandtl);
+            Assert.AreEqual(R717JSON.Pressure.Bars, R717.Pressure.Bars);
+            Assert.AreEqual(R717JSON.Density.KilogramsPerCubicMeter, R717.Density.KilogramsPerCubicMeter);
+            Assert.AreEqual(R717JSON.Entropy.KilocaloriesPerKelvin, R717.Entropy.KilocaloriesPerKelvin);
+            Assert.AreEqual(R717JSON.SurfaceTension.NewtonsPerMeter, R717.SurfaceTension.NewtonsPerMeter);
+            Assert.AreEqual(R717JSON.Temperature.DegreesCelsius, R717.Temperature.DegreesCelsius);
+            Assert.AreEqual(R717JSON.Tsat.DegreesCelsius, R717.Tsat.DegreesCelsius);
+            Assert.AreEqual(R717JSON.DynamicViscosity.NewtonSecondsPerMeterSquared, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(R717JSON.Quality, R717.Quality);
+            Assert.AreEqual(R717JSON.SoundSpeed.MetersPerSecond, R717.SoundSpeed.MetersPerSecond);
 
-            Assert.AreEqual(R717JSON.MolarMass.GramsPerMole, R717.MolarMass.GramsPerMole, 0.001);
-            Assert.AreEqual(R717JSON.Compressibility, R717.Compressibility, 0.0001);
-            Assert.AreEqual(R717JSON.InternalEnergy.JoulesPerKilogram, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(R717JSON.MolarMass.GramsPerMole, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(R717JSON.Compressibility, R717.Compressibility);
+            Assert.AreEqual(R717JSON.InternalEnergy.JoulesPerKilogram, R717.InternalEnergy.JoulesPerKilogram);
 
-            Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond, 0.0001);
-            Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
+            Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond);
+            Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond);
 
             Assert.AreEqual(R717JSON.Media, R717.Media);
         }
@@ -126,6 +126,95 @@ namespace UnitsTests
             //Assert JSON          
             Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond, 0.0001);
             Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
+        }
+
+        [TestMethod]
+        public void LoadValuesThenJSON()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
+
+
+            //Save as JSON
+            string json = R717.SaveAsJSON();
+
+            //Start new fluid and load as json
+            Fluid R717JSON = R717.LoadFromJSON(json);
+
+
+            //Act
+            R717.UpdateDH(setDensity, setEnthalpy);
+            R717.MassFlow = setMassFlow;
+            R717JSON.UpdateDH(setDensity, setEnthalpy);
+            R717JSON.MassFlow = setMassFlow;
+
+
+            //Assert
+            Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
+            Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
+            Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
+            Assert.AreEqual(-77.654999999999973, R717.LimitTemperatureMin.DegreesCelsius, 0.0001);
+            Assert.AreEqual(132.25, R717.CriticalTemperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(426.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
+            Assert.AreEqual(1316216.3157251189, R717.CriticalEnthalpy.JoulesPerKilogram, 0.0001);
+
+            Assert.AreEqual(0.027583261794832403, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
+            Assert.AreEqual(5074.0398715329484, R717.Cp.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(2847.6400619419965, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(1043420.2106074861, R717.Enthalpy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(1.7665134008664596, R717.Prandtl, 0.0001);
+            Assert.AreEqual(10, R717.Pressure.Bars, 0.0001);
+            Assert.AreEqual(15.36622602626586, R717.Density.KilogramsPerCubicMeter, 0.0001);
+            Assert.AreEqual(0.91663270248064743, R717.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(0.020510431023511407, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(24.8950920654342, R717.Temperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(24.895092065439826, R717.Tsat.DegreesCelsius, 0.0001);
+            Assert.AreEqual(9.6030387686839971E-06, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
+            Assert.AreEqual(0.5, R717.Quality, 0.0001);
+            Assert.AreEqual(372.73404999072648, R717.SoundSpeed.MetersPerSecond, 0.0001);
+
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.768620415, R717.Compressibility, 0.0001);
+            Assert.AreEqual(978342.4226, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond, 0.0001);
+            Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
+
+            //Assert JSON
+            Assert.AreEqual(R717JSON.LimitPressureMin.Bars, R717.LimitPressureMin.Bars);
+            Assert.AreEqual(R717JSON.LimitPressureMax.Bars, R717.LimitPressureMax.Bars);
+            Assert.AreEqual(R717JSON.CriticalPressure.Bars, R717.CriticalPressure.Bars);
+            Assert.AreEqual(R717JSON.LimitTemperatureMin.DegreesCelsius, R717.LimitTemperatureMin.DegreesCelsius);
+            Assert.AreEqual(R717JSON.CriticalTemperature.DegreesCelsius, R717.CriticalTemperature.DegreesCelsius);
+            Assert.AreEqual(R717JSON.LimitTemperatureMax.DegreesCelsius, R717.LimitTemperatureMax.DegreesCelsius);
+            Assert.AreEqual(R717JSON.CriticalEnthalpy.JoulesPerKilogram, R717.CriticalEnthalpy.JoulesPerKilogram);
+
+            Assert.AreEqual(R717JSON.Conductivity.WattsPerMeterKelvin, R717.Conductivity.WattsPerMeterKelvin);
+            Assert.AreEqual(R717JSON.Cp.JoulesPerKilogramKelvin, R717.Cp.JoulesPerKilogramKelvin);
+            Assert.AreEqual(R717JSON.Cv.JoulesPerKilogramKelvin, R717.Cv.JoulesPerKilogramKelvin);
+            Assert.AreEqual(R717JSON.Enthalpy.JoulesPerKilogram, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(R717JSON.Prandtl, R717.Prandtl);
+            Assert.AreEqual(R717JSON.Pressure.Bars, R717.Pressure.Bars);
+            Assert.AreEqual(R717JSON.Density.KilogramsPerCubicMeter, R717.Density.KilogramsPerCubicMeter);
+            Assert.AreEqual(R717JSON.Entropy.KilocaloriesPerKelvin, R717.Entropy.KilocaloriesPerKelvin);
+            Assert.AreEqual(R717JSON.SurfaceTension.NewtonsPerMeter, R717.SurfaceTension.NewtonsPerMeter);
+            Assert.AreEqual(R717JSON.Temperature.DegreesCelsius, R717.Temperature.DegreesCelsius);
+            Assert.AreEqual(R717JSON.Tsat.DegreesCelsius, R717.Tsat.DegreesCelsius);
+            Assert.AreEqual(R717JSON.DynamicViscosity.NewtonSecondsPerMeterSquared, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(R717JSON.Quality, R717.Quality);
+            Assert.AreEqual(R717JSON.SoundSpeed.MetersPerSecond, R717.SoundSpeed.MetersPerSecond);
+
+            Assert.AreEqual(R717JSON.MolarMass.GramsPerMole, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(R717JSON.Compressibility, R717.Compressibility);
+            Assert.AreEqual(R717JSON.InternalEnergy.JoulesPerKilogram, R717.InternalEnergy.JoulesPerKilogram);
+
+            Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond);
+            Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond);
+
+            Assert.AreEqual(R717JSON.Media, R717.Media);
         }
 
 
