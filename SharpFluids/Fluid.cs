@@ -223,8 +223,7 @@ namespace SharpFluids
         /// Get the Saturation temperature of the <see cref="Fluid"/>. 
         /// <br>Beware: If you are above the critical pressure of the <see cref="Fluid"/> this will just return the Saturation temperature AT the critical pressure!</br>
         /// </summary>
-        [JsonProperty]
-        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
+        [JsonIgnore]
         public Temperature Tsat
         {
 
