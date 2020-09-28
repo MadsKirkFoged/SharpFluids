@@ -29,6 +29,7 @@ namespace SharpFluids
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         private Mass _mass;
+
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         private MassFlow _massflow;
@@ -170,7 +171,8 @@ namespace SharpFluids
         /// <br>You can choose between using <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> when defining a fluid.</br>
         /// <br>Once the <see cref="UnitsNet.MassFlow"/> is set you cannot set the <see cref="UnitsNet.Mass"/> anymore.</br>
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public MassFlow MassFlow 
         {
             get { return _massflow; }
@@ -196,7 +198,8 @@ namespace SharpFluids
         /// <br>You can choose between using <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> when defining a fluid.</br>
         /// <br>Once the <see cref="UnitsNet.Mass"/> is set you cannot set the <see cref="UnitsNet.MassFlow"/> anymore.</br>
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Mass Mass
         {
             get { return _mass; }
@@ -220,7 +223,8 @@ namespace SharpFluids
         /// Get the Saturation temperature of the <see cref="Fluid"/>. 
         /// <br>Beware: If you are above the critical pressure of the <see cref="Fluid"/> this will just return the Saturation temperature AT the critical pressure!</br>
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Temperature Tsat
         {
 
@@ -278,7 +282,8 @@ namespace SharpFluids
         /// Get the <see cref="UnitsNet.Volume"/> of the <see cref="Fluid"/>. 
         /// <br>This can ONLY be used when the <see cref="UnitsNet.Mass"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Volume Volume
         {
             get
@@ -296,7 +301,8 @@ namespace SharpFluids
         /// Get the <see cref="UnitsNet.VolumeFlow"/> of the fluid. 
         /// <br>This can ONLY be used when the <see cref="UnitsNet.MassFlow"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public VolumeFlow VolumeFlow
         {
             get
@@ -316,43 +322,50 @@ namespace SharpFluids
         /// <summary>
         /// This library's maximum <see cref="UnitsNet.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Temperature LimitTemperatureMax { get; private set; }
 
         /// <summary>
         /// This library's minimum <see cref="UnitsNet.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Temperature LimitTemperatureMin { get; private set; }
 
         /// <summary>
         /// <see cref="UnitsNet.Temperature"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Temperature CriticalTemperature { get; private set; }
 
         /// <summary>
         /// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public SpecificEnergy CriticalEnthalpy { get; private set; }
 
         /// <summary>
         /// <see cref="UnitsNet.Pressure"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Pressure CriticalPressure { get; private set; }
 
         /// <summary>
         /// This library's minimum <see cref="UnitsNet.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Pressure LimitPressureMin { get; private set; }
 
         /// <summary>
         /// This library's maximum <see cref="UnitsNet.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
+        [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
         public Pressure LimitPressureMax { get; private set; }
 
         /// <summary>
@@ -373,7 +386,7 @@ namespace SharpFluids
         /// <summary>
         /// Used to access the CoolProp DLL.
         /// </summary>
-        [JsonIgnore]
+        [JsonProperty]
         private AbstractState REF;
 
         /// <summary>
@@ -405,7 +418,6 @@ namespace SharpFluids
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
         /// </summary>
-        [JsonConstructor]
         public Fluid(MediaType Media)
         {
             SetNewMedia(Media);
@@ -1352,8 +1364,6 @@ namespace SharpFluids
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 TypeNameHandling = TypeNameHandling.All,
-                ContractResolver = new PrivateSetterContractResolver(),
-
             };
 
             JsonSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
@@ -1364,13 +1374,13 @@ namespace SharpFluids
         public string SaveAsJSON()
         {
             //return JsonConvert.SerializeObject(this, Formatting.Indented, ReturnJSONSettings());
-            return JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this, ReturnJSONSettings());
         }
 
         public Fluid LoadFromJSON(string json)
         {
             //return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
-            return JsonConvert.DeserializeObject<Fluid>(json);
+            return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
         }
 
         //Other privates function

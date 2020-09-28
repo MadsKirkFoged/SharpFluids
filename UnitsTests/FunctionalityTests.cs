@@ -25,12 +25,12 @@ namespace UnitsTests
             R717.MassFlow = setMassFlow;
 
             //Save as JSON
-            string json = JsonConvert.SerializeObject(R717);
+            string json = R717.SaveAsJSON();
 
 
             //Start new fluid and load as json
-            //Fluid R717JSON = new Fluid();
-            Fluid R717JSON = JsonConvert.DeserializeObject<Fluid>(json);
+            Fluid R717JSON = R717.LoadFromJSON(json);
+
 
 
 
@@ -94,6 +94,8 @@ namespace UnitsTests
 
             Assert.AreEqual(R717JSON.MassFlow.KilogramsPerSecond, R717.MassFlow.KilogramsPerSecond, 0.0001);
             Assert.AreEqual(R717JSON.VolumeFlow.CubicMetersPerSecond, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
+
+            Assert.AreEqual(R717JSON.Media, R717.Media);
         }
 
         [TestMethod]
@@ -111,11 +113,11 @@ namespace UnitsTests
             R717.Mass = setMass;
 
             //Save as JSON
-            string json = JsonConvert.SerializeObject(R717);
+            string json = R717.SaveAsJSON();
 
 
             //Start new fluid and load as json
-            Fluid R717JSON = JsonConvert.DeserializeObject<Fluid>(json);
+            Fluid R717JSON = R717.LoadFromJSON(json);
 
 
             Assert.AreEqual(43, R717.Mass.Kilograms, 0.0001);
@@ -140,14 +142,11 @@ namespace UnitsTests
             //Act
             R717.UpdateDH(setDensity, setEnthalpy);
 
-            //Save as JSON
-            string json = R717.SaveAsJSON();
-
 
             //Start new fluid and load as json
             Fluid R717JSON = new Fluid();
             R717JSON.Copy(R717);
-
+            
 
 
             //Assert

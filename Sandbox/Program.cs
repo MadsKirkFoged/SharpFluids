@@ -18,6 +18,35 @@ namespace Sandbox
 
             //................................................
 
+
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            Mass setMass = Mass.FromKilograms(43);
+
+            //Act
+            R717.UpdateDH(setDensity, setEnthalpy);
+            R717.Mass = setMass;
+
+            //Save as JSON
+            string json = R717.SaveAsJSON();
+
+
+            //Start new fluid and load as json
+            Fluid R717JSON = R717.LoadFromJSON(json);
+
+
+
+
+
+
+
+
+
+
+
             //Find the Density of water at 13°C
             Fluid Water = new Fluid(FluidList.Water);
             Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
