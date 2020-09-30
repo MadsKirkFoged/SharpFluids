@@ -828,7 +828,7 @@ namespace SharpFluids
 
             }
 
-
+            SetDefalutDisplayUnits();
 
             //Setting Max/min Mass- or volfraction
 
@@ -871,6 +871,8 @@ namespace SharpFluids
 
 
             FailState = false;
+
+            SetDefalutDisplayUnits();
 
         }
 
