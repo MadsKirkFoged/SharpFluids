@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using UnitsNet;
+using UnitsNet.Units;
 using UnitsNet.Serialization.JsonNet;
 using Newtonsoft.Json;
 using JsonNet.ContractResolvers;
@@ -410,6 +411,7 @@ namespace SharpFluids
         /// </summary>
         public Fluid()
         {
+            SetDefalutDisplayUnits();
         }
 
         /// <summary>
@@ -417,7 +419,7 @@ namespace SharpFluids
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
         /// </summary>
-        public Fluid(MediaType Media)
+        public Fluid(MediaType Media) : this()
         {
             SetNewMedia(Media);
         }
@@ -427,7 +429,7 @@ namespace SharpFluids
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
         /// </summary>
-        public Fluid(FluidList Type) :this(FluidListToMediaType(Type))
+        public Fluid(FluidList Type) : this(FluidListToMediaType(Type))
         {
 
         }
@@ -891,7 +893,6 @@ namespace SharpFluids
             SurfaceTension = ForcePerLength.Zero;
             SoundSpeed = Speed.Zero;
             FailState = true;
-
             DynamicViscosity = DynamicViscosity.Zero;
             Conductivity = ThermalConductivity.Zero;
             MolarMass = MolarMass.Zero;
@@ -1270,6 +1271,66 @@ namespace SharpFluids
 
         }
 
+
+        /// <summary>
+        /// Override this function and you can set new defaul (display) units
+        /// </summary> 
+        public virtual void SetDefalutDisplayUnits()
+        {
+            ////Units to a default IS unit
+            //Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
+            //Temperature = Temperature.ToUnit(TemperatureUnit.Kelvin);
+            //Pressure = Pressure.ToUnit(PressureUnit.Pascal);
+            //Entropy = Entropy.ToUnit(EntropyUnit.JoulePerKelvin);
+            //Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
+            //Cp = Cp.ToUnit(SpecificEntropyUnit.JoulePerKilogramKelvin);
+            //Cv = Cv.ToUnit(SpecificEntropyUnit.JoulePerKilogramKelvin);
+            //MassFlow = MassFlow.ToUnit(MassFlowUnit.KilogramPerSecond);
+            //Mass = Mass.ToUnit(MassUnit.Kilogram);
+            //SurfaceTension = SurfaceTension.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
+            //SoundSpeed = SoundSpeed.ToUnit(SpeedUnit.MeterPerSecond);
+            //DynamicViscosity = DynamicViscosity.ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+            //Conductivity = Conductivity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
+            //MolarMass = MolarMass.ToUnit(MolarMassUnit.KilogramPerMole);
+            //InternalEnergy = InternalEnergy.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
+
+            //LimitTemperatureMax = LimitTemperatureMax.ToUnit(TemperatureUnit.Kelvin);
+            //LimitTemperatureMin = LimitTemperatureMin.ToUnit(TemperatureUnit.Kelvin);
+            //CriticalTemperature = CriticalTemperature.ToUnit(TemperatureUnit.Kelvin);
+            //CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Pascal);
+            //LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Pascal);
+            //LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Pascal);
+            //CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
+
+            //Units to specifig units
+            Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+            Temperature = Temperature.ToUnit(TemperatureUnit.DegreeCelsius);
+            Pressure = Pressure.ToUnit(PressureUnit.Bar);
+            Entropy = Entropy.ToUnit(EntropyUnit.KilojoulePerKelvin);
+            Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
+            Cp = Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
+            Cv = Cv.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
+            MassFlow = MassFlow.ToUnit(MassFlowUnit.KilogramPerSecond);
+            Mass = Mass.ToUnit(MassUnit.Kilogram);
+            SurfaceTension = SurfaceTension.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
+            SoundSpeed = SoundSpeed.ToUnit(SpeedUnit.MeterPerSecond);
+            DynamicViscosity = DynamicViscosity.ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+            Conductivity = Conductivity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
+            MolarMass = MolarMass.ToUnit(MolarMassUnit.KilogramPerMole);
+            InternalEnergy = InternalEnergy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+
+            LimitTemperatureMax = LimitTemperatureMax.ToUnit(TemperatureUnit.DegreeCelsius);
+            LimitTemperatureMin = LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius);
+            CriticalTemperature = CriticalTemperature.ToUnit(TemperatureUnit.DegreeCelsius);
+            CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Bar);
+            LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Bar);
+            LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Bar);
+            CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+
+
+
+
+        }
 
 
         /// <summary>

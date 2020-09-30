@@ -26,6 +26,10 @@ namespace Sandbox
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
             Mass setMass = Mass.FromKilograms(43);
 
+            setMass = setMass.ToUnit(MassUnit.Decagram);
+
+
+
             //Act
             R717.UpdateDH(setDensity, setEnthalpy);
             R717.Mass = setMass;
