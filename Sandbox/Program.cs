@@ -19,6 +19,10 @@ namespace Sandbox
             //................................................
 
 
+            Fluid test = new Fluid(FluidList.Ammonia);
+            test.UpdatePH(Pressure.FromBars(6.16), SpecificEnergy.FromKilojoulesPerKilogram(460)) ;
+
+
 
             //Arrange
             Fluid R717 = new Fluid(FluidList.Ammonia);

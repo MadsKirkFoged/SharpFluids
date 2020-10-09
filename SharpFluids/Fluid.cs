@@ -841,33 +841,107 @@ namespace SharpFluids
         protected virtual void UpdateValues()
         {
 
-            Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
-            Temperature = Temperature.FromKelvins(REF.T());
-            Pressure = Pressure.FromPascals(REF.p());
-            Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
-            Quality = REF.Q();
-            Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
-            Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
-            Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
-            DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
-            Prandtl = REF.Prandtl();
-            SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-            InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
+
+            if (HasValue(REF.hmass()))
+                Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+            else
+                Enthalpy = SpecificEnergy.Zero;
+            
+
+            if (HasValue(REF.T()))
+                Temperature = Temperature.FromKelvins(REF.T());
+            else
+                Temperature = Temperature.Zero;            
 
 
-            if (Media.BackendType == "HEOS")
-            {         
-                //Mixed fluids does not have these properties 
-                SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
-                MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
-                Compressibility = REF.compressibility_factor();
-            }
+            if (HasValue(REF.p()))
+                Pressure = Pressure.FromPascals(REF.p());
+            else
+                Pressure = Pressure.Zero;
+
+            if (HasValue(REF.smass()))
+                Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
+            else
+                Entropy = Entropy.Zero;
+
+            if (HasValue(REF.Q()))
+                Quality = REF.Q();
+            else
+                Quality = -1;
+
+            if (HasValue(REF.rhomass()))
+                Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
+            else
+                Density = Density.Zero;
+
+            if (HasValue(REF.rhomass()))
+                Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
+            else
+                Cp = SpecificEntropy.Zero;
+
+            if (HasValue(REF.cvmass()))
+                Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
+            else
+                Cp = SpecificEntropy.Zero;
+
+            if (HasValue(REF.cvmass()))
+                DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
+            else
+                DynamicViscosity = DynamicViscosity.Zero;
+
+            if (HasValue(REF.Prandtl()))
+                Prandtl = REF.Prandtl();
+            else
+                Prandtl = 0;
+
+            if (HasValue(REF.surface_tension()))
+                SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
+            else
+                SurfaceTension = ForcePerLength.Zero;
+
+            if (HasValue(REF.umass()))
+                InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
+            else
+                InternalEnergy = SpecificEnergy.Zero;
 
 
             if (HasValue(REF.conductivity()))
                 Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
             else
                 Conductivity = ThermalConductivity.Zero;
+
+
+
+
+            if (Media.BackendType == "HEOS")
+            {         
+                //Mixed fluids does not have these properties 
+                
+                
+                
+
+
+                if (HasValue(REF.speed_sound()))
+                    SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
+                else
+                    SoundSpeed = Speed.Zero;
+
+
+                if (HasValue(REF.molar_mass()))
+                    MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+                else
+                    MolarMass = MolarMass.Zero;
+
+                if (HasValue(REF.compressibility_factor()))
+                    Compressibility = REF.compressibility_factor();
+                else
+                    Compressibility = 0;
+
+
+            }
+
+
+            
 
 
             FailState = false;
