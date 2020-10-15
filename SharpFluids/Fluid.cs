@@ -596,7 +596,7 @@ namespace SharpFluids
                     if (temperature >= CriticalTemperature)
                     {
                         UpdatePT(CriticalPressure, CriticalTemperature);
-                        UpdateHT(Enthalpy, temperature);
+                        //UpdateHT(Enthalpy, temperature);
                     }
                     else
                     {
