@@ -23,7 +23,7 @@ namespace Sandbox
             test.UpdatePH(Pressure.FromBars(6.16), SpecificEnergy.FromKilojoulesPerKilogram(460)) ;
             test.MassFlow = MassFlow.FromKilogramsPerSecond(1);
 
-            test.AddPower(Power.FromKilowatts(400));
+            test.AddPower(Power.FromKilowatts(-50));
 
 
 

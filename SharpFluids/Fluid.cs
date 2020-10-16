@@ -553,7 +553,7 @@ namespace SharpFluids
         public void UpdatePT(Pressure pressure, Temperature temperature)
         {
             CheckBeforeUpdate();
-            if (pressure > LimitPressureMin && temperature > LimitTemperatureMin)
+            if (pressure >= LimitPressureMin && temperature >= LimitTemperatureMin)
             {
                 try
                 {
@@ -1228,6 +1228,17 @@ namespace SharpFluids
                         UpdatePT(Pressure, LimitTemperatureMax);
 
                         if (Enthalpy > local)
+                        {
+                            UpdatePH(Pressure, local);
+                        }
+
+                    }
+                    else
+                    {
+                        UpdatePT(Pressure, LimitTemperatureMin);
+
+
+                        if (Enthalpy < local)
                         {
                             UpdatePH(Pressure, local);
                         }
