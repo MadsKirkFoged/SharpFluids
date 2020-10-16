@@ -1224,12 +1224,10 @@ namespace SharpFluids
 
                     if (powerToBeAdded > Power.Zero)
                     {
-                        Debug.Print(REF.Tmax().ToString());
 
                         UpdatePT(Pressure, LimitTemperatureMax);
-                        var tester = LimitTemperatureMin;
 
-                        if (Enthalpy < local)
+                        if (Enthalpy > local)
                         {
                             UpdatePH(Pressure, local);
                         }
