@@ -254,8 +254,8 @@ namespace SharpFluids
                 {
                     try
                     {
-                        REF.update(input_pairs.HmassP_INPUTS, CriticalEnthalpy.JoulesPerKilogram, Pressure.Pascals);
-                        return Temperature.FromKelvins(REF.T());
+                        //REF.update(input_pairs.HmassP_INPUTS, CriticalEnthalpy.JoulesPerKilogram, Pressure.Pascals);
+                        return CriticalTemperature;
 
                     }
                     catch (Exception)
@@ -813,6 +813,7 @@ namespace SharpFluids
             //Setting the constant values up
             LimitTemperatureMax = Temperature.FromKelvins(REF.Tmax());
             LimitTemperatureMin = Temperature.FromKelvins(REF.Tmin());
+            //var test = REF.
 
 
             if (REF.backend_name() == "HelmholtzEOSBackend")
@@ -823,8 +824,9 @@ namespace SharpFluids
                 LimitPressureMax = Pressure.FromPascals(REF.pmax());
 
                 //Finding H_crit
-                REF.update(input_pairs.PT_INPUTS, CriticalPressure.Pascals, CriticalTemperature.Kelvins);
-                CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+                //REF.update(input_pairs.PT_INPUTS, CriticalPressure.Pascals, CriticalTemperature.Kelvins);
+                //REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                //CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
 
             }
 
@@ -1219,7 +1221,24 @@ namespace SharpFluids
                 try
                 {
                     SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
-                    UpdatePH(Pressure, local);
+
+                    if (powerToBeAdded > Power.Zero)
+                    {
+                        Debug.Print(REF.Tmax().ToString());
+
+                        UpdatePT(Pressure, LimitTemperatureMax);
+                        var tester = LimitTemperatureMin;
+
+                        if (Enthalpy < local)
+                        {
+                            UpdatePH(Pressure, local);
+                        }
+
+
+
+                    }
+                    
+                    
 
                 }
                 catch (Exception e)

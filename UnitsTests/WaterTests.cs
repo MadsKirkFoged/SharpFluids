@@ -29,7 +29,6 @@ namespace UnitsTests
             Assert.AreEqual(2263.0469328306258, Water.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(1671.0843504212746, Water.Cv.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(2724882.6302959691, Water.Enthalpy.JoulesPerKilogram, 0.0001);
-            Assert.AreEqual(2087299.8265576197, Water.CriticalEnthalpy.JoulesPerKilogram, 0.0001);
             Assert.AreEqual(1.0742998825687049, Water.Prandtl, 0.0001);
             Assert.AreEqual(3.0000000000000004, Water.Pressure.Bars, 0.0001);
             Assert.AreEqual(220.64, Water.CriticalPressure.Bars, 0.0001);
@@ -45,7 +44,7 @@ namespace UnitsTests
             Assert.AreEqual(0.010000000000047749, Water.LimitTemperatureMin.DegreesCelsius, 0.0001);
             Assert.AreEqual(1.3394303713738338E-05, Water.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
             Assert.AreEqual(X, Water.Quality, 0.0001);
-            Assert.AreEqual(487.367740010, Water.SoundSpeed.MetersPerSecond, 0.0001);
+            Assert.AreEqual(0, Water.SoundSpeed.MetersPerSecond, 0.0001);
             Assert.AreEqual(18.015268, Water.MolarMass.GramsPerMole, 0.0001);
             Assert.AreEqual(0.968251392124, Water.Compressibility, 0.0001);
             Assert.AreEqual(2543154.75807, Water.InternalEnergy.JoulesPerKilogram, 0.001);
@@ -72,7 +71,6 @@ namespace UnitsTests
             Assert.AreEqual(2034.1444264493639, Water.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(1539.4771263572343, Water.Cv.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(2941434.7212755163, Water.Enthalpy.JoulesPerKilogram, 0.0001);
-            Assert.AreEqual(2087299.8265576197, Water.CriticalEnthalpy.JoulesPerKilogram, 0.0001);
             Assert.AreEqual(0.95772763107228476, Water.Prandtl, 0.0001);
             Assert.AreEqual(3, Water.Pressure.Bars, 0.0001);
             Assert.AreEqual(220.64, Water.CriticalPressure.Bars, 0.0001);

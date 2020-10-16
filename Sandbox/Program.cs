@@ -21,6 +21,9 @@ namespace Sandbox
 
             Fluid test = new Fluid(FluidList.Ammonia);
             test.UpdatePH(Pressure.FromBars(6.16), SpecificEnergy.FromKilojoulesPerKilogram(460)) ;
+            test.MassFlow = MassFlow.FromKilogramsPerSecond(1);
+
+            test.AddPower(Power.FromKilowatts(4000));
 
 
 
