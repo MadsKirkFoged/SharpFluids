@@ -760,7 +760,9 @@ namespace SharpFluids
 
         }
 
-
+        /// <summary>
+        /// Get Saturation Temperature from a given Pressure using the type of <see cref="Fluid"/>
+        /// </summary> 
         public Temperature GetSatTemperature(Pressure FromThisPressure)
         {
 
