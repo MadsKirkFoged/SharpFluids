@@ -850,5 +850,136 @@ namespace UnitsTests
         }
 
 
+        [TestMethod]
+        public void TsatBelowCrit()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Pressure pressure = Pressure.FromBars(20);
+            R717.UpdatePX(pressure, 0.5);
+
+
+            //Act
+            Temperature Tsat = R717.Tsat;
+
+
+            //Assert
+            Assert.AreEqual(Tsat.DegreesCelsius, 49.371451247030961);
+
+
+        }
+
+        [TestMethod]
+        public void TsatOnCrit()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Pressure pressure = R717.CriticalPressure;
+            R717.UpdatePX(pressure, 0.5);
+
+
+            //Act
+            Temperature Tsat = R717.Tsat;
+
+
+            //Assert
+            Assert.AreEqual(Tsat, R717.CriticalTemperature);
+
+
+        }
+
+        [TestMethod]
+        public void TsatAboveCrit()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            R717.UpdatePT(R717.LimitPressureMax, R717.LimitTemperatureMax);
+
+
+            //Act
+            Temperature Tsat = R717.Tsat;
+
+
+            //Assert
+            Assert.AreEqual(Tsat, R717.CriticalTemperature);
+
+
+        }
+
+        [TestMethod]
+        public void GetSatTemperature()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Pressure pressure = Pressure.FromBars(20);
+
+            //Act
+            Temperature temperature = R717.GetSatTemperature(pressure);
+
+
+            //Assert
+            Assert.AreEqual(temperature.DegreesCelsius, 49.371451247030279, 0.001);
+
+
+        }
+
+        [TestMethod]
+        public void GetSatTemperatureAboveCrit()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Pressure pressure = R717.LimitPressureMax;
+
+            //Act
+            Temperature temperature = R717.GetSatTemperature(pressure);
+
+
+            //Assert
+            Assert.AreEqual(temperature, R717.CriticalTemperature);
+
+
+        }
+
+        [TestMethod]
+        public void GetSatPressure()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Temperature temperature = Temperature.FromDegreesCelsius(30);
+
+            //Act
+            Pressure pressure = R717.GetSatPressure(temperature);
+
+
+            //Assert
+            Assert.AreEqual(pressure.Bars, 11.665360629887157, 0.001);
+
+
+        }
+
+        [TestMethod]
+        public void GetSatPressureAboveCrit()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Temperature temperature = R717.LimitTemperatureMax;
+
+            //Act
+            Pressure pressure = R717.GetSatPressure(temperature);
+
+
+            //Assert
+            Assert.AreEqual(pressure.Bars, R717.CriticalPressure.Bars, 0.001);
+
+
+        }
+
     }
 }

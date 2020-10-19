@@ -595,14 +595,13 @@ namespace SharpFluids
                     //If we are above transcritical
                     if (temperature >= CriticalTemperature)
                     {
-                        UpdatePT(CriticalPressure, CriticalTemperature);
-                        //UpdateHT(Enthalpy, temperature);
+                        REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
                     }
                     else
                     {
                         REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
-                        UpdateValues();
                     }
+                    UpdateValues();
                 }
                 catch (Exception e)
                 {
@@ -622,10 +621,14 @@ namespace SharpFluids
         /// </summary>        ///
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
-        private void UpdateHT(SpecificEnergy enthalpy, Temperature temperature)
+        public void UpdateHT(SpecificEnergy enthalpy, Temperature temperature)
         {
             //Not yet supported by CoolProp!
-            throw new NotImplementedException("Not yet supported by CoolProp");
+            //throw new NotImplementedException("Not yet supported by CoolProp");
+
+            REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
+
+
         }
 
 
@@ -758,46 +761,68 @@ namespace SharpFluids
         }
 
 
-
-        /// <summary>
-        /// Get the Saturation pressure of <see cref="Fluid"/>
-        /// <br>This does not alter the condition of the <see cref="Fluid"/></br>
-        /// </summary> 
-        /// <returns>Saturation pressure</returns>
-        ///<param name="temperature"> <see cref="UnitsNet.Temperature"/> </param>
-        public Pressure UpdateP_sat(Temperature temperature)
+        public Temperature GetSatTemperature(Pressure FromThisPressure)
         {
-            CheckBeforeUpdate();
-            if (temperature >= LimitTemperatureMin)
+
+            if (FromThisPressure > LimitPressureMin)
             {
-                try
+
+                if (FromThisPressure > CriticalPressure)
                 {
-                    //If we are above transcritical
-                    if (temperature >= CriticalTemperature)
-                    {
+                    return CriticalTemperature;
+                }
+                else
+                {
+                    REF.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
 
-                        //Need to fix this!
-
-                        //UpdatePT(P_Crit, T_Crit);
-                        //UpdateHT(H, temperature);
-
-                        return Pressure.FromPascals(0);
-                    }
+                    if (HasValue(REF.T()))
+                        return Temperature.FromKelvins(REF.T());
                     else
-                    {
-                        REF.update(input_pairs.QT_INPUTS, 1, temperature.Kelvins);
-                        return Pressure.FromPascals(REF.p());
-                    }
+                        return Temperature.Zero;
                 }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("Refrigerant: Warning in UpdateXT" + e);
-                }
+
 
             }
+            else
+            {
+                return Temperature.Zero;
+            }
 
-            return Pressure.FromPascals(0);
+
+
+
+        }
+
+        public Pressure GetSatPressure(Temperature FromThisTemperature)
+        {
+
+            if (FromThisTemperature > LimitTemperatureMin)
+            {
+
+                if (FromThisTemperature >= CriticalTemperature)
+                {
+                    return CriticalPressure;
+                }
+                else
+                {
+                    REF.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
+
+                    if (HasValue(REF.p()))
+                        return Pressure.FromPascals(REF.p());
+                    else
+                        return Pressure.Zero;
+                }
+
+
+            }
+            else
+            {
+                return Pressure.Zero;
+            }
+
+
+
+
         }
 
 
