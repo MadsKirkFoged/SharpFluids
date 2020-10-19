@@ -849,9 +849,8 @@ namespace SharpFluids
                 LimitPressureMax = Pressure.FromPascals(REF.pmax());
 
                 //Finding H_crit
-                //REF.update(input_pairs.PT_INPUTS, CriticalPressure.Pascals, CriticalTemperature.Kelvins);
-                //REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
-                //CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+                REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
 
             }
 
