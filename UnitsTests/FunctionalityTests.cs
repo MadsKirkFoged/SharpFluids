@@ -663,5 +663,192 @@ namespace UnitsTests
 
         }
 
+
+        [TestMethod]
+        public void AddPowerMassFlow()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            R717.MassFlow = MassFlow.FromKilogramsPerSecond(2);
+            R717.UpdateDH(setDensity, setEnthalpy);
+
+
+            //Act
+            R717.AddPower(Power.FromKilowatts(100));
+
+
+            //Assert
+            Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
+            Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
+            Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
+            Assert.AreEqual(-77.654999999999973, R717.LimitTemperatureMin.DegreesCelsius, 0.0001);
+            Assert.AreEqual(132.25, R717.CriticalTemperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
+
+            Assert.AreEqual(0.027340601791772289, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
+            Assert.AreEqual(4588.5742406035952, R717.Cp.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(2683.6272590893277, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(1093420.2106074, R717.Enthalpy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(1.6164793487091984, R717.Prandtl, 0.0001);
+            Assert.AreEqual(9.9654295346437216, R717.Pressure.Bars, 0.0001);
+            Assert.AreEqual(14.17761237163829, R717.Density.KilogramsPerCubicMeter, 0.0001);
+            Assert.AreEqual(0.957710977744379, R717.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(0.020532110006681651, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(24.800454983344366, R717.Temperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(24.800454983344366, R717.Tsat.DegreesCelsius, 0.0001);
+            Assert.AreEqual(9.63164500785499E-06, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
+            Assert.AreEqual(0.54103874375500483, R717.Quality, 0.0001);
+            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond, 0.0001);
+
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.78684896388758041, R717.Compressibility, 0.0001);
+            Assert.AreEqual(1023130.3107750479, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+
+        }
+        [TestMethod]
+        public void AddPowerMassFlowMAX()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            R717.MassFlow = MassFlow.FromKilogramsPerSecond(2);
+            R717.UpdateDH(setDensity, setEnthalpy);
+
+
+            //Act
+            R717.AddPower(Power.FromKilowatts(99999999));
+
+
+            //Assert
+            Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
+            Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
+            Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
+            Assert.AreEqual(-77.654999999999973, R717.LimitTemperatureMin.DegreesCelsius, 0.0001);
+            Assert.AreEqual(132.25, R717.CriticalTemperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
+
+            Assert.AreEqual(0.0795170822501053, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
+            Assert.AreEqual(2887.525048795872, R717.Cp.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(2386.2756482293962, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(2750807.3108348968, R717.Enthalpy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(0.95670787106984034, R717.Prandtl, 0.0001);
+            Assert.AreEqual(9.9654295346437216, R717.Pressure.Bars, 0.0001);
+            Assert.AreEqual(2.8241346352757937, R717.Density.KilogramsPerCubicMeter, 0.0001);
+            Assert.AreEqual(1.9429350356857431, R717.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(R717.LimitTemperatureMax, R717.Temperature);
+            Assert.AreEqual(24.800454983344366, R717.Tsat.DegreesCelsius, 0.0001);
+            Assert.AreEqual(2.634595966705381E-05, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
+            Assert.AreEqual(-1, R717.Quality, 0.0001);
+            Assert.AreEqual(652.44754867833785, R717.SoundSpeed.MetersPerSecond, 0.0001);
+
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.99693418850319648, R717.Compressibility, 0.0001);
+            Assert.AreEqual(2397940.6517823422, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+
+        }
+
+        [TestMethod]
+        public void RemovePowerMassFlow()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            R717.MassFlow = MassFlow.FromKilogramsPerSecond(2);
+            R717.UpdateDH(setDensity, setEnthalpy);
+
+
+            //Act
+            R717.RemovePower(Power.FromKilowatts(100));
+
+
+            //Assert
+            Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
+            Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
+            Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
+            Assert.AreEqual(-77.654999999999973, R717.LimitTemperatureMin.DegreesCelsius, 0.0001);
+            Assert.AreEqual(132.25, R717.CriticalTemperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
+
+            Assert.AreEqual(0.027855773195711798, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
+            Assert.AreEqual(5451.1392911477233, R717.Cp.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(2923.79614861175, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(993420.21060739993, R717.Enthalpy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(1.8711461600292012, R717.Prandtl, 0.0001);
+            Assert.AreEqual(9.96542953464731, R717.Pressure.Bars, 0.0001);
+            Assert.AreEqual(16.772377991312993, R717.Density.KilogramsPerCubicMeter, 0.0001);
+            Assert.AreEqual(0.87749437389623908, R717.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(0.020532110006678969, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(24.800454983356076, R717.Temperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(24.800454983356019, R717.Tsat.DegreesCelsius, 0.0001);
+            Assert.AreEqual(9.5617118304871416E-06, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
+            Assert.AreEqual(0.45532304723311673, R717.Quality, 0.0001);
+            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond, 0.0001);
+
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.74783382782909569, R717.Compressibility, 0.0001);
+            Assert.AreEqual(934004.4882822244, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+
+        }
+
+
+
+        [TestMethod]
+        public void RemovePowerMassFlowMin()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            R717.MassFlow = MassFlow.FromKilogramsPerSecond(2);
+            R717.UpdateDH(setDensity, setEnthalpy);
+
+
+            //Act
+            R717.RemovePower(Power.FromKilowatts(99999999));
+
+
+            //Assert
+            Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
+            Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
+            Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
+            Assert.AreEqual(-77.654999999999973, R717.LimitTemperatureMin.DegreesCelsius, 0.0001);
+            Assert.AreEqual(132.25, R717.CriticalTemperature.DegreesCelsius, 0.0001);
+            Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
+
+            Assert.AreEqual(0.82336574497686044, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
+            Assert.AreEqual(4304.073099102181, R717.Cp.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(2968.329150078016, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(966.424186195203, R717.Enthalpy.JoulesPerKilogram, 0.0001);
+            Assert.AreEqual(2.970732325948974, R717.Prandtl, 0.0001);
+            Assert.AreEqual(9.96542953464731, R717.Pressure.Bars, 0.0001);
+            Assert.AreEqual(734.20326325395592, R717.Density.KilogramsPerCubicMeter, 0.0001);
+            Assert.AreEqual(-0.00047828927263162855, R717.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.AreEqual(R717.LimitTemperatureMin, R717.Temperature);
+            Assert.AreEqual(24.800454983344366, R717.Tsat.DegreesCelsius, 0.0001);
+            Assert.AreEqual(0.00056829872038930936, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
+            Assert.AreEqual(-1, R717.Quality, 0.0001);
+            Assert.AreEqual(2014.2840877222347, R717.SoundSpeed.MetersPerSecond, 0.0001);
+
+            Assert.AreEqual(17.03052, R717.MolarMass.GramsPerMole, 0.001);
+            Assert.AreEqual(0.014221255159098667, R717.Compressibility, 0.0001);
+            Assert.AreEqual(-390.88788709649447, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
+
+
+        }
+
+
     }
 }
