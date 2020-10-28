@@ -100,6 +100,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CoolProp.dll">
+      <Pack>true</Pack>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
