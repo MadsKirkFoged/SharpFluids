@@ -23,7 +23,7 @@
 	<files>
 		
 		<file src="..\SharpFluids\SharpFluids.targets" target="build\" />
-
+		<file src="..\SharpFluids\CoolProp.dll" target="build\" />
   
 		<file src="bin\release\SharpFluids.dll" target="lib\net40" />
 		<file src="bin\release\SharpFluids.XML" target="lib\net40" />
