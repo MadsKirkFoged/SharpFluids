@@ -19,11 +19,11 @@ namespace Sandbox
             //................................................
 
 
-            Fluid test = new Fluid(FluidList.Ammonia);
-            test.UpdatePH(Pressure.FromBars(6.16), SpecificEnergy.FromKilojoulesPerKilogram(460)) ;
-            test.MassFlow = MassFlow.FromKilogramsPerSecond(1);
+            Fluid test = new Fluid(FluidList.Water);
+            test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(50)) ;
 
-            test.AddPower(Power.FromKilowatts(-50));
+
+
 
 
 
