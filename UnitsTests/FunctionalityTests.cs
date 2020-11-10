@@ -83,7 +83,7 @@ namespace UnitsTests
             Assert.AreEqual(R717JSON.Entropy.KilocaloriesPerKelvin, R717.Entropy.KilocaloriesPerKelvin);
             Assert.AreEqual(R717JSON.SurfaceTension.NewtonsPerMeter, R717.SurfaceTension.NewtonsPerMeter);
             Assert.AreEqual(R717JSON.Temperature.DegreesCelsius, R717.Temperature.DegreesCelsius);
-            Assert.AreEqual(R717JSON.Tsat.DegreesCelsius, R717.Tsat.DegreesCelsius);
+            Assert.AreEqual(R717JSON.Tsat.DegreesCelsius, R717.Tsat.DegreesCelsius, 0.00001);
             Assert.AreEqual(R717JSON.DynamicViscosity.NewtonSecondsPerMeterSquared, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
             Assert.AreEqual(R717JSON.Quality, R717.Quality);
             Assert.AreEqual(R717JSON.SoundSpeed.MetersPerSecond, R717.SoundSpeed.MetersPerSecond);

@@ -419,7 +419,6 @@ namespace SharpFluids
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
         /// </summary>
-        [JsonConstructor]
         public Fluid(MediaType Media) : this()
         {
             SetNewMedia(Media);
@@ -1397,6 +1396,12 @@ namespace SharpFluids
         }
         private void CheckBeforeUpdate()
         {
+
+            if (REF is null)
+            {
+                SetNewMedia(Media);
+            }
+
 
             if (Media is null)
             {
