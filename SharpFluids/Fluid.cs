@@ -386,7 +386,7 @@ namespace SharpFluids
         /// <summary>
         /// Used to access the CoolProp DLL.
         /// </summary>
-        [JsonProperty]
+        //[JsonProperty]
         private AbstractState REF;
 
         /// <summary>
@@ -419,6 +419,7 @@ namespace SharpFluids
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList"/>.Water);</c></br>
         /// </summary>
+        [JsonConstructor]
         public Fluid(MediaType Media) : this()
         {
             SetNewMedia(Media);
