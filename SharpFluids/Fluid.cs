@@ -4,7 +4,7 @@ using UnitsNet;
 using UnitsNet.Units;
 using UnitsNet.Serialization.JsonNet;
 using Newtonsoft.Json;
-using JsonNet.ContractResolvers;
+//using JsonNet.ContractResolvers;
 
 namespace SharpFluids
 {
