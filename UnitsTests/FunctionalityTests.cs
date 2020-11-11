@@ -217,6 +217,39 @@ namespace UnitsTests
             Assert.AreEqual(R717JSON.Media, R717.Media);
         }
 
+        [TestMethod]
+        public void SavingJSONWithoutPointersInTheDLL()
+        {
+
+            //This test was made after we found out that the CoolProp DLL was saving pointers in JSON
+            //..which made things works fine on your local computer but crash when using DBs and servers!
+
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Fluid R7172 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
+
+            //Act
+            R717.UpdateDH(setDensity, setEnthalpy);
+            R717.MassFlow = setMassFlow;
+            string R717JSON = R717.SaveAsJSON();
+
+            R7172.UpdateDH(setDensity, setEnthalpy);
+            R7172.MassFlow = setMassFlow;
+            string R7172JSON = R7172.SaveAsJSON();
+
+
+
+
+            //Assert JSON          
+            Assert.AreEqual(R717JSON, R7172JSON);
+
+        }
+
+
 
 
         [TestMethod]
