@@ -47,6 +47,8 @@ steps:
     packagesToPack: '**/SharpFluids.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'Version'
+    includeSymbols: true
+    buildProperties: '-IncludeReferencedProjects'
 
 
 - task: NuGetCommand@2
