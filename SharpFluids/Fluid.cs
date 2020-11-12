@@ -231,6 +231,8 @@ namespace SharpFluids
             get
             {
 
+                CheckBeforeUpdate();
+
                 if (Pressure >= LimitPressureMin && Pressure <= CriticalPressure && LimitPressureMin != CriticalPressure) //P_Min != P_Crit is a quick fix - We should create a check to see if the object has beed created correctly!
                 {
                     try
