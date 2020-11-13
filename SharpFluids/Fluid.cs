@@ -240,6 +240,7 @@ namespace SharpFluids
                         if (!(REF is null))
                         {
                             REF.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
+                            FailState = false;
                             return Temperature.FromKelvins(REF.T());
                         }
                         else

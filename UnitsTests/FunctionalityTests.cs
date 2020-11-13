@@ -218,6 +218,33 @@ namespace UnitsTests
         }
 
         [TestMethod]
+        public void FailStateAfterJSON()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
+            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
+
+
+
+            //Act
+            R717.UpdateDH(setDensity, setEnthalpy);
+            string json = R717.SaveAsJSON();
+            Fluid R717JSON = R717.LoadFromJSON(json);
+
+            //Asking for Tsat
+            Temperature dummy = R717JSON.Tsat;
+
+
+            Assert.IsFalse(R717JSON.FailState);
+
+
+        }
+
+
+        [TestMethod]
         public void SavingJSONWithoutPointersInTheDLL()
         {
 

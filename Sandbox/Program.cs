@@ -48,7 +48,7 @@ namespace Sandbox
             //Start new fluid and load as json
             Fluid R717JSON = R717.LoadFromJSON(json);
 
-
+            Temperature test1 = R717JSON.Tsat;
 
 
 
