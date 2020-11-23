@@ -48,7 +48,7 @@ public class AbstractState : global::System.IDisposable
         {
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (swigCMemOwn)
+                //if (swigCMemOwn)                
                 {
                     swigCMemOwn = false;
                     CoolPropPINVOKE.delete_AbstractState(swigCPtr);

@@ -19,8 +19,13 @@ namespace Sandbox
             //................................................
 
 
-            Fluid test = new Fluid(FluidList.Water);
-            test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(50)) ;
+                Fluid test = new Fluid(FluidList.Water);
+
+
+                test = new Fluid(FluidList.Water);
+                test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(50));
+            
+
 
 
 
