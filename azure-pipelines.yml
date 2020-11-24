@@ -23,10 +23,6 @@ steps:
 - bash: echo $(Build)
 
 
-- task: versioncounter@1
-  inputs:
-    VersionVariable: 'Version'
-    DevOpsPat: '$(devops-pat-versionnumber)'
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: 
