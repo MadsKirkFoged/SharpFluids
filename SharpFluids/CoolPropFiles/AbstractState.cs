@@ -718,7 +718,7 @@ public class AbstractState : global::System.IDisposable
 
 
         //double ret = CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr);
-        if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         return ret;
     }
 
