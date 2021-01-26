@@ -135,7 +135,7 @@ namespace SharpFluids
         [MediaType("HEOS", "N-NONANE")                      ] nNonane,
         [MediaType("HEOS", "N-OCTANE")                      ] nOctane,
         [MediaType("HEOS", "N-PENTANE")                     ] nPentane,
-        [MediaType("HEOS", "N-PROPAN")                      ] nPropane,
+        [MediaType("HEOS", "N-PROPANE")                     ] nPropane,
         [MediaType("HEOS", "N-UNDECANE")                    ] nUndecane,
         [MediaType("HEOS", "O-XYLENE")                      ] oXylene,
         [MediaType("HEOS", "P-XYLENE")                      ] pXylene,

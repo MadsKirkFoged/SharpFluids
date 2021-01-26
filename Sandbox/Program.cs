@@ -19,15 +19,22 @@ namespace Sandbox
             //................................................
 
 
+
+
+
                 Fluid test = new Fluid(FluidList.Water);
 
 
-                test = new Fluid(FluidList.Water);
+                test = new Fluid(FluidList.nPropane);
                 test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(50));
-            
 
 
 
+            Fluid r134a = new Fluid(FluidList.R134a);
+            r134a.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(13));
+            string densité = r134a.Density.MilligramsPerCubicMeter.ToString();
+
+            Density Result = r134a.Density;
 
 
 
