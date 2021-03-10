@@ -1495,12 +1495,12 @@ namespace SharpFluids
 
                 if (Environment.Is64BitProcess)
                 {
-                    Console.WriteLine("64");
+                    //Console.WriteLine("64");
                     REF64 = AbstractState64.factory(Media.BackendType, Media.InternalName);
                 }
                 else
                 {
-                    Console.WriteLine("32");
+                    //Console.WriteLine("32");
                     REF = AbstractState.factory(Media.BackendType, Media.InternalName);
                 }
 
