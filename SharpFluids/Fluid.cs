@@ -237,16 +237,37 @@ namespace SharpFluids
                 {
                     try
                     {
-                        if (!(REF is null))
+
+                        if (Environment.Is64BitProcess)
                         {
-                            REF.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
-                            FailState = false;
-                            return Temperature.FromKelvins(REF.T());
+                            if (!(REF64 is null))
+                            {
+                                REF64.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
+                                FailState = false;
+                                return Temperature.FromKelvins(REF64.T());
+                            }
+                            else
+                            {
+                                return Temperature;
+                            }
                         }
                         else
                         {
-                            return Temperature;
+                            if (!(REF is null))
+                            {
+                                REF.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
+                                FailState = false;
+                                return Temperature.FromKelvins(REF.T());
+                            }
+                            else
+                            {
+                                return Temperature;
+                            }
                         }
+
+
+
+                       
                     }
                     catch (Exception)
                     {
@@ -392,6 +413,8 @@ namespace SharpFluids
         //[JsonProperty]
         private AbstractState REF;
 
+        private AbstractState64 REF64;
+
         /// <summary>
         /// Get the fluid type of the <see cref="Fluid"/>
         /// <br>The full list can be seen on <see cref="FluidList"/></br><br></br>
@@ -454,7 +477,17 @@ namespace SharpFluids
             {
                 try
                 {
-                    REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
+
+                    if (Environment.Is64BitProcess)
+                    {
+                        REF64.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
+                    }
+                    else
+                    {
+                        REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
+
+                    }
+
                     UpdateValues();
 
                 }
@@ -485,7 +518,18 @@ namespace SharpFluids
             CheckBeforeUpdate();
             try
             {
-                REF.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
+
+                if (Environment.Is64BitProcess)
+                {
+                    REF64.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
+                }
+                else
+                {
+                    REF.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
+                }
+
+
+                
                 UpdateValues();
             }
             catch (Exception e)
@@ -509,7 +553,17 @@ namespace SharpFluids
             CheckBeforeUpdate();
             try
             {
-                REF.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
+
+                if (Environment.Is64BitProcess)
+                {
+                    REF64.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
+                }
+                else
+                {
+                    REF.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
+                }
+
+                
                 UpdateValues();
             }
             catch (Exception e)
@@ -534,7 +588,17 @@ namespace SharpFluids
             CheckBeforeUpdate();
             try
             {
-                REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
+
+                if (Environment.Is64BitProcess)
+                {
+                    REF64.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
+                }
+                else
+                {
+                    REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
+                }
+
+                
                 UpdateValues();
             }
             catch (Exception e)
@@ -560,7 +624,15 @@ namespace SharpFluids
             {
                 try
                 {
-                    REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
+                    if (Environment.Is64BitProcess)
+                    {
+                        REF64.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
+                    }
+                    else
+                    {
+                        REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
+                    }
+
                     UpdateValues();
                 }
                 catch (Exception e)
@@ -598,11 +670,30 @@ namespace SharpFluids
                     //If we are above transcritical
                     if (temperature >= CriticalTemperature)
                     {
-                        REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
+
+                        if (Environment.Is64BitProcess)
+                        {
+                            REF64.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
+                        }
+                        else
+                        {
+                            REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
+                        }
+
+                        
                     }
                     else
                     {
-                        REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
+
+                        if (Environment.Is64BitProcess)
+                        {
+                            REF64.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
+                        }
+                        else
+                        {
+                            REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
+                        }
+
                     }
                     UpdateValues();
                 }
@@ -629,7 +720,16 @@ namespace SharpFluids
             //Not yet supported by CoolProp!
             //throw new NotImplementedException("Not yet supported by CoolProp");
 
-            REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
+            if (Environment.Is64BitProcess)
+            {
+                REF64.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
+            }
+            else
+            {
+                REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
+
+            }
+
 
 
         }
@@ -650,7 +750,15 @@ namespace SharpFluids
             {
                 try
                 {
-                    REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
+                    if (Environment.Is64BitProcess)
+                    {
+                        REF64.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
+                    }
+                    else
+                    {
+                        REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
+                    }
+                    
                     UpdateValues();
                 }
                 catch (Exception e)
@@ -680,7 +788,17 @@ namespace SharpFluids
             {
                 try
                 {
-                    REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
+
+                    if (Environment.Is64BitProcess)
+                    {
+                        REF64.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
+                    }
+                    else
+                    {
+                        REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
+                    }
+
+                    
                     UpdateValues();
                 }
                 catch (Exception e)
@@ -715,12 +833,24 @@ namespace SharpFluids
                 {
                     if (pressure > CriticalPressure)
                     {
+
+
                         UpdatePT(CriticalPressure, CriticalTemperature);
                         UpdatePH(pressure, Enthalpy);
                     }
                     else
                     {
-                        REF.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
+
+                        if (Environment.Is64BitProcess)
+                        {
+                            REF64.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
+                        }
+                        else
+                        {
+                            REF.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
+                        }
+
+                        
                         UpdateValues();
                     }
                 }
@@ -751,7 +881,15 @@ namespace SharpFluids
             CheckBeforeUpdate();
             try
             {
-                REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
+                if (Environment.Is64BitProcess)
+                {
+                    REF64.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
+                }
+                else
+                {
+                    REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
+                }
+                
                 UpdateValues();
             }
             catch (Exception e)
@@ -778,12 +916,28 @@ namespace SharpFluids
                 }
                 else
                 {
-                    REF.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
 
-                    if (HasValue(REF.T()))
-                        return Temperature.FromKelvins(REF.T());
+                    if (Environment.Is64BitProcess)
+                    {
+                        REF64.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
+
+                        if (HasValue(REF64.T()))
+                            return Temperature.FromKelvins(REF64.T());
+                        else
+                            return Temperature.Zero;
+                    }
                     else
-                        return Temperature.Zero;
+                    {
+                        REF.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
+
+                        if (HasValue(REF.T()))
+                            return Temperature.FromKelvins(REF.T());
+                        else
+                            return Temperature.Zero;
+                    }
+                    
+
+                    
                 }
 
 
@@ -814,12 +968,29 @@ namespace SharpFluids
                 }
                 else
                 {
-                    REF.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
 
-                    if (HasValue(REF.p()))
-                        return Pressure.FromPascals(REF.p());
+                    if (Environment.Is64BitProcess)
+                    {
+                        REF64.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
+
+                        if (HasValue(REF64.p()))
+                            return Pressure.FromPascals(REF64.p());
+                        else
+                            return Pressure.Zero;
+                    }
                     else
-                        return Pressure.Zero;
+                    {
+                        REF.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
+
+                        if (HasValue(REF.p()))
+                            return Pressure.FromPascals(REF.p());
+                        else
+                            return Pressure.Zero;
+                    }
+
+                    
+
+                  
                 }
 
 
@@ -844,24 +1015,52 @@ namespace SharpFluids
         {
             FailState = true;
 
-            //Setting the constant values up
-            LimitTemperatureMax = Temperature.FromKelvins(REF.Tmax());
-            LimitTemperatureMin = Temperature.FromKelvins(REF.Tmin());
-            //var test = REF.
 
-
-            if (REF.backend_name() == "HelmholtzEOSBackend")
+            if (Environment.Is64BitProcess)
             {
-                CriticalTemperature = Temperature.FromKelvins(REF.T_critical());
-                CriticalPressure = Pressure.FromPascals(REF.p_critical());
-                LimitPressureMin = Pressure.FromPascals(REF.p_triple());
-                LimitPressureMax = Pressure.FromPascals(REF.pmax());
+                //Setting the constant values up
+                LimitTemperatureMax = Temperature.FromKelvins(REF64.Tmax());
+                LimitTemperatureMin = Temperature.FromKelvins(REF64.Tmin());
+                //var test = REF.
 
-                //Finding H_crit
-                REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
-                CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
 
+                if (REF64.backend_name() == "HelmholtzEOSBackend")
+                {
+                    CriticalTemperature = Temperature.FromKelvins(REF64.T_critical());
+                    CriticalPressure = Pressure.FromPascals(REF64.p_critical());
+                    LimitPressureMin = Pressure.FromPascals(REF64.p_triple());
+                    LimitPressureMax = Pressure.FromPascals(REF64.pmax());
+
+                    //Finding H_crit
+                    REF64.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                    CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF64.hmass());
+
+                }
             }
+            else
+            {
+                //Setting the constant values up
+                LimitTemperatureMax = Temperature.FromKelvins(REF.Tmax());
+                LimitTemperatureMin = Temperature.FromKelvins(REF.Tmin());
+                //var test = REF.
+
+
+                if (REF.backend_name() == "HelmholtzEOSBackend")
+                {
+                    CriticalTemperature = Temperature.FromKelvins(REF.T_critical());
+                    CriticalPressure = Pressure.FromPascals(REF.p_critical());
+                    LimitPressureMin = Pressure.FromPascals(REF.p_triple());
+                    LimitPressureMax = Pressure.FromPascals(REF.pmax());
+
+                    //Finding H_crit
+                    REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                    CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+
+                }
+            }
+
+
+            
 
             SetDefalutDisplayUnits();
 
@@ -877,104 +1076,212 @@ namespace SharpFluids
         protected virtual void UpdateValues()
         {
 
-
-            if (HasValue(REF.hmass()))
-                Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
-            else
-                Enthalpy = SpecificEnergy.Zero;
-            
-
-            if (HasValue(REF.T()))
-                Temperature = Temperature.FromKelvins(REF.T());
-            else
-                Temperature = Temperature.Zero;            
-
-
-            if (HasValue(REF.p()))
-                Pressure = Pressure.FromPascals(REF.p());
-            else
-                Pressure = Pressure.Zero;
-
-            if (HasValue(REF.smass()))
-                Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
-            else
-                Entropy = Entropy.Zero;
-
-            if (HasValue(REF.Q()))
-                Quality = REF.Q();
-            else
-                Quality = -1;
-
-            if (HasValue(REF.rhomass()))
-                Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
-            else
-                Density = Density.Zero;
-
-            if (HasValue(REF.rhomass()))
-                Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
-            else
-                Cp = SpecificEntropy.Zero;
-
-            if (HasValue(REF.cvmass()))
-                Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
-            else
-                Cp = SpecificEntropy.Zero;
-
-            if (HasValue(REF.cvmass()))
-                DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
-            else
-                DynamicViscosity = DynamicViscosity.Zero;
-
-            if (HasValue(REF.Prandtl()))
-                Prandtl = REF.Prandtl();
-            else
-                Prandtl = 0;
-
-            if (HasValue(REF.surface_tension()))
-                SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-            else
-                SurfaceTension = ForcePerLength.Zero;
-
-            if (HasValue(REF.umass()))
-                InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
-            else
-                InternalEnergy = SpecificEnergy.Zero;
-
-
-            if (HasValue(REF.conductivity()))
-                Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
-            else
-                Conductivity = ThermalConductivity.Zero;
-
-
-
-
-            if (Media.BackendType == "HEOS")
-            {         
-                //Mixed fluids does not have these properties 
-                
-                
-                
-
-
-                if (HasValue(REF.speed_sound()))
-                    SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
+            if (Environment.Is64BitProcess)
+            {
+                if (HasValue(REF64.hmass()))
+                    Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF64.hmass());
                 else
-                    SoundSpeed = Speed.Zero;
+                    Enthalpy = SpecificEnergy.Zero;
 
 
-                if (HasValue(REF.molar_mass()))
-                    MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+                if (HasValue(REF64.T()))
+                    Temperature = Temperature.FromKelvins(REF64.T());
                 else
-                    MolarMass = MolarMass.Zero;
+                    Temperature = Temperature.Zero;
 
-                if (HasValue(REF.compressibility_factor()))
-                    Compressibility = REF.compressibility_factor();
+
+                if (HasValue(REF64.p()))
+                    Pressure = Pressure.FromPascals(REF64.p());
                 else
-                    Compressibility = 0;
+                    Pressure = Pressure.Zero;
+
+                if (HasValue(REF64.smass()))
+                    Entropy = Entropy.FromJoulesPerKelvin(REF64.smass());
+                else
+                    Entropy = Entropy.Zero;
+
+                if (HasValue(REF64.Q()))
+                    Quality = REF64.Q();
+                else
+                    Quality = -1;
+
+                if (HasValue(REF64.rhomass()))
+                    Density = Density.FromKilogramsPerCubicMeter(REF64.rhomass());
+                else
+                    Density = Density.Zero;
+
+                if (HasValue(REF64.rhomass()))
+                    Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF64.cpmass());
+                else
+                    Cp = SpecificEntropy.Zero;
+
+                if (HasValue(REF64.cvmass()))
+                    Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF64.cvmass());
+                else
+                    Cp = SpecificEntropy.Zero;
+
+                if (HasValue(REF64.cvmass()))
+                    DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF64.viscosity());
+                else
+                    DynamicViscosity = DynamicViscosity.Zero;
+
+                if (HasValue(REF64.Prandtl()))
+                    Prandtl = REF64.Prandtl();
+                else
+                    Prandtl = 0;
+
+                if (HasValue(REF64.surface_tension()))
+                    SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF64.surface_tension());
+                else
+                    SurfaceTension = ForcePerLength.Zero;
+
+                if (HasValue(REF64.umass()))
+                    InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF64.umass());
+                else
+                    InternalEnergy = SpecificEnergy.Zero;
 
 
+                if (HasValue(REF64.conductivity()))
+                    Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF64.conductivity());
+                else
+                    Conductivity = ThermalConductivity.Zero;
+
+
+
+
+                if (Media.BackendType == "HEOS")
+                {
+                    //Mixed fluids does not have these properties 
+
+
+
+
+
+                    if (HasValue(REF64.speed_sound()))
+                        SoundSpeed = Speed.FromMetersPerSecond(REF64.speed_sound());
+                    else
+                        SoundSpeed = Speed.Zero;
+
+
+                    if (HasValue(REF64.molar_mass()))
+                        MolarMass = MolarMass.FromKilogramsPerMole(REF64.molar_mass());
+                    else
+                        MolarMass = MolarMass.Zero;
+
+                    if (HasValue(REF64.compressibility_factor()))
+                        Compressibility = REF64.compressibility_factor();
+                    else
+                        Compressibility = 0;
+
+
+                }
             }
+            else
+            {
+                if (HasValue(REF.hmass()))
+                    Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
+                else
+                    Enthalpy = SpecificEnergy.Zero;
+
+
+                if (HasValue(REF.T()))
+                    Temperature = Temperature.FromKelvins(REF.T());
+                else
+                    Temperature = Temperature.Zero;
+
+
+                if (HasValue(REF.p()))
+                    Pressure = Pressure.FromPascals(REF.p());
+                else
+                    Pressure = Pressure.Zero;
+
+                if (HasValue(REF.smass()))
+                    Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
+                else
+                    Entropy = Entropy.Zero;
+
+                if (HasValue(REF.Q()))
+                    Quality = REF.Q();
+                else
+                    Quality = -1;
+
+                if (HasValue(REF.rhomass()))
+                    Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
+                else
+                    Density = Density.Zero;
+
+                if (HasValue(REF.rhomass()))
+                    Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
+                else
+                    Cp = SpecificEntropy.Zero;
+
+                if (HasValue(REF.cvmass()))
+                    Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
+                else
+                    Cp = SpecificEntropy.Zero;
+
+                if (HasValue(REF.cvmass()))
+                    DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
+                else
+                    DynamicViscosity = DynamicViscosity.Zero;
+
+                if (HasValue(REF.Prandtl()))
+                    Prandtl = REF.Prandtl();
+                else
+                    Prandtl = 0;
+
+                if (HasValue(REF.surface_tension()))
+                    SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
+                else
+                    SurfaceTension = ForcePerLength.Zero;
+
+                if (HasValue(REF.umass()))
+                    InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
+                else
+                    InternalEnergy = SpecificEnergy.Zero;
+
+
+                if (HasValue(REF.conductivity()))
+                    Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
+                else
+                    Conductivity = ThermalConductivity.Zero;
+
+
+
+
+                if (Media.BackendType == "HEOS")
+                {
+                    //Mixed fluids does not have these properties 
+
+
+
+
+
+                    if (HasValue(REF.speed_sound()))
+                        SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
+                    else
+                        SoundSpeed = Speed.Zero;
+
+
+                    if (HasValue(REF.molar_mass()))
+                        MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
+                    else
+                        MolarMass = MolarMass.Zero;
+
+                    if (HasValue(REF.compressibility_factor()))
+                        Compressibility = REF.compressibility_factor();
+                    else
+                        Compressibility = 0;
+
+
+                }
+            }
+
+
+
+
+
+            
 
 
             
@@ -1185,7 +1492,19 @@ namespace SharpFluids
                     Media = new MediaType();            
             
                 Media.Copy(Type);
-                REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+
+                if (Environment.Is64BitProcess)
+                {
+                    Console.WriteLine("64");
+                    REF64 = AbstractState64.factory(Media.BackendType, Media.InternalName);
+                }
+                else
+                {
+                    Console.WriteLine("32");
+                    REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+                }
+
+              
                 UpdateFluidConstants();
             }
 
@@ -1318,8 +1637,22 @@ namespace SharpFluids
             if (Media.BackendType == "INCOMP")
             {
 
-                double min = REF.keyed_output(parameters.ifraction_min);
-                double max = REF.keyed_output(parameters.ifraction_max);
+                double min = 0;
+                double max = 0;
+
+                if (Environment.Is64BitProcess)
+                {
+                    min = REF64.keyed_output(parameters.ifraction_min);
+                    max = REF64.keyed_output(parameters.ifraction_max);
+                }
+                else
+                {
+                    min = REF.keyed_output(parameters.ifraction_min);
+                    max = REF.keyed_output(parameters.ifraction_max);
+                }
+
+
+                
 
                 if (fraction < min)
                 {
@@ -1546,13 +1879,37 @@ namespace SharpFluids
         }
         public string GetREFType()
         {
-            return REF.name();
+
+            if (Environment.Is64BitProcess)
+            {
+                return REF64.name();
+            }
+            else
+            {
+                return REF.name();
+            }
+
+
+            
         }
         public void Dispose()
         {
-            REF.Dispose();
-            REF = null;
-            this.Dispose();
+
+            if (Environment.Is64BitProcess)
+            {
+                REF64.Dispose();
+                REF64 = null;
+                this.Dispose();
+            }
+            else
+            {
+                REF.Dispose();
+                REF = null;
+                this.Dispose();
+            }
+
+
+            
         }
 
         /// <summary>

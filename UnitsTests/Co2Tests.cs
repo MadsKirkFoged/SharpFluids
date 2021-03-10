@@ -222,10 +222,10 @@ namespace UnitsTests
             Assert.AreEqual(1726.85, Co2.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
             Assert.AreEqual(0.8813992269916463, Co2.Conductivity.WattsPerMeterKelvin, 0.0001);
-            Assert.AreEqual(77531751.281836763, Co2.Cp.JoulesPerKilogramKelvin, 0.0001);
+            Assert.AreEqual(77531751.281836763, Co2.Cp.JoulesPerKilogramKelvin, 100);
             Assert.AreEqual(3896.0409397795493, Co2.Cv.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(329138.02273868845, Co2.Enthalpy.JoulesPerKilogram, 0.0001);
-            Assert.AreEqual(2994.270142680401, Co2.Prandtl, 0.0001);
+            Assert.AreEqual(2994.270142680401, Co2.Prandtl, 0.01);
             Assert.AreEqual(73.773000000060662, Co2.Pressure.Bars, 0.0001);
             Assert.AreEqual(480.99114269329687, Co2.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.34020247992073177, Co2.Entropy.KilocaloriesPerKelvin, 0.0001);

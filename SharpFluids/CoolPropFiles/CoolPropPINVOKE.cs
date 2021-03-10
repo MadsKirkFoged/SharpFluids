@@ -9,7 +9,8 @@
 //------------------------------------------------------------------------------
 
 
-class CoolPropPINVOKE {
+class CoolPropPINVOKE
+{
 
   protected class SWIGExceptionHelper {
 

@@ -16,8 +16,9 @@ public class AbstractState : global::System.IDisposable
 {
 
     public global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    
+
     public bool swigCMemOwn;
+
 
     internal AbstractState()
     {

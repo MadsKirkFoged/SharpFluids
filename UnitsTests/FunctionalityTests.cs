@@ -925,7 +925,7 @@ namespace UnitsTests
 
 
             //Assert
-            Assert.AreEqual(Tsat.DegreesCelsius, 49.371451247030961);
+            Assert.AreEqual(Tsat.DegreesCelsius, 49.371451247030961, 0.001);
 
 
         }
