@@ -147,9 +147,6 @@
     <Compile Include="CoolPropFiles\DoubleVector.cs" />
     <Compile Include="CoolPropFiles\input_pairs.cs" />
     <Compile Include="CoolPropFiles\parameters.cs" />
-    <Compile Include="CoolPropFiles\StringVector.cs" />
-    <Compile Include="CoolPropFiles\VectorOfDoubleVector.cs" />
-    <Compile Include="CoolPropFiles\VectorOfStringVector.cs" />
     <Compile Include="Fluid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WrapperClasses\FluidEnums.cs" />

@@ -57,7 +57,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
-        public SpecificEnergy Enthalpy { get; private set; } //Also called Enthalpy 
+        public SpecificEnergy Enthalpy { get; private set; }
 
 
         /// <summary>
@@ -397,7 +397,6 @@ namespace SharpFluids
         /// <summary>
         /// Used to access the CoolProp DLL.
         /// </summary>
-        //[JsonProperty]
         private AbstractState REF;
 
 
@@ -1209,39 +1208,6 @@ namespace SharpFluids
         }
         
 
-       // public void CheckForNaN()
-        //{
-
-            //This is right now used by AddPower! or is it?!
-
-            //if (Double.IsNaN(Temperature.Value))            
-            //    Temperature = Temperature.Zero;          
-
-            //if (Double.IsNaN(Pressure.Value))            
-            //    Pressure = Pressure.Zero;
-
-            //if (Double.IsNaN(MassFlow.Value))            
-            //    MassFlow = MassFlow.Zero;
-
-            //if (Double.IsNaN(Enthalpy.Value))            
-            //    Enthalpy = SpecificEnergy.Zero;
-            
-            //if (Double.IsNaN(Entropy.Value))            
-            //    Entropy = Entropy.Zero;
-            
-            //if (Double.IsNaN(Quality))            
-            //    Quality = 1;
-
-            //if (Double.IsNaN(Density.Value))            
-            //    Density = Density.Zero;
-           
-            //if (Double.IsNaN(Cp.Value))            
-            //    Cp = SpecificEntropy.Zero;
-
-       // }
-
-
-
         private void CheckBeforeUpdate()
         {
             if (REF is null)            
@@ -1415,12 +1381,6 @@ namespace SharpFluids
             return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
         }
 
-        //Other privates function
-
-        //public bool HasValue(double value)
-        //{
-        //    return !Double.IsNaN(value) && !Double.IsInfinity(value);
-        //}
     }
 
 }
