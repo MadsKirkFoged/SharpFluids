@@ -141,7 +141,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoolPropFiles\AbstractState64.cs" />
     <Compile Include="CoolPropFiles\AbstractState.cs" />
     <Compile Include="CoolPropFiles\CoolPropPINVOKE64.cs" />
     <Compile Include="CoolPropFiles\CoolPropPINVOKE.cs" />

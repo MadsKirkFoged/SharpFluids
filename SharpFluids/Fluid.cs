@@ -238,36 +238,23 @@ namespace SharpFluids
                     try
                     {
 
-                        if (Environment.Is64BitProcess)
+
+
+                        if (!(REF is null))
                         {
-                            if (!(REF64 is null))
-                            {
-                                REF64.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
-                                FailState = false;
-                                return Temperature.FromKelvins(REF64.T());
-                            }
-                            else
-                            {
-                                return Temperature;
-                            }
+                            REF.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
+                            FailState = false;
+                            return REF.T();
                         }
                         else
                         {
-                            if (!(REF is null))
-                            {
-                                REF.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
-                                FailState = false;
-                                return Temperature.FromKelvins(REF.T());
-                            }
-                            else
-                            {
-                                return Temperature;
-                            }
+                            return Temperature;
                         }
 
 
 
-                       
+
+
                     }
                     catch (Exception)
                     {
@@ -413,7 +400,6 @@ namespace SharpFluids
         //[JsonProperty]
         private AbstractState REF;
 
-        private AbstractState64 REF64;
 
         /// <summary>
         /// Get the fluid type of the <see cref="Fluid"/>
@@ -457,7 +443,7 @@ namespace SharpFluids
         /// </summary>
         public Fluid(FluidList Type) : this(FluidListToMediaType(Type))
         {
-
+            //This is just converting from One media type to another
         }
 
 
@@ -473,34 +459,26 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
-            if (density > Density.Zero && entropy > Entropy.Zero)
-            {
-                try
-                {
-
-                    if (Environment.Is64BitProcess)
-                    {
-                        REF64.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
-                    }
-                    else
-                    {
-                        REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
-
-                    }
-
-                    UpdateValues();
-
-                }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("CoolProp: Warning in UpdateDS" + e);
-                }
-            }
-            else
+            if (density <= Density.Zero && entropy <= Entropy.Zero)
             {
                 FailState = true;
+                return;
             }
+
+
+            try
+            {
+                REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
+                UpdateValues();
+            }
+            catch (Exception e)
+            {
+                FailState = true;
+                Debug.Print("CoolProp: Warning in UpdateDS" + e);
+            }
+
+
+
 
         }
 
@@ -516,20 +494,18 @@ namespace SharpFluids
         public void UpdateDP(Density density, Pressure pressure)
         {
             CheckBeforeUpdate();
+
+            if (density <= Density.Zero && Pressure <= Pressure.Zero)
+            {
+                FailState = true;
+                return;
+            }
+
+
+
             try
             {
-
-                if (Environment.Is64BitProcess)
-                {
-                    REF64.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
-                }
-                else
-                {
-                    REF.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
-                }
-
-
-                
+                REF.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
                 UpdateValues();
             }
             catch (Exception e)
@@ -537,6 +513,7 @@ namespace SharpFluids
                 FailState = true;
                 Debug.Print("Coolprop: Warning in UpdateDP" + e);
             }
+
 
         }
 
@@ -551,19 +528,16 @@ namespace SharpFluids
         public void UpdateDT(Density density, Temperature temperature)
         {
             CheckBeforeUpdate();
+            if (density <= Density.Zero && temperature <= Temperature.Zero)
+            {
+                FailState = true;
+                return;
+            }
+
+
             try
             {
-
-                if (Environment.Is64BitProcess)
-                {
-                    REF64.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
-                }
-                else
-                {
-                    REF.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
-                }
-
-                
+                REF.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
                 UpdateValues();
             }
             catch (Exception e)
@@ -571,6 +545,7 @@ namespace SharpFluids
                 FailState = true;
                 Debug.Print("Coolprop: Warning in UpdateDT" + e);
             }
+
 
         }
 
@@ -586,19 +561,17 @@ namespace SharpFluids
         public void UpdateDH(Density density, SpecificEnergy enthalpy)
         {
             CheckBeforeUpdate();
+
+            if (density <= Density.Zero)
+            {
+                FailState = true;
+                return;
+            }
+
+
             try
             {
-
-                if (Environment.Is64BitProcess)
-                {
-                    REF64.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
-                }
-                else
-                {
-                    REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
-                }
-
-                
+                REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
                 UpdateValues();
             }
             catch (Exception e)
@@ -620,34 +593,22 @@ namespace SharpFluids
         public void UpdatePT(Pressure pressure, Temperature temperature)
         {
             CheckBeforeUpdate();
-            if (pressure >= LimitPressureMin && temperature >= LimitTemperatureMin)
-            {
-                try
-                {
-                    if (Environment.Is64BitProcess)
-                    {
-                        REF64.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
-                    }
-                    else
-                    {
-                        REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
-                    }
-
-                    UpdateValues();
-                }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePT " + e);
-                }
-            }
-            else
+            if (pressure < LimitPressureMin && temperature < LimitTemperatureMin)
             {
                 FailState = true;
+                return;
             }
 
-
-
+            try
+            {
+                REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
+                UpdateValues();
+            }
+            catch (Exception e)
+            {
+                FailState = true;
+                Debug.Print("Coolprop: Warning in UpdatePT " + e);
+            }
         }
 
 
@@ -663,51 +624,31 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
-            if (temperature >= LimitTemperatureMin)
-            {
-                try
-                {
-                    //If we are above transcritical
-                    if (temperature >= CriticalTemperature)
-                    {
-
-                        if (Environment.Is64BitProcess)
-                        {
-                            REF64.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
-                        }
-                        else
-                        {
-                            REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
-                        }
-
-                        
-                    }
-                    else
-                    {
-
-                        if (Environment.Is64BitProcess)
-                        {
-                            REF64.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
-                        }
-                        else
-                        {
-                            REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
-                        }
-
-                    }
-                    UpdateValues();
-                }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdateXT" + e);
-                }
-
-            }
-            else
+            if (temperature < LimitTemperatureMin)
             {
                 FailState = true;
+                return;
             }
+
+
+            try
+            {
+                //If we are above transcritical we just return the Critical point 
+                if (temperature >= CriticalTemperature)                
+                    REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);                
+                else                
+                    REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
+                
+                UpdateValues();
+            }
+            catch (Exception e)
+            {
+                FailState = true;
+                Debug.Print("Coolprop: Warning in UpdateXT" + e);
+            }
+
+
+
         }
 
         /// <summary>
@@ -720,18 +661,7 @@ namespace SharpFluids
             //Not yet supported by CoolProp!
             //throw new NotImplementedException("Not yet supported by CoolProp");
 
-            if (Environment.Is64BitProcess)
-            {
-                REF64.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
-            }
-            else
-            {
-                REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
-
-            }
-
-
-
+            REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
         }
 
 
@@ -746,31 +676,24 @@ namespace SharpFluids
         public void UpdatePS(Pressure pressure, Entropy entropy)
         {
             CheckBeforeUpdate();
-            if (pressure > Pressure.Zero && entropy != Entropy.Zero)
-            {
-                try
-                {
-                    if (Environment.Is64BitProcess)
-                    {
-                        REF64.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
-                    }
-                    else
-                    {
-                        REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
-                    }
-                    
-                    UpdateValues();
-                }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePS" + e);
-                }
-            }
-            else
+            if (pressure <= Pressure.Zero)
             {
                 FailState = true;
+                return;
             }
+
+            try
+            {
+                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
+                UpdateValues();
+            }
+            catch (Exception e)
+            {
+                FailState = true;
+                Debug.Print("Coolprop: Warning in UpdatePS" + e);
+            }
+
+
         }
 
         /// <summary>
@@ -784,34 +707,23 @@ namespace SharpFluids
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy)
         {
             CheckBeforeUpdate();
-            if (pressure > Pressure.Zero && enthalpy > SpecificEnergy.Zero)
-            {
-                try
-                {
-
-                    if (Environment.Is64BitProcess)
-                    {
-                        REF64.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
-                    }
-                    else
-                    {
-                        REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
-                    }
-
-                    
-                    UpdateValues();
-                }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePH" + e);
-                }
-            }
-            else
+            if (pressure <= Pressure.Zero && enthalpy <= SpecificEnergy.Zero)
             {
                 FailState = true;
+                return;
             }
 
+
+            try
+            {
+                REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
+                UpdateValues();
+            }
+            catch (Exception e)
+            {
+                FailState = true;
+                Debug.Print("Coolprop: Warning in UpdatePH" + e);
+            }
         }
 
         /// <summary>
@@ -826,46 +738,30 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
-            if (pressure > Pressure.Zero && quality >= 0)
-            {
-
-                try
-                {
-                    if (pressure > CriticalPressure)
-                    {
-
-
-                        UpdatePT(CriticalPressure, CriticalTemperature);
-                        UpdatePH(pressure, Enthalpy);
-                    }
-                    else
-                    {
-
-                        if (Environment.Is64BitProcess)
-                        {
-                            REF64.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
-                        }
-                        else
-                        {
-                            REF.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
-                        }
-
-                        
-                        UpdateValues();
-                    }
-                }
-                catch (Exception e)
-                {
-                    FailState = true;
-                    Debug.Print("Coolprop: Warning in UpdatePX " + e);
-                }
-
-            }
-            else
+            if (pressure <= Pressure.Zero && quality < 0)
             {
                 FailState = true;
+                return;
             }
 
+            try
+            {
+                if (pressure > CriticalPressure)
+                {
+                    UpdatePT(CriticalPressure, CriticalTemperature);
+                    UpdatePH(pressure, Enthalpy);
+                }
+                else
+                {
+                    REF.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
+                    UpdateValues();
+                }
+            }
+            catch (Exception e)
+            {
+                FailState = true;
+                Debug.Print("Coolprop: Warning in UpdatePX " + e);
+            }
         }
 
         /// <summary>
@@ -881,15 +777,7 @@ namespace SharpFluids
             CheckBeforeUpdate();
             try
             {
-                if (Environment.Is64BitProcess)
-                {
-                    REF64.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
-                }
-                else
-                {
-                    REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
-                }
-                
+                REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
                 UpdateValues();
             }
             catch (Exception e)
@@ -897,8 +785,6 @@ namespace SharpFluids
                 FailState = true;
                 Debug.Print("Coolprop: Warning in UpdateHS " + e);
             }
-
-
         }
 
         /// <summary>
@@ -907,49 +793,21 @@ namespace SharpFluids
         public Temperature GetSatTemperature(Pressure FromThisPressure)
         {
 
-            if (FromThisPressure > LimitPressureMin)
-            {
-
-                if (FromThisPressure > CriticalPressure)
-                {
-                    return CriticalTemperature;
-                }
-                else
-                {
-
-                    if (Environment.Is64BitProcess)
-                    {
-                        REF64.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
-
-                        if (HasValue(REF64.T()))
-                            return Temperature.FromKelvins(REF64.T());
-                        else
-                            return Temperature.Zero;
-                    }
-                    else
-                    {
-                        REF.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
-
-                        if (HasValue(REF.T()))
-                            return Temperature.FromKelvins(REF.T());
-                        else
-                            return Temperature.Zero;
-                    }
-                    
-
-                    
-                }
-
-
-            }
-            else
+            if (FromThisPressure < LimitPressureMin)
             {
                 return Temperature.Zero;
             }
 
 
-
-
+            if (FromThisPressure > CriticalPressure)
+            {
+                return CriticalTemperature;
+            }
+            else
+            {
+                REF.update(input_pairs.PQ_INPUTS, FromThisPressure.Pascals, 1);
+                return REF.T();
+            }
         }
 
 
@@ -959,50 +817,21 @@ namespace SharpFluids
         public Pressure GetSatPressure(Temperature FromThisTemperature)
         {
 
-            if (FromThisTemperature > LimitTemperatureMin)
-            {
-
-                if (FromThisTemperature >= CriticalTemperature)
-                {
-                    return CriticalPressure;
-                }
-                else
-                {
-
-                    if (Environment.Is64BitProcess)
-                    {
-                        REF64.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
-
-                        if (HasValue(REF64.p()))
-                            return Pressure.FromPascals(REF64.p());
-                        else
-                            return Pressure.Zero;
-                    }
-                    else
-                    {
-                        REF.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
-
-                        if (HasValue(REF.p()))
-                            return Pressure.FromPascals(REF.p());
-                        else
-                            return Pressure.Zero;
-                    }
-
-                    
-
-                  
-                }
-
-
-            }
-            else
+            if (FromThisTemperature < LimitTemperatureMin)
             {
                 return Pressure.Zero;
             }
 
 
-
-
+            if (FromThisTemperature >= CriticalTemperature)
+            {
+                return CriticalPressure;
+            }
+            else
+            {
+                REF.update(input_pairs.QT_INPUTS, 1, FromThisTemperature.Kelvins);
+                return REF.p();
+            }
         }
 
 
@@ -1015,58 +844,26 @@ namespace SharpFluids
         {
             FailState = true;
 
+            //Setting the constant values up
+            LimitTemperatureMax = REF.Tmax();
+            LimitTemperatureMin = REF.Tmin();
 
-            if (Environment.Is64BitProcess)
+
+            if (REF.backend_name() == "HelmholtzEOSBackend")
             {
-                //Setting the constant values up
-                LimitTemperatureMax = Temperature.FromKelvins(REF64.Tmax());
-                LimitTemperatureMin = Temperature.FromKelvins(REF64.Tmin());
-                //var test = REF.
+                CriticalTemperature = REF.T_critical();
+                CriticalPressure = REF.p_critical();
+                LimitPressureMin = REF.p_triple();
+                LimitPressureMax = REF.pmax();
 
-
-                if (REF64.backend_name() == "HelmholtzEOSBackend")
-                {
-                    CriticalTemperature = Temperature.FromKelvins(REF64.T_critical());
-                    CriticalPressure = Pressure.FromPascals(REF64.p_critical());
-                    LimitPressureMin = Pressure.FromPascals(REF64.p_triple());
-                    LimitPressureMax = Pressure.FromPascals(REF64.pmax());
-
-                    //Finding H_crit
-                    REF64.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
-                    CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF64.hmass());
-
-                }
+                //Finding H_crit
+                REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                CriticalEnthalpy = REF.hmass();
             }
-            else
-            {
-                //Setting the constant values up
-                LimitTemperatureMax = Temperature.FromKelvins(REF.Tmax());
-                LimitTemperatureMin = Temperature.FromKelvins(REF.Tmin());
-                //var test = REF.
-
-
-                if (REF.backend_name() == "HelmholtzEOSBackend")
-                {
-                    CriticalTemperature = Temperature.FromKelvins(REF.T_critical());
-                    CriticalPressure = Pressure.FromPascals(REF.p_critical());
-                    LimitPressureMin = Pressure.FromPascals(REF.p_triple());
-                    LimitPressureMax = Pressure.FromPascals(REF.pmax());
-
-                    //Finding H_crit
-                    REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
-                    CriticalEnthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
-
-                }
-            }
-
-
-            
 
             SetDefalutDisplayUnits();
 
             //Setting Max/min Mass- or volfraction
-
-
 
         }
 
@@ -1076,221 +873,30 @@ namespace SharpFluids
         protected virtual void UpdateValues()
         {
 
-            if (Environment.Is64BitProcess)
+            if (Media.BackendType == "HEOS")
             {
-                if (HasValue(REF64.hmass()))
-                    Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF64.hmass());
-                else
-                    Enthalpy = SpecificEnergy.Zero;
-
-
-                if (HasValue(REF64.T()))
-                    Temperature = Temperature.FromKelvins(REF64.T());
-                else
-                    Temperature = Temperature.Zero;
-
-
-                if (HasValue(REF64.p()))
-                    Pressure = Pressure.FromPascals(REF64.p());
-                else
-                    Pressure = Pressure.Zero;
-
-                if (HasValue(REF64.smass()))
-                    Entropy = Entropy.FromJoulesPerKelvin(REF64.smass());
-                else
-                    Entropy = Entropy.Zero;
-
-                if (HasValue(REF64.Q()))
-                    Quality = REF64.Q();
-                else
-                    Quality = -1;
-
-                if (HasValue(REF64.rhomass()))
-                    Density = Density.FromKilogramsPerCubicMeter(REF64.rhomass());
-                else
-                    Density = Density.Zero;
-
-                if (HasValue(REF64.rhomass()))
-                    Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF64.cpmass());
-                else
-                    Cp = SpecificEntropy.Zero;
-
-                if (HasValue(REF64.cvmass()))
-                    Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF64.cvmass());
-                else
-                    Cp = SpecificEntropy.Zero;
-
-                if (HasValue(REF64.cvmass()))
-                    DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF64.viscosity());
-                else
-                    DynamicViscosity = DynamicViscosity.Zero;
-
-                if (HasValue(REF64.Prandtl()))
-                    Prandtl = REF64.Prandtl();
-                else
-                    Prandtl = 0;
-
-                if (HasValue(REF64.surface_tension()))
-                    SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF64.surface_tension());
-                else
-                    SurfaceTension = ForcePerLength.Zero;
-
-                if (HasValue(REF64.umass()))
-                    InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF64.umass());
-                else
-                    InternalEnergy = SpecificEnergy.Zero;
-
-
-                if (HasValue(REF64.conductivity()))
-                    Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF64.conductivity());
-                else
-                    Conductivity = ThermalConductivity.Zero;
-
-
-
-
-                if (Media.BackendType == "HEOS")
-                {
-                    //Mixed fluids does not have these properties 
-
-
-
-
-
-                    if (HasValue(REF64.speed_sound()))
-                        SoundSpeed = Speed.FromMetersPerSecond(REF64.speed_sound());
-                    else
-                        SoundSpeed = Speed.Zero;
-
-
-                    if (HasValue(REF64.molar_mass()))
-                        MolarMass = MolarMass.FromKilogramsPerMole(REF64.molar_mass());
-                    else
-                        MolarMass = MolarMass.Zero;
-
-                    if (HasValue(REF64.compressibility_factor()))
-                        Compressibility = REF64.compressibility_factor();
-                    else
-                        Compressibility = 0;
-
-
-                }
-            }
-            else
-            {
-                if (HasValue(REF.hmass()))
-                    Enthalpy = SpecificEnergy.FromJoulesPerKilogram(REF.hmass());
-                else
-                    Enthalpy = SpecificEnergy.Zero;
-
-
-                if (HasValue(REF.T()))
-                    Temperature = Temperature.FromKelvins(REF.T());
-                else
-                    Temperature = Temperature.Zero;
-
-
-                if (HasValue(REF.p()))
-                    Pressure = Pressure.FromPascals(REF.p());
-                else
-                    Pressure = Pressure.Zero;
-
-                if (HasValue(REF.smass()))
-                    Entropy = Entropy.FromJoulesPerKelvin(REF.smass());
-                else
-                    Entropy = Entropy.Zero;
-
-                if (HasValue(REF.Q()))
-                    Quality = REF.Q();
-                else
-                    Quality = -1;
-
-                if (HasValue(REF.rhomass()))
-                    Density = Density.FromKilogramsPerCubicMeter(REF.rhomass());
-                else
-                    Density = Density.Zero;
-
-                if (HasValue(REF.rhomass()))
-                    Cp = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cpmass());
-                else
-                    Cp = SpecificEntropy.Zero;
-
-                if (HasValue(REF.cvmass()))
-                    Cv = SpecificEntropy.FromJoulesPerKilogramKelvin(REF.cvmass());
-                else
-                    Cp = SpecificEntropy.Zero;
-
-                if (HasValue(REF.cvmass()))
-                    DynamicViscosity = DynamicViscosity.FromPascalSeconds(REF.viscosity());
-                else
-                    DynamicViscosity = DynamicViscosity.Zero;
-
-                if (HasValue(REF.Prandtl()))
-                    Prandtl = REF.Prandtl();
-                else
-                    Prandtl = 0;
-
-                if (HasValue(REF.surface_tension()))
-                    SurfaceTension = ForcePerLength.FromNewtonsPerMeter(REF.surface_tension());
-                else
-                    SurfaceTension = ForcePerLength.Zero;
-
-                if (HasValue(REF.umass()))
-                    InternalEnergy = SpecificEnergy.FromJoulesPerKilogram(REF.umass());
-                else
-                    InternalEnergy = SpecificEnergy.Zero;
-
-
-                if (HasValue(REF.conductivity()))
-                    Conductivity = ThermalConductivity.FromWattsPerMeterKelvin(REF.conductivity());
-                else
-                    Conductivity = ThermalConductivity.Zero;
-
-
-
-
-                if (Media.BackendType == "HEOS")
-                {
-                    //Mixed fluids does not have these properties 
-
-
-
-
-
-                    if (HasValue(REF.speed_sound()))
-                        SoundSpeed = Speed.FromMetersPerSecond(REF.speed_sound());
-                    else
-                        SoundSpeed = Speed.Zero;
-
-
-                    if (HasValue(REF.molar_mass()))
-                        MolarMass = MolarMass.FromKilogramsPerMole(REF.molar_mass());
-                    else
-                        MolarMass = MolarMass.Zero;
-
-                    if (HasValue(REF.compressibility_factor()))
-                        Compressibility = REF.compressibility_factor();
-                    else
-                        Compressibility = 0;
-
-
-                }
+                //Mixed fluids does not have these properties 
+                SoundSpeed = REF.speed_sound();
+                MolarMass = REF.molar_mass();
+                Compressibility = REF.compressibility_factor();
             }
 
-
-
-
-
-            
-
-
-            
-
+            Enthalpy = REF.hmass();
+            Temperature = REF.T();
+            Pressure = REF.p();
+            Entropy = REF.smass();
+            Quality = REF.Q();
+            Density = REF.rhomass();
+            Cp = REF.cpmass();
+            Cv = REF.cvmass();
+            DynamicViscosity = REF.viscosity();
+            Prandtl = REF.Prandtl();
+            SurfaceTension = REF.surface_tension();
+            InternalEnergy = REF.umass();
+            Conductivity = REF.conductivity();            
 
             FailState = false;
-
             SetDefalutDisplayUnits();
-
         }
 
         /// <summary>
@@ -1331,7 +937,6 @@ namespace SharpFluids
             //Copying Refrigerant type
             CopyType(other);
 
-
             this.Enthalpy = other.Enthalpy;
             this.MassFlow = other.MassFlow;
             this.Mass = other.Mass;
@@ -1349,13 +954,9 @@ namespace SharpFluids
             this.SoundSpeed = other.SoundSpeed;
             this.SurfaceTension = other.SurfaceTension;
             this.FailState = other.FailState;
-
             this.MolarMass = other.MolarMass;
             this.Compressibility = other.Compressibility;
             this.InternalEnergy = other.InternalEnergy;
-
-
-
         }
 
         /// <summary>
@@ -1397,11 +998,9 @@ namespace SharpFluids
             if (this.Enthalpy == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.Entropy == Entropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
             {
                 this.Copy(other);
-
             }
             else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
-
                 //Do nothing
             }
             else
@@ -1426,7 +1025,7 @@ namespace SharpFluids
 
                 this.MassFlow = other.MassFlow + this.MassFlow;
 
-                this.CheckForNaN();
+                //this.CheckForNaN();
 
             }
 
@@ -1441,7 +1040,6 @@ namespace SharpFluids
         /// <param name="other"><see cref="Fluid"/> to be copied from</param> 
         public bool MassBalance(Fluid other)
         {
-
             //TODO Split this up in MassFlow and Mass
 
             MassFlow tolerence = MassFlow.FromKilogramsPerSecond(0.00001);
@@ -1465,11 +1063,8 @@ namespace SharpFluids
         {
             if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
             {
-                Debug.Print(REF.name());
                 REF = AbstractState.factory("HEOS", RefType);
                 UpdateFluidConstants();
-
-                Debug.Print(REF.name());
             }
         }
 
@@ -1492,19 +1087,7 @@ namespace SharpFluids
                     Media = new MediaType();            
             
                 Media.Copy(Type);
-
-                if (Environment.Is64BitProcess)
-                {
-                    //Console.WriteLine("64");
-                    REF64 = AbstractState64.factory(Media.BackendType, Media.InternalName);
-                }
-                else
-                {
-                    //Console.WriteLine("32");
-                    REF = AbstractState.factory(Media.BackendType, Media.InternalName);
-                }
-
-              
+                REF = AbstractState.factory(Media.BackendType, Media.InternalName);
                 UpdateFluidConstants();
             }
 
@@ -1516,30 +1099,16 @@ namespace SharpFluids
         /// </summary>
         public void SetFraction(double fraction)
         {
-
             CheckFractionLimits(fraction);
-
 
             if (Media.Mix == MixType.Mass)
             {
-
                 REF.set_mass_fractions(new DoubleVector(new double[] { fraction }));
-
-
-
-
-
             }
             else if (Media.Mix == MixType.Vol)
             {
-
-
                 REF.set_volu_fractions(new DoubleVector(new double[] { fraction }));
-
-
             }
-
-
         }
 
         /// <summary>
@@ -1547,15 +1116,12 @@ namespace SharpFluids
         /// </summary>
         public static MediaType FluidListToMediaType(FluidList Type)
         {
-
             //This Converts FluidList object to MediaType object
 
             var type = Type.GetType();
             var memInfo = type.GetMember(Type.ToString());
             var attributes = memInfo[0].GetCustomAttributes(typeof(MediaType), false);
             return (attributes.Length > 0) ? (MediaType)attributes[0] : null;
-
-
         }
 
 
@@ -1569,48 +1135,40 @@ namespace SharpFluids
             //TODO If mass is selected!
             //Finding the new H
 
-            if (MassFlow != MassFlow.Zero)
+            if (MassFlow == MassFlow.Zero)
             {
-                try
+                return;
+            }
+
+            try
+            {
+                SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
+
+                if (powerToBeAdded > Power.Zero)
                 {
-                    SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
+                    UpdatePT(Pressure, LimitTemperatureMax);
 
-                    if (powerToBeAdded > Power.Zero)
-                    {
-
-                        UpdatePT(Pressure, LimitTemperatureMax);
-
-                        if (Enthalpy > local)
-                        {
-                            UpdatePH(Pressure, local);
-                        }
-
-                    }
-                    else
-                    {
-                        UpdatePT(Pressure, LimitTemperatureMin);
-
-
-                        if (Enthalpy < local)
-                        {
-                            UpdatePH(Pressure, local);
-                        }
-
-
-
-                    }
-                    
-                    
-
+                    if (Enthalpy > local)                    
+                        UpdatePH(Pressure, local);                   
                 }
-                catch (Exception e)
+                else
                 {
+                    UpdatePT(Pressure, LimitTemperatureMin);
 
-                    FailState = true;
-                    Debug.Print("CoolProp: Warning in AddPower" + e);
+                    if (Enthalpy < local)                    
+                        UpdatePH(Pressure, local);
+
                 }
 
             }
+            catch (Exception e)
+            {
+
+                FailState = true;
+                Debug.Print("CoolProp: Warning in AddPower" + e);
+            }
+
+
         }
 
         /// <summary>
@@ -1633,119 +1191,64 @@ namespace SharpFluids
         protected void CheckFractionLimits(double fraction)
         {
 
-
             if (Media.BackendType == "INCOMP")
             {
-
                 double min = 0;
                 double max = 0;
 
-                if (Environment.Is64BitProcess)
-                {
-                    min = REF64.keyed_output(parameters.ifraction_min);
-                    max = REF64.keyed_output(parameters.ifraction_max);
-                }
-                else
-                {
-                    min = REF.keyed_output(parameters.ifraction_min);
-                    max = REF.keyed_output(parameters.ifraction_max);
-                }
+                min = REF.keyed_output(parameters.ifraction_min);
+                max = REF.keyed_output(parameters.ifraction_max);
 
-
-                
 
                 if (fraction < min)
-                {
                     throw new System.ArgumentException("Selected fraction is below the limit");
-                }
                 else if (fraction > max)
-                {
                     throw new System.ArgumentException("Selected fraction is above the limit");
-                }
-
             }
 
         }
         
 
-        public void CheckForNaN()
-        {
+       // public void CheckForNaN()
+        //{
 
-            //TODO I think this just be done in the UpdateValues!
+            //This is right now used by AddPower! or is it?!
 
-            //Temperature 
-            if (Double.IsNaN(Temperature.Value))
-            {
-                Temperature = Temperature.Zero;
-            }
+            //if (Double.IsNaN(Temperature.Value))            
+            //    Temperature = Temperature.Zero;          
 
+            //if (Double.IsNaN(Pressure.Value))            
+            //    Pressure = Pressure.Zero;
 
-            //Pressure 
-            if (Double.IsNaN(Pressure.Value))
-            {
-                Pressure = Pressure.Zero;
+            //if (Double.IsNaN(MassFlow.Value))            
+            //    MassFlow = MassFlow.Zero;
 
-            }
+            //if (Double.IsNaN(Enthalpy.Value))            
+            //    Enthalpy = SpecificEnergy.Zero;
+            
+            //if (Double.IsNaN(Entropy.Value))            
+            //    Entropy = Entropy.Zero;
+            
+            //if (Double.IsNaN(Quality))            
+            //    Quality = 1;
 
+            //if (Double.IsNaN(Density.Value))            
+            //    Density = Density.Zero;
+           
+            //if (Double.IsNaN(Cp.Value))            
+            //    Cp = SpecificEntropy.Zero;
 
-            //Massflow 
-            if (Double.IsNaN(MassFlow.Value))
-            {
-                MassFlow = MassFlow.Zero;
-
-            }
-
-            //Entalphy 
-            if (Double.IsNaN(Enthalpy.Value))
-            {
-                Enthalpy = SpecificEnergy.Zero;
-            }
-
-            //Entropy 
-            if (Double.IsNaN(Entropy.Value))
-            {
-                Entropy = Entropy.Zero;
-            }
-
-            //X
-            if (Double.IsNaN(Quality))
-            {
-                Quality = 1;
-
-            }
-
-            //Density
-            if (Double.IsNaN(Density.Value))
-            {
-                Density = Density.Zero;
-            }
+       // }
 
 
-            //Cp 
-            if (Double.IsNaN(Cp.Value))
-            {
-                Cp = SpecificEntropy.Zero;
 
-            }
-
-
-        }
         private void CheckBeforeUpdate()
         {
+            if (REF is null)            
+                SetNewMedia(Media);          
 
-            if (REF is null)
-            {
-                SetNewMedia(Media);
-            }
-
-
-            if (Media is null)
-            {
-                throw new System.InvalidOperationException("No Media is selected - Cant do an update on nothing!");
-            }
-
-
-
+            if (Media is null)            
+                throw new System.InvalidOperationException("No Media is selected - Cant do an update on nothing!");          
         }
 
 
@@ -1826,37 +1329,27 @@ namespace SharpFluids
 
 
             MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow);
-            if (MassFlowDiss < MassFlow.Zero)
-            {
-                MassFlowDiss *= -1;
-            }
-
+            if (MassFlowDiss < MassFlow.Zero)            
+                MassFlowDiss *= -1;          
 
             SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy);
-            if (HDiss < SpecificEnergy.Zero)
-            {
+            if (HDiss < SpecificEnergy.Zero)            
                 HDiss *= -1;
-            }
+            
 
             Pressure PDiss = (other1.Pressure - other2.Pressure);
-            if (PDiss < Pressure.Zero)
-            {
+            if (PDiss < Pressure.Zero)            
                 PDiss *= -1;
-            }
+            
 
             TemperatureDelta TDiss = (other1.Temperature - other2.Temperature);
-            if (TDiss < TemperatureDelta.Zero)
-            {
+            if (TDiss < TemperatureDelta.Zero)            
                 TDiss *= -1;
-            }
-
-
-
+            
 
             return (MassFlowDiss <= MassFlowTolerance) && (HDiss <= HTolerance) && (PDiss <= PTolerance) && (TDiss <= TTolerance);
-
-
         }
+
         public static bool operator !=(Fluid Input1, Fluid Input2)
         {
 
@@ -1877,36 +1370,14 @@ namespace SharpFluids
         {
             return base.GetHashCode();
         }
-        public string GetREFType()
-        {
-
-            if (Environment.Is64BitProcess)
-            {
-                return REF64.name();
-            }
-            else
-            {
-                return REF.name();
-            }
-
-
-            
-        }
         public void Dispose()
         {
 
-            if (Environment.Is64BitProcess)
-            {
-                REF64.Dispose();
-                REF64 = null;
-                this.Dispose();
-            }
-            else
-            {
+            
                 REF.Dispose();
                 REF = null;
                 this.Dispose();
-            }
+            
 
 
             
@@ -1946,10 +1417,10 @@ namespace SharpFluids
 
         //Other privates function
 
-        public bool HasValue(double value)
-        {
-            return !Double.IsNaN(value) && !Double.IsInfinity(value);
-        }
+        //public bool HasValue(double value)
+        //{
+        //    return !Double.IsNaN(value) && !Double.IsInfinity(value);
+        //}
     }
 
 }
