@@ -871,31 +871,39 @@ namespace SharpFluids
         /// </summary>   
         protected virtual void UpdateValues()
         {
-
-            if (Media.BackendType == "HEOS")
+            try
             {
-                //Mixed fluids does not have these properties 
-                SoundSpeed = REF.speed_sound();
-                MolarMass = REF.molar_mass();
-                Compressibility = REF.compressibility_factor();
+                if (Media.BackendType == "HEOS")
+                {
+                    //Mixed fluids does not have these properties 
+                    SoundSpeed = REF.speed_sound();
+                    MolarMass = REF.molar_mass();
+                    Compressibility = REF.compressibility_factor();
+                }
+
+                Enthalpy = REF.hmass();
+                Temperature = REF.T();
+                Pressure = REF.p();
+                Entropy = REF.smass();
+                Quality = REF.Q();
+                Density = REF.rhomass();
+                Cp = REF.cpmass();
+                Cv = REF.cvmass();
+                DynamicViscosity = REF.viscosity();
+                Prandtl = REF.Prandtl();
+                SurfaceTension = REF.surface_tension();
+                InternalEnergy = REF.umass();
+                Conductivity = REF.conductivity();
+
+                FailState = false;
+                SetDefalutDisplayUnits();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("UpdateValues", ex);
             }
 
-            Enthalpy = REF.hmass();
-            Temperature = REF.T();
-            Pressure = REF.p();
-            Entropy = REF.smass();
-            Quality = REF.Q();
-            Density = REF.rhomass();
-            Cp = REF.cpmass();
-            Cv = REF.cvmass();
-            DynamicViscosity = REF.viscosity();
-            Prandtl = REF.Prandtl();
-            SurfaceTension = REF.surface_tension();
-            InternalEnergy = REF.umass();
-            Conductivity = REF.conductivity();            
-
-            FailState = false;
-            SetDefalutDisplayUnits();
+           
         }
 
         /// <summary>
