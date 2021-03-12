@@ -27,6 +27,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Co2.FailState);
             Assert.AreEqual(0.016083133611710109, Co2.Conductivity.WattsPerMeterKelvin, 0.0001);
             Assert.AreEqual(1456.9187615135381, Co2.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(800.30959584601669, Co2.Cv.JoulesPerKilogramKelvin, 0.0001);
@@ -75,6 +76,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Co2.FailState);
             Assert.AreEqual(0.11302927178715505, Co2.Conductivity.WattsPerMeterKelvin, 0.0001);
             Assert.AreEqual(2417.260925841651, Co2.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(935.30983351562668, Co2.Cv.JoulesPerKilogramKelvin, 0.0001);
@@ -121,6 +123,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Co2.FailState);
             Assert.AreEqual(0.023128791374493297, Co2.Conductivity.WattsPerMeterKelvin, 0.0001);
             Assert.AreEqual(1469.6947917707614, Co2.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(807.62943446640077, Co2.Cv.JoulesPerKilogramKelvin, 0.0001);
@@ -166,6 +169,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Co2.FailState);
             Assert.AreEqual(5.1796434344772573, Co2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(8000, Co2.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(73.773, Co2.CriticalPressure.Bars, 0.0001);
@@ -214,6 +218,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Co2.FailState);
             Assert.AreEqual(5.1796434344772573, Co2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(8000, Co2.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(73.773, Co2.CriticalPressure.Bars, 0.0001);
@@ -261,6 +266,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Co2.FailState);
             Assert.AreEqual(5.1796434344772573, Co2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(8000, Co2.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(73.773, Co2.CriticalPressure.Bars, 0.0001);

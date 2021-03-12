@@ -494,7 +494,7 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
-            if (density <= Density.Zero || Pressure <= Pressure.Zero)
+            if (density <= Density.Zero || pressure <= Pressure.Zero)
             {
                 FailState = true;
                 return;

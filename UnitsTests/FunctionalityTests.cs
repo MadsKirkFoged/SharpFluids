@@ -35,6 +35,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -65,6 +66,7 @@ namespace UnitsTests
             Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
 
             //Assert JSON
+            Assert.IsFalse(R717JSON.FailState);
             Assert.AreEqual(R717JSON.LimitPressureMin.Bars, R717.LimitPressureMin.Bars);
             Assert.AreEqual(R717JSON.LimitPressureMax.Bars, R717.LimitPressureMax.Bars);
             Assert.AreEqual(R717JSON.CriticalPressure.Bars, R717.CriticalPressure.Bars);
@@ -154,6 +156,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -184,6 +187,7 @@ namespace UnitsTests
             Assert.AreEqual(0.13015557603938352, R717.VolumeFlow.CubicMetersPerSecond, 0.0001);
 
             //Assert JSON
+            Assert.IsFalse(R717JSON.FailState);
             Assert.AreEqual(R717JSON.LimitPressureMin.Bars, R717.LimitPressureMin.Bars);
             Assert.AreEqual(R717JSON.LimitPressureMax.Bars, R717.LimitPressureMax.Bars);
             Assert.AreEqual(R717JSON.CriticalPressure.Bars, R717.CriticalPressure.Bars);
@@ -295,10 +299,11 @@ namespace UnitsTests
             //Start new fluid and load as json
             Fluid R717JSON = new Fluid();
             R717JSON.Copy(R717);
-            
+
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -326,6 +331,7 @@ namespace UnitsTests
             Assert.AreEqual(978567.39952867059, R717.InternalEnergy.JoulesPerKilogram, 0.0001);
 
             //Assert JSON
+            Assert.IsFalse(R717JSON.FailState);
             Assert.AreEqual(R717JSON.LimitPressureMin.Bars, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(R717JSON.LimitPressureMax.Bars, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(R717JSON.CriticalPressure.Bars, R717.CriticalPressure.Bars, 0.0001);
@@ -361,8 +367,9 @@ namespace UnitsTests
             Fluid R717 = new Fluid(FluidList.Ammonia);
 
 
-            
+
             //Assert
+            Assert.IsTrue(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -409,6 +416,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsTrue(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -456,6 +464,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, CO2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, CO2.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, CO2.CriticalPressure.Bars, 0.0001);
@@ -502,6 +511,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, CO2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, CO2.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, CO2.CriticalPressure.Bars, 0.0001);
@@ -568,6 +578,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Input1.FailState);
             Assert.AreEqual(0.060912231081315084, Input1.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, Input1.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, Input1.CriticalPressure.Bars, 0.0001);
@@ -598,6 +609,7 @@ namespace UnitsTests
             Assert.AreEqual(0.22126447926695195, Input1.VolumeFlow.CubicMetersPerSecond, 0.0001);
 
             //Assert
+            Assert.IsFalse(Input2.FailState);
             Assert.AreEqual(0.060912231081315084, Input2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, Input2.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, Input2.CriticalPressure.Bars, 0.0001);
@@ -659,6 +671,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Mixer.FailState);
             Assert.AreEqual(0.060912231081315084, Mixer.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, Mixer.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, Mixer.CriticalPressure.Bars, 0.0001);
@@ -741,6 +754,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -786,6 +800,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -832,6 +847,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);
@@ -880,6 +896,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.33, R717.CriticalPressure.Bars, 0.0001);

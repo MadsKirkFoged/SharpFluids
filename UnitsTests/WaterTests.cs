@@ -25,6 +25,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Water.FailState);
             Assert.AreEqual(0.028215527552977144, Water.Conductivity.WattsPerMeterKelvin, 0.0001);
             Assert.AreEqual(2263.0469328306258, Water.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(1671.0843504212746, Water.Cv.JoulesPerKilogramKelvin, 0.0001);
@@ -67,6 +68,7 @@ namespace UnitsTests
 
 
             //Assert
+            Assert.IsFalse(Water.FailState);
             Assert.AreEqual(0.03752160884674547, Water.Conductivity.WattsPerMeterKelvin, 0.0001);
             Assert.AreEqual(2034.1444264493639, Water.Cp.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(1539.4771263572343, Water.Cv.JoulesPerKilogramKelvin, 0.0001);
