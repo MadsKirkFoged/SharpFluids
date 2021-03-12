@@ -93,6 +93,44 @@ namespace UnitsTests
 
         }
 
+        [TestMethod]
+        public void UpdatePTFailedTestIceWater()
+        {
 
+            //It cant do lookups on Ice
+
+            //Arrange
+            Fluid Water = new Fluid(FluidList.Water);
+            Pressure setPressure = Pressure.FromBars(3);
+            Temperature setTemperature = Temperature.FromDegreesCelsius(-5);
+
+
+
+            //Act
+            Water.UpdatePT(setPressure, setTemperature);
+
+
+
+            //Assert
+            Assert.IsTrue(Water.FailState);
+
+            Assert.AreEqual(0, Water.Conductivity.WattsPerMeterKelvin);
+            Assert.AreEqual(0, Water.Cp.JoulesPerKilogramKelvin);
+            Assert.AreEqual(0, Water.Cv.JoulesPerKilogramKelvin);
+            Assert.AreEqual(0, Water.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(0, Water.Prandtl);
+            Assert.AreEqual(0, Water.Pressure.Bars);
+            Assert.AreEqual(0, Water.Density.KilogramsPerCubicMeter);
+            Assert.AreEqual(0, Water.Entropy.KilocaloriesPerKelvin);
+            Assert.AreEqual(0, Water.SurfaceTension.NewtonsPerMeter);
+            Assert.AreEqual(0, Water.Temperature.Kelvins);
+            Assert.AreEqual(0, Water.Tsat.Kelvins);
+            Assert.AreEqual(0, Water.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(0, Water.Quality);
+            Assert.AreEqual(0, Water.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(0, Water.MolarMass.GramsPerMole);
+            Assert.AreEqual(0, Water.Compressibility);
+            Assert.AreEqual(0, Water.InternalEnergy.JoulesPerKilogram);
+        }
     }
 }

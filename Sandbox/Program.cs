@@ -25,8 +25,7 @@ namespace Sandbox
                 Fluid test = new Fluid(FluidList.Water);
 
 
-                test = new Fluid(FluidList.nPropane);
-                test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(50));
+               test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(-0.5));
 
 
 
