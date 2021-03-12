@@ -1151,12 +1151,13 @@ namespace SharpFluids
             {
                 SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
 
-                if (powerToBeAdded > Power.Zero)
+                //if (powerToBeAdded > Power.Zero)
+                if (local > Enthalpy)
                 {
                     UpdatePT(Pressure, LimitTemperatureMax);
 
-                    if (Enthalpy > local)                    
-                        UpdatePH(Pressure, local);                   
+                    if (Enthalpy > local)
+                        UpdatePH(Pressure, local);
                 }
                 else
                 {

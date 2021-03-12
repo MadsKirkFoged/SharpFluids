@@ -25,7 +25,11 @@ namespace Sandbox
                 Fluid test = new Fluid(FluidList.Water);
 
 
-               test.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(-0.5));
+               test.UpdatePH(Pressure.FromBars(2), SpecificEnergy.FromJoulesPerKilogram(84100.155925708823));
+
+            test.MassFlow = MassFlow.FromKilogramsPerSecond(-0.0054);
+            test.AddPower(Power.FromWatts(-86982.42));
+
 
 
 
