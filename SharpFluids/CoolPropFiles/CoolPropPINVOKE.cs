@@ -28,7 +28,25 @@ class CoolPropPINVOKE
         static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
 
 
+        [DllImport("CoolProp", EntryPoint = "SWIGRegisterExceptionCallbacks_CoolProp")]
+        public static extern void SWIGRegisterExceptionCallbacks_CoolProp(
+                                ExceptionDelegate applicationDelegate,
+                                ExceptionDelegate arithmeticDelegate,
+                                ExceptionDelegate divideByZeroDelegate,
+                                ExceptionDelegate indexOutOfRangeDelegate,
+                                ExceptionDelegate invalidCastDelegate,
+                                ExceptionDelegate invalidOperationDelegate,
+                                ExceptionDelegate ioDelegate,
+                                ExceptionDelegate nullReferenceDelegate,
+                                ExceptionDelegate outOfMemoryDelegate,
+                                ExceptionDelegate overflowDelegate,
+                                ExceptionDelegate systemExceptionDelegate);
 
+        [DllImport("CoolProp", EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_CoolProp")]
+        public static extern void SWIGRegisterExceptionCallbacksArgument_CoolProp(
+                            ExceptionArgumentDelegate argumentDelegate,
+                            ExceptionArgumentDelegate argumentNullDelegate,
+                            ExceptionArgumentDelegate argumentOutOfRangeDelegate);
 
         static void SetPendingApplicationException(string message)
         {
@@ -91,6 +109,28 @@ class CoolPropPINVOKE
             if (e != null) message = message + " Inner Exception: " + e.Message;
             SWIGPendingException.Set(new ArgumentOutOfRangeException(paramName, message));
         }
+
+        static SWIGExceptionHelper()
+        {
+            SWIGRegisterExceptionCallbacks_CoolProp(
+                                      applicationDelegate,
+                                      arithmeticDelegate,
+                                      divideByZeroDelegate,
+                                      indexOutOfRangeDelegate,
+                                      invalidCastDelegate,
+                                      invalidOperationDelegate,
+                                      ioDelegate,
+                                      nullReferenceDelegate,
+                                      outOfMemoryDelegate,
+                                      overflowDelegate,
+                                      systemDelegate);
+
+            SWIGRegisterExceptionCallbacksArgument_CoolProp(
+                                      argumentDelegate,
+                                      argumentNullDelegate,
+                                      argumentOutOfRangeDelegate);
+        }
+
 
 
     }
