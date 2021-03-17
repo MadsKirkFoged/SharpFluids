@@ -22,10 +22,10 @@ namespace Sandbox
 
 
 
-                Fluid test = new Fluid(FluidList.Water);
+                Fluid test = new Fluid(FluidList.Ammonia);
 
 
-               test.UpdatePH(Pressure.FromBars(2), SpecificEnergy.FromJoulesPerKilogram(84100.155925708823));
+               test.UpdatePH(Pressure.FromBars(0.0001), SpecificEnergy.FromKilojoulesPerKilogram(28.05));
 
             test.MassFlow = MassFlow.FromKilogramsPerSecond(-0.0054);
             test.AddPower(Power.FromWatts(-86982.42));

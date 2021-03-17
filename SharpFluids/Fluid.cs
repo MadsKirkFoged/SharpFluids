@@ -527,7 +527,7 @@ namespace SharpFluids
         public void UpdateDT(Density density, Temperature temperature)
         {
             CheckBeforeUpdate();
-            if (density <= Density.Zero || temperature <= Temperature.Zero)
+            if (density <= Density.Zero || temperature < LimitTemperatureMin)
             {
                 FailState = true;
                 return;
@@ -675,7 +675,7 @@ namespace SharpFluids
         public void UpdatePS(Pressure pressure, Entropy entropy)
         {
             CheckBeforeUpdate();
-            if (pressure <= Pressure.Zero)
+            if (pressure < LimitPressureMin)
             {
                 FailState = true;
                 return;
@@ -706,7 +706,7 @@ namespace SharpFluids
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy)
         {
             CheckBeforeUpdate();
-            if (pressure <= Pressure.Zero || enthalpy <= SpecificEnergy.Zero)
+            if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)
             {
                 FailState = true;
                 return;
@@ -737,7 +737,7 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
-            if (pressure <= Pressure.Zero || quality < 0)
+            if (pressure < LimitPressureMin || quality < 0)
             {
                 FailState = true;
                 return;
