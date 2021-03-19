@@ -1139,11 +1139,26 @@ namespace SharpFluids
         /// </summary> 
         public void SetNewType(string RefType)
         {
-            if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
+
+            if (RefType.ToLower() == REF?.name().ToLower())
             {
+                Log?.LogWarning("SharpFluid -> SetNewType -> The two fluids is already the same");
+                return;
+            }
+
+            if (RefType == "")
+            {
+                Log?.LogWarning("SharpFluid -> SetNewType -> You are trying to set a new fluid to nothing!");
+                return;
+            }
+
+
+
+            //if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
+            
                 REF = AbstractState.factory("HEOS", RefType);
                 UpdateFluidConstants();
-            }
+
         }
 
         /// <summary>
@@ -1159,15 +1174,21 @@ namespace SharpFluids
         /// </summary> 
         public void SetNewMedia(MediaType Type)
         {
-            if (!(Type is null))
+
+            if (Type is null)
             {
-                if (Media is null)            
-                    Media = new MediaType();            
+                Log?.LogWarning("SharpFluid -> SetNewMedia ->Selected MediaType is null!");
+                return;
+            }
+
+            if (Media is null)
+                Media = new MediaType();
+      
             
                 Media.Copy(Type);
                 REF = AbstractState.factory(Media.BackendType, Media.InternalName);
                 UpdateFluidConstants();
-            }
+            
 
         }
 
@@ -1244,7 +1265,7 @@ namespace SharpFluids
             {
 
                 FailState = true;
-                Debug.Print("CoolProp: Warning in AddPower" + e);
+                Log?.LogError("SharpFluid -> AddPower -> {e}", e);
             }
 
 
