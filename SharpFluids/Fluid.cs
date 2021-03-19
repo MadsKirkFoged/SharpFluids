@@ -4,7 +4,7 @@ using UnitsNet;
 using UnitsNet.Units;
 using UnitsNet.Serialization.JsonNet;
 using Newtonsoft.Json;
-//using JsonNet.ContractResolvers;
+using Microsoft.Extensions.Logging;
 
 namespace SharpFluids
 {
@@ -26,6 +26,10 @@ namespace SharpFluids
 
     public class Fluid
     {
+
+
+        [JsonIgnore]
+        public ILogger Log { get; set; }
 
         [JsonProperty]
         [JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -187,6 +191,7 @@ namespace SharpFluids
                 }
                 else
                 {
+                    Log?.LogError("SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
                     throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                 }
 
@@ -214,6 +219,7 @@ namespace SharpFluids
                 }
                 else
                 {
+                    Log?.LogError("SharpFluid -> Mass -> You can either set a fluids massflow or mass - not both!");
                     throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                 }
 
@@ -248,6 +254,7 @@ namespace SharpFluids
                         }
                         else
                         {
+                            Log?.LogError("SharpFluid -> Tsat -> REF is null");
                             return Temperature;
                         }
 
@@ -256,8 +263,9 @@ namespace SharpFluids
 
 
                     }
-                    catch (Exception)
+                    catch (Exception e )
                     {
+                        Log?.LogError("SharpFluid -> Tsat -> Failed {e}", e);
                         return Temperature;
                     }
                 }
