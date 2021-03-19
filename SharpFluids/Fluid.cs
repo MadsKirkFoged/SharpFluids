@@ -899,26 +899,35 @@ namespace SharpFluids
         {
             FailState = true;
 
-            //Setting the constant values up
-            LimitTemperatureMax = REF.Tmax();
-            LimitTemperatureMin = REF.Tmin();
-
-
-            if (REF.backend_name() == "HelmholtzEOSBackend")
+            try
             {
-                CriticalTemperature = REF.T_critical();
-                CriticalPressure = REF.p_critical();
-                LimitPressureMin = REF.p_triple();
-                LimitPressureMax = REF.pmax();
+                //Setting the constant values up
+                LimitTemperatureMax = REF.Tmax();
+                LimitTemperatureMin = REF.Tmin();
 
-                //Finding H_crit
-                REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
-                CriticalEnthalpy = REF.hmass();
+
+                if (REF.backend_name() == "HelmholtzEOSBackend")
+                {
+                    CriticalTemperature = REF.T_critical();
+                    CriticalPressure = REF.p_critical();
+                    LimitPressureMin = REF.p_triple();
+                    LimitPressureMax = REF.pmax();
+
+                    //Finding H_crit
+                    REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                    CriticalEnthalpy = REF.hmass();
+                }
+
+                SetDefalutDisplayUnits();
+            }
+            catch (Exception e)
+            {
+
+                Log?.LogError("SharpFluid -> UpdateFluidConstants -> {e}", e);
             }
 
-            SetDefalutDisplayUnits();
+            
 
-            //Setting Max/min Mass- or volfraction
 
         }
 
@@ -954,9 +963,10 @@ namespace SharpFluids
                 FailState = false;
                 SetDefalutDisplayUnits();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw new Exception("UpdateValues", ex);
+                Log?.LogError("SharpFluid -> UpdateValues -> {e}", e);
+                throw new Exception("UpdateValues", e);
             }
 
            
@@ -1042,6 +1052,10 @@ namespace SharpFluids
 
                 }
             }
+            else
+            {
+                Log?.LogError("SharpFluid -> CopyType -> 'other.Media is null'");
+            }
         }
 
         /// <summary>
@@ -1065,6 +1079,7 @@ namespace SharpFluids
             else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
                 //Do nothing
+                Log?.LogWarning("SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!", other.Enthalpy, other.Pressure, other.Entropy, other.Temperature, other.MassFlow);
             }
             else
             {
