@@ -271,20 +271,12 @@ namespace SharpFluids
                 }
                 else if (Pressure > CriticalPressure)
                 {
-                    try
-                    {
-                        //REF.update(input_pairs.HmassP_INPUTS, CriticalEnthalpy.JoulesPerKilogram, Pressure.Pascals);
-                        return CriticalTemperature;
-
-                    }
-                    catch (Exception)
-                    {
-
-                        return Temperature;
-                    }
+                    Log?.LogWarning("SharpFluid -> Tsat -> Pressure ({Pressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!", Pressure, CriticalPressure);
+                    return CriticalTemperature;
                 }
                 else
                 {
+                    Log?.LogError("SharpFluid -> Tsat -> Something unexpected went wrong!");
                     return Temperature;
                 }
 
@@ -308,10 +300,15 @@ namespace SharpFluids
             get
             {
                 //Calculate the volume
-                if (Density != Density.Zero)                
-                    return Mass / Density;                
-                else               
+                if (Density != Density.Zero)
+                {
+                    return Mass / Density;              
+                }
+                else
+                {
+                    Log?.LogError("SharpFluid -> Volume -> Density is zero so we cant return you the Volume!");
                     return Volume.Zero;
+                }
                 
             }
         }
@@ -327,10 +324,15 @@ namespace SharpFluids
             get
             {
                 //Calculate the volumeflow
-                if (Density != Density.Zero)                
-                    return MassFlow / Density;                
-                else                
+                if (Density != Density.Zero)
+                {
+                    return MassFlow / Density;               
+                }
+                else
+                {
+                    Log?.LogError("SharpFluid -> VolumeFlow -> Density is zero so we cant return you the VolumeFlow!");
                     return VolumeFlow.Zero;
+                }
                 
             }
         }
@@ -469,6 +471,7 @@ namespace SharpFluids
             if (density <= Density.Zero || entropy <= Entropy.Zero)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdateDS -> {density} cant be bolow {densityLimit} and {entropy} cant be below {entropyLimit}", density, Density.Zero, entropy, Entropy.Zero);
                 return;
             }
 
@@ -481,7 +484,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("CoolProp: Warning in UpdateDS" + e);
+                Log?.LogWarning("SharpFluid -> UpdateDS -> {e}", e);
             }
 
 
@@ -505,10 +508,14 @@ namespace SharpFluids
             if (density <= Density.Zero || pressure <= Pressure.Zero)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdateDP -> {density} cant be bolow {densityLimit} and {pressure} cant be below {entropyLimit}", density, Density.Zero, pressure, Pressure.Zero);
+
                 return;
             }
 
-
+            if (pressure > LimitPressureMax)            
+                Log?.LogWarning("SharpFluid -> UpdateDP -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased", pressure, LimitPressureMax);
+            
 
             try
             {
@@ -518,7 +525,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateDP" + e);
+                Log?.LogWarning("SharpFluid -> UpdateDP -> {e}", e);
             }
 
 
@@ -538,8 +545,12 @@ namespace SharpFluids
             if (density <= Density.Zero || temperature < LimitTemperatureMin)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdateDT -> {density} cant be bolow {densityLimit} and {temperature} cant be below {LimitTemperatureMin}", density, Density.Zero, temperature, LimitTemperatureMin);
                 return;
             }
+
+            if (temperature > LimitTemperatureMax)
+                Log?.LogWarning("SharpFluid -> UpdateDT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased", temperature, LimitTemperatureMax);
 
 
             try
@@ -550,7 +561,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateDT" + e);
+                Log?.LogWarning("SharpFluid -> UpdateDT -> {e}", e);
             }
 
 
@@ -572,6 +583,7 @@ namespace SharpFluids
             if (density <= Density.Zero)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdateDH -> {density} cant be bolow {densityLimit} and {enthalpy} cant be below (limit unknown)", density, Density.Zero, enthalpy);
                 return;
             }
 
@@ -584,7 +596,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateDH" + e);
+                Log?.LogWarning("SharpFluid -> UpdateDH -> {e}", e);
             }
 
         }
@@ -603,8 +615,17 @@ namespace SharpFluids
             if (pressure < LimitPressureMin || temperature < LimitTemperatureMin)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdatePT -> {pressure} cant be bolow {LimitPressureMin} and {temperature} cant be below {LimitTemperatureMin}", pressure, LimitPressureMin, temperature, LimitTemperatureMin);
                 return;
             }
+
+            if (temperature > LimitTemperatureMax)
+                Log?.LogWarning("SharpFluid -> UpdatePT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased", temperature, LimitTemperatureMax);
+
+            if (pressure > LimitPressureMax)
+                Log?.LogWarning("SharpFluid -> UpdatePT -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased", pressure, LimitPressureMax);
+
+
 
             try
             {
@@ -614,7 +635,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdatePT " + e);
+                Log?.LogWarning("SharpFluid -> UpdatePT -> {e}", e);
             }
         }
 
@@ -634,24 +655,34 @@ namespace SharpFluids
             if (temperature < LimitTemperatureMin)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdateXT -> {temperature} cant be below {LimitTemperatureMin}", temperature, LimitTemperatureMin);
                 return;
             }
 
 
+            if (temperature > LimitTemperatureMax)
+                Log?.LogWarning("SharpFluid -> UpdateXT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased", temperature, LimitTemperatureMax);
+
             try
             {
                 //If we are above transcritical we just return the Critical point 
-                if (temperature >= CriticalTemperature)                
+                if (temperature >= CriticalTemperature)
+                {
+                    Log?.LogWarning("SharpFluid -> UpdateXT -> {temperature} is above CriticalTemperature ({CriticalTemperature}) -> We will just return you the CriticalTemperature!", temperature, CriticalTemperature);
                     REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);                
-                else                
+
+                }
+                else
+                {
                     REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
+                }
                 
                 UpdateValues();
             }
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateXT" + e);
+                Log?.LogWarning("SharpFluid -> UpdateXT -> {e}", e);
             }
 
 
@@ -667,7 +698,7 @@ namespace SharpFluids
         {
             //Not yet supported by CoolProp!
             //throw new NotImplementedException("Not yet supported by CoolProp");
-
+            Log?.LogWarning("SharpFluid -> UpdateHT -> Not yet supported by CoolProp!");
             REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
         }
 
@@ -686,8 +717,12 @@ namespace SharpFluids
             if (pressure < LimitPressureMin)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdatePS -> {pressure} cant be bolow {LimitPressureMin} and {entropy} cant be below (limit unknown)", pressure, LimitPressureMin, entropy);
                 return;
             }
+
+            if (pressure > LimitPressureMax)
+                Log?.LogWarning("SharpFluid -> UpdatePS -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased", pressure, LimitPressureMax);
 
             try
             {
@@ -697,7 +732,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdatePS" + e);
+                Log?.LogWarning("SharpFluid -> UpdatePS -> {e}", e);
             }
 
 
@@ -717,8 +752,12 @@ namespace SharpFluids
             if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdatePH -> {pressure} cant be bolow {LimitPressureMin} and {enthalpy} cant be below {enthalpyLimit}", pressure, LimitPressureMin, enthalpy, SpecificEnergy.Zero);
                 return;
             }
+
+            if (pressure > LimitPressureMax)
+                Log?.LogWarning("SharpFluid -> UpdatePH -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased", pressure, LimitPressureMax);
 
 
             try
@@ -729,7 +768,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdatePH" + e);
+                Log?.LogWarning("SharpFluid -> UpdatePH -> {e}", e);
             }
         }
 
@@ -748,8 +787,12 @@ namespace SharpFluids
             if (pressure < LimitPressureMin || quality < 0)
             {
                 FailState = true;
+                Log?.LogWarning("SharpFluid -> UpdatePX -> {pressure} cant be bolow {LimitPressureMin}", pressure, LimitPressureMin);
                 return;
             }
+
+            if (pressure > LimitPressureMax)
+                Log?.LogWarning("SharpFluid -> UpdatePX -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased", pressure, LimitPressureMax);
 
             try
             {
@@ -757,6 +800,7 @@ namespace SharpFluids
                 {
                     UpdatePT(CriticalPressure, CriticalTemperature);
                     UpdatePH(pressure, Enthalpy);
+                    Log?.LogWarning("SharpFluid -> UpdatePX -> {pressure} is above CriticalPressure ({CriticalPressure}) -> We will just return you the Critical point!", pressure, CriticalPressure);
                 }
                 else
                 {
@@ -767,7 +811,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdatePX " + e);
+                Log?.LogWarning("SharpFluid -> UpdatePX -> {e}", e);
             }
         }
 
@@ -790,7 +834,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 FailState = true;
-                Debug.Print("Coolprop: Warning in UpdateHS " + e);
+                Log?.LogWarning("SharpFluid -> UpdateHS -> {e}", e);
             }
         }
 
@@ -802,12 +846,14 @@ namespace SharpFluids
 
             if (FromThisPressure < LimitPressureMin)
             {
+                Log?.LogWarning("SharpFluid -> GetSatTemperature -> {FromThisPressure} cant be bolow {LimitPressureMin}", FromThisPressure, LimitPressureMin);
                 return Temperature.Zero;
             }
 
 
             if (FromThisPressure > CriticalPressure)
             {
+                Log?.LogWarning("SharpFluid -> GetSatTemperature -> Pressure ({FromThisPressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!", FromThisPressure, CriticalPressure);
                 return CriticalTemperature;
             }
             else
@@ -826,12 +872,14 @@ namespace SharpFluids
 
             if (FromThisTemperature < LimitTemperatureMin)
             {
+                Log?.LogWarning("SharpFluid -> GetSatPressure -> {FromThisTemperature} cant be bolow {LimitTemperatureMin}", FromThisTemperature, LimitTemperatureMin);
                 return Pressure.Zero;
             }
 
 
             if (FromThisTemperature >= CriticalTemperature)
             {
+                Log?.LogWarning("SharpFluid -> GetSatPressure -> Temperature ({FromThisTemperature}) is above CriticalTemperature {CriticalTemperature}. CriticalTemperature is returned instead!", FromThisTemperature, CriticalTemperature);
                 return CriticalPressure;
             }
             else
