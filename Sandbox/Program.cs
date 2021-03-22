@@ -8,6 +8,7 @@ using UnitsNet.Units;
 using SharpFluids;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace Sandbox
 {
@@ -22,10 +23,24 @@ namespace Sandbox
 
 
 
-                Fluid test = new Fluid(FluidList.Water);
+            Fluid test = new Fluid(FluidList.Water);
 
 
-               test.UpdatePH(Pressure.FromBars(2), SpecificEnergy.FromKilojoulesPerKilogram(10740.5));
+            using (var loggerFactory = LoggerFactory.Create(builder =>
+            { builder.AddConsole(); }))
+
+            {
+                ILogger logger = loggerFactory.CreateLogger<Program>();
+                logger.LogInformation("Logging has stared");
+                test.Log = logger;
+
+            }
+
+            test.UpdatePT(Pressure.FromBars(-10), Temperature.FromDegreesCelsius(300));
+            test.UpdatePT(Pressure.FromBars(100000), Temperature.FromDegreesCelsius(300));
+            test.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(30000));
+
+            test.UpdatePH(Pressure.FromBars(2), SpecificEnergy.FromKilojoulesPerKilogram(10740.5));
 
             test.MassFlow = MassFlow.FromKilogramsPerSecond(-0.0054);
             test.AddPower(Power.FromWatts(-86982.42));

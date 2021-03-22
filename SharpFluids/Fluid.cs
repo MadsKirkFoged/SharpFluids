@@ -481,10 +481,16 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdateDS -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdateDS -> CoolProp could not return your request on {density} and {entropy} and returns the followering error: {e}", density, entropy, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdateDS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}", density, entropy, e);
+                throw;
             }
 
 
@@ -522,10 +528,16 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdateDP -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdateDP -> CoolProp could not return your request on {density} and {pressure} and returns the followering error: {e}", density, pressure, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdateDP -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}", density, pressure, e);
+                throw;
             }
 
 
@@ -558,10 +570,16 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdateDT -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdateDT -> CoolProp could not return your request on {density} and {temperature} and returns the followering error: {e}", density, temperature, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdateDT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}", density, temperature, e);
+                throw;
             }
 
 
@@ -593,10 +611,16 @@ namespace SharpFluids
                 REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdateDH -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdateDH -> CoolProp could not return your request on {density} and {enthalpy} and returns the followering error: {e}", density, enthalpy, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdateDH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}", density, enthalpy, e);
+                throw;
             }
 
         }
@@ -632,10 +656,16 @@ namespace SharpFluids
                 REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdatePT -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}", pressure, temperature, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdatePT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {temperature} {e}", pressure, temperature, e);
+                throw;
             }
         }
 
@@ -679,10 +709,16 @@ namespace SharpFluids
                 
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdateXT -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdateXT -> CoolProp could not return your request on {quality} and {temperature} and returns the followering error: {e}", quality, temperature, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdateXT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {quality} and {temperature} {e}", quality, temperature, e);
+                throw;
             }
 
 
@@ -729,10 +765,16 @@ namespace SharpFluids
                 REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdatePS -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdatePS -> CoolProp could not return your request on {pressure} and {entropy} and returns the followering error: {e}", pressure, entropy, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdatePS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {entropy} {e}", pressure, entropy, e);
+                throw;
             }
 
 
@@ -765,10 +807,16 @@ namespace SharpFluids
                 REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdatePH -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}", pressure, enthalpy, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdatePH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {enthalpy} {e}", pressure, enthalpy, e);
+                throw;
             }
         }
 
@@ -808,10 +856,16 @@ namespace SharpFluids
                     UpdateValues();
                 }
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdatePX -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdatePX -> CoolProp could not return your request on {pressure} and {quality} and returns the followering error: {e}", pressure, quality, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdatePX -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {quality} {e}", pressure, quality, e);
+                throw;
             }
         }
 
@@ -831,10 +885,16 @@ namespace SharpFluids
                 REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
                 UpdateValues();
             }
-            catch (Exception e)
+            catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log?.LogWarning("SharpFluid -> UpdateHS -> {e}", e);
+                Log?.LogWarning("SharpFluid -> UpdateHS -> CoolProp could not return your request on {enthalpy} and {entropy} and returns the followering error: {e}", enthalpy, entropy, e);
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log?.LogError("SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {enthalpy} and {entropy} {e}", enthalpy, entropy, e);
+                throw;
             }
         }
 
@@ -1472,13 +1532,11 @@ namespace SharpFluids
 
         public string SaveAsJSON()
         {
-            //return JsonConvert.SerializeObject(this, Formatting.Indented, ReturnJSONSettings());
             return JsonConvert.SerializeObject(this, ReturnJSONSettings());
         }
 
         public Fluid LoadFromJSON(string json)
         {
-            //return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
             return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
         }
 
