@@ -306,7 +306,8 @@ namespace SharpFluids
                 }
                 else
                 {
-                    Log?.LogError("SharpFluid -> Volume -> Density is zero so we cant return you the Volume!");
+                    //This fires all the time because of serializing
+                    //Log?.LogError("SharpFluid -> Volume -> Density is zero so we cant return you the Volume!");
                     return Volume.Zero;
                 }
                 
@@ -330,7 +331,8 @@ namespace SharpFluids
                 }
                 else
                 {
-                    Log?.LogError("SharpFluid -> VolumeFlow -> Density is zero so we cant return you the VolumeFlow!");
+                    //This fires all the time because of serializing
+                    //Log?.LogError("SharpFluid -> VolumeFlow -> Density is zero so we cant return you the VolumeFlow!");
                     return VolumeFlow.Zero;
                 }
                 
