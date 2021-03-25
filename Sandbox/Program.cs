@@ -20,11 +20,12 @@ namespace Sandbox
             //................................................
 
 
+           
 
 
 
-            Fluid test = new Fluid(FluidList.Water);
-
+            MediaType MediaFluid = new MediaType("HEOS", "R513A.MIX");
+            Fluid my_fluid = new Fluid(MediaFluid);
 
             using (var loggerFactory = LoggerFactory.Create(builder =>
             { builder.AddConsole(); }))
@@ -32,10 +33,16 @@ namespace Sandbox
             {
                 ILogger logger = loggerFactory.CreateLogger<Program>();
                 logger.LogInformation("Logging has stared");
-                test.Log = logger;
+                my_fluid.Log = logger;
 
             }
 
+
+
+
+            my_fluid.UpdatePX(Pressure.FromBars(9), 0.0);
+
+            Fluid test = new Fluid(FluidList.Water);
             test.UpdatePT(Pressure.FromBars(-10), Temperature.FromDegreesCelsius(300));
             test.UpdatePT(Pressure.FromBars(100000), Temperature.FromDegreesCelsius(300));
             test.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(30000));

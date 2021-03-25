@@ -175,17 +175,54 @@ public class AbstractState : IDisposable
     }
     public Temperature T_critical()
     {
-        if (Environment.Is64BitProcess)        
-            return Temperature.FromKelvins(CoolPropPINVOKE64.AbstractState_T_critical(swigCPtr));        
-        else        
-            return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_T_critical(swigCPtr));      
+        if (Environment.Is64BitProcess)
+        {
+            if (CoolPropPINVOKE64.AbstractState_T_critical(swigCPtr) != 0)
+                return Temperature.FromKelvins(CoolPropPINVOKE64.AbstractState_T_critical(swigCPtr));
+            else
+            {
+                Debug.Print("It could not return T_critical!");
+                return Tmax(); //Workaround for when T_critical does not get returned by coolprop
+            }
+
+        }
+        else
+        {
+
+            if (CoolPropPINVOKE.AbstractState_T_critical(swigCPtr) != 0)
+                return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_T_critical(swigCPtr));
+            else
+            {
+                Debug.Print("It could not return T_critical!");
+                return Tmax(); //Workaround for when T_critical does not get returned by coolprop
+            }
+        }
     }
     public Pressure p_critical()
     {
-        if (Environment.Is64BitProcess)        
-            return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
+        if (Environment.Is64BitProcess)
+        {
+            if (CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr) != 0)
+            {
+                return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
+            }
+            else
+            {
+                Debug.Print("It could not return p_critical!");
+                return pmax(); //Workaround for when p_critical does not get returned by coolprop
+            }
+
+        }
         else
-            return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));        
+            if (CoolPropPINVOKE.AbstractState_p_critical(swigCPtr) != 0)
+        {
+            return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));
+        }
+        else
+        {
+            Debug.Print("It could not return p_critical!");
+            return pmax(); //Workaround for when p_critical does not get returned by coolprop
+        }
     }
     public Pressure p_triple()
     {

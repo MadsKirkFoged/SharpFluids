@@ -970,6 +970,8 @@ namespace SharpFluids
 
                 if (REF.backend_name() == "HelmholtzEOSBackend")
                 {
+
+
                     CriticalTemperature = REF.T_critical();
                     CriticalPressure = REF.p_critical();
                     LimitPressureMin = REF.p_triple();
