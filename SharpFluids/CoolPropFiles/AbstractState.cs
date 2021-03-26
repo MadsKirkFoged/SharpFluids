@@ -50,14 +50,14 @@ public class AbstractState : IDisposable
         {
             IntPtr cPtr = CoolPropPINVOKE64.AbstractState_factory__SWIG_0(backend, fluid_names);
             AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
-            if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+            //if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
             return ret;
         }
         else
         {
             IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_0(backend, fluid_names);
             AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
-            if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+            //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             return ret;
 
         }
@@ -69,11 +69,13 @@ public class AbstractState : IDisposable
 
         if (Environment.Is64BitProcess)
         {
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             CoolPropPINVOKE64.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
             if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
         }
         else
         {
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
             if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -87,13 +89,13 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
         {
             string ret = CoolPropPINVOKE64.AbstractState_backend_name(swigCPtr);
-            if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+            //if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
             return ret;
         }
         else
         {
             string ret = CoolPropPINVOKE.AbstractState_backend_name(swigCPtr);
-            if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+            //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -151,6 +153,22 @@ public class AbstractState : IDisposable
 
 
     }
+
+    public string GetInfo(string ParamName)
+    {
+
+        if (Environment.Is64BitProcess)
+            return CoolPropPINVOKE64.get_global_param_string(ParamName);
+        else
+            return CoolPropPINVOKE.get_global_param_string(ParamName);
+
+
+
+
+
+
+    }
+
 
     public Temperature Tmin()
     {

@@ -970,8 +970,6 @@ namespace SharpFluids
 
                 if (REF.backend_name() == "HelmholtzEOSBackend")
                 {
-
-
                     CriticalTemperature = REF.T_critical();
                     CriticalPressure = REF.p_critical();
                     LimitPressureMin = REF.p_triple();
@@ -1544,6 +1542,18 @@ namespace SharpFluids
             return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
         }
 
+
+        public void GetListOfPreMix()
+        {
+
+            var test = REF.GetInfo("predefined_mixtures");
+
+
+        }
+
+
     }
+
+
 
 }

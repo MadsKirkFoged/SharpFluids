@@ -24,8 +24,17 @@ namespace Sandbox
 
 
 
-            MediaType MediaFluid = new MediaType("HEOS", "R513A.MIX");
-            Fluid my_fluid = new Fluid(MediaFluid);
+            //MediaType MediaFluid = new MediaType("HEOS", "R513A.MIX");
+            //Fluid my_fluid = new Fluid(MediaFluid);
+
+            Fluid my_fluid = new Fluid(FluidList.R513A_mix);
+
+
+            my_fluid.UpdatePX(Pressure.FromBars(10), 1);
+
+
+            my_fluid.GetListOfPreMix();
+
 
             using (var loggerFactory = LoggerFactory.Create(builder =>
             { builder.AddConsole(); }))
@@ -37,6 +46,83 @@ namespace Sandbox
 
             }
 
+            my_fluid.Log.LogInformation(my_fluid.Media.InternalName);
+
+
+            //Arrange
+            foreach (FluidList suit in (FluidList[])Enum.GetValues(typeof(FluidList)))
+            {
+                //Arrange
+                Fluid TestFluid = new Fluid(suit);
+
+
+                using (var loggerFactory = LoggerFactory.Create(builder =>
+                { builder.AddConsole(); }))
+
+                {
+                    ILogger logger = loggerFactory.CreateLogger<Program>();
+                    //logger.LogInformation("Logging has stared");
+                    TestFluid.Log = logger;
+
+                }
+
+
+                Debug.Print(TestFluid.Media.InternalName);
+                TestFluid.Log.LogInformation(TestFluid.Media.InternalName);
+
+                //Act
+                Pressure Reduce = TestFluid.CriticalPressure - Pressure.FromBars(5);
+                if (Reduce < TestFluid.LimitPressureMin)
+                    Reduce = TestFluid.LimitPressureMin;
+
+
+                TestFluid.UpdatePX(Reduce, 0.5);
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+            //This is want we are aiming for
+            Entropy Aim = Entropy.FromJoulesPerKelvin(1699.7);
+
+
+            Temperature Max = my_fluid.LimitTemperatureMax;
+            Temperature Min = my_fluid.LimitTemperatureMin;
+            Temperature Mid = Temperature.Zero;   
+
+            
+            for (int i = 0; i < 20; i++)
+            {
+
+                Mid = Temperature.FromKelvins((Max.Kelvins + Min.Kelvins) / 2);
+
+                my_fluid.UpdatePT(Pressure.FromBars(10), Mid);
+
+
+                if (my_fluid.Entropy > Aim) 
+                    Max = Mid;
+                else
+                    Min = Mid;
+
+            }
+
+
+
+
+
+
+
+            
 
 
 

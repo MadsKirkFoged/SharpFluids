@@ -139,6 +139,13 @@ class CoolPropPINVOKE64
         private static Exception pendingException = null;
         private static int numExceptionsPending = 0;
 
+
+        public static void ResetErrors()
+        {
+            pendingException = null;
+            numExceptionsPending = 0;
+        }
+
         public static bool Pending
         {
             get
@@ -208,6 +215,7 @@ class CoolPropPINVOKE64
     static CoolPropPINVOKE64()
     {
     }
+
 
 
     [DllImport("CoolProp64", EntryPoint = "CSharp_DoubleVector_Clear")]

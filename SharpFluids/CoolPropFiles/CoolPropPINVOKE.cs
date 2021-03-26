@@ -143,6 +143,14 @@ class CoolPropPINVOKE
         private static Exception pendingException = null;
         private static int numExceptionsPending = 0;
 
+
+        public static void ResetErrors()
+        {
+            pendingException = null;
+            numExceptionsPending = 0;
+        }
+
+
         public static bool Pending
         {
             get
@@ -212,6 +220,13 @@ class CoolPropPINVOKE
     static CoolPropPINVOKE()
     {
     }
+
+
+
+    [DllImport("CoolProp", EntryPoint = "CSharp_get_global_param_string")]
+    public static extern string get_global_param_string(string jarg1);
+
+
 
 
     [DllImport("CoolProp", EntryPoint = "CSharp_DoubleVector_Clear")]
