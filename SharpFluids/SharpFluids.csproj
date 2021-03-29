@@ -150,10 +150,13 @@
     <Compile Include="CoolPropFiles\DoubleVector.cs" />
     <Compile Include="CoolPropFiles\input_pairs.cs" />
     <Compile Include="CoolPropFiles\parameters.cs" />
-    <Compile Include="Fluid.cs" />
+    <Compile Include="SharpFluids files\Fluid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WrapperClasses\FluidEnums.cs" />
-    <Compile Include="WrapperClasses\MediaType.cs" />
+    <Compile Include="SharpFluids files\FluidEnums.cs" />
+    <Compile Include="SharpFluids files\FluidEnvelope.cs" />
+    <Compile Include="SharpFluids files\FluidProperties .cs" />
+    <Compile Include="SharpFluids files\FluidUpdates.cs" />
+    <Compile Include="SharpFluids files\MediaType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
