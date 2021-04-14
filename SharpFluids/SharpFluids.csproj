@@ -137,7 +137,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnitsNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnitsNet.4.73.0\lib\net40\UnitsNet.dll</HintPath>
+      <HintPath>..\packages\UnitsNet.4.89.0\lib\net40\UnitsNet.dll</HintPath>
     </Reference>
     <Reference Include="UnitsNet.Serialization.JsonNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
       <HintPath>..\packages\UnitsNet.Serialization.JsonNet.4.2.0\lib\net40\UnitsNet.Serialization.JsonNet.dll</HintPath>
