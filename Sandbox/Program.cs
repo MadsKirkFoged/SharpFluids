@@ -24,32 +24,32 @@ namespace Sandbox
 
 
 
-            //Arrange
-            foreach (FluidList suit in (FluidList[])Enum.GetValues(typeof(FluidList)))
-            {
-                //Arrange
-                Fluid TestFluid = new Fluid(suit);
+            ////Arrange
+            //foreach (FluidList suit in (FluidList[])Enum.GetValues(typeof(FluidList)))
+            //{
+            //    //Arrange
+            //    Fluid TestFluid = new Fluid(suit);
 
 
-                using (var loggerFactory = LoggerFactory.Create(builder =>
-                { builder.AddConsole(); }))
+            //    using (var loggerFactory = LoggerFactory.Create(builder =>
+            //    { builder.AddConsole(); }))
 
-                {
-                    ILogger logger = loggerFactory.CreateLogger<Program>();
-                    //logger.LogInformation("Logging has stared");
-                    TestFluid.Log = logger;
+            //    {
+            //        ILogger logger = loggerFactory.CreateLogger<Program>();
+            //        //logger.LogInformation("Logging has stared");
+            //        TestFluid.Log = logger;
 
-                }
-
-
-                Debug.Print(TestFluid.Media.InternalName);
-                TestFluid.Log.LogInformation(TestFluid.Media.InternalName);
-
-                TestFluid.GetEnvelopePhase();
+            //    }
 
 
+            //    Debug.Print(TestFluid.Media.InternalName);
+            //    TestFluid.Log.LogInformation(TestFluid.Media.InternalName);
 
-            }
+            //    TestFluid.GetEnvelopePhase();
+
+
+
+            //}
 
 
 
