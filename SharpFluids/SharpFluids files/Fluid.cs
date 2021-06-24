@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using UnitsNet;
-using UnitsNet.Units;
-using UnitsNet.Serialization.JsonNet;
+//using UnitsNet;
+using EngineeringUnits;
+//using UnitsNet.Units;
+//using UnitsNet.Serialization.JsonNet;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
 
@@ -37,6 +38,8 @@ namespace SharpFluids
         /// </summary>
         public Fluid()
         {
+            SetValuesToZero();
+            SetLimitsToZero();
             SetDefalutDisplayUnits();
         }
 
@@ -177,7 +180,11 @@ namespace SharpFluids
                 Density = REF.rhomass();
                 Cp = REF.cpmass();
                 Cv = REF.cvmass();
+
+                //Debug.Print($"Value: {REF.viscosity()}");
                 DynamicViscosity = REF.viscosity();
+
+
                 Prandtl = REF.Prandtl();
                 SurfaceTension = REF.surface_tension();
                 InternalEnergy = REF.umass();
@@ -219,9 +226,22 @@ namespace SharpFluids
             MolarMass = MolarMass.Zero;
             Compressibility = 0;
             InternalEnergy = SpecificEnergy.Zero;
+
         }
 
+        public virtual void SetLimitsToZero()
+        {
+           
+            LimitTemperatureMax = Temperature.Zero;
+            LimitTemperatureMin = Temperature.Zero;
+            CriticalTemperature = Temperature.Zero;
+            CriticalPressure = Pressure.Zero;
+            LimitPressureMin = Pressure.Zero;
+            LimitPressureMax = Pressure.Zero;
+            CriticalEnthalpy = SpecificEnergy.Zero;
 
+
+        }
 
 
         /// <summary>
@@ -321,7 +341,7 @@ namespace SharpFluids
                     this.Entropy = other.Entropy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Entropy * (this.MassFlow / (other.MassFlow + this.MassFlow));
 
                     //Calculating the average T weighted on the massflow
-                    this.Temperature = Temperature.FromKelvins(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Temperature.Kelvins * (this.MassFlow / (other.MassFlow + this.MassFlow)));
+                    this.Temperature = Temperature.FromKelvins((double)(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Temperature.Kelvins * (this.MassFlow / (other.MassFlow + this.MassFlow))));
                 }
 
                 this.MassFlow = other.MassFlow + this.MassFlow;
@@ -603,6 +623,8 @@ namespace SharpFluids
         }
 
 
+
+
         /// <summary>
         /// Checks if the two <see cref="Fluid"/> are almost then same
         /// </summary>
@@ -676,31 +698,33 @@ namespace SharpFluids
         /// <summary>
         /// Not in use anymore
         /// </summary>
-        public JsonSerializerSettings ReturnJSONSettings()
-        {
+        //public JsonSerializerSettings ReturnJSONSettings()
+        //{
 
-            //We might not have to use this anymore!
+        //    //We might not have to use this anymore!
 
-            //Setting for both UnitsNet and PreserveReferences
-            var JsonSettings = new JsonSerializerSettings
-            {
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                TypeNameHandling = TypeNameHandling.All,
-            };
+        //    //Setting for both UnitsNet and PreserveReferences
+        //    var JsonSettings = new JsonSerializerSettings
+        //    {
+        //        PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+        //        TypeNameHandling = TypeNameHandling.All,
+        //    };
 
-            JsonSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+        //    JsonSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
 
-            return JsonSettings;
-        }
+        //    return JsonSettings;
+        //}
 
         public string SaveAsJSON()
         {
-            return JsonConvert.SerializeObject(this, ReturnJSONSettings());
+            //return JsonConvert.SerializeObject(this, ReturnJSONSettings());
+            return JsonConvert.SerializeObject(this);
         }
 
         public Fluid LoadFromJSON(string json)
         {
-            return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
+            //return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
+            return JsonConvert.DeserializeObject<Fluid>(json);
         }
 
 

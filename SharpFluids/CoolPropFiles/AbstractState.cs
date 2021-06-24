@@ -3,7 +3,8 @@ using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using UnitsNet;
+//using UnitsNet;
+using EngineeringUnits;
 
 public class AbstractState : IDisposable
 {
@@ -379,7 +380,7 @@ public class AbstractState : IDisposable
             localVis = CoolPropPINVOKE.AbstractState_viscosity(swigCPtr);
 
 
-        if (double.IsNaN(localVis))        
+        if (double.IsNaN(localVis) || localVis < (double)Decimal.MinValue || localVis > (double)Decimal.MaxValue)        
             return DynamicViscosity.Zero;
         else
             return DynamicViscosity.FromPascalSeconds(localVis);
@@ -391,8 +392,13 @@ public class AbstractState : IDisposable
         {
             if (Environment.Is64BitProcess)        
                 return ThermalConductivity.FromWattsPerMeterKelvin(CoolPropPINVOKE64.AbstractState_conductivity(swigCPtr));
-            else        
+            else
+            {
+
+                //Debug.Print(CoolPropPINVOKE.AbstractState_conductivity(swigCPtr).ToString());
+
                 return ThermalConductivity.FromWattsPerMeterKelvin(CoolPropPINVOKE.AbstractState_conductivity(swigCPtr));        
+            }
 
         }
         catch (ArgumentException)

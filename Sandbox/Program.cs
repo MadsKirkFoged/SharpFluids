@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnitsNet;
-using UnitsNet.Units;
+//using UnitsNet;
+using EngineeringUnits;
+//using UnitsNet.Units;
 using SharpFluids;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -20,6 +21,8 @@ namespace Sandbox
             //................................................
 
             Fluid test = new Fluid(FluidList.Water);
+
+            string tests = test.SaveAsJSON();
 
 
 
@@ -69,7 +72,7 @@ namespace Sandbox
             //Temperature Min = my_fluid.LimitTemperatureMin;
             //Temperature Mid = Temperature.Zero;   
 
-            
+
             //for (int i = 0; i < 20; i++)
             //{
 
@@ -91,13 +94,13 @@ namespace Sandbox
 
 
 
-            
+
 
 
 
             //my_fluid.UpdatePX(Pressure.FromBars(9), 0.0);
 
-           // Fluid test = new Fluid(FluidList.Water);
+            // Fluid test = new Fluid(FluidList.Water);
             test.UpdatePT(Pressure.FromBars(-10), Temperature.FromDegreesCelsius(300));
             test.UpdatePT(Pressure.FromBars(100000), Temperature.FromDegreesCelsius(300));
             test.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(30000));

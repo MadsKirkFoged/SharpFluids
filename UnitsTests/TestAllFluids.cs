@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpFluids;
-using UnitsNet;
+//using UnitsNet;
 //using Microsoft.Extensions.Logging;
 
 namespace UnitsTests

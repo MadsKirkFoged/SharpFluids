@@ -2,7 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using SharpFluids;
-using UnitsNet;
+//using UnitsNet;
+using EngineeringUnits;
+using System.Diagnostics;
 
 namespace UnitsTests
 {
@@ -797,6 +799,9 @@ namespace UnitsTests
 
             //Act
             R717.AddPower(Power.FromKilowatts(99999999));
+
+
+            Debug.Print((R717.LimitTemperatureMax == R717.Temperature).ToString());
 
 
             //Assert

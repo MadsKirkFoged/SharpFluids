@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpFluids;
-using UnitsNet;
+//using UnitsNet;
+using EngineeringUnits;
 
 namespace UnitsTests
 {
@@ -565,8 +566,8 @@ namespace UnitsTests
 
             //Arrange
             Fluid R717 = new Fluid(FluidList.Ammonia);
-            Density setDensity = Density.FromKilogramsPerCubicMeter(9000000000000000000);
-            Temperature setTemperature = Temperature.FromDegreesCelsius(9000000000000000000);
+            Density setDensity = Density.FromKilogramsPerCubicMeter(90000);
+            Temperature setTemperature = Temperature.FromDegreesCelsius(90000);
             MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
