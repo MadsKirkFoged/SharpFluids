@@ -1156,7 +1156,7 @@ namespace UnitsTests
 
 
             //Act
-            R717.UpdatePT(R717.CriticalPressure, R717.CriticalTemperature + TemperatureDelta.FromKelvins(0.1));
+            R717.UpdatePT(R717.CriticalPressure, R717.CriticalTemperature + Temperature.FromKelvins(0.1));
             R717.MassFlow = setMassFlow;
 
 

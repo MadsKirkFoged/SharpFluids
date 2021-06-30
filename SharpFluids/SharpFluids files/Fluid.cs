@@ -636,7 +636,7 @@ namespace SharpFluids
             MassFlow MassFlowTolerance = MassFlow.FromKilogramsPerSecond(0.00001);
             SpecificEnergy HTolerance = SpecificEnergy.FromKilojoulesPerKilogram(0.001);
             Pressure PTolerance = Pressure.FromBars(0.001);
-            TemperatureDelta TTolerance = TemperatureDelta.FromDegreesCelsius(0.0001);
+            Temperature TTolerance = Temperature.FromKelvins(0.0001);
 
 
 
@@ -654,8 +654,8 @@ namespace SharpFluids
                 PDiss *= -1;
             
 
-            TemperatureDelta TDiss = (other1.Temperature - other2.Temperature);
-            if (TDiss < TemperatureDelta.Zero)            
+            Temperature TDiss = (other1.Temperature - other2.Temperature);
+            if (TDiss < Temperature.Zero)            
                 TDiss *= -1;
             
 
