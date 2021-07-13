@@ -22,7 +22,16 @@ namespace Sandbox
 
             Fluid test = new Fluid(FluidList.Water);
 
-            string tests = test.SaveAsJSON();
+            test.UpdatePT(Pressure.FromBars(3), Temperature.FromDegreesCelsius(20));
+            test.MassFlow = MassFlow.FromKilogramsPerSecond(1);
+
+
+            for (int i = 0; i < 100000; i++)
+            {
+                test.AddPower(Power.FromWatts(1));
+            }
+
+            Debug.Print("");
 
 
 

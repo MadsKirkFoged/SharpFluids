@@ -40,7 +40,7 @@ namespace SharpFluids
         {
             SetValuesToZero();
             SetLimitsToZero();
-            SetDefalutDisplayUnits();
+            //SetDefalutDisplayUnits();
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace SharpFluids
                     CriticalEnthalpy = REF.hmass();
                 }
 
-                SetDefalutDisplayUnits();
+                //SetDefalutDisplayUnits();
             }
             catch (Exception e)
             {
@@ -191,7 +191,7 @@ namespace SharpFluids
                 Conductivity = REF.conductivity();
 
                 FailState = false;
-                SetDefalutDisplayUnits();
+                //SetDefalutDisplayUnits();
             }
             catch (Exception e)
             {
@@ -473,15 +473,17 @@ namespace SharpFluids
         /// </summary>
         public void AddPower(Power powerToBeAdded)
         {
-
             //TODO If mass is selected!
             //Finding the new H
 
+            Stopwatch stopwatch1 = Stopwatch.StartNew();
             if (MassFlow == MassFlow.Zero)
             {
                 return;
             }
+            stopwatch1.Stop();
 
+            Stopwatch stopwatch2 = Stopwatch.StartNew();
             try
             {
                 SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
@@ -511,7 +513,7 @@ namespace SharpFluids
                 Log?.LogError("SharpFluid -> AddPower -> {e}", e);
             }
 
-
+            stopwatch2.Stop();
         }
 
         /// <summary>
