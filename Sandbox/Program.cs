@@ -10,6 +10,7 @@ using SharpFluids;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using EngineeringUnits.Units;
 
 namespace Sandbox
 {

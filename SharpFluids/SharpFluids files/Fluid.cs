@@ -6,6 +6,7 @@ using EngineeringUnits;
 //using UnitsNet.Serialization.JsonNet;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
+using EngineeringUnits.Units;
 
 namespace SharpFluids
 {
@@ -476,14 +477,14 @@ namespace SharpFluids
             //TODO If mass is selected!
             //Finding the new H
 
-            Stopwatch stopwatch1 = Stopwatch.StartNew();
+
             if (MassFlow == MassFlow.Zero)
             {
                 return;
             }
-            stopwatch1.Stop();
 
-            Stopwatch stopwatch2 = Stopwatch.StartNew();
+
+            
             try
             {
                 SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
@@ -513,7 +514,7 @@ namespace SharpFluids
                 Log?.LogError("SharpFluid -> AddPower -> {e}", e);
             }
 
-            stopwatch2.Stop();
+
         }
 
         /// <summary>
