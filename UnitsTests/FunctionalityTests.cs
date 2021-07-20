@@ -1063,5 +1063,19 @@ namespace UnitsTests
 
         }
 
+        [TestMethod]
+        public void MinMaxFractionLimit()
+        {
+
+            Fluid mixref = new Fluid(FluidList.MixAmmoniaAQ);
+
+
+            //Assert
+            Assert.AreEqual(0, mixref.FractionMin);
+            Assert.AreEqual(0.3, mixref.FractionMax);
+
+        }
+
+
     }
 }

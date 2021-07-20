@@ -145,6 +145,12 @@ namespace SharpFluids
                     CriticalEnthalpy = REF.hmass();
                 }
 
+
+
+                //Fraction
+                FractionMin = REF.keyed_output(parameters.ifraction_min);
+                FractionMax = REF.keyed_output(parameters.ifraction_max);
+
                 //SetDefalutDisplayUnits();
             }
             catch (Exception e)
@@ -544,6 +550,14 @@ namespace SharpFluids
 
                 min = REF.keyed_output(parameters.ifraction_min);
                 max = REF.keyed_output(parameters.ifraction_max);
+
+
+                //foreach (parameters suit in (parameters[])Enum.GetValues(typeof(parameters)))
+                //{
+
+                //    Debug.Print($"{suit}: {REF.keyed_output(suit)}");
+                //}
+
 
 
                 if (fraction < min)

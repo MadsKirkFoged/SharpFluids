@@ -19,6 +19,19 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+
+            Fluid mixref = new Fluid(FluidList.MixAmmoniaAQ);
+
+            mixref.SetFraction(0.3);
+
+            mixref.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
+
+
+
+
+
+
+
             //................................................
 
             Fluid test = new Fluid(FluidList.Water);
@@ -27,10 +40,10 @@ namespace Sandbox
             test.MassFlow = MassFlow.FromKilogramsPerSecond(1);
 
 
-            for (int i = 0; i < 100000; i++)
-            {
-                test.AddPower(Power.FromWatts(1));
-            }
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    test.AddPower(Power.FromWatts(1));
+            //}
 
             Debug.Print("");
 
@@ -213,7 +226,7 @@ namespace Sandbox
 
 
             //Set the fraction between ammonia(80%) and water(20%)
-            ref2.SetFraction(0.2);
+            ref2.SetFraction(0.3);
 
             //Update it with 10bars and 10°C
             ref2.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
