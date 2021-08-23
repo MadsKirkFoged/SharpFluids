@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 //using UnitsNet;
 using EngineeringUnits;
+using Serilog;
 //using UnitsNet.Serialization.JsonNet;
 
 namespace SharpFluids
@@ -14,7 +15,7 @@ namespace SharpFluids
     public partial class Fluid
     {
         [JsonIgnore]
-        public ILogger Log { get; set; }
+        //public ILogger Log { get; set; }
 
         [JsonProperty]
         //[JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
@@ -177,7 +178,7 @@ namespace SharpFluids
                 }
                 else
                 {
-                    Log?.LogError("SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
+                    Log.Error("SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
                     throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                 }
 
@@ -207,7 +208,7 @@ namespace SharpFluids
                 }
                 else
                 {
-                    Log?.LogError("SharpFluid -> Mass -> You can either set a fluids massflow or mass - not both!");
+                    Log.Error("SharpFluid -> Mass -> You can either set a fluids massflow or mass - not both!");
                     throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                 }
 
@@ -242,7 +243,7 @@ namespace SharpFluids
                         }
                         else
                         {
-                            Log?.LogError("SharpFluid -> Tsat -> REF is null");
+                            Log.Error("SharpFluid -> Tsat -> REF is null");
                             return Temperature;
                         }
 
@@ -253,18 +254,18 @@ namespace SharpFluids
                     }
                     catch (Exception e)
                     {
-                        Log?.LogError("SharpFluid -> Tsat -> Failed {e}", e);
+                        Log.Error("SharpFluid -> Tsat -> Failed {e}", e);
                         return Temperature;
                     }
                 }
                 else if (Pressure > CriticalPressure)
                 {
-                    Log?.LogWarning("SharpFluid -> Tsat -> Pressure ({Pressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!", Pressure, CriticalPressure);
+                    Log.Warning("SharpFluid -> Tsat -> Pressure ({Pressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!", Pressure, CriticalPressure);
                     return CriticalTemperature;
                 }
                 else
                 {
-                    Log?.LogError("SharpFluid -> Tsat -> Something unexpected went wrong!");
+                    Log.Error("SharpFluid -> Tsat -> Something unexpected went wrong!");
                     return Temperature;
                 }
 
