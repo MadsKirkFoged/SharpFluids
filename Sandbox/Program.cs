@@ -10,6 +10,8 @@ using SharpFluids;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using EngineeringUnits.Units;
+using Serilog;
+
 
 namespace Sandbox
 {
@@ -17,6 +19,13 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
+
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Debug()
+                .CreateLogger();
+
+            Log.Information("Hello, world!");
 
 
             Fluid mixref = new Fluid(FluidList.MixAmmoniaAQ);
