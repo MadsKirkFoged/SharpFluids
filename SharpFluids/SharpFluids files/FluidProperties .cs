@@ -171,15 +171,18 @@ namespace SharpFluids
             set
             {
 
+                if (value is object)
+                {
 
-                if (Mass is null || Mass == Mass.Zero || value == MassFlow.Zero)
-                {
-                    _massflow = value;
-                }
-                else
-                {
-                    Log.Error("SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
-                    throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
+                    if (Mass is null || Mass == Mass.Zero || value == MassFlow.Zero)
+                    {
+                        _massflow = value;
+                    }
+                    else
+                    {
+                        Log.Error($"SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
+                        throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
+                    }
                 }
 
 
@@ -201,15 +204,18 @@ namespace SharpFluids
 
             set
             {
+                if (value is object)
+                {
 
-                if (MassFlow == MassFlow.Zero || value == Mass.Zero)
-                {
-                    _mass = value;
-                }
-                else
-                {
-                    Log.Error("SharpFluid -> Mass -> You can either set a fluids massflow or mass - not both!");
-                    throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
+                    if (MassFlow == MassFlow.Zero || value == Mass.Zero)
+                    {
+                        _mass = value;
+                    }
+                    else
+                    {
+                        Log.Error($"SharpFluid -> Mass -> You can either set a fluids massflow or mass - not both!");
+                        throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
+                    }
                 }
 
             }
@@ -243,7 +249,7 @@ namespace SharpFluids
                         }
                         else
                         {
-                            Log.Error("SharpFluid -> Tsat -> REF is null");
+                            Log.Error($"SharpFluid -> Tsat -> REF is null");
                             return Temperature;
                         }
 
@@ -254,18 +260,18 @@ namespace SharpFluids
                     }
                     catch (Exception e)
                     {
-                        Log.Error("SharpFluid -> Tsat -> Failed {e}", e);
+                        Log.Error($"SharpFluid -> Tsat -> Failed {e}", e);
                         return Temperature;
                     }
                 }
                 else if (Pressure > CriticalPressure)
                 {
-                    Log.Warning("SharpFluid -> Tsat -> Pressure ({Pressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!", Pressure, CriticalPressure);
+                    Log.Warning($"SharpFluid -> Tsat -> Pressure ({Pressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!");
                     return CriticalTemperature;
                 }
                 else
                 {
-                    Log.Error("SharpFluid -> Tsat -> Something unexpected went wrong!");
+                    Log.Error($"SharpFluid -> Tsat -> Something unexpected went wrong!");
                     return Temperature;
                 }
 
