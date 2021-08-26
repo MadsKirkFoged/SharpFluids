@@ -331,7 +331,7 @@ namespace SharpFluids
             else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
                 //Do nothing
-                Log.Warning("SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!", other.Enthalpy, other.Pressure, other.Entropy, other.Temperature, other.MassFlow);
+                Log.Warning($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!", other.Enthalpy, other.Pressure, other.Entropy, other.Temperature, other.MassFlow);
             }
             else
             {
