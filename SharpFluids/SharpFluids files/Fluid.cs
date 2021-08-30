@@ -75,14 +75,14 @@ namespace SharpFluids
 
             if (FromThisPressure < LimitPressureMin)
             {
-                Log.Warning($"SharpFluid -> GetSatTemperature -> {FromThisPressure} cant be bolow {LimitPressureMin}");
+                Log.Debug($"SharpFluid -> GetSatTemperature -> {FromThisPressure} cant be bolow {LimitPressureMin}");
                 return Temperature.Zero;
             }
 
 
             if (FromThisPressure > CriticalPressure)
             {
-                Log.Warning($"SharpFluid -> GetSatTemperature -> Pressure ({FromThisPressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!");
+                Log.Debug($"SharpFluid -> GetSatTemperature -> Pressure ({FromThisPressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!");
                 return CriticalTemperature;
             }
             else
@@ -101,14 +101,14 @@ namespace SharpFluids
 
             if (FromThisTemperature < LimitTemperatureMin)
             {
-                Log.Warning($"SharpFluid -> GetSatPressure -> {FromThisTemperature} cant be bolow {LimitTemperatureMin}");
+                Log.Debug($"SharpFluid -> GetSatPressure -> {FromThisTemperature} cant be bolow {LimitTemperatureMin}");
                 return Pressure.Zero;
             }
 
 
             if (FromThisTemperature >= CriticalTemperature)
             {
-                Log.Warning($"SharpFluid -> GetSatPressure -> Temperature ({FromThisTemperature}) is above CriticalTemperature {CriticalTemperature}. CriticalTemperature is returned instead!");
+                Log.Debug($"SharpFluid -> GetSatPressure -> Temperature ({FromThisTemperature}) is above CriticalTemperature {CriticalTemperature}. CriticalTemperature is returned instead!");
                 return CriticalPressure;
             }
             else
@@ -331,7 +331,7 @@ namespace SharpFluids
             else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
                 //Do nothing
-                Log.Warning($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
+                Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
             }
             else
             {
@@ -394,13 +394,13 @@ namespace SharpFluids
 
             if (RefType.ToLower() == REF?.name().ToLower())
             {
-                Log.Warning($"SharpFluid -> SetNewType -> The two fluids is already the same");
+                Log.Debug($"SharpFluid -> SetNewType -> The two fluids is already the same");
                 return;
             }
 
             if (RefType == "")
             {
-                Log.Warning($"SharpFluid -> SetNewType -> You are trying to set a new fluid to nothing!");
+                Log.Debug($"SharpFluid -> SetNewType -> You are trying to set a new fluid to nothing!");
                 return;
             }
 
@@ -429,7 +429,7 @@ namespace SharpFluids
 
             if (Type is null)
             {
-                Log.Warning($"SharpFluid -> SetNewMedia ->Selected MediaType is null!");
+                Log.Debug($"SharpFluid -> SetNewMedia ->Selected MediaType is null!");
                 return;
             }
 

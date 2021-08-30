@@ -34,7 +34,7 @@ namespace SharpFluids
             if (density <= Density.Zero || entropy <= Entropy.Zero)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDS -> {density} cant be below {Density.Zero} and {entropy} cant be below {Entropy.Zero}");
+                Log.Debug($"SharpFluid -> UpdateDS -> {density} cant be below {Density.Zero} and {entropy} cant be below {Entropy.Zero}");
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDS -> CoolProp could not return your request on {density} and {entropy} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdateDS -> CoolProp could not return your request on {density} and {entropy} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -84,13 +84,13 @@ namespace SharpFluids
             if (density <= Density.Zero || pressure <= Pressure.Zero)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDP -> {density} cant be below {Density.Zero} and {pressure} cant be below {Pressure.Zero}");
+                Log.Debug($"SharpFluid -> UpdateDP -> {density} cant be below {Density.Zero} and {pressure} cant be below {Pressure.Zero}");
 
                 return;
             }
 
             if (pressure > LimitPressureMax)
-                Log.Warning($"SharpFluid -> UpdateDP -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdateDP -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
 
             try
@@ -101,7 +101,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDP -> CoolProp could not return your request on {density} and {pressure} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdateDP -> CoolProp could not return your request on {density} and {pressure} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -134,12 +134,12 @@ namespace SharpFluids
             if (density <= Density.Zero || temperature < LimitTemperatureMin)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDT -> {density} cant be below {Density.Zero} and {temperature} cant be below {LimitTemperatureMin}");
+                Log.Debug($"SharpFluid -> UpdateDT -> {density} cant be below {Density.Zero} and {temperature} cant be below {LimitTemperatureMin}");
                 return;
             }
 
             if (temperature > LimitTemperatureMax)
-                Log.Warning($"SharpFluid -> UpdateDT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdateDT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
 
 
             try
@@ -150,7 +150,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDT -> CoolProp could not return your request on {density} and {temperature} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdateDT -> CoolProp could not return your request on {density} and {temperature} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -185,7 +185,7 @@ namespace SharpFluids
             if (density <= Density.Zero)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDH -> {density} cant be below {Density.Zero} and {enthalpy} cant be below (limit unknown)");
+                Log.Debug($"SharpFluid -> UpdateDH -> {density} cant be below {Density.Zero} and {enthalpy} cant be below (limit unknown)");
                 return;
             }
 
@@ -198,7 +198,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateDH -> CoolProp could not return your request on {density} and {enthalpy} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdateDH -> CoolProp could not return your request on {density} and {enthalpy} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -223,15 +223,15 @@ namespace SharpFluids
             if (pressure < LimitPressureMin || temperature < LimitTemperatureMin)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePT -> {pressure} cant be below {LimitPressureMin} and {temperature} cant be below {LimitTemperatureMin}");
+                Log.Debug($"SharpFluid -> UpdatePT -> {pressure} cant be below {LimitPressureMin} and {temperature} cant be below {LimitTemperatureMin}");
                 return;
             }
 
             if (temperature > LimitTemperatureMax)
-                Log.Warning($"SharpFluid -> UpdatePT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdatePT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
 
             if (pressure > LimitPressureMax)
-                Log.Warning($"SharpFluid -> UpdatePT -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdatePT -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
 
 
@@ -243,7 +243,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -269,20 +269,20 @@ namespace SharpFluids
             if (temperature < LimitTemperatureMin)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateXT -> {temperature} cant be below {LimitTemperatureMin}", temperature, LimitTemperatureMin);
+                Log.Debug($"SharpFluid -> UpdateXT -> {temperature} cant be below {LimitTemperatureMin}", temperature, LimitTemperatureMin);
                 return;
             }
 
 
             if (temperature > LimitTemperatureMax)
-                Log.Warning($"SharpFluid -> UpdateXT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdateXT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
 
             try
             {
                 //If we are above transcritical we just return the Critical point 
                 if (temperature >= CriticalTemperature)
                 {
-                    Log.Warning($"SharpFluid -> UpdateXT -> {temperature} is above CriticalTemperature ({CriticalTemperature}) -> We will just return you the CriticalTemperature!");
+                    Log.Debug($"SharpFluid -> UpdateXT -> {temperature} is above CriticalTemperature ({CriticalTemperature}) -> We will just return you the CriticalTemperature!");
                     REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
 
                 }
@@ -296,7 +296,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateXT -> CoolProp could not return your request on {quality} and {temperature} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdateXT -> CoolProp could not return your request on {quality} and {temperature} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -318,7 +318,7 @@ namespace SharpFluids
         {
             //Not yet supported by CoolProp!
             //throw new NotImplementedException("Not yet supported by CoolProp");
-            Log.Warning($"SharpFluid -> UpdateHT -> Not yet supported by CoolProp!");
+            Log.Debug($"SharpFluid -> UpdateHT -> Not yet supported by CoolProp!");
             REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
         }
 
@@ -345,12 +345,12 @@ namespace SharpFluids
             if (pressure < LimitPressureMin)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePS -> {pressure} cant be below {LimitPressureMin} and {entropy} cant be below (limit unknown)");
+                Log.Debug($"SharpFluid -> UpdatePS -> {pressure} cant be below {LimitPressureMin} and {entropy} cant be below (limit unknown)");
                 return;
             }
 
             if (pressure > LimitPressureMax)
-                Log.Warning($"SharpFluid -> UpdatePS -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdatePS -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
             try
             {
@@ -360,7 +360,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePS -> CoolProp could not return your request on {pressure} and {entropy} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdatePS -> CoolProp could not return your request on {pressure} and {entropy} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -394,12 +394,12 @@ namespace SharpFluids
             if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePH -> {pressure} cant be below {LimitPressureMin} and {enthalpy} cant be below {SpecificEnergy.Zero}");
+                Log.Debug($"SharpFluid -> UpdatePH -> {pressure} cant be below {LimitPressureMin} and {enthalpy} cant be below {SpecificEnergy.Zero}");
                 return;
             }
 
             if (pressure > LimitPressureMax)
-                Log.Warning($"SharpFluid -> UpdatePH -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdatePH -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
 
             try
@@ -410,7 +410,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -435,12 +435,12 @@ namespace SharpFluids
             if (pressure < LimitPressureMin || quality < 0)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePX -> {pressure} cant be bolow {LimitPressureMin}", pressure, LimitPressureMin);
+                Log.Debug($"SharpFluid -> UpdatePX -> {pressure} cant be bolow {LimitPressureMin}", pressure, LimitPressureMin);
                 return;
             }
 
             if (pressure > LimitPressureMax)
-                Log.Warning($"SharpFluid -> UpdatePX -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+                Log.Debug($"SharpFluid -> UpdatePX -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
             try
             {
@@ -448,7 +448,7 @@ namespace SharpFluids
                 {
                     UpdatePT(CriticalPressure, CriticalTemperature);
                     UpdatePH(pressure, Enthalpy);
-                    Log.Warning($"SharpFluid -> UpdatePX -> {pressure} is above CriticalPressure ({CriticalPressure}) -> We will just return you the Critical point!");
+                    Log.Debug($"SharpFluid -> UpdatePX -> {pressure} is above CriticalPressure ({CriticalPressure}) -> We will just return you the Critical point!");
                 }
                 else
                 {
@@ -459,7 +459,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePX -> CoolProp could not return your request on {pressure} and {quality} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdatePX -> CoolProp could not return your request on {pressure} and {quality} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
@@ -495,7 +495,7 @@ namespace SharpFluids
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Warning($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {enthalpy} and {entropy} and returns the followering error: {e}");
+                Log.Debug($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {enthalpy} and {entropy} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
