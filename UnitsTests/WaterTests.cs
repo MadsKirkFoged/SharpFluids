@@ -37,7 +37,7 @@ namespace UnitsTests
             Assert.AreEqual(10000, Water.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(0.0061165480089686846, Water.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(1.650819966799242, Water.Density.KilogramsPerCubicMeter, 0.0001);
-            Assert.AreEqual(1.6710365869337238, Water.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(1.6710365869337238, Water.Entropy.CaloriesPerGramKelvin, 0.0001);
             Assert.AreEqual(0, Water.SurfaceTension.NewtonsPerMeter, 0.0001);
             Assert.AreEqual(133.522420460943, Water.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(133.52242046094256, Water.Tsat.DegreesCelsius, 0.0001);
@@ -80,7 +80,7 @@ namespace UnitsTests
             Assert.AreEqual(10000, Water.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(0.0061165480089686846, Water.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(1.2890299515474706, Water.Density.KilogramsPerCubicMeter, 0.0001);
-            Assert.AreEqual(1.7846226274892405, Water.Entropy.KilocaloriesPerKelvin, 0.0001);
+            Assert.AreEqual(1.7846226274892405, Water.Entropy.CaloriesPerGramKelvin, 0.0001);
             //Assert.AreEqual(0.052144997752313106, Water.SurfaceTension.NewtonsPerMeter, 0.0001);
             Assert.AreEqual(237, Water.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(133.522420460943, Water.Tsat.DegreesCelsius, 0.0001);
@@ -124,7 +124,7 @@ namespace UnitsTests
             Assert.AreEqual(0, Water.Prandtl);
             Assert.AreEqual(0, Water.Pressure.Bars);
             Assert.AreEqual(0, Water.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, Water.Entropy.KilocaloriesPerKelvin);
+            Assert.AreEqual(0, Water.Entropy.KilocaloriesPerGramKelvin);
             Assert.AreEqual(0, Water.SurfaceTension.NewtonsPerMeter);
             Assert.AreEqual(0, Water.Temperature.Kelvins);
             Assert.AreEqual(0, Water.Tsat.Kelvins);

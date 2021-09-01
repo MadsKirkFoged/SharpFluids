@@ -315,12 +315,12 @@ public class AbstractState : IDisposable
         else        
             return SpecificEnergy.FromJoulesPerKilogram(CoolPropPINVOKE.AbstractState_hmass(swigCPtr));        
     }
-    public Entropy smass()
+    public SpecificEntropy smass()
     {
         if (Environment.Is64BitProcess)        
-            return Entropy.FromJoulesPerKelvin(CoolPropPINVOKE64.AbstractState_smass(swigCPtr));
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE64.AbstractState_smass(swigCPtr));
         else        
-            return Entropy.FromJoulesPerKelvin(CoolPropPINVOKE.AbstractState_smass(swigCPtr));        
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE.AbstractState_smass(swigCPtr));        
     }
     public SpecificEnergy umass()
     {

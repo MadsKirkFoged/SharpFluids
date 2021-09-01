@@ -21,7 +21,7 @@ namespace SharpFluids
         /// </summary> 
         /// <param name = "density" > The <see cref="UnitsNet.Density"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
-        public void UpdateDS(Density density, Entropy entropy)
+        public void UpdateDS(Density density, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
 
@@ -31,17 +31,17 @@ namespace SharpFluids
             }
 
 
-            if (density <= Density.Zero || entropy <= Entropy.Zero)
+            if (density <= Density.Zero || entropy <= SpecificEntropy.Zero)
             {
                 FailState = true;
-                Log.Debug($"SharpFluid -> UpdateDS -> {density} cant be below {Density.Zero} and {entropy} cant be below {Entropy.Zero}");
+                Log.Debug($"SharpFluid -> UpdateDS -> {density} cant be below {Density.Zero} and {entropy} cant be below {SpecificEntropy.Zero}");
                 return;
             }
 
 
             try
             {
-                REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKelvin);
+                REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
