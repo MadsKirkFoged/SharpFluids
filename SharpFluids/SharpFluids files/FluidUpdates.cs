@@ -469,6 +469,10 @@ namespace SharpFluids
             }
         }
 
+
+
+
+
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the Enthalpy and the <see cref="UnitsNet.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
@@ -505,7 +509,41 @@ namespace SharpFluids
             }
         }
 
+        /// <summary>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.SpecificEntropy"/> and the Temperature.<br></br>
+        /// <br>Exemple:</br>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
+        /// <br><c>Water.UpdateTS(<see cref="UnitsNet.Temperature"/>.FromKelvins(286.15), <see cref="UnitsNet.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
+        /// </summary> 
+        /// <param name = "temperature" > The Temperature used in the update</param>
+        /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
+        public void UpdateTS(Temperature temperature, SpecificEntropy entropy)
+        {
+            CheckBeforeUpdate();
 
+
+            if (Media.InternalName.Contains(".mix"))
+            {
+                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
+            }
+
+            try
+            {
+                REF.update(input_pairs.SmassT_INPUTS, entropy.JoulesPerKilogramKelvin, temperature.Kelvins);
+                UpdateValues();
+            }
+            catch (System.ApplicationException e)
+            {
+                FailState = true;
+                Log.Debug($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {temperature} and {entropy} and returns the followering error: {e}");
+            }
+            catch (System.Exception e)
+            {
+                FailState = true;
+                Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {temperature} and {entropy} {e}");
+                throw;
+            }
+        }
 
     }
 }
