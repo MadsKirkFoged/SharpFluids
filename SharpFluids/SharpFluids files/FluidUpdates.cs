@@ -14,13 +14,13 @@ namespace SharpFluids
     {
 
         /// <summary>
-        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Density"/> and the <see cref="UnitsNet.Entropy"/><br></br>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Density"/> and the <see cref="UnitsNet.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateDS(<see cref="UnitsNet.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="UnitsNet.Entropy"/>.FromJoulesPerKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdateDS(<see cref="UnitsNet.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="UnitsNet.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
         /// </summary> 
         /// <param name = "density" > The <see cref="UnitsNet.Density"/> used in the update</param>
-        /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
+        /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
         public void UpdateDS(Density density, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
@@ -324,14 +324,14 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the <see cref="UnitsNet.Entropy"/><br></br>
+        /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the <see cref="UnitsNet.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdatePS(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.Entropy"/>.FromJoulesPerKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdatePS(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
-        /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
-        public void UpdatePS(Pressure pressure, Entropy entropy)
+        /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
+        public void UpdatePS(Pressure pressure, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
 
@@ -354,7 +354,7 @@ namespace SharpFluids
 
             try
             {
-                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
+                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -470,14 +470,14 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Update the condition of the <see cref="Fluid"/> when you know the Enthalpy and the <see cref="UnitsNet.Entropy"/><br></br>
+        /// Update the condition of the <see cref="Fluid"/> when you know the Enthalpy and the <see cref="UnitsNet.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateHS(<see cref="UnitsNet.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59), <see cref="UnitsNet.Entropy"/>.FromJoulesPerKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdateHS(<see cref="UnitsNet.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59), <see cref="UnitsNet.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
         /// </summary> 
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
-        public void UpdateHS(SpecificEnergy enthalpy, Entropy entropy)
+        /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
+        public void UpdateHS(SpecificEnergy enthalpy, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
 
@@ -489,7 +489,7 @@ namespace SharpFluids
 
             try
             {
-                REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKelvin);
+                REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
