@@ -219,7 +219,7 @@ namespace SharpFluids
             Enthalpy = SpecificEnergy.Zero;
             Temperature = Temperature.Zero;
             Pressure = Pressure.Zero;
-            Entropy = Entropy.Zero;
+            Entropy = SpecificEntropy.Zero;
             Quality = 0;
             Density = Density.Zero;
             Cp = SpecificEntropy.Zero;
@@ -324,11 +324,11 @@ namespace SharpFluids
             //After the mixing an Update should be run
 
 
-            if (this.Enthalpy == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.Entropy == Entropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
+            if (this.Enthalpy == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.Entropy == SpecificEntropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
             {
                 this.Copy(other);
             }
-            else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == Entropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
+            else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == SpecificEntropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
             {
                 //Do nothing
                 Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
@@ -615,7 +615,7 @@ namespace SharpFluids
             Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
             Temperature = Temperature.ToUnit(TemperatureUnit.DegreeCelsius);
             Pressure = Pressure.ToUnit(PressureUnit.Bar);
-            Entropy = Entropy.ToUnit(EntropyUnit.KilojoulePerKelvin);
+            Entropy = Entropy.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
             Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
             Cp = Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
             Cv = Cv.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);

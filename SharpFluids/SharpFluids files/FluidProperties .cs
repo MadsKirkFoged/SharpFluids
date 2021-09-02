@@ -56,7 +56,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty]
         //[JsonConverter(typeof(UnitsNetIQuantityJsonConverter))]
-        public Entropy Entropy { get; private set; }
+        public SpecificEntropy Entropy { get; private set; }
 
 
         /// <summary>
