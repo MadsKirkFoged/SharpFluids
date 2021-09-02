@@ -331,7 +331,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="UnitsNet.Entropy"/> used in the update</param>
-        public void UpdatePS(Pressure pressure, Entropy entropy)
+        public void UpdatePS(Pressure pressure, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
 
@@ -354,7 +354,7 @@ namespace SharpFluids
 
             try
             {
-                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKelvin);
+                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
