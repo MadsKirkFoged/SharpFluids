@@ -884,7 +884,7 @@ namespace UnitsTests
             //Arrange
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(10);
-            Entropy setEntropy = Entropy.FromJoulesPerKelvin(3846.6363350450893);
+            SpecificEntropy setEntropy = SpecificEntropy.FromJoulesPerKilogramKelvin(3846.6363350450893);
             MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
@@ -933,7 +933,7 @@ namespace UnitsTests
             //Arrange
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(-10);
-            Entropy setEntropy = Entropy.FromJoulesPerKelvin(-3846.6363350450893);
+            SpecificEntropy setEntropy = SpecificEntropy.FromJoulesPerKilogramKelvin(-3846.6363350450893);
             MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
@@ -983,7 +983,7 @@ namespace UnitsTests
             //Arrange
             Fluid R717 = new Fluid(FluidList.Ammonia);
             Pressure setPressure = Pressure.FromBars(1000000000);
-            Entropy setEntropy = Entropy.FromJoulesPerKelvin(38400000006.6363350450893);
+            SpecificEntropy setEntropy = SpecificEntropy.FromJoulesPerKilogramKelvin(38400000006.6363350450893);
             MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
 
 
