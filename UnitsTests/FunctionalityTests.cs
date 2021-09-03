@@ -1076,6 +1076,33 @@ namespace UnitsTests
 
         }
 
+        [TestMethod]
+        public void UpdateTSFunctionality()
+        {
+            Fluid water = new Fluid(FluidList.Water);
+            Temperature temperature = Temperature.FromKelvins(286.15);
+            SpecificEntropy entropy = SpecificEntropy.FromJoulesPerKilogramKelvin(195.27);
+            water.UpdateTS(temperature, entropy);
+
+            Assert.AreEqual(0.082063, water.Pressure.Megapascals, 0.001);
+
+
+            Fluid ammonia = new Fluid(FluidList.Ammonia);
+            temperature = Temperature.FromKelvins(286.15);
+            entropy = SpecificEntropy.FromJoulesPerKilogramKelvin(1697.7);
+            ammonia.UpdateTS(temperature, entropy);
+
+            Assert.AreEqual(0.93555, ammonia.Pressure.Megapascals, 0.001);
+
+            Fluid co2 = new Fluid(FluidList.CO2);
+            temperature = Temperature.FromKelvins(286.15);
+            entropy = SpecificEntropy.FromJoulesPerKilogramKelvin(2220.2);
+            co2.UpdateTS(temperature, entropy);
+
+            Assert.AreEqual(1.1240, co2.Pressure.Megapascals, 0.001);
+
+        }
+
 
     }
 }

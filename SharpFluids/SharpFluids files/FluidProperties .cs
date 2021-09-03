@@ -51,7 +51,7 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.Entropy"/> of the <see cref="Fluid"/>. 
+        /// Get the <see cref="UnitsNet.SpecificEntropy"/> of the <see cref="Fluid"/>. 
         /// <br>Engineers may refers to this as "S".</br>
         /// </summary>
         [JsonProperty]
