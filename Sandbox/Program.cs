@@ -195,7 +195,7 @@ namespace Sandbox
 
             
 
-            Water.UpdateHS(SpecificEnergy.FromJoulesPerKilogram(54697.59), Entropy.FromJoulesPerKelvin(195.27));
+            Water.UpdateHS(SpecificEnergy.FromJoulesPerKilogram(54697.59), SpecificEntropy.FromJoulesPerKilogramKelvin(195.27));
 
             Debug.Print("Density of water is: " + Water.Density);
 
