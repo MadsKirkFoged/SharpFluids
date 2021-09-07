@@ -28,15 +28,19 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
-            Fluid mixref = new Fluid(FluidList.MixAmmoniaAQ);
+            Fluid test12 = new Fluid(FluidList.Ammonia);
 
-            mixref.SetFraction(0.3);
 
-            mixref.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
-
+            test12.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
 
 
 
+            string jsonString1 = JsonConvert.SerializeObject(test12);
+
+            var howManyBytes = jsonString1.Length * sizeof(Char);
+
+
+            Debug.Print($"Size is: {howManyBytes}");
 
 
 
