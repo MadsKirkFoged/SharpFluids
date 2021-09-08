@@ -36,6 +36,11 @@ namespace Sandbox
 
 
             string jsonString1 = JsonConvert.SerializeObject(test12);
+            Fluid testJSON = JsonConvert.DeserializeObject<Fluid>(jsonString1);
+
+            testJSON.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
+
+
 
             var howManyBytes = jsonString1.Length * sizeof(Char);
 
