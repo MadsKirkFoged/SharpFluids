@@ -19,20 +19,20 @@ namespace SharpFluids
     public class MediaType : Attribute
     {
 
-        //[JsonProperty(PropertyName = "BT", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "BT", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        //[JsonProperty]
         public string BackendType { get; set; }
 
-        //[JsonProperty(PropertyName = "IN", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "IN", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        //[JsonProperty]
         public string InternalName { get; set; }
 
-        //[JsonProperty(PropertyName = "MF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "MF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        //[JsonProperty]
         public double MassFration { get; set; }
 
-        //[JsonProperty(PropertyName = "Mix", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Mix", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        //[JsonProperty]
         public MixType Mix { get; set; }
 
 
