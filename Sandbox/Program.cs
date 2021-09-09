@@ -37,6 +37,9 @@ namespace Sandbox
 
             string jsonString1 = JsonConvert.SerializeObject(test12);
             Fluid testJSON = JsonConvert.DeserializeObject<Fluid>(jsonString1);
+            string jsonString2 = JsonConvert.SerializeObject(testJSON);
+
+            Debug.Print($"{jsonString1 == jsonString2}");
 
             testJSON.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
 

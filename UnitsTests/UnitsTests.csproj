@@ -83,6 +83,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonTests.cs" />
     <Compile Include="TestAllFluids.cs" />
     <Compile Include="FunctionalityTests.cs" />
     <Compile Include="AmmoniaTests.cs" />
