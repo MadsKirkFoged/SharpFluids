@@ -12,7 +12,7 @@ namespace UnitsTests
     {
 
         [TestMethod]
-        public void UpdateDH()
+        public void JSONToObjectAndBack()
         {
 
             //Arrange
