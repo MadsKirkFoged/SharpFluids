@@ -273,7 +273,7 @@ namespace SharpFluids
                 }
                 else
                 {
-                    Log.Error($"SharpFluid -> Tsat -> Something unexpected went wrong!");
+                    //Log.Error($"SharpFluid -> Tsat -> Something unexpected went wrong!");
                     return Temperature;
                 }
 
