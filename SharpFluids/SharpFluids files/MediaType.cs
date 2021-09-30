@@ -40,7 +40,7 @@ namespace SharpFluids
 
             MassFration = massFration;
 
-            mix = Mix;
+            Mix = mix;
 
         }
 
