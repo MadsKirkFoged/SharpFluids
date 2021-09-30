@@ -30,8 +30,22 @@ namespace Sandbox
 
             Fluid test12 = new Fluid(FluidList.Ammonia);
 
+            Enthalpy H = test12.Enthalpy;
 
-            test12.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
+
+            int totalcount = 10000;
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            
+
+            for (int i = 0; i < totalcount; i++)
+            {
+                test12.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
+                test12.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(300));
+            }
+            
+            
+            watch.Stop();
+            Log.Information($"Time: {watch.ElapsedTicks / totalcount}");
 
 
 

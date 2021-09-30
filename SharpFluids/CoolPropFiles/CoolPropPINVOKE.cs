@@ -557,6 +557,8 @@ class CoolPropPINVOKE
 
 
 
+
+
     [DllImport("CoolProp", EntryPoint = "CSharp_AbstractState_Tmin")]
     public static extern double AbstractState_Tmin(HandleRef jarg1);
 
