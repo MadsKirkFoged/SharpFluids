@@ -121,7 +121,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EngineeringUnits, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EngineeringUnits.1.1.218\lib\net472\EngineeringUnits.dll</HintPath>
+      <HintPath>..\packages\EngineeringUnits.1.1.220\lib\net472\EngineeringUnits.dll</HintPath>
     </Reference>
     <Reference Include="Fractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=e629dc3e25c47cef, processorArchitecture=MSIL">
       <HintPath>..\packages\Fractions.6.0.0\lib\net45\Fractions.dll</HintPath>
@@ -152,6 +152,10 @@
     <Compile Include="CoolPropFiles\DoubleVector.cs" />
     <Compile Include="CoolPropFiles\input_pairs.cs" />
     <Compile Include="CoolPropFiles\parameters.cs" />
+    <Compile Include="CustomFluids\SHC226E.cs" />
+    <Compile Include="CustomFluids\SHC228.cs" />
+    <Compile Include="CustomFluids\SHC230.cs" />
+    <Compile Include="CustomFluids\CustomOil.cs" />
     <Compile Include="SharpFluids files\Fluid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharpFluids files\FluidEnums.cs" />

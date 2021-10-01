@@ -28,7 +28,13 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
-            Fluid test12 = new Fluid(FluidList.Ammonia);
+            Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
+
+
+            //test12.UpdateCustomFluid(Temperature.FromDegreesCelsius(119));
+
+
+
 
             Enthalpy H = test12.Enthalpy;
 

@@ -128,6 +128,13 @@ namespace SharpFluids
         {
             FailState = true;
 
+
+            if (Media.BackendType == "CustomFluid")
+            {
+                return;
+            }
+
+
             try
             {
                 //Setting the constant values up

@@ -68,6 +68,13 @@ public class AbstractState : IDisposable
     public virtual void update(input_pairs input_pair, double Value1, double Value2)
     {
 
+
+        //Internal look up
+
+
+
+
+        //CoolProp Lookup
         if (Environment.Is64BitProcess)
         {
             CoolPropPINVOKE64.SWIGPendingException.ResetErrors();

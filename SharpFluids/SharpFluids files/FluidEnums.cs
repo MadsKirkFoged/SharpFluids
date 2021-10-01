@@ -363,6 +363,9 @@ namespace SharpFluids
         [MediaType("INCOMP", "ZM",              MixType.Vol)] VolMixMEthyleneGlycol,
         [MediaType("INCOMP", "ZMC",             MixType.Vol)] VolMixMCEthyleneGlycol,
 
+        [MediaType("CustomFluid", "SHC226E",    MixType.Mass)] Custom_SHC226E,
+        [MediaType("CustomFluid", "SHC228",     MixType.Mass)] Custom_SHC228,
+        [MediaType("CustomFluid", "SHC230",     MixType.Mass)] Custom_SHC230,
 
 
 

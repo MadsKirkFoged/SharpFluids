@@ -545,6 +545,74 @@ namespace SharpFluids
             }
         }
 
+        /// <summary>
+        /// This is a Beta mehtod used only when looking a CustomFluids!.<br></br>
+        /// <br>Exemple:</br>
+        /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Custom_SHC228"/>);</c></br>
+        /// <br><c>Water.UpdateCustomFluid(<see cref="UnitsNet.Temperature"/>.FromKelvins(286.15));</c></br>
+        /// </summary> 
+        /// <param name = "temperature" > The Temperature used in the update</param>
+        public void UpdateCustomFluid(Temperature temperature, Pressure pressure)
+        {
+
+            //THIS IS IN BETA MODE
+
+
+            CheckBeforeUpdate();
+
+
+            if (Media.BackendType != "CustomFluid")
+            {
+                throw new NotImplementedException("This is in Beta and only works with CustomFluids!");
+            }
+
+
+
+            CustomOil Above = GetCustomFluidFromDatabase().FindAll(x => x.Temperature >= temperature).OrderBy(p => p.Temperature).First();
+            CustomOil Below = GetCustomFluidFromDatabase().FindAll(x => x.Temperature <= temperature).OrderByDescending(p => p.Temperature).First();
+
+
+            Temperature = temperature;
+            Pressure = pressure;
+
+
+            Density = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Density, Above.Density);
+
+
+            Cp = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Cp, Above.Cp);
+
+            Conductivity = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.ThermalConductivity, Above.ThermalConductivity);
+
+            DynamicViscosity = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.KinematicViscosity, Above.KinematicViscosity) * Density;
+
+
+        }
+
+
+        public List<CustomOil> GetCustomFluidFromDatabase()
+        {
+
+            if (Media.InternalName == "SHC226E")
+            {
+                return SHC226E.GetList();
+            }
+
+            if (Media.InternalName == "SHC228")
+            {
+                return SHC228.GetList();
+            }
+
+            if (Media.InternalName == "SHC230")
+            {
+                return SHC230.GetList();
+            }
+
+
+            throw new NotImplementedException("GetCustomFluidFromDatabase didnt return anything");
+
+
+        }
+
     }
 }
 
