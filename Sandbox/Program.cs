@@ -31,7 +31,7 @@ namespace Sandbox
             Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
 
 
-            //test12.UpdateCustomFluid(Temperature.FromDegreesCelsius(119));
+            test12.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(119));
 
 
 

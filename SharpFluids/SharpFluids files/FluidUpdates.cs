@@ -25,6 +25,11 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
             if (Media.InternalName.Contains(".mix"))
             {
                 throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
@@ -73,6 +78,11 @@ namespace SharpFluids
         public void UpdateDP(Density density, Pressure pressure)
         {
             CheckBeforeUpdate();
+
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
 
 
             if (Media.InternalName.Contains(".mix"))
@@ -125,6 +135,11 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
 
             if (Media.InternalName.Contains(".mix"))
             {
@@ -175,6 +190,11 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
 
 
             if (Media.InternalName.Contains(".mix"))
@@ -220,6 +240,18 @@ namespace SharpFluids
         public void UpdatePT(Pressure pressure, Temperature temperature)
         {
             CheckBeforeUpdate();
+
+
+
+            if (Media.BackendType == "CustomFluid")
+            {
+                UpdateCustomFluid(temperature, pressure);
+                return;
+
+            }
+
+
+
             if (pressure < LimitPressureMin || temperature < LimitTemperatureMin)
             {
                 FailState = true;
@@ -266,6 +298,12 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
+
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
             if (temperature < LimitTemperatureMin)
             {
                 FailState = true;
@@ -335,6 +373,11 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
 
             if (Media.InternalName.Contains(".mix"))
             {
@@ -384,6 +427,11 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
 
             if (Media.InternalName.Contains(".mix"))
             {
@@ -432,6 +480,12 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
+
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+
             if (pressure < LimitPressureMin || quality < 0)
             {
                 FailState = true;
@@ -485,6 +539,10 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
 
             if (Media.InternalName.Contains(".mix"))
             {
@@ -521,6 +579,10 @@ namespace SharpFluids
         {
             CheckBeforeUpdate();
 
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
 
             if (Media.InternalName.Contains(".mix"))
             {
@@ -552,7 +614,7 @@ namespace SharpFluids
         /// <br><c>Water.UpdateCustomFluid(<see cref="UnitsNet.Temperature"/>.FromKelvins(286.15));</c></br>
         /// </summary> 
         /// <param name = "temperature" > The Temperature used in the update</param>
-        public void UpdateCustomFluid(Temperature temperature, Pressure pressure)
+        private void UpdateCustomFluid(Temperature temperature, Pressure pressure)
         {
 
             //THIS IS IN BETA MODE
