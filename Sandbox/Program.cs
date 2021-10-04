@@ -28,12 +28,22 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
-            Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
+            //Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
+            MoistAir test12 = new MoistAir();
 
 
-            test12.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(119));
+            //test12.updateAir("H","T",298.15,"P",101325,"R",0.5);
 
 
+            test12.UpdateAir(   Pressure.FromBars(1), 
+                                DryBulbTemperature: Temperature.FromKelvins(298.15),
+                                RelativeHumidity: 0.5
+
+                                );
+                                
+                
+                
+ 
 
 
             Enthalpy H = test12.Enthalpy;

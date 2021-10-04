@@ -666,5 +666,10 @@ class CoolPropPINVOKE
     public static extern double AbstractState_Prandtl(HandleRef jarg1);
 
 
+    [DllImport("CoolProp", EntryPoint = "CSharp_HAPropsSI")]
+    public static extern double HAPropsSI(string jarg1, string jarg2, double jarg3, string jarg4, double jarg5, string jarg6, double jarg7);
+
+
+
 
 }

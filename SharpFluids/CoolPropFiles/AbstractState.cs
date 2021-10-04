@@ -91,6 +91,35 @@ public class AbstractState : IDisposable
        
     }
 
+    public static double updateAir(string jarg1, string jarg2, double jarg3, string jarg4, double jarg5, string jarg6, double jarg7)
+    {
+
+
+        //Internal look up
+        double local = 0;
+
+
+
+        //CoolProp Lookup
+        if (Environment.Is64BitProcess)
+        {
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+            local = CoolPropPINVOKE64.HAPropsSI(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
+            if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+        }
+        else
+        {
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            local = CoolPropPINVOKE.HAPropsSI(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
+            if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
+        return local;
+
+
+    }
+
     public virtual string backend_name()
     {
 

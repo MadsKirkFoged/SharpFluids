@@ -163,6 +163,7 @@
     <Compile Include="SharpFluids files\FluidProperties .cs" />
     <Compile Include="SharpFluids files\FluidUpdates.cs" />
     <Compile Include="SharpFluids files\MediaType.cs" />
+    <Compile Include="SharpFluids files\MoistAir.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
