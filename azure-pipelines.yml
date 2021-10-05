@@ -42,16 +42,14 @@ steps:
     command: 'test'
     projects: '**/UnitTests.csproj'
 
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
-    command: 'custom'
-    custom: 'pack'
+    command: 'pack'
     packagesToPack: '**/SharpFluids.csproj'
-    includesymbols: true
-    includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    arguments: '--IncludeReferencedProjects'
+    includeSymbols: true
+    buildProperties: '-IncludeReferencedProjects'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -61,7 +59,6 @@ steps:
     includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    arguments: '--IncludeReferencedProjects'
 
 
 - task: NuGetCommand@2
