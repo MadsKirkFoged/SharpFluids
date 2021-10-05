@@ -10,9 +10,6 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'any cpu'
-  buildConfiguration: 'Release'
   major: 3
   minor: 0
   Build: $[counter(variables['minor'], 0)]
@@ -28,31 +25,32 @@ steps:
     versionSpec: 
     checkLatest: true
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'restore'
+    feedsToUse: 'select'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    projects: |
+     **/SharpFluids.csproj
+     **/UnitTests.csproj
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'test'
+    projects: '**/UnitTests.csproj'
 
 
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
     packagesToPack: '**/SharpFluids.csproj'
+    includesymbols: true
+    includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    includeSymbols: true
-    buildProperties: '-IncludeReferencedProjects'
 
 
 - task: NuGetCommand@2
