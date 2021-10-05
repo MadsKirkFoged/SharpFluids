@@ -49,17 +49,7 @@ steps:
     projects: '**/UnitTests.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- task: NuGetCommand@2
-  name: 'Old_Pack'
-  inputs:
-    command: 'pack'
-    basePath: 
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'VersionNumber'
-    includeSymbols: true
-    buildProperties: '-IncludeReferencedProjects'
-    packDestination: '$(Build.ArtifactStagingDirectory)'
+
 
 
 - task: DotNetCoreCLI@2
