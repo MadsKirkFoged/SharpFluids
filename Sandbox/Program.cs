@@ -29,24 +29,33 @@ namespace Sandbox
 
 
             //Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
-            MoistAir test12 = new MoistAir();
+            MoistAir Air = new MoistAir();
 
 
             //test12.updateAir("H","T",298.15,"P",101325,"R",0.5);
 
 
-            test12.UpdateAir(   Pressure.FromBars(1), 
+            Air.UpdateAir(   Pressure.FromBars(1), 
                                 DryBulbTemperature: Temperature.FromKelvins(298.15),
                                 RelativeHumidity: 0.5
 
                                 );
-                                
-                
-                
- 
+
+            Debug.Print($"WetBulbTemperature: {Air.WetBulbTemperature}");
+            Debug.Print($"DewPointTemperature: {Air.DewPointTemperature}");
+            Debug.Print($"DryBulbTemperature: {Air.Temperature}");
+
+            Debug.Print($"RelativeHumidity: {Air.RelativeHumidity * 100} % ");
+            Debug.Print($"HumidityRatio: {Air.HumidityRatio} kg/kg");
 
 
-            Enthalpy H = test12.Enthalpy;
+
+
+
+
+
+
+            Enthalpy H = Air.Enthalpy;
 
 
             int totalcount = 10000;
@@ -55,8 +64,8 @@ namespace Sandbox
 
             for (int i = 0; i < totalcount; i++)
             {
-                test12.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
-                test12.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(300));
+                Air.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(10));
+                Air.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(300));
             }
             
             
@@ -65,7 +74,7 @@ namespace Sandbox
 
 
 
-            string jsonString1 = JsonConvert.SerializeObject(test12);
+            string jsonString1 = JsonConvert.SerializeObject(Air);
             Fluid testJSON = JsonConvert.DeserializeObject<Fluid>(jsonString1);
             string jsonString2 = JsonConvert.SerializeObject(testJSON);
 

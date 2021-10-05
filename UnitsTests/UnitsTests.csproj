@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EngineeringUnits">
-      <Version>1.1.220</Version>
+      <Version>1.1.237</Version>
     </PackageReference>
     <PackageReference Include="MSTest.TestAdapter">
       <Version>2.2.7</Version>
