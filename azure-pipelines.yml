@@ -45,6 +45,13 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'custom'
+    custom: 'pack'
+    packagesToPack: '**/SharpFluids.csproj'
+    includesymbols: true
+    includesource: true
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'VersionNumber'
+    arguments: '-IncludeReferencedProjects'
 
 - task: DotNetCoreCLI@2
   inputs:
