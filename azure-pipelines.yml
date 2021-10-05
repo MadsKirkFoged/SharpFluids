@@ -36,10 +36,11 @@ steps:
   name: 'Build'
   inputs:
     command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
     projects: |
      **/SharpFluids.csproj
      **/UnitTests.csproj
-     arguments: '--configuration $(buildConfiguration)'
+     
 
 - task: DotNetCoreCLI@2
   name: 'UnitTest'
