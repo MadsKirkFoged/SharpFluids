@@ -10,6 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  buildConfiguration: 'Release'
   major: 3
   minor: 0
   Build: $[counter(variables['minor'], 0)]
@@ -36,11 +37,13 @@ steps:
     projects: |
      **/SharpFluids.csproj
      **/UnitTests.csproj
+     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**/UnitTests.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: NuGetCommand@2
   inputs:
