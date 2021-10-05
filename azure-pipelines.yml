@@ -27,6 +27,7 @@ steps:
     checkLatest: true
 
 - task: DotNetCoreCLI@2
+  name: 'Restore'
   inputs:
     command: 'restore'
     feedsToUse: 'select'
