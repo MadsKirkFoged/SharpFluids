@@ -42,6 +42,9 @@ steps:
     command: 'test'
     projects: '**/UnitTests.csproj'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -51,7 +54,7 @@ steps:
     includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    buildProperties: 'IncludeReferencedProjects'
+    arguments: '-IncludeReferencedProjects'
 
 
 - task: NuGetCommand@2
