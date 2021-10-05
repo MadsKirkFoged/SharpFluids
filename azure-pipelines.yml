@@ -53,7 +53,8 @@ steps:
   name: 'Old_Pack'
   inputs:
     command: 'pack'
-    packagesToPack: '**/SharpFluids.csproj'
+    basePath: 
+    packagesToPack: '**/*.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
     includeSymbols: true
