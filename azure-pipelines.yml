@@ -51,7 +51,7 @@ steps:
     includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    arguments: '-IncludeReferencedProjects'
+    arguments: '--IncludeReferencedProjects'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -61,7 +61,7 @@ steps:
     includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    arguments: '-IncludeReferencedProjects'
+    arguments: '--IncludeReferencedProjects'
 
 
 - task: NuGetCommand@2
