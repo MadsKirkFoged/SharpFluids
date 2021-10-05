@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharpFluids.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\SharpFluids.csproj" Condition="'$(TargetFramework)' == 'net47'" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="CoolProp.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
