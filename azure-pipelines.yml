@@ -10,6 +10,8 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  solution: '**/*.sln'
+  buildPlatform: 'any cpu'
   buildConfiguration: 'Release'
   major: 3
   minor: 0
@@ -26,55 +28,34 @@ steps:
     versionSpec: 
     checkLatest: true
 
-- task: DotNetCoreCLI@2
-  name: 'Restore'
+- task: NuGetCommand@2
   inputs:
-    command: 'restore'
-    feedsToUse: 'select'
+    restoreSolution: '$(solution)'
 
-- task: DotNetCoreCLI@2
-  name: 'Build'
+- task: VSBuild@1
   inputs:
-    command: 'build'
-    arguments: '--configuration $(buildConfiguration)'
-    projects: |
-     **/SharpFluids.csproj
-     **/UnitTests.csproj
-     
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  name: 'UnitTest'
+- task: VSTest@2
   inputs:
-    command: 'test'
-    projects: '**/UnitTests.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+
 
 - task: NuGetCommand@2
-  name: 'Old_Pack'
   inputs:
     command: 'pack'
-    basePath: 
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/SharpFluids.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
     includeSymbols: true
     buildProperties: '-IncludeReferencedProjects'
-    packDestination: '$(Build.ArtifactStagingDirectory)'
-
-
-- task: DotNetCoreCLI@2
-  name: 'New_Pack'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/SharpFluids.csproj'
-    includesymbols: true
-    includesource: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'VersionNumber'
 
 
 - task: NuGetCommand@2
-  name: 'Push_nuget'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
