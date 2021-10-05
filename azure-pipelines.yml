@@ -53,6 +53,8 @@ steps:
     versionEnvVar: 'VersionNumber'
     includeSymbols: true
     buildProperties: '-IncludeReferencedProjects'
+    packDestination: '$(Build.ArtifactStagingDirectory)'
+
 
 - task: DotNetCoreCLI@2
   inputs:
