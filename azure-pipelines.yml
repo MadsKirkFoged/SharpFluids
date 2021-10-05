@@ -51,6 +51,7 @@ steps:
     includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
+    buildProperties: 'IncludeReferencedProjects'
 
 
 - task: NuGetCommand@2
