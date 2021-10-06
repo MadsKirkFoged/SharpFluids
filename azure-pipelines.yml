@@ -45,15 +45,14 @@ steps:
     configuration: '$(buildConfiguration)'
 
 
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: '**/SharpFluids.csproj'
-    includesymbols: true
-    includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-
+    includeSymbols: true
+    buildProperties: '-IncludeReferencedProjects'
 
 
 
