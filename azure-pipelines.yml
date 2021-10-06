@@ -38,6 +38,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
@@ -48,7 +49,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/SharpFluids.csproj'
+    packagesToPack: '**/SharpFluidsCore.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
     includeSymbols: true
