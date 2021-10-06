@@ -35,13 +35,14 @@ steps:
   name: 'build'
   inputs:
     command: 'build'
+    configuration: '$(buildConfiguration)'
     projects: '**/SharpFluids5.csproj'
 
 - task: DotNetCoreCLI@2
   name: 'special_pack'
   inputs:
     command: 'custom'
-    custom: 'pack'
+    custom: 'pack SharpFluids5'
 
 - task: DotNetCoreCLI@2
   name: 'pack'
