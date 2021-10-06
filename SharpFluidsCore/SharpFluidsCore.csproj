@@ -10,4 +10,16 @@
     <PackageReference Include="Serilog" Version="2.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CoolProp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CoolProp64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SharpFluids.targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
