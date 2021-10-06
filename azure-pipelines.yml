@@ -23,6 +23,30 @@ steps:
 - bash: echo $(Build)
 
 
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: |
+     **/SharpFluids5.csproj
+
+
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/SharpFluids5.csproj'
+    includesymbols: true
+    includesource: true
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'VersionNumber'
+
+
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: 
