@@ -169,9 +169,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
-    <None Include="SharpFluids.targets">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="SharpFluidsOld.targets" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CoolProp.dll">
