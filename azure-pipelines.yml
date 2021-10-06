@@ -37,7 +37,11 @@ steps:
     command: 'build'
     projects: '**/SharpFluids5.csproj'
 
-
+- task: DotNetCoreCLI@2
+  name: 'special_pack'
+  inputs:
+    command: 'custom'
+    custom: 'pack **/SharpFluids5.nuspec'
 
 - task: DotNetCoreCLI@2
   name: 'pack'
