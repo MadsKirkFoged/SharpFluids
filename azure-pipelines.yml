@@ -38,21 +38,23 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/SharpFluids.csproj'
+    packagesToPack: '**/SharpFluidsCore.csproj'
+    includesymbols: true
+    includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
-    includeSymbols: true
-    buildProperties: '-IncludeReferencedProjects'
+
+
 
 
 - task: NuGetCommand@2
