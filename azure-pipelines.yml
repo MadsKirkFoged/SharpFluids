@@ -32,8 +32,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: |
-     **/SharpFluids5.csproj
+    projects: '**/SharpFluids5.csproj'
 
 
 
