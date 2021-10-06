@@ -115,9 +115,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharpFluids\SharpFluidsOld.csproj">
+    <ProjectReference Include="..\SharpFluids\SharpFluids.csproj">
       <Project>{e3010d72-97fb-46e0-afb7-30ed4952d655}</Project>
-      <Name>SharpFluidsOld</Name>
+      <Name>SharpFluids</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
