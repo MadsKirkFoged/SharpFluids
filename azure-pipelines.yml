@@ -54,14 +54,7 @@ steps:
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'VersionNumber'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/SharpFluidsCore.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'VersionNumber'
-    includeSymbols: true
-    buildProperties: '-IncludeReferencedProjects'
+
 
 
 - task: NuGetCommand@2
