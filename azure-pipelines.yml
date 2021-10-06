@@ -48,7 +48,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/SharpFluidsCore.csproj'
+    packagesToPack: '**/SharpFluids.csproj'
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
