@@ -41,7 +41,7 @@ steps:
   name: 'special_pack'
   inputs:
     command: 'custom'
-    custom: 'pack **/SharpFluids5.nuspec'
+    custom: 'pack D:\a\1\s\SharpFluids5\SharpFluids5.csproj'
 
 - task: DotNetCoreCLI@2
   name: 'pack'
