@@ -18,7 +18,9 @@
 
 
   <ItemGroup>
-      <None Include="SharpFluids.targets" PackagePath="build\" Pack="true" />
+    <None Include="SharpFluids.targets" PackagePath="build\" Pack="true" />
+    <None Include="CoolProp.dll" PackagePath="build\" Pack="true" />
+    <None Include="CoolProp64.dll" PackagePath="build\" Pack="true" />
   
   <None Update="CoolProp.dll">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
