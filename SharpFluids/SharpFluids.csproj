@@ -32,7 +32,7 @@
   <Target Name="IncludeReferencedProjectInPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp.dll" PackagePath="lib/$(TargetFramework)" />
-      <TfmSpecificPackageFile Include="build\CoolProp64.dll" PackagePath="lib/$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="\\build\CoolProp64.dll" PackagePath="lib/$(TargetFramework)" />
     </ItemGroup>
   </Target>
 
