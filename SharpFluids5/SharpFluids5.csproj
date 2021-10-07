@@ -24,11 +24,13 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <_PackageFiles Include="$(OutputPath)\CoolProp.dll.dll">
-      <BuildAction>None</BuildAction>
-      <PackagePath>lib\net45\</PackagePath>
-    </_PackageFiles>
-  </ItemGroup>
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeReferencedProjectInPackage</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+  <Target Name="IncludeReferencedProjectInPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp.dll" PackagePath="lib/$(TargetFramework)" />
+    </ItemGroup>
+  </Target>
 
 </Project>
