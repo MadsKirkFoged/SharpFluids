@@ -24,4 +24,11 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <_PackageFiles Include="$(OutputPath)\CoolProp.dll.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net45\</PackagePath>
+    </_PackageFiles>
+  </ItemGroup>
+
 </Project>
