@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net47;net5.0</TargetFrameworks>
     <PackageId>SharpFluids</PackageId>
     <Authors>Mads Kirk Foged</Authors>
-    <Description>Test project</Description>
+    <Description>Get Fluid properties using this lightweight CoolProp Wrapper </Description>
     <IsPackable>true</IsPackable>
     
   </PropertyGroup>
