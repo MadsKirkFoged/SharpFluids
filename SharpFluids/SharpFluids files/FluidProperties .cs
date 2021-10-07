@@ -402,7 +402,11 @@ namespace SharpFluids
         //[JsonProperty]
         public double FractionMin { get; protected set; }
 
-
+        /// <summary>
+        /// This library's fluid phase. For available phases see: <see cref="Phase"/>
+        /// </summary>
+        [JsonProperty(PropertyName ="Phase", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public Phases Phase {  get; protected set;}
 
 
         /// <summary>

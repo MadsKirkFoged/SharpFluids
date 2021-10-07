@@ -287,6 +287,14 @@ public class AbstractState : IDisposable
             return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr));
         
     }
+
+    public phases phase()
+    {
+        if (Environment.Is64BitProcess)
+            return (phases)CoolPropPINVOKE64.AbstractState_phase(swigCPtr);
+        else
+            return (phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
+    }
     public string name()
     {
         if (Environment.Is64BitProcess)        
