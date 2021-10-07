@@ -92,12 +92,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharpFluids\SharpFluidsold.csproj">
-      <Project>{e3010d72-97fb-46e0-afb7-30ed4952d655}</Project>
-      <Name>SharpFluidsold</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="EngineeringUnits">
       <Version>1.1.237</Version>
     </PackageReference>
@@ -110,6 +104,12 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharpFluids\SharpFluids.csproj">
+      <Project>{ff5e4e35-45a1-4a99-ba90-460a172b1216}</Project>
+      <Name>SharpFluids</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
