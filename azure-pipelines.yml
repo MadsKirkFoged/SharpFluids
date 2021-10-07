@@ -36,14 +36,14 @@ steps:
   inputs:
     command: 'build'
     configuration: '$(buildConfiguration)'
-    projects: '**/SharpFluids5.csproj'
+    projects: '**/SharpFluids.csproj'
 
 
 - task: DotNetCoreCLI@2
   name: 'pack'
   inputs:
     command: 'pack'
-    packagesToPack: '**/SharpFluids5.csproj'
+    packagesToPack: '**/SharpFluids.csproj'
     includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
