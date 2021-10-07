@@ -38,6 +38,7 @@
       <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp64.dll" PackagePath="lib\$(TargetFramework)" />
       <TfmSpecificPackageFile Include="$(OutputPath)\SharpFluids.targets" PackagePath="lib\$(TargetFramework)" />
     </ItemGroup>
+    
   </Target>
 
 </Project>
