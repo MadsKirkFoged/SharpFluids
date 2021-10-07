@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpFluidsold", "SharpFluids\SharpFluidsold.csproj", "{E3010D72-97FB-46E0-AFB7-30ED4952D655}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpFluidsold", "SharpFluidsold\SharpFluidsold.csproj", "{E3010D72-97FB-46E0-AFB7-30ED4952D655}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsTests", "UnitsTests\UnitsTests.csproj", "{86975AB4-4D2A-493F-A634-A3F604E858A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{A6D142E1-7F24-482E-80DF-30EDAE8BB233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpFluids", "SharpFluids5\SharpFluids.csproj", "{FF5E4E35-45A1-4A99-BA90-460A172B1216}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpFluids", "SharpFluids\SharpFluids.csproj", "{FF5E4E35-45A1-4A99-BA90-460A172B1216}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest5", "UnitTest5\UnitTest5.csproj", "{0086EFFD-A7A8-4EFB-8860-7F17A5D456BF}"
 EndProject
