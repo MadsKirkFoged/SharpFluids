@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpFluids5\SharpFluids5.csproj" />
+    <ProjectReference Include="..\SharpFluids5\SharpFluids.csproj" />
   </ItemGroup>
 
 </Project>
