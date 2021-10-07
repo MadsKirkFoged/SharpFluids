@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2POutput</TargetsForTfmSpecificBuildOutput>
     <PackageId>SharpFluids</PackageId>
     <Authors>Mads Kirk Foged</Authors>
     <Description>Test project</Description>
@@ -16,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\testprivatelib\testprivatelib.csproj" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="CoolProp.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -24,12 +29,9 @@
     </None>
   </ItemGroup>
 
-  <PropertyGroup>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeReferencedProjectInPackage</TargetsForTfmSpecificContentInPackage>
-  </PropertyGroup>
-  <Target Name="IncludeReferencedProjectInPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
+  <Target Name="IncludeP2POutput">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp.dll" PackagePath="lib/$(TargetFramework)" />
+      <BuildOutputInPackage Include="$(OutputPath)\CoolProp.dll" />
     </ItemGroup>
   </Target>
 
