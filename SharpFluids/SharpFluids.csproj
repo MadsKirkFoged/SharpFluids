@@ -34,9 +34,9 @@
   </PropertyGroup>
   <Target Name="IncludeReferencedProjectInPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp.dll" PackagePath="build/" />
-      <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp64.dll" PackagePath="build/" />
-      <TfmSpecificPackageFile Include="$(OutputPath)\SharpFluids.targets" PackagePath="build/" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp.dll" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\CoolProp64.dll" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\SharpFluids.targets" PackagePath="lib\$(TargetFramework)" />
     </ItemGroup>
   </Target>
 
