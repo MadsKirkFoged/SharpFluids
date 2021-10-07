@@ -42,7 +42,7 @@ steps:
   name: 'special_pack'
   inputs:
     command: 'custom'
-    custom: 'pack dotnet pack ./SharpFluids/SharpFluids5/SharpFluids5.csproj'
+    custom: 'pack dotnet pack /SharpFluids/SharpFluids5/SharpFluids5.csproj'
 
 - task: DotNetCoreCLI@2
   name: 'pack'
