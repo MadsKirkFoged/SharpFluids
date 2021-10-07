@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>SharpFluids</PackageId>
+    <Authors>Mads Kirk Foged</Authors>
+    <Description>Test project</Description>
+    <IsPackable>true</IsPackable>
+    
   </PropertyGroup>
 
   <ItemGroup>
