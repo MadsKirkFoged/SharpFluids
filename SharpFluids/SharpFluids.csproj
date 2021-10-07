@@ -1,10 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net47;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net47;net5.0;netcoreapp3.1</TargetFrameworks>
+    <Title>SharpFluids</Title>
     <PackageId>SharpFluids</PackageId>
     <Authors>Mads Kirk Foged</Authors>
     <Description>Get Fluid properties using this lightweight CoolProp Wrapper </Description>
+    <PackageProjectUrl>https://github.com/MadsKirkFoged/SharpFluids</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MadsKirkFoged/SharpFluids</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>CoolProp Fluid SharpFluids REFPROP Thermodynamics thermophysical properties Temperature</PackageTags>
     <IsPackable>true</IsPackable>
     
   </PropertyGroup>
