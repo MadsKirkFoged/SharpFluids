@@ -4,7 +4,7 @@
 ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 ## SharpFluids
-Unit-safe fluid properties using [CoolProp] and [EngineeringUnits]
+Unit-safe fluid properties using [CoolProp] and [EngineeringUnits] under the hood
 
 [CoolProp]: http://www.coolprop.org/
 [EngineeringUnits]:https://github.com/MadsKirkFoged/EngineeringUnits
