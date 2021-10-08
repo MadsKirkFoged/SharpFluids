@@ -1540,5 +1540,28 @@ namespace UnitsTests
             Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
         }
 
+        [TestMethod]
+        public void Phase()
+        {
+            Fluid amonia = new Fluid(FluidList.Ammonia);
+
+            amonia.UpdatePT(Pressure.FromPascals(582999.74), Temperature.FromKelvins(282));
+            Assert.AreEqual(Phases.Gas, amonia.Phase, "Should be in gas phase");
+
+            amonia.UpdatePT(Pressure.FromPascals(582999.74), Temperature.FromKelvins(281));
+            Assert.AreEqual(Phases.Liquid, amonia.Phase, "Should be in liquid phase");
+
+            amonia.UpdatePX(Pressure.FromPascals(582999.74), 0.5);
+            Assert.AreEqual(Phases.Twophase, amonia.Phase, "Should be in twophase");
+
+            amonia.UpdatePT(Pressure.FromPascals(11433000.0), Temperature.FromKelvins(410.4));
+            Assert.AreEqual(Phases.Supercritical, amonia.Phase, "Should be in supercritical phase");
+
+            amonia.UpdatePT(Pressure.FromPascals(11233000.0), Temperature.FromKelvins(410.4));
+            Assert.AreEqual(Phases.SupercriticalGas, amonia.Phase, "Should be in supercritical gas phase");
+
+            amonia.UpdatePT(Pressure.FromPascals(11433000.0), Temperature.FromKelvins(400.4));
+            Assert.AreEqual(Phases.SupercriticalLiquid, amonia.Phase, "Should be in supercritical liquid phase");
+        }
     }
 }

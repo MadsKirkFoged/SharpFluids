@@ -205,6 +205,7 @@ namespace SharpFluids
                 SurfaceTension = REF.surface_tension();
                 InternalEnergy = REF.umass();
                 Conductivity = REF.conductivity();
+                Phase = (Phases)REF.phase();
 
                 FailState = false;
                 //SetDefalutDisplayUnits();
