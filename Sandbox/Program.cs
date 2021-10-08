@@ -28,6 +28,21 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
+
+            Length length = new Length(5.485, LengthUnit.Inch);
+            Length height = new Length(12.4, LengthUnit.Centimeter);
+
+            Area area = length * height; // 0.01728 m²
+            Console.WriteLine(area.ToUnit(AreaUnit.SquareFoot)); // 0.186 ft²
+            Console.WriteLine(area.ToUnit(AreaUnit.SquareCentimeter)); // 172.8 cm²
+
+
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            R717.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(100));
+
+            Console.WriteLine(R717.Density); // 5.751 kg/m³
+            Console.WriteLine(R717.DynamicViscosity); // 1.286e-05 Pa·s
+
             //Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
             MoistAir Air = new MoistAir();
 
@@ -205,7 +220,7 @@ namespace Sandbox
 
 
             //Arrange
-            Fluid R717 = new Fluid(FluidList.Ammonia);
+            //Fluid R717 = new Fluid(FluidList.Ammonia);
             Density setDensity = Density.FromKilogramsPerCubicMeter(15.36622602626586);
             SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1043420.2106074861);
             Mass setMass = Mass.FromKilograms(43);
