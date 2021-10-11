@@ -36,6 +36,7 @@ namespace Sandbox
             Console.WriteLine(area.ToUnit(AreaUnit.SquareFoot)); // 0.186 ft²
             Console.WriteLine(area.ToUnit(AreaUnit.SquareCentimeter)); // 172.8 cm²
 
+            Console.WriteLine(area.GetHashCode());
 
             Fluid R717 = new Fluid(FluidList.Ammonia);
             R717.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(100));

@@ -707,7 +707,33 @@ namespace SharpFluids
         }
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+
+
+            HashCode hashCode = new HashCode();
+            hashCode.Add(_mass);
+            hashCode.Add(_massflow);
+            hashCode.Add(Temperature);
+            hashCode.Add(Pressure);
+            hashCode.Add(Enthalpy);
+            hashCode.Add(Entropy);
+            hashCode.Add(Density);
+            hashCode.Add(DynamicViscosity);
+            hashCode.Add(Conductivity);
+            hashCode.Add(Cp);
+            hashCode.Add(Cv);
+            hashCode.Add(SoundSpeed);
+            hashCode.Add(SurfaceTension);
+            hashCode.Add(MolarMass);
+            hashCode.Add(InternalEnergy);
+            hashCode.Add(Prandtl);
+            hashCode.Add(Compressibility);
+            hashCode.Add(Quality);
+            hashCode.Add(_massflow);
+
+
+            return hashCode.ToHashCode();
+
+
         }
         public void Dispose()
         {
