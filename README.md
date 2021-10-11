@@ -1,10 +1,10 @@
 [![NuGet](https://img.shields.io/nuget/v/SharpFluids)](https://www.nuget.org/packages/SharpFluids/)
 ![Platform](https://img.shields.io/badge/platform-win--32%20%7C%20win--64-lightgrey)
 [![License](https://img.shields.io/github/license/MadsKirkFoged/SharpFluids)](https://github.com/MadsKirkFogd/SharpFluids/blob/master/LICENSE)
-![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+
 
 ## SharpFluids
-Unit-safe fluid properties using [CoolProp] and [EngineeringUnits] under the hood
+Unit-safe fluid properties using [CoolProp] and [EngineeringUnits]
 
 [CoolProp]: http://www.coolprop.org/
 [EngineeringUnits]:https://github.com/MadsKirkFoged/EngineeringUnits
