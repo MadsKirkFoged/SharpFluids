@@ -60,7 +60,8 @@ Mass mass = new Mass(10, MassUnit.Kilogram);
 Volume volume = new Volume(4, VolumeUnit.CubicMeter);
 
 Density D1 = mass / volume; // 2.5 kg/m³
-Density D2 = volume / mass; // System.Exception: 'This is NOT a [kg/m³] as expected! Your Unit is a [m³/kg] '
+Density D2 = volume / mass; // WrongUnitException: 'This is NOT a [kg/m³] as expected! Your Unit is a [m³/kg]'
+
 ```
 ## Converting between units is not your headache anymore
 
