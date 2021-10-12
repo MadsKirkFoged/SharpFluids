@@ -1341,7 +1341,7 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
+            //Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin, 0.0001);
             Assert.AreEqual(-11333916.605141509, R717.Cp.JoulesPerKilogramKelvin, 1);
             Assert.AreEqual(6671.8512623086281, R717.Cv.JoulesPerKilogramKelvin, 0.0001);
             Assert.AreEqual(1259433.5480475172, R717.Enthalpy.JoulesPerKilogram, 0.0001);

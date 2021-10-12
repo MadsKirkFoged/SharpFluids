@@ -43,7 +43,6 @@ namespace SharpFluids
         {
             SetValuesToZero();
             SetLimitsToZero();
-            //SetDefalutDisplayUnits();
         }
 
         /// <summary>
@@ -154,23 +153,16 @@ namespace SharpFluids
                     CriticalEnthalpy = REF.hmass();
                 }
 
-
-
                 //Fraction
                 FractionMin = REF.keyed_output(parameters.ifraction_min);
                 FractionMax = REF.keyed_output(parameters.ifraction_max);
 
-                //SetDefalutDisplayUnits();
+
             }
             catch (Exception e)
             {
-
                 Log.Error($"SharpFluid -> UpdateFluidConstants -> {e}");
-            }
-
-            
-
-
+            }          
         }
 
         /// <summary>
@@ -196,19 +188,14 @@ namespace SharpFluids
                 Density = REF.rhomass();
                 Cp = REF.cpmass();
                 Cv = REF.cvmass();
-
-                //Debug.Print($"Value: {REF.viscosity()}");
                 DynamicViscosity = REF.viscosity();
-
-
                 Prandtl = REF.Prandtl();
                 SurfaceTension = REF.surface_tension();
                 InternalEnergy = REF.umass();
                 Conductivity = REF.conductivity();
                 Phase = (Phases)REF.phase();
-
                 FailState = false;
-                //SetDefalutDisplayUnits();
+
             }
             catch (Exception e)
             {
@@ -224,40 +211,36 @@ namespace SharpFluids
         /// </summary>   
         public virtual void SetValuesToZero()
         {
-            Enthalpy = SpecificEnergy.Zero;
-            Temperature = Temperature.Zero;
-            Pressure = Pressure.Zero;
-            Entropy = SpecificEntropy.Zero;
+            Enthalpy = 0;
+            Temperature = 0;
+            Pressure = 0;
+            Entropy = 0;
             Quality = 0;
-            Density = Density.Zero;
-            Cp = SpecificEntropy.Zero;
-            Cv = SpecificEntropy.Zero;
-            MassFlow = MassFlow.Zero;
-            Mass = Mass.Zero;
+            Density = 0;
+            Cp = 0;
+            Cv = 0;
+            MassFlow = 0;
+            Mass = 0;
             Prandtl = 0;
-            SurfaceTension = ForcePerLength.Zero;
-            SoundSpeed = Speed.Zero;
+            SurfaceTension = 0;
+            SoundSpeed = 0;
             FailState = true;
-            DynamicViscosity = DynamicViscosity.Zero;
-            Conductivity = ThermalConductivity.Zero;
-            MolarMass = MolarMass.Zero;
+            DynamicViscosity = 0;
+            Conductivity = 0;
+            MolarMass = 0;
             Compressibility = 0;
-            InternalEnergy = SpecificEnergy.Zero;
-
+            InternalEnergy = 0;
         }
 
         public virtual void SetLimitsToZero()
-        {
-           
-            LimitTemperatureMax = Temperature.Zero;
-            LimitTemperatureMin = Temperature.Zero;
-            CriticalTemperature = Temperature.Zero;
-            CriticalPressure = Pressure.Zero;
-            LimitPressureMin = Pressure.Zero;
-            LimitPressureMax = Pressure.Zero;
-            CriticalEnthalpy = SpecificEnergy.Zero;
-
-
+        {           
+            LimitTemperatureMax = 0;
+            LimitTemperatureMin = 0;
+            CriticalTemperature = 0;
+            CriticalPressure = 0;
+            LimitPressureMin = 0;
+            LimitPressureMax = 0;
+            CriticalEnthalpy = 0;
         }
 
 
@@ -309,7 +292,6 @@ namespace SharpFluids
 
                     //Set new media
                     SetNewMedia(other.Media);
-
                 }
             }
             else
@@ -332,11 +314,19 @@ namespace SharpFluids
             //After the mixing an Update should be run
 
 
-            if (this.Enthalpy == SpecificEnergy.Zero || this.Pressure == Pressure.Zero || this.Entropy == SpecificEntropy.Zero || this.Temperature == Temperature.Zero || this.MassFlow == MassFlow.Zero)
+            if (this.Enthalpy.IsZero() ||
+                this.Pressure.IsZero() || 
+                this.Entropy.IsZero() || 
+                this.Temperature.IsZero() || 
+                this.MassFlow.IsZero())
             {
                 this.Copy(other);
             }
-            else if (other.Enthalpy == SpecificEnergy.Zero || other.Pressure == Pressure.Zero || other.Entropy == SpecificEntropy.Zero || other.Temperature == Temperature.Zero || other.MassFlow == MassFlow.Zero)
+            else if (other.Enthalpy.IsZero() || 
+                     other.Pressure.IsZero() || 
+                     other.Entropy.IsZero() || 
+                     other.Temperature.IsZero() || 
+                     other.MassFlow.IsZero())
             {
                 //Do nothing
                 Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
@@ -344,11 +334,10 @@ namespace SharpFluids
             else
             {
 
-                if ((other.MassFlow + this.MassFlow) != MassFlow.Zero)
+                if ((other.MassFlow + this.MassFlow).IsNotZero())
                 {
                     //Calculating the average H weighted on the massflow
                     this.Enthalpy = other.Enthalpy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Enthalpy * (this.MassFlow / (other.MassFlow + this.MassFlow));
-
 
                     //Calculating the average P weighted on the massflow
                     this.Pressure = other.Pressure * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Pressure * (this.MassFlow / (other.MassFlow + this.MassFlow));
@@ -381,16 +370,9 @@ namespace SharpFluids
             //TODO Split this up in MassFlow and Mass
 
             MassFlow tolerence = MassFlow.FromKilogramsPerSecond(0.00001);
-
-            MassFlow MassFlowDiss = (this.MassFlow - other.MassFlow);
-
-            if (MassFlowDiss < MassFlow.Zero)
-            {
-                MassFlowDiss *= -1;
-            }
+            MassFlow MassFlowDiss = (this.MassFlow - other.MassFlow).Abs();
 
             return MassFlowDiss <= tolerence;
-
         }
 
 
@@ -561,15 +543,6 @@ namespace SharpFluids
                 min = REF.keyed_output(parameters.ifraction_min);
                 max = REF.keyed_output(parameters.ifraction_max);
 
-
-                //foreach (parameters suit in (parameters[])Enum.GetValues(typeof(parameters)))
-                //{
-
-                //    Debug.Print($"{suit}: {REF.keyed_output(suit)}");
-                //}
-
-
-
                 if (fraction < min)
                     throw new System.ArgumentException("Selected fraction is below the limit");
                 else if (fraction > max)
@@ -594,30 +567,7 @@ namespace SharpFluids
         /// </summary> 
         public virtual void SetDefalutDisplayUnits()
         {
-            ////Units to a default IS unit
-            //Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
-            //Temperature = Temperature.ToUnit(TemperatureUnit.Kelvin);
-            //Pressure = Pressure.ToUnit(PressureUnit.Pascal);
-            //Entropy = Entropy.ToUnit(EntropyUnit.JoulePerKelvin);
-            //Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
-            //Cp = Cp.ToUnit(SpecificEntropyUnit.JoulePerKilogramKelvin);
-            //Cv = Cv.ToUnit(SpecificEntropyUnit.JoulePerKilogramKelvin);
-            //MassFlow = MassFlow.ToUnit(MassFlowUnit.KilogramPerSecond);
-            //Mass = Mass.ToUnit(MassUnit.Kilogram);
-            //SurfaceTension = SurfaceTension.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
-            //SoundSpeed = SoundSpeed.ToUnit(SpeedUnit.MeterPerSecond);
-            //DynamicViscosity = DynamicViscosity.ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
-            //Conductivity = Conductivity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
-            //MolarMass = MolarMass.ToUnit(MolarMassUnit.KilogramPerMole);
-            //InternalEnergy = InternalEnergy.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
 
-            //LimitTemperatureMax = LimitTemperatureMax.ToUnit(TemperatureUnit.Kelvin);
-            //LimitTemperatureMin = LimitTemperatureMin.ToUnit(TemperatureUnit.Kelvin);
-            //CriticalTemperature = CriticalTemperature.ToUnit(TemperatureUnit.Kelvin);
-            //CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Pascal);
-            //LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Pascal);
-            //LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Pascal);
-            //CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
 
             //Units to specifig units
             Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
@@ -644,9 +594,6 @@ namespace SharpFluids
             LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Bar);
             CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
 
-
-
-
         }
 
 
@@ -657,7 +604,6 @@ namespace SharpFluids
         /// </summary>
         public static bool operator ==(Fluid other1, Fluid other2)
         {
-
             //TODO If mass is selected!
 
             MassFlow MassFlowTolerance = MassFlow.FromKilogramsPerSecond(0.00001);
@@ -667,39 +613,22 @@ namespace SharpFluids
 
 
 
-            MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow);
-            if (MassFlowDiss < MassFlow.Zero)            
-                MassFlowDiss *= -1;          
+            MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow).Abs();    
+            SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy).Abs();
+            Pressure PDiss = (other1.Pressure - other2.Pressure).Abs();
+            Temperature TDiss = (other1.Temperature - other2.Temperature).Abs();
 
-            SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy);
-            if (HDiss < SpecificEnergy.Zero)            
-                HDiss *= -1;
             
 
-            Pressure PDiss = (other1.Pressure - other2.Pressure);
-            if (PDiss < Pressure.Zero)            
-                PDiss *= -1;
-            
-
-            Temperature TDiss = (other1.Temperature - other2.Temperature);
-            if (TDiss < Temperature.Zero)            
-                TDiss *= -1;
-            
-
-            return (MassFlowDiss <= MassFlowTolerance) && (HDiss <= HTolerance) && (PDiss <= PTolerance) && (TDiss <= TTolerance);
+            return  (MassFlowDiss <= MassFlowTolerance) && 
+                    (HDiss <= HTolerance) && 
+                    (PDiss <= PTolerance) && 
+                    (TDiss <= TTolerance);
         }
 
         public static bool operator !=(Fluid Input1, Fluid Input2)
         {
-
-            if (Input1 == Input2)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return !(Input1 == Input2);
         }
         public override bool Equals(object obj)
         {
@@ -707,8 +636,6 @@ namespace SharpFluids
         }
         public override int GetHashCode()
         {
-
-
             HashCode hashCode = new HashCode();
             hashCode.Add(_mass);
             hashCode.Add(_massflow);
@@ -736,62 +663,21 @@ namespace SharpFluids
 
         }
         public void Dispose()
-        {
-
-            
+        {            
                 REF.Dispose();
                 REF = null;
-                this.Dispose();
-            
-
-
-            
+                this.Dispose();         
         }
-
-        /// <summary>
-        /// Not in use anymore
-        /// </summary>
-        //public JsonSerializerSettings ReturnJSONSettings()
-        //{
-
-        //    //We might not have to use this anymore!
-
-        //    //Setting for both UnitsNet and PreserveReferences
-        //    var JsonSettings = new JsonSerializerSettings
-        //    {
-        //        PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-        //        TypeNameHandling = TypeNameHandling.All,
-        //    };
-
-        //    JsonSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
-
-        //    return JsonSettings;
-        //}
 
         public string SaveAsJSON()
         {
-            //return JsonConvert.SerializeObject(this, ReturnJSONSettings());
             return JsonConvert.SerializeObject(this);
         }
 
         public Fluid LoadFromJSON(string json)
         {
-            //return JsonConvert.DeserializeObject<Fluid>(json, ReturnJSONSettings());
             return JsonConvert.DeserializeObject<Fluid>(json);
         }
 
-
-        public void GetListOfPreMix()
-        {
-
-            var test = REF.GetInfo("predefined_mixtures");
-
-
-        }
-
-
     }
-
-
-
 }
