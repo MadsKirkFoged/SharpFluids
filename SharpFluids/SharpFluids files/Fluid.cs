@@ -679,5 +679,46 @@ namespace SharpFluids
             return JsonConvert.DeserializeObject<Fluid>(json);
         }
 
+
+        public Fluid Clone()
+        {
+            Fluid Local = new Fluid(Media);
+
+
+            Local.Compressibility = Compressibility;
+            Local.Conductivity = Conductivity;
+            Local.Cp = Cp;
+            Local.CriticalEnthalpy = CriticalEnthalpy;
+            Local.CriticalPressure = CriticalPressure;
+            Local.CriticalTemperature = CriticalTemperature;
+            Local.Cv = Cv;
+            Local.Density = Density;
+            Local.DynamicViscosity = DynamicViscosity;
+            Local.Enthalpy = Enthalpy;
+            Local.Entropy = Entropy;
+            Local.FailState = FailState;
+            Local.FractionMax = FractionMax;
+            Local.FractionMin = FractionMin;
+            Local.InternalEnergy = InternalEnergy;
+            Local.LimitPressureMax = LimitPressureMax;
+            Local.LimitPressureMin = LimitPressureMin;
+            Local.LimitTemperatureMax = LimitTemperatureMax;
+            Local.LimitTemperatureMin = LimitTemperatureMin;
+            Local.Mass = Mass;
+            Local.MassFlow = MassFlow;
+            Local.MolarMass = MolarMass;
+            Local.Phase = Phase;
+            Local.Prandtl = Prandtl;
+            Local.Pressure = Pressure;
+            Local.Quality = Quality;
+            Local.SoundSpeed = SoundSpeed;
+            Local.SurfaceTension = SurfaceTension;
+            Local.Temperature = Temperature;
+
+            return Local;
+
+        }
+
+
     }
 }

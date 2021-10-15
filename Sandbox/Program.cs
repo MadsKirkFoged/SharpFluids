@@ -41,6 +41,8 @@ namespace Sandbox
             Fluid R717 = new Fluid(FluidList.Ammonia);
             R717.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(100));
 
+            Fluid R717Clone = R717.Clone();
+
             Console.WriteLine(R717.Density); // 5.751 kg/m³
             Console.WriteLine(R717.DynamicViscosity); // 1.286e-05 Pa·s
 
