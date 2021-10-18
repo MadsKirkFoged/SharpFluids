@@ -582,7 +582,7 @@ class CoolPropPINVOKE
     public static extern double AbstractState_p_triple(HandleRef jarg1);
 
     [DllImport("CoolProp", EntryPoint = "CSharp_AbstractState_phase")]
-    public static extern double AbstractState_phase(HandleRef jarg1);
+    public static extern int AbstractState_phase(HandleRef jarg1);
 
     [DllImport("CoolProp", EntryPoint = "CSharp_AbstractState_name")]
     public static extern string AbstractState_name(HandleRef jarg1);

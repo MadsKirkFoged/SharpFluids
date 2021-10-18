@@ -28,6 +28,11 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
+            Fluid r134a = new Fluid(FluidList.R134a);
+            r134a.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(75));
+            var phase = r134a.Phase;
+
+
 
             Length length = new Length(5.485, LengthUnit.Inch);
             Length height = new Length(12.4, LengthUnit.Centimeter);
@@ -213,7 +218,7 @@ namespace Sandbox
 
 
 
-            Fluid r134a = new Fluid(FluidList.R134a);
+            //Fluid r134a = new Fluid(FluidList.R134a);
             r134a.UpdatePT(Pressure.FromBars(2), Temperature.FromDegreesCelsius(13));
             string densité = r134a.Density.MilligramsPerCubicMeter.ToString();
 
