@@ -355,7 +355,7 @@ namespace SharpFluids
         public void UpdateHT(SpecificEnergy enthalpy, Temperature temperature)
         {
             //Not yet supported by CoolProp!
-            //throw new NotImplementedException("Not yet supported by CoolProp");
+            throw new NotImplementedException($"SharpFluid -> UpdateHT -> Not (yet) supported by CoolProp!");
             Log.Debug($"SharpFluid -> UpdateHT -> Not yet supported by CoolProp!");
             REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
         }
