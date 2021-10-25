@@ -28,6 +28,12 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
+            Fluid Ammonia = new Fluid(FluidList.Ammonia);
+            Ammonia.UpdatePT(Pressure.FromSI(2293443.57087332), Temperature.FromSI(405.55873230045091));
+
+            Ammonia.UpdatePT(Pressure.FromSI(2493443), Temperature.FromSI(410));
+
+
             Fluid r134a = new Fluid(FluidList.R134a);
             r134a.UpdatePT(Pressure.FromBars(10), Temperature.FromDegreesCelsius(75));
             var phase = r134a.Phase;
