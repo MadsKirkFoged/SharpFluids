@@ -269,6 +269,7 @@ namespace SharpFluids
                 else if (Pressure > CriticalPressure)
                 {
                     Log.Debug($"SharpFluid -> Tsat -> Pressure ({Pressure}) is above CriticalPressure {CriticalPressure}. CriticalPressure is returned instead!");
+                    FailState = false;
                     return CriticalTemperature;
                 }
                 else

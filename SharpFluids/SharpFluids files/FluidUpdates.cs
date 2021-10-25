@@ -503,6 +503,11 @@ namespace SharpFluids
                     UpdatePT(CriticalPressure, CriticalTemperature);
                     UpdatePH(pressure, Enthalpy);
                     Log.Debug($"SharpFluid -> UpdatePX -> {pressure} is above CriticalPressure ({CriticalPressure}) -> We will just return you the Critical point!");
+
+                    if (FailState)
+                    {
+                        SetValuesToZero();
+                    }
                 }
                 else
                 {
