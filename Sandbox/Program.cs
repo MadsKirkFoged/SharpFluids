@@ -28,7 +28,24 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
+            Fluid R407C = new Fluid(FluidList.R407C);
+
+            R407C.UpdatePX(Pressure.FromMegapascals(4.022736), 0);
+
+
+
+
             Fluid Ammonia = new Fluid(FluidList.Ammonia);
+
+
+            var test11 = Ammonia.GetEnvelopePhase();
+
+
+            Ammonia.UpdatePX(Pressure.FromBars(25), 0.5);
+
+            Ammonia.UpdateDH(Ammonia.Density, Ammonia.Enthalpy);
+
+
             Ammonia.UpdatePT(Pressure.FromSI(2293443.57087332), Temperature.FromSI(405.55873230045091));
 
             Ammonia.UpdatePT(Pressure.FromSI(2493443), Temperature.FromSI(410));

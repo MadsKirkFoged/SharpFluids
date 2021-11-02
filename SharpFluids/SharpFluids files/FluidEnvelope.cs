@@ -16,7 +16,7 @@ namespace SharpFluids
 
 
 
-        public List<(Pressure, SpecificEnergy)> GetEnvelopePhase(int NumberOfIncrements = 200)
+        public List<(Pressure, SpecificEnergy)> GetEnvelopePhase()
         {
 
             List<(Pressure, SpecificEnergy)> localListLiq = new List<(Pressure, SpecificEnergy)>();
@@ -25,28 +25,44 @@ namespace SharpFluids
 
 
 
-            Pressure Increment = (CriticalPressure - LimitPressureMin) / (NumberOfIncrements * 2);
+            Pressure Increment = (CriticalPressure - LimitPressureMin) / (100000);
+
+            //List<Pressure> PressureList = new List<Pressure>();
+
+
+
+            //for (Pressure i = CriticalPressure; i > LimitPressureMin; i -= Increment)
+            //{
+
+            //    PressureList.Add(i);
+
+
+            //    Increment *= 1.10;
+            //}
+
+
+
 
 
             for (Pressure i = CriticalPressure; i > LimitPressureMin; i -= Increment)
             {
-                UpdatePX(i,0);
+                UpdatePX(i, 0);
 
                 if (!FailState)
                     localListLiq.Add((Pressure, Enthalpy));
-                
+
 
                 UpdatePX(i, 1);
 
                 if (!FailState)
                     localListGas.Add((Pressure, Enthalpy));
 
-
+                Increment *= 1.10;
             }
 
 
             //We dont want the Critical point to be there twice
-            localListLiq.RemoveAt(0);
+            //localListLiq.RemoveAt(0);
 
             //Merging into one list
             foreach (var item in localListLiq.AsEnumerable().Reverse())
