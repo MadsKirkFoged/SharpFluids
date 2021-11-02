@@ -25,7 +25,7 @@ namespace SharpFluids
 
 
 
-            Pressure Increment = (CriticalPressure - LimitPressureMin) / (100000);
+            Pressure Increment = (CriticalPressure - LimitPressureMin) / (10000);
 
             //List<Pressure> PressureList = new List<Pressure>();
 
@@ -44,21 +44,25 @@ namespace SharpFluids
 
 
 
-            for (Pressure i = CriticalPressure; i > LimitPressureMin; i -= Increment)
+            for (Pressure i = CriticalPressure - Pressure.FromBars(1); i > LimitPressureMin; i -= Increment)
             {
                 UpdatePX(i, 0);
 
                 if (!FailState)
-                    localListLiq.Add((Pressure, Enthalpy));
+                    localListLiq.Add((i, Enthalpy));
 
 
                 UpdatePX(i, 1);
 
                 if (!FailState)
-                    localListGas.Add((Pressure, Enthalpy));
+                    localListGas.Add((i, Enthalpy));
 
                 Increment *= 1.10;
             }
+
+
+            //localListLiq.Sort((x, y) => y.Item1.CompareTo(x.Item1));
+
 
 
             //We dont want the Critical point to be there twice
