@@ -28,6 +28,14 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
 
+
+            MoistAir Air = new MoistAir();
+            Air.UpdateAir(Pressure.FromSI(101325), HumidityRatio: 0.011, RelativeHumidity: 0.8);
+
+
+
+
+
             Fluid R407C = new Fluid(FluidList.R407C);
 
             R407C.UpdatePX(Pressure.FromMegapascals(4.022736), 0);
@@ -75,7 +83,7 @@ namespace Sandbox
             Console.WriteLine(R717.DynamicViscosity); // 1.286e-05 Pa·s
 
             //Fluid test12 = new Fluid(FluidList.Custom_SHC226E);
-            MoistAir Air = new MoistAir();
+            
 
 
             //test12.updateAir("H","T",298.15,"P",101325,"R",0.5);
