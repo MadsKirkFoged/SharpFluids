@@ -226,7 +226,7 @@ namespace SharpFluids
 
 
 
-            this.WetBulbTemperature = Temperature.FromSI(AbstractState.updateAir("Tdp", input1, input1Value, input2, input2Value, input3, input3Value));
+            this.WetBulbTemperature = Temperature.FromSI(AbstractState.updateAir("Twb", input1, input1Value, input2, input2Value, input3, input3Value));
 
             this.Cp = SpecificEntropy.FromSI(AbstractState.updateAir("cp_ha", input1, input1Value, input2, input2Value, input3, input3Value));
 
