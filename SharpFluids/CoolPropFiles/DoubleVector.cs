@@ -14,8 +14,20 @@ public class DoubleVector : IDisposable
     swigCMemOwn = cMemoryOwn;
     swigCPtr = new HandleRef(this, cPtr);
   }
-  public DoubleVector() : this(CoolPropPINVOKE.new_DoubleVector__SWIG_0(), true) {
-  }
+
+    private static IntPtr Instantiate_swig()
+    {
+        if (Environment.Is64BitProcess)
+        {
+            return CoolPropPINVOKE64.new_DoubleVector__SWIG_0();
+        }
+        else
+        {
+            return CoolPropPINVOKE.new_DoubleVector__SWIG_0();
+        }
+    }
+    public DoubleVector() : this(Instantiate_swig(), true) {
+    }
   public DoubleVector(ICollection c) : this() {
     if (c == null)
       throw new ArgumentNullException("c");
@@ -48,8 +60,16 @@ public class DoubleVector : IDisposable
 
 
   public void Add(double x) {
-    CoolPropPINVOKE.DoubleVector_Add(swigCPtr, x);
-  }
+        if (Environment.Is64BitProcess)
+        {
+            CoolPropPINVOKE64.DoubleVector_Add(swigCPtr, x);
+        }
+        else
+        {
+            CoolPropPINVOKE.DoubleVector_Add(swigCPtr, x);
+
+        }
+    }
 
 
 
