@@ -30,7 +30,15 @@ namespace Sandbox
 
 
             MoistAir Air = new MoistAir();
-            Air.UpdateAir(Pressure.FromSI(101325), HumidityRatio: 0.011, RelativeHumidity: 0.8);
+
+            Air.UpdateAir(Pressure.FromBars(1),
+                    DryBulbTemperature: Temperature.FromDegreesCelsius(20),
+                    RelativeHumidity: 0.7
+
+                    );
+
+            Air.UpdateAir(Pressure.FromBars(1), HumidityRatio: 0.010397090640274141, RelativeHumidity: 0.7);
+            //Air.UpdateAir(Pressure.FromSI(101325), HumidityRatio: 0.011, RelativeHumidity: 0.8);
 
 
 
