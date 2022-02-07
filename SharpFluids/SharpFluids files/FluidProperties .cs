@@ -292,13 +292,13 @@ namespace SharpFluids
         /// <br>This can ONLY be used when the <see cref="UnitsNet.Mass"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
         //[JsonProperty(PropertyName = "V", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        //[JsonProperty]
+        [JsonIgnore]
         public Volume Volume
         {
             get
             {
                 //Calculate the volume
-                if (Density != Density.Zero)
+                if (Density is object && Density != Density.Zero)
                 {
                     return Mass / Density;
                 }
@@ -317,13 +317,13 @@ namespace SharpFluids
         /// <br>This can ONLY be used when the <see cref="UnitsNet.MassFlow"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
         //[JsonProperty(PropertyName = "VF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        //[JsonProperty]
+        [JsonIgnore]
         public VolumeFlow VolumeFlow
         {
             get
             {
                 //Calculate the volumeflow
-                if (Density != Density.Zero)
+                if (Density is object && Density != Density.Zero)
                 {
                     return MassFlow / Density;
                 }
