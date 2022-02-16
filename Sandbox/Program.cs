@@ -44,10 +44,9 @@ namespace Sandbox
 
 
 
-            Fluid R407C = new Fluid(FluidList.R407C);
-
-            R407C.UpdatePX(Pressure.FromMegapascals(4.022736), 0);
-
+            Fluid Water = new Fluid(FluidList.Water);
+            Water.UpdatePT(Pressure.FromPascals(2340), Temperature.FromDegreesCelsius(20));
+            //Water.UpdateXT(1, Temperature.FromDegreesCelsius(20));
 
 
 
@@ -298,7 +297,7 @@ namespace Sandbox
 
 
             //Find the Density of water at 13°C
-            Fluid Water = new Fluid(FluidList.Water);
+            //Fluid Water = new Fluid(FluidList.Water);
             Water.UpdatePT(Pressure.FromBars(1.013), Temperature.FromDegreesCelsius(13));
             Console.WriteLine("Density of water at 13°C: " + Water.Density);
 
