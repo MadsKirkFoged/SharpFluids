@@ -28,12 +28,11 @@ namespace SharpFluids
     /// </summary>
 
 
-
     public partial class Fluid
     {
 
 
-       
+
 
         /// <summary>
         /// Create an empty <see cref="Fluid"/> that does not have a fluid type!
@@ -163,7 +162,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 Log.Error($"SharpFluid -> UpdateFluidConstants -> {e}");
-            }          
+            }
         }
 
         /// <summary>
@@ -204,7 +203,7 @@ namespace SharpFluids
                 throw new Exception("UpdateValues", e);
             }
 
-           
+
         }
 
         /// <summary>
@@ -234,7 +233,7 @@ namespace SharpFluids
         }
 
         public virtual void SetLimitsToZero()
-        {           
+        {
             LimitTemperatureMax = 0;
             LimitTemperatureMin = 0;
             CriticalTemperature = 0;
@@ -300,65 +299,65 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> CopyType -> 'other.Media is null'");
             }
         }
-
-        /// <summary>
-        /// Mixing <paramref name="other"/> into this <see cref="Fluid"/>
-        /// <br>This makes a simple mixing based on <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> </br>
-        /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
-        /// </summary> 
-        /// <param name="other"><see cref="Fluid"/> to be copied from</param>
-        public void AddTo(Fluid other)
-        {
-            //TODO Should also work if Mass is selected
-
-            //This makes a simple mixing based on the massflow (weigted)
-            //After the mixing an Update should be run
-
-
-            if (this.Enthalpy.IsZero() ||
-                this.Pressure.IsZero() || 
-                this.Entropy.IsZero() || 
-                this.Temperature.IsZero() || 
-                this.MassFlow.IsZero())
-            {
-                this.Copy(other);
-            }
-            else if (other.Enthalpy.IsZero() || 
-                     other.Pressure.IsZero() || 
-                     other.Entropy.IsZero() || 
-                     other.Temperature.IsZero() || 
-                     other.MassFlow.IsZero())
-            {
-                //Do nothing
-                Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
-            }
-            else
-            {
-
-                if ((other.MassFlow + this.MassFlow).IsNotZero())
+        /**
+                /// <summary>
+                /// Mixing <paramref name="other"/> into this <see cref="Fluid"/>
+                /// <br>This makes a simple mixing based on <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> </br>
+                /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
+                /// </summary> 
+                /// <param name="other"><see cref="Fluid"/> to be copied from</param>
+                public void AddTo(Fluid other)
                 {
-                    //Calculating the average H weighted on the massflow
-                    this.Enthalpy = other.Enthalpy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Enthalpy * (this.MassFlow / (other.MassFlow + this.MassFlow));
+                    //TODO Should also work if Mass is selected
 
-                    //Calculating the average P weighted on the massflow
-                    this.Pressure = other.Pressure * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Pressure * (this.MassFlow / (other.MassFlow + this.MassFlow));
-
-
-                    //Calculating the average S weighted on the massflow
-                    this.Entropy = other.Entropy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Entropy * (this.MassFlow / (other.MassFlow + this.MassFlow));
-
-                    //Calculating the average T weighted on the massflow
-                    this.Temperature = Temperature.FromKelvins((double)(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Temperature.Kelvins * (this.MassFlow / (other.MassFlow + this.MassFlow))));
-                }
-
-                this.MassFlow = other.MassFlow + this.MassFlow;
-
-                //this.CheckForNaN();
-
-            }
+                    //This makes a simple mixing based on the massflow (weigted)
+                    //After the mixing an Update should be run
 
 
-        }
+                    if (this.Enthalpy.IsZero() ||
+                        this.Pressure.IsZero() || 
+                        this.Entropy.IsZero() || 
+                        this.Temperature.IsZero() || 
+                        this.MassFlow.IsZero())
+                    {
+                        this.Copy(other);
+                    }
+                    else if (other.Enthalpy.IsZero() || 
+                             other.Pressure.IsZero() || 
+                             other.Entropy.IsZero() || 
+                             other.Temperature.IsZero() || 
+                             other.MassFlow.IsZero())
+                    {
+                        //Do nothing
+                        Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
+                    }
+                    else
+                    {
+
+                        if ((other.MassFlow + this.MassFlow).IsNotZero())
+                        {
+                            //Calculating the average H weighted on the massflow
+                            this.Enthalpy = other.Enthalpy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Enthalpy * (this.MassFlow / (other.MassFlow + this.MassFlow));
+
+                            //Calculating the average P weighted on the massflow
+                            this.Pressure = other.Pressure * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Pressure * (this.MassFlow / (other.MassFlow + this.MassFlow));
+
+
+                            //Calculating the average S weighted on the massflow
+                            this.Entropy = other.Entropy * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Entropy * (this.MassFlow / (other.MassFlow + this.MassFlow));
+
+                            //Calculating the average T weighted on the massflow
+                            this.Temperature = Temperature.FromKelvins((double)(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + this.MassFlow)) + this.Temperature.Kelvins * (this.MassFlow / (other.MassFlow + this.MassFlow))));
+                        }
+
+                        this.MassFlow = other.MassFlow + this.MassFlow;
+
+                        //this.CheckForNaN();
+
+                    }
+
+
+                }**/
 
         /// <summary>
         /// Check if two <see cref="Fluid"/> have almost the same <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>
@@ -398,9 +397,9 @@ namespace SharpFluids
 
 
             //if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
-            
-                REF = AbstractState.factory("HEOS", RefType);
-                UpdateFluidConstants();
+
+            REF = AbstractState.factory("HEOS", RefType);
+            UpdateFluidConstants();
 
         }
 
@@ -426,12 +425,12 @@ namespace SharpFluids
 
             if (Media is null)
                 Media = new MediaType();
-      
-            
-                Media.Copy(Type);
-                REF = AbstractState.factory(Media.BackendType, Media.InternalName);
-                UpdateFluidConstants();
-            
+
+
+            Media.Copy(Type);
+            REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+            UpdateFluidConstants();
+
 
         }
 
@@ -467,67 +466,67 @@ namespace SharpFluids
         }
 
 
-        /// <summary>
-        /// Add <see cref="UnitsNet.Power"/> to the <see cref="Fluid"/>
-        /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
-        /// </summary>
-        public void AddPower(Power powerToBeAdded)
-        {
-            //TODO If mass is selected!
-            //Finding the new H
+        ///// <summary>
+        ///// Add <see cref="UnitsNet.Power"/> to the <see cref="Fluid"/>
+        ///// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        ///// </summary>
+        //public void AddPower(Power powerToBeAdded)
+        //{
+        //    //TODO If mass is selected!
+        //    //Finding the new H
 
 
-            if (MassFlow == MassFlow.Zero)
-            {
-                return;
-            }
+        //    if (MassFlow == MassFlow.Zero)
+        //    {
+        //        return;
+        //    }
 
 
-            
-            try
-            {
-                SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
 
-                //if (powerToBeAdded > Power.Zero)
-                if (local > Enthalpy)
-                {
-                    UpdatePT(Pressure, LimitTemperatureMax);
+        //    try
+        //    {
+        //        SpecificEnergy local = ((Enthalpy * MassFlow) + powerToBeAdded) / MassFlow;
 
-                    if (Enthalpy > local)
-                        UpdatePH(Pressure, local);
-                }
-                else
-                {
-                    UpdatePT(Pressure, LimitTemperatureMin);
+        //        //if (powerToBeAdded > Power.Zero)
+        //        if (local > Enthalpy)
+        //        {
+        //            UpdatePT(Pressure, LimitTemperatureMax);
 
-                    if (Enthalpy < local)                    
-                        UpdatePH(Pressure, local);
+        //            if (Enthalpy > local)
+        //                UpdatePH(Pressure, local);
+        //        }
+        //        else
+        //        {
+        //            UpdatePT(Pressure, LimitTemperatureMin);
 
-                }
+        //            if (Enthalpy < local)                    
+        //                UpdatePH(Pressure, local);
 
-            }
-            catch (Exception e)
-            {
+        //        }
 
-                FailState = true;
-                Log.Error($"SharpFluid -> AddPower -> {e}");
-            }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        FailState = true;
+        //        Log.Error($"SharpFluid -> AddPower -> {e}");
+        //    }
 
 
-        }
+        //}
 
-        /// <summary>
-        /// Remove <see cref="UnitsNet.Power"/> from the <see cref="Fluid"/>
-        /// </summary> 
-        /// <remarks>
-        /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
-        /// </remarks>
-        public void RemovePower(Power powerToBeRemoved)
-        {
-            //TODO: If mass is selected 
+        ///// <summary>
+        ///// Remove <see cref="UnitsNet.Power"/> from the <see cref="Fluid"/>
+        ///// </summary> 
+        ///// <remarks>
+        ///// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        ///// </remarks>
+        //public void RemovePower(Power powerToBeRemoved)
+        //{
+        //    //TODO: If mass is selected 
 
-            AddPower(powerToBeRemoved * -1);
-        }
+        //    AddPower(powerToBeRemoved * -1);
+        //}
 
 
         /// <summary>
@@ -551,15 +550,15 @@ namespace SharpFluids
             }
 
         }
-        
+
 
         private void CheckBeforeUpdate()
         {
-            if (REF is null)            
-                SetNewMedia(Media);          
+            if (REF is null)
+                SetNewMedia(Media);
 
-            if (Media is null)            
-                throw new System.InvalidOperationException("No Media is selected - Cant do an update on nothing!");          
+            if (Media is null)
+                throw new System.InvalidOperationException("No Media is selected - Cant do an update on nothing!");
         }
 
 
@@ -614,16 +613,16 @@ namespace SharpFluids
 
 
 
-            MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow).Abs();    
+            MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow).Abs();
             SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy).Abs();
             Pressure PDiss = (other1.Pressure - other2.Pressure).Abs();
             Temperature TDiss = (other1.Temperature - other2.Temperature).Abs();
 
-            
 
-            return  (MassFlowDiss <= MassFlowTolerance) && 
-                    (HDiss <= HTolerance) && 
-                    (PDiss <= PTolerance) && 
+
+            return (MassFlowDiss <= MassFlowTolerance) &&
+                    (HDiss <= HTolerance) &&
+                    (PDiss <= PTolerance) &&
                     (TDiss <= TTolerance);
         }
 
@@ -664,10 +663,10 @@ namespace SharpFluids
 
         }
         public void Dispose()
-        {            
-                REF.Dispose();
-                REF = null;
-                this.Dispose();         
+        {
+            REF.Dispose();
+            REF = null;
+            this.Dispose();
         }
 
         public string SaveAsJSON()

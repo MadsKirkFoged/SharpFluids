@@ -29,7 +29,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "T", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Temperature Temperature { get; protected set; }
+        public Temperature Temperature { get; set; }
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "P", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Pressure Pressure { get; protected set; }
+        public Pressure Pressure { get; set; }
 
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "E", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEnergy Enthalpy { get; protected set; }
+        public SpecificEnergy Enthalpy { get; set; }
 
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "S", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEntropy Entropy { get; protected set; }
+        public SpecificEntropy Entropy { get; set; }
 
 
         /// <summary>
@@ -406,8 +406,8 @@ namespace SharpFluids
         /// <summary>
         /// This library's fluid phase. For available phases see: <see cref="Phase"/>
         /// </summary>
-        [JsonProperty(PropertyName ="Phase", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public Phases Phase {  get; protected set;}
+        [JsonProperty(PropertyName = "Phase", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public Phases Phase { get; protected set; }
 
 
         /// <summary>
@@ -430,7 +430,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "FS", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public bool FailState { get; private set; }
+        public bool FailState { get; set; }
 
 
 
