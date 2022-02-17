@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpFluids5\SharpFluids.csproj" />
     <ProjectReference Include="..\SharpFluids\SharpFluids.csproj" />
   </ItemGroup>
 
