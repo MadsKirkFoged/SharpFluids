@@ -46,13 +46,13 @@ namespace SharpFluids
 
             for (Pressure i = CriticalPressure - Pressure.FromBars(1); i > LimitPressureMin; i -= Increment)
             {
-                UpdatePX(i, 0);
+                this.UpdatePX(i, 0);
 
                 if (!FailState)
                     localListLiq.Add((i, Enthalpy));
 
 
-                UpdatePX(i, 1);
+                this.UpdatePX(i, 1);
 
                 if (!FailState)
                     localListGas.Add((i, Enthalpy));
