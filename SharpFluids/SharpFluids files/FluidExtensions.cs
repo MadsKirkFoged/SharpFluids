@@ -116,6 +116,7 @@ namespace SharpFluids
 
         }
 
+
         /// <summary>
         /// Remove <see cref="UnitsNet.Power"/> from the <see cref="Fluid"/>
         /// </summary> 
