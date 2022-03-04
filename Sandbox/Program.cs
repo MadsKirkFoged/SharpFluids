@@ -29,6 +29,29 @@ namespace Sandbox
 
 
 
+
+            Fluid Meg = new Fluid(FluidList.MixEthyleneGlycolAQ);
+            Meg.SetFraction(0.1);
+            for (var i = 0; i <= 100; i++)
+            {
+                Meg.UpdatePT(Pressure.FromAtmospheres(1), Temperature.FromDegreesCelsius(i));
+                Console.WriteLine("Specific Heat of MEG at " + i + " °C and fraction 0.1: " + Meg.Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin));
+                Console.WriteLine("Density of MEG at " + i + " °C and fraction 0.1: " + Meg.Density.KilogramsPerCubicMeter);
+                Console.WriteLine("Dynamic Viscosity of MEG at " + i + " °C and fraction 0.1: " + Meg.DynamicViscosity.MillipascalSeconds);
+            }
+
+            Meg.SetFraction(0.2);
+            for (var i = 0; i <= 100; i++)
+            {
+                Meg.UpdatePT(Pressure.FromAtmospheres(1), Temperature.FromDegreesCelsius(i));
+                Console.WriteLine("Specific Heat of MEG at " + i + " °C and fraction 0.2: " + Meg.Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin));
+                Console.WriteLine("Density of MEG at " + i + " °C and fraction 0.2: " + Meg.Density.KilogramsPerCubicMeter);
+                Console.WriteLine("Dynamic Viscosity of MEG at " + i + " °C and fraction 0.2: " + Meg.DynamicViscosity.MillipascalSeconds);
+            }
+
+
+
+
             MoistAir Air = new MoistAir();
 
             Air.UpdateAir(Pressure.FromBars(1),
