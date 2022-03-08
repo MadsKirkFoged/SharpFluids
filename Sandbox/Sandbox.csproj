@@ -78,7 +78,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EngineeringUnits, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EngineeringUnits.1.1.516\lib\net472\EngineeringUnits.dll</HintPath>
+      <HintPath>..\packages\EngineeringUnits.1.1.519\lib\net472\EngineeringUnits.dll</HintPath>
     </Reference>
     <Reference Include="Fractions, Version=7.1.0.0, Culture=neutral, PublicKeyToken=e629dc3e25c47cef, processorArchitecture=MSIL">
       <HintPath>..\packages\Fractions.7.1.0\lib\netstandard2.0\Fractions.dll</HintPath>
