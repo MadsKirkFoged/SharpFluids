@@ -27,6 +27,15 @@ namespace Sandbox
 
             Log.Information("Hello, world!");
 
+            Fluid Water = new Fluid(FluidList.Water);
+            Water.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(69.982));
+
+            Fluid Water2 = new Fluid(FluidList.Water);
+            Water2.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(40));
+
+
+            Power Capacity = (Water.Enthalpy - Water2.Enthalpy) * MassFlow.FromKilogramPerSecond(0.1541);
+
 
 
 
@@ -67,8 +76,7 @@ namespace Sandbox
 
 
 
-            Fluid Water = new Fluid(FluidList.Water);
-            Water.UpdatePT(Pressure.FromPascals(2340), Temperature.FromDegreesCelsius(20));
+            
             //Water.UpdateXT(1, Temperature.FromDegreesCelsius(20));
 
 
