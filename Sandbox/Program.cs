@@ -27,6 +27,38 @@ namespace Sandbox
 
             Log.Information("Hello, world!");
 
+            Fluid Water = new Fluid(FluidList.Water);
+            Water.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(69.982));
+
+            Fluid Water2 = new Fluid(FluidList.Water);
+            Water2.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(40));
+
+
+            Power Capacity = (Water.Enthalpy - Water2.Enthalpy) * MassFlow.FromKilogramPerSecond(0.1541);
+
+
+
+
+            Fluid Meg = new Fluid(FluidList.MixEthyleneGlycolAQ);
+            Meg.SetFraction(0.1);
+            for (var i = 0; i <= 100; i++)
+            {
+                Meg.UpdatePT(Pressure.FromAtmospheres(1), Temperature.FromDegreesCelsius(i));
+                Console.WriteLine("Specific Heat of MEG at " + i + " °C and fraction 0.1: " + Meg.Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin));
+                Console.WriteLine("Density of MEG at " + i + " °C and fraction 0.1: " + Meg.Density.KilogramsPerCubicMeter);
+                Console.WriteLine("Dynamic Viscosity of MEG at " + i + " °C and fraction 0.1: " + Meg.DynamicViscosity.MillipascalSeconds);
+            }
+
+            Meg.SetFraction(0.2);
+            for (var i = 0; i <= 100; i++)
+            {
+                Meg.UpdatePT(Pressure.FromAtmospheres(1), Temperature.FromDegreesCelsius(i));
+                Console.WriteLine("Specific Heat of MEG at " + i + " °C and fraction 0.2: " + Meg.Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin));
+                Console.WriteLine("Density of MEG at " + i + " °C and fraction 0.2: " + Meg.Density.KilogramsPerCubicMeter);
+                Console.WriteLine("Dynamic Viscosity of MEG at " + i + " °C and fraction 0.2: " + Meg.DynamicViscosity.MillipascalSeconds);
+            }
+
+
 
 
             MoistAir Air = new MoistAir();
@@ -44,8 +76,7 @@ namespace Sandbox
 
 
 
-            Fluid Water = new Fluid(FluidList.Water);
-            Water.UpdatePT(Pressure.FromPascals(2340), Temperature.FromDegreesCelsius(20));
+            
             //Water.UpdateXT(1, Temperature.FromDegreesCelsius(20));
 
 
