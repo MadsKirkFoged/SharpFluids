@@ -304,10 +304,18 @@ public class AbstractState : IDisposable
     }
     public double keyed_output(parameters key)
     {
-        if (Environment.Is64BitProcess)        
-            return CoolPropPINVOKE64.AbstractState_keyed_output(swigCPtr, (int)key);
-        else        
-            return CoolPropPINVOKE.AbstractState_keyed_output(swigCPtr, (int)key);        
+        if (Environment.Is64BitProcess)
+        {
+            var test = CoolPropPINVOKE64.AbstractState_keyed_output(swigCPtr, (int)key);
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            return test;
+        }
+        else
+        {
+            var test = CoolPropPINVOKE.AbstractState_keyed_output(swigCPtr, (int)key);
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            return test;
+        }
     }
     public Temperature T()
     {

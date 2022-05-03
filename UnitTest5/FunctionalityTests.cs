@@ -5,6 +5,8 @@ using SharpFluids;
 //using UnitsNet;
 using EngineeringUnits;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace UnitsTests
 {
@@ -1109,6 +1111,34 @@ namespace UnitsTests
 
             Assert.AreEqual(1.1240, co2.Pressure.Megapascals, 0.001);
 
+        }
+
+
+        [TestMethod]// (Skip = "race condition demonstration")]
+        public void ParallelAccess2()
+        {
+
+
+
+            List<Task> tasks = new();
+            for (int i = 1; i < 400; ++i)
+            {
+                tasks.Add(Task.Run(dividedUnit));
+            }
+
+            Task.WaitAll(tasks.ToArray());
+
+
+
+
+            //Local function
+            void dividedUnit()
+            {
+                Fluid water = new Fluid(FluidList.Water);
+                Temperature temperature = Temperature.FromKelvins(286.15);
+                SpecificEntropy entropy = SpecificEntropy.FromJoulePerKilogramKelvin(195.27);
+                water.UpdateTS(temperature, entropy);
+            }
         }
 
 

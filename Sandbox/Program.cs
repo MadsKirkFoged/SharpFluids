@@ -21,6 +21,12 @@ namespace Sandbox
         {
 
 
+            //Running in parallel
+
+
+
+
+
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Debug()
                 .CreateLogger();
