@@ -149,7 +149,7 @@ namespace SharpFluids
                     LimitPressureMax = REF.pmax();
 
                     //Finding H_crit
-                    REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascals, 1);
+                    REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascal, 1);
                     CriticalEnthalpy = REF.hmass();
                 }
 

@@ -307,7 +307,7 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
         {
             var test = CoolPropPINVOKE64.AbstractState_keyed_output(swigCPtr, (int)key);
-            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             return test;
         }
         else
