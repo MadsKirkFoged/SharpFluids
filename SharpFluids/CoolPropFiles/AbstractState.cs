@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 //using UnitsNet;
 using EngineeringUnits;
+using EngineeringUnits.Units;
 
 public class AbstractState : IDisposable
 {
@@ -259,7 +260,8 @@ public class AbstractState : IDisposable
         {
             if (CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr) != 0)
             {
-                return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
+                //return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
+                return Pressure.From(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
             }
             else
             {
@@ -268,10 +270,10 @@ public class AbstractState : IDisposable
             }
 
         }
-        else
-            if (CoolPropPINVOKE.AbstractState_p_critical(swigCPtr) != 0)
+        else if (CoolPropPINVOKE.AbstractState_p_critical(swigCPtr) != 0)
         {
-            return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));
+            //return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
         }
         else
         {
@@ -282,10 +284,12 @@ public class AbstractState : IDisposable
     public Pressure p_triple()
     {
         if (Environment.Is64BitProcess)        
-            return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_triple(swigCPtr));        
-        else        
-            return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr));
-        
+            //return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_triple(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE64.AbstractState_p_triple(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
+        else
+            //return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
+
     }
 
     public phases phase()
@@ -333,10 +337,12 @@ public class AbstractState : IDisposable
     }
     public Pressure p()
     {
-        if (Environment.Is64BitProcess)        
-            return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p(swigCPtr));
-        else        
-            return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p(swigCPtr));        
+        if (Environment.Is64BitProcess)
+            //return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE64.AbstractState_p(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
+        else
+            //return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE.AbstractState_p(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
     }
     public double Q()
     {
