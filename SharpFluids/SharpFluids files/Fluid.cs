@@ -168,7 +168,7 @@ namespace SharpFluids
         /// <summary>
         /// Updates the values of the <see cref="Fluid"/> after an update
         /// </summary>   
-        protected virtual void UpdateValues()
+        public virtual void UpdateValues()
         {
             try
             {
@@ -243,37 +243,6 @@ namespace SharpFluids
             CriticalEnthalpy = 0;
         }
 
-
-        /// <summary>
-        /// Copy all the values from <paramref name="other"/> to this <see cref="Fluid"/>
-        /// </summary>  
-        /// <param name="other"><see cref="Fluid"/> to be copied from</param>
-        public void Copy(Fluid other)
-        {
-            //Copying Refrigerant type
-            CopyType(other);
-
-            this.Enthalpy = other.Enthalpy;
-            this.MassFlow = other.MassFlow;
-            this.Mass = other.Mass;
-            this.Pressure = other.Pressure;
-            this.Temperature = other.Temperature;
-            this.Entropy = other.Entropy;
-            this.Quality = other.Quality;
-            this.Density = other.Density;
-            this.Cp = other.Cp;
-            this.Cv = other.Cv;
-            this.CriticalPressure = other.CriticalPressure;
-            this.DynamicViscosity = other.DynamicViscosity;
-            this.Conductivity = other.Conductivity;
-            this.Prandtl = other.Prandtl;
-            this.SoundSpeed = other.SoundSpeed;
-            this.SurfaceTension = other.SurfaceTension;
-            this.FailState = other.FailState;
-            this.MolarMass = other.MolarMass;
-            this.Compressibility = other.Compressibility;
-            this.InternalEnergy = other.InternalEnergy;
-        }
 
         /// <summary>
         /// Copy just the type of fluid from <paramref name="other"/> to this <see cref="Fluid"/>
@@ -552,7 +521,7 @@ namespace SharpFluids
         }
 
 
-        private void CheckBeforeUpdate()
+        public void CheckBeforeUpdate()
         {
             if (REF is null)
                 SetNewMedia(Media);

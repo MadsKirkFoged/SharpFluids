@@ -130,5 +130,38 @@ namespace SharpFluids
             local.AddPower(powerToBeRemoved * -1);
             return local;
         }
+
+        /// <summary>
+        /// Copy all the values from <paramref name="other"/> to this <see cref="Fluid"/>
+        /// </summary>  
+        /// <param name="other"><see cref="Fluid"/> to be copied from</param>
+        public static Fluid Copy(this Fluid local, Fluid other)
+        {
+            //Copying Refrigerant type
+            local.CopyType(other);
+
+            local.Enthalpy = other.Enthalpy;
+            local.MassFlow = other.MassFlow;
+            local.Mass = other.Mass;
+            local.Pressure = other.Pressure;
+            local.Temperature = other.Temperature;
+            local.Entropy = other.Entropy;
+            local.Quality = other.Quality;
+            local.Density = other.Density;
+            local.Cp = other.Cp;
+            local.Cv = other.Cv;
+            local.CriticalPressure = other.CriticalPressure;
+            local.DynamicViscosity = other.DynamicViscosity;
+            local.Conductivity = other.Conductivity;
+            local.Prandtl = other.Prandtl;
+            local.SoundSpeed = other.SoundSpeed;
+            local.SurfaceTension = other.SurfaceTension;
+            local.FailState = other.FailState;
+            local.MolarMass = other.MolarMass;
+            local.Compressibility = other.Compressibility;
+            local.InternalEnergy = other.InternalEnergy;
+            return local;
+        }
+
     }
 }
