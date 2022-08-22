@@ -27,17 +27,23 @@
     <None Include="SharpFluids.targets" PackagePath="build\" Pack="true" />
     <None Include="CoolProp.dll" PackagePath="build\" Pack="true" />
     <None Include="CoolProp64.dll" PackagePath="build\" Pack="true" />
+    <None Include="libCoolProp64.so" PackagePath="build\" Pack="true" />
   
-  <None Update="CoolProp.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <PackagePath>build\</PackagePath>
-            <Pack>true</Pack>
-        </None>
-        <None Update="CoolProp64.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <PackagePath>build\</PackagePath>
-            <Pack>true</Pack>
-        </None>
+	<None Update="CoolProp.dll">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<PackagePath>build\</PackagePath>
+		<Pack>true</Pack>
+	</None>
+	<None Update="CoolProp64.dll">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<PackagePath>build\</PackagePath>
+		<Pack>true</Pack>
+	</None>
+	<None Update="libCoolProp64.so">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<PackagePath>build\</PackagePath>
+		<Pack>true</Pack>
+	</None>
   </ItemGroup>
 
 
