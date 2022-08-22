@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using EngineeringUnits.Units;
 using Serilog;
-
+using System.Globalization;
 
 namespace Sandbox
 {
@@ -20,12 +20,30 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
-
-            //Running in parallel
-
-
+            Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
+            AmmoniaGas2.UpdateXT(1, Temperature.FromDegreesCelsius(70));
 
 
+            Temperature testingTemp = new Temperature(-50,TemperatureUnit.DegreeCelsius);
+
+            Fluid AmmoniaGas = new Fluid(FluidList.Ammonia);
+            Fluid AmmoniaLiq = new Fluid(FluidList.Ammonia);
+            Fluid AmmoniaSub = new Fluid(FluidList.Ammonia);
+            Fluid AmmoniaSuper = new Fluid(FluidList.Ammonia);
+            AmmoniaGas.UpdateXT(1, testingTemp);
+            AmmoniaSuper.UpdatePT(AmmoniaGas.Pressure, AmmoniaGas.Temperature + Temperature.FromKelvins(25));
+
+            AmmoniaLiq.UpdateXT(0, testingTemp);
+            AmmoniaSub.UpdatePT(AmmoniaLiq.Pressure, AmmoniaLiq.Temperature - Temperature.FromKelvins(25));
+
+            Debug.Print(AmmoniaGas.Pressure.Bar.ToString(new CultureInfo("en-US")));
+
+            Debug.Print(AmmoniaGas.Enthalpy.KilojoulePerKilogram.ToString(new CultureInfo("en-US")));
+            Debug.Print(AmmoniaLiq.Enthalpy.KilojoulePerKilogram.ToString(new CultureInfo("en-US")));
+            Debug.Print(AmmoniaSuper.Enthalpy.KilojoulePerKilogram.ToString(new CultureInfo("en-US")));
+            Debug.Print(AmmoniaSub.Enthalpy.KilojoulePerKilogram.ToString(new CultureInfo("en-US")));
+
+            Debug.Print((1/AmmoniaSuper.Density.KilogramPerCubicMeter).ToString(new CultureInfo("en-US")));
 
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Debug()
@@ -34,10 +52,10 @@ namespace Sandbox
             Log.Information("Hello, world!");
 
             Fluid Water = new Fluid(FluidList.Water);
-            Water.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(69.982));
+            Water.UpdatePT(Pressure.FromBar(1), Temperature.FromDegreesCelsius(40));
 
             Fluid Water2 = new Fluid(FluidList.Water);
-            Water2.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(40));
+            Water2.UpdatePT(Pressure.FromBar(20), Temperature.FromDegreesCelsius(40));
 
 
             Power Capacity = (Water.Enthalpy - Water2.Enthalpy) * MassFlow.FromKilogramPerSecond(0.1541);
