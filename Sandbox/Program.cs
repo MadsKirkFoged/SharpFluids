@@ -20,8 +20,19 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+
+            double press = 101000;
+            double temp = 273;
+            Fluid CO2 = new Fluid(FluidList.CO2);
+
+            Console.WriteLine(CO2.LimitPressureMin.ToUnit(PressureUnit.Bar));
+            Console.WriteLine(CO2.LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius));
+
+
+
+
             Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
-            AmmoniaGas2.UpdateXT(1, Temperature.FromDegreesCelsius(70));
+            AmmoniaGas2.UpdateXT(1, Temperature.FromDegreesCelsius(25));
 
 
             Temperature testingTemp = new Temperature(-50,TemperatureUnit.DegreeCelsius);
