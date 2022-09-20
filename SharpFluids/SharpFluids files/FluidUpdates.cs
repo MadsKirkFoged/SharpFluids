@@ -634,24 +634,17 @@ namespace SharpFluids
             }
 
 
-
-            CustomOil Above = GetCustomFluidFromDatabase().FindAll(x => x.Temperature >= temperature).OrderBy(p => p.Temperature).First();
-            CustomOil Below = GetCustomFluidFromDatabase().FindAll(x => x.Temperature <= temperature).OrderByDescending(p => p.Temperature).First();
+            //Find the two closed points for Interpolation or Extrapolation
+            CustomOil Above = GetCustomFluidFromDatabase().OrderBy(p => (p.Temperature - temperature).Abs()).First();
+            CustomOil Below = GetCustomFluidFromDatabase().OrderBy(p => (p.Temperature - temperature).Abs()).Skip(1).First();
 
 
             Temperature = temperature;
             Pressure = pressure;
-
-
             Density = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Density, Above.Density);
-
-
             Cp = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Cp, Above.Cp);
-
             Conductivity = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.ThermalConductivity, Above.ThermalConductivity);
-
             DynamicViscosity = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.KinematicViscosity, Above.KinematicViscosity) * Density;
-
 
         }
 

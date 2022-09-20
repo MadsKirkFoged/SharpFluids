@@ -23,10 +23,12 @@ namespace Sandbox
 
             double press = 101000;
             double temp = 273;
-            Fluid CO2 = new Fluid(FluidList.CO2);
+            Fluid Oil = new Fluid(FluidList.Custom_SHC226E);
 
-            Console.WriteLine(CO2.LimitPressureMin.ToUnit(PressureUnit.Bar));
-            Console.WriteLine(CO2.LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius));
+            Oil.UpdatePT(Pressure.FromBar(28.38), Temperature.FromDegreesCelsius(-40));
+
+            //Console.WriteLine(CO2.LimitPressureMin.ToUnit(PressureUnit.Bar));
+            //Console.WriteLine(CO2.LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius));
 
 
 
