@@ -165,6 +165,8 @@ class CoolPropPINVOKE
 
         public static void Set(Exception e)
         {
+            //What would happen if we just removed this?
+
             if (pendingException != null)
                 throw new ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
             pendingException = e;
