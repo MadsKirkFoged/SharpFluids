@@ -129,12 +129,14 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
         {
             string ret = CoolPropPINVOKE64.AbstractState_backend_name(swigCPtr);
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
             return ret;
         }
         else
         {
             string ret = CoolPropPINVOKE.AbstractState_backend_name(swigCPtr);
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
