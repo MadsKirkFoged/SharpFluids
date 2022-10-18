@@ -174,6 +174,7 @@ public class AbstractState : IDisposable
         {
             CoolPropPINVOKE.AbstractState_set_mass_fractions(swigCPtr, DoubleVector.getCPtr(mass_fractions));
             CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         }
 
