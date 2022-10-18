@@ -145,12 +145,14 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
         {
             bool ret = CoolPropPINVOKE64.AbstractState_using_mass_fractions(swigCPtr);
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
         else
         {
             bool ret = CoolPropPINVOKE.AbstractState_using_mass_fractions(swigCPtr);
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -165,11 +167,13 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
         {
             CoolPropPINVOKE64.AbstractState_set_mass_fractions(swigCPtr, DoubleVector.getCPtr(mass_fractions));
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         }
         else
         {
             CoolPropPINVOKE.AbstractState_set_mass_fractions(swigCPtr, DoubleVector.getCPtr(mass_fractions));
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -181,11 +185,13 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
         {
             CoolPropPINVOKE64.AbstractState_set_volu_fractions(swigCPtr, DoubleVector.getCPtr(volu_fractions));
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         }
         else
         {
             CoolPropPINVOKE.AbstractState_set_volu_fractions(swigCPtr, DoubleVector.getCPtr(volu_fractions));
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
         }
 
