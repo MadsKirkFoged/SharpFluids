@@ -63,7 +63,6 @@ public class AbstractState : IDisposable
             AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-
         }
 
 
