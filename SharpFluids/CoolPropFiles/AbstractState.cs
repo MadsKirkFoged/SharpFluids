@@ -50,6 +50,7 @@ public class AbstractState : IDisposable
 
         if (Environment.Is64BitProcess)
         {
+            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
             IntPtr cPtr = CoolPropPINVOKE64.AbstractState_factory__SWIG_0(backend, fluid_names);
             AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
             //if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
@@ -57,6 +58,7 @@ public class AbstractState : IDisposable
         }
         else
         {
+            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_0(backend, fluid_names);
             AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
             //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
