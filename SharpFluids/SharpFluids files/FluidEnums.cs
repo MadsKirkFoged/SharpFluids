@@ -14,7 +14,6 @@ namespace SharpFluids
 
 
 
-
     public enum FluidList
     {
         [MediaType("HEOS", "AMMONIA")                       ] Ammonia,
