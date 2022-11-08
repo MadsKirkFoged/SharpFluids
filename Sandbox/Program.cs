@@ -20,6 +20,23 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+            Fluid WaterIn = new Fluid(FluidList.Water);
+            Fluid WaterOut = new Fluid(FluidList.Water);
+
+            Fluid WaterIn2 = new Fluid(FluidList.Water);
+            Fluid WaterOut2 = new Fluid(FluidList.Water);
+
+            WaterIn.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(50));
+            WaterOut.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(60));
+
+            WaterIn2.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreesCelsius(50));
+            WaterOut2.UpdatePT(Pressure.FromBar(3.5), Temperature.FromDegreesCelsius(60));
+
+            Power power = (WaterOut.Enthalpy - WaterIn.Enthalpy) * MassFlow.FromKilogramPerSecond(16.9);
+            Power power2 = (WaterOut2.Enthalpy - WaterIn2.Enthalpy) * MassFlow.FromKilogramPerSecond(16.9);
+
+            Power Diff = (power2 - power).Abs();
+
 
             double press = 101000;
             double temp = 273;
