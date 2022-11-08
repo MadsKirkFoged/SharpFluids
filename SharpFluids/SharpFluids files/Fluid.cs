@@ -369,7 +369,7 @@ namespace SharpFluids
         {
             //TODO Split this up in MassFlow and Mass
 
-            MassFlow tolerence = MassFlow.FromKilogramsPerSecond(0.00001);
+            MassFlow tolerence = MassFlow.FromKilogramsPerSecond(0.0001);
             MassFlow MassFlowDiss = (this.MassFlow - other.MassFlow).Abs();
 
             return MassFlowDiss <= tolerence;
