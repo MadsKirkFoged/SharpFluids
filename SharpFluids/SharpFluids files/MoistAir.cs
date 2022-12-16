@@ -248,7 +248,7 @@ namespace SharpFluids
 
             this.Temperature = Temperature.FromSI(AbstractState.updateAir("T", input1, input1Value, input2, input2Value, input3, input3Value));
 
-            this.Density = Density.FromSI(AbstractState.updateAir("Vha", input1, input1Value, input2, input2Value, input3, input3Value));
+            this.Density = Density.FromSI(1/AbstractState.updateAir("Vha", input1, input1Value, input2, input2Value, input3, input3Value));
             
             this.HumidityRatio = AbstractState.updateAir("W", input1, input1Value, input2, input2Value, input3, input3Value);
 
