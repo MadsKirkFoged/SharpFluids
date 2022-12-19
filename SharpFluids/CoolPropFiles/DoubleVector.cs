@@ -45,18 +45,30 @@ public class DoubleVector : IDisposable
     Dispose();
   }
 
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          CoolPropPINVOKE.delete_DoubleVector(swigCPtr);
-        }
-        swigCPtr = new HandleRef(null, IntPtr.Zero);
-      }
-      GC.SuppressFinalize(this);
-    }
-  }
+	public virtual void Dispose()
+	{
+		 lock (this)
+		 {
+			  if (swigCPtr.Handle != IntPtr.Zero)
+			  {
+				   if (swigCMemOwn)
+				   {
+					    swigCMemOwn = false;
+
+         if (Environment.Is64BitProcess)
+         {
+             CoolPropPINVOKE64.delete_DoubleVector(swigCPtr);
+         }
+         else
+         {
+             CoolPropPINVOKE.delete_DoubleVector(swigCPtr);
+         }
+				   }
+				   swigCPtr = new HandleRef(null, IntPtr.Zero);
+			  }
+			  GC.SuppressFinalize(this);
+		 }
+	}
 
 
   public void Add(double x) {
