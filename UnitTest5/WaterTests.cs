@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpFluids;
 //using UnitsNet;
 using EngineeringUnits;
+using EngineeringUnits.Units;
 
 namespace UnitsTests
 {
@@ -134,6 +135,19 @@ namespace UnitsTests
             Assert.AreEqual(0, Water.MolarMass.GramsPerMole);
             Assert.AreEqual(0, Water.Compressibility);
             Assert.AreEqual(0, Water.InternalEnergy.JoulesPerKilogram);
+        }
+
+        private bool AreAproximativellyEqual(double expected, double actual, double abs_err) => Math.Abs(expected - actual) <= abs_err;
+
+        [TestMethod]
+        public void InCompWaterGetsCorrectCpValue()
+        {
+            Fluid liquidWater = new Fluid(FluidList.InCompWater);
+            liquidWater.UpdatePT(Pressure.FromBar(1), Temperature.FromDegreesCelsius(20));
+            double expected = 4174.8884511999999;
+            double actual = liquidWater.Cp.As(SpecificHeatCapacityUnit.JoulePerKilogramDegreeCelsius);
+
+            Assert.IsTrue(AreAproximativellyEqual(expected, actual, 1e-5));
         }
     }
 }

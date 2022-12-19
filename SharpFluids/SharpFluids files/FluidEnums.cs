@@ -249,6 +249,7 @@ namespace SharpFluids
 
 
         //Incompressible
+        [MediaType("INCOMP","Water")                        ] InCompWater,
         [MediaType("INCOMP", "AS10")                        ] InCompAspenTemperMinus10,
         [MediaType("INCOMP", "AS20")                        ] InCompAspenTemperMinus20,
         [MediaType("INCOMP", "AS30")                        ] InCompAspenTemperMinus30,
