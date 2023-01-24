@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 //using UnitsNet;
 using EngineeringUnits;
 using EngineeringUnits.Units;
+using Serilog;
 
 public class AbstractState : IDisposable
 {
@@ -74,22 +75,34 @@ public class AbstractState : IDisposable
 
         //Internal look up
 
-
-
-
-        //CoolProp Lookup
-        if (Environment.Is64BitProcess)
+        try
         {
-            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-            CoolPropPINVOKE64.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
-            if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+            //CoolProp Lookup
+            if (Environment.Is64BitProcess)
+            {
+                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                CoolPropPINVOKE64.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
+                if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+            }
+            else
+            {
+                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
+                if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
-        else
+        catch (NullReferenceException e)
         {
-            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-            CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
-            if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+            Log.Error($"SharpFluid created a null error that we are yet to figure out! {e}");
+            Log.Error($"SharpFluid: What was swigCPtr: {swigCPtr}");
         }
+        catch(Exception e)
+        {
+            Log.Error($"SharpFluid error: {e}");
+            throw e;
+        }
+
+        
 
        
     }
