@@ -428,8 +428,8 @@ namespace SharpFluids
 
             //Check if we are close to previous lookup
 
-            if ((pressure - Pressure).Abs() < Pressure.FromBar(0.0001) && 
-                (enthalpy - Enthalpy).Abs() < SpecificEnergy.FromJoulePerKilogram(0.001))
+            if ((pressure - Pressure).Abs() / pressure < 0.0001 && 
+                (enthalpy - Enthalpy).Abs() / enthalpy < 0.0001)
                 return;
             
 
