@@ -287,6 +287,37 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
+        public MassFlow GasMassFlow
+        {
+
+            get
+            {
+
+                if (Phase is Phases.Twophase)
+                {
+                    return MassFlow * Quality;
+                }
+
+                return MassFlow;
+            }
+        }
+
+        [JsonIgnore]
+        public MassFlow LiquidMassFlow
+        {
+
+            get
+            {
+                if (Phase is Phases.Twophase)
+                {
+                    return MassFlow * (1 - Quality);
+                }
+
+                return MassFlow;
+            }
+        }
+
+        [JsonIgnore]
         public Density GasDensity
         {
 
