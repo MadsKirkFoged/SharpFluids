@@ -425,6 +425,15 @@ namespace SharpFluids
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy)
         {
+
+            //Check if we are close to previous lookup
+
+            if ((pressure - Pressure).Abs() < Pressure.FromBar(0.0001) && 
+                (enthalpy - Enthalpy).Abs() < SpecificEnergy.FromJoulePerKilogram(0.001))
+                return;
+            
+
+
             CheckBeforeUpdate();
 
             if (Media.BackendType == "CustomFluid")

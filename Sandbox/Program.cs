@@ -50,7 +50,7 @@ namespace Sandbox
 
 
 
-            Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
+            Fluid AmmoniaGas2 = new Fluid(FluidList.MixAmmoniaAQ);
             AmmoniaGas2.UpdateXT(1, Temperature.FromDegreesCelsius(25));
 
 

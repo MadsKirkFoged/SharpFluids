@@ -204,6 +204,10 @@ namespace SharpFluids
             }
 
 
+            //Removed cache values
+            tsat_Cache = null;
+
+
         }
 
         /// <summary>

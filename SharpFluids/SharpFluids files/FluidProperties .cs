@@ -223,6 +223,9 @@ namespace SharpFluids
             }
         }
 
+        [JsonProperty]
+        private Temperature tsat_Cache;
+
         /// <summary>
         /// Get the Saturation temperature of the <see cref="Fluid"/>. 
         /// <br>Beware: If you are above the critical pressure of the <see cref="Fluid"/> this will just return the Saturation temperature AT the critical pressure!</br>
@@ -233,6 +236,10 @@ namespace SharpFluids
 
             get
             {
+                if (tsat_Cache is object)                
+                    return tsat_Cache;
+                
+
 
                 CheckBeforeUpdate();
 
@@ -247,6 +254,7 @@ namespace SharpFluids
                         {
                             REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 1);
                             FailState = false;
+                            tsat_Cache = REF.T();
                             return REF.T();
                         }
                         else
