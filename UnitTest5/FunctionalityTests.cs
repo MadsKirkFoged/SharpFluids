@@ -7,6 +7,7 @@ using EngineeringUnits;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace UnitsTests
 {
@@ -1141,6 +1142,97 @@ namespace UnitsTests
             }
         }
 
+
+        [TestMethod]
+        public void GasDensity()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            R717.UpdatePX(Pressure.FromBar(10), 0.5);
+
+            //Act
+            var Density = R717.Density;
+            var Gasdensity = R717.GasDensity;
+            var Liqdensity = R717.LiquidDensity;
+
+
+            //Assert
+            Assert.IsTrue(Gasdensity < Density);
+            Assert.IsTrue(Density < Liqdensity);
+
+
+        }
+        [TestMethod]
+        public void GasDensityOutSide()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            R717.UpdatePX(Pressure.FromBar(10), 1);
+            R717.UpdatePT(R717.Pressure, R717.Temperature + Temperature.FromKelvins(10));
+
+            //Act
+            var Density = R717.Density;
+            var Gasdensity = R717.GasDensity;
+            var Liqdensity = R717.LiquidDensity;
+
+
+            //Assert
+            Assert.IsTrue(Gasdensity == Density);
+            Assert.IsTrue(Density == Liqdensity);
+
+
+        }
+
+        [TestMethod]
+        public void GasDensityOutSide2()
+        {
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+            R717.UpdatePX(Pressure.FromBar(10), 0);
+            R717.UpdatePT(R717.Pressure, R717.Temperature - Temperature.FromKelvins(10));
+
+            //Act
+            var Density = R717.Density;
+            var Gasdensity = R717.GasDensity;
+            var Liqdensity = R717.LiquidDensity;
+
+
+            //Assert
+            Assert.IsTrue(Gasdensity == Density);
+            Assert.IsTrue(Density == Liqdensity);
+
+
+        }
+
+        [TestMethod]
+        public void GasDensityAbove()
+        {
+
+            Log.Logger = new LoggerConfiguration()
+               .WriteTo.Debug()
+               .CreateLogger();
+
+            //Arrange
+            Fluid R717 = new Fluid(FluidList.Ammonia);
+
+            R717.UpdatePT(R717.CriticalPressure + Pressure.FromBar(10), R717.CriticalTemperature + Temperature.FromKelvins(25));
+
+            //Act
+            var Density = R717.Density;
+            var Gasdensity = R717.GasDensity;
+            var Liqdensity = R717.LiquidDensity;
+
+
+            //Assert
+            Assert.IsTrue(Gasdensity == Density);
+            Assert.IsTrue(Density == Liqdensity);
+            Assert.IsTrue(Density != Density.Zero);
+
+
+        }
 
     }
 }

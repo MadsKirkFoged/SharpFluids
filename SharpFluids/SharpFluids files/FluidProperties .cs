@@ -245,7 +245,7 @@ namespace SharpFluids
 
                         if (!(REF is null))
                         {
-                            REF.update(input_pairs.PQ_INPUTS, Pressure.Pascals, 1);
+                            REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 1);
                             FailState = false;
                             return REF.T();
                         }
@@ -284,6 +284,68 @@ namespace SharpFluids
 
 
 
+        }
+
+        [JsonIgnore]
+        public Density GasDensity
+        {
+
+            get
+            {
+
+                CheckBeforeUpdate();
+
+                if (Phase is Phases.Twophase)
+                {
+
+                    try
+                    {
+                        REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 1);
+                        FailState = false;
+                        return REF.rhomass();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error($"SharpFluid -> GasDensity -> {e}");
+                        return Density;
+                    }
+
+      
+                }
+
+                return Density;
+            }
+        }
+
+        [JsonIgnore]
+        public Density LiquidDensity
+        {
+
+            get
+            {
+
+                CheckBeforeUpdate();
+
+                if (Phase is Phases.Twophase)
+                {
+
+                    try
+                    {
+                        REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 0);
+                        FailState = false;
+                        return REF.rhomass();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error($"SharpFluid -> GasDensity -> {e}");
+                        return Density;
+                    }
+
+
+                }
+
+                return Density;
+            }
         }
 
 
