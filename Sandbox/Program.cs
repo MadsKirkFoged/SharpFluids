@@ -38,6 +38,8 @@ namespace Sandbox
             Power Diff = (power2 - power).Abs();
 
 
+            WaterOut2.UpdatePH(WaterOut2.Pressure * 1.002, WaterOut2.Enthalpy* 1.002);
+
             double press = 101000;
             double temp = 273;
             Fluid Oil = new Fluid(FluidList.Custom_SHC226E);
