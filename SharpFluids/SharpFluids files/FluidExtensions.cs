@@ -130,5 +130,12 @@ namespace SharpFluids
             local.AddPower(powerToBeRemoved * -1);
             return local;
         }
+
+        public static Speed FluidVelocity(this Fluid local, Area SizeOfPipe)
+        {
+            return local.VolumeFlow / SizeOfPipe;
+        }
+
+
     }
 }
