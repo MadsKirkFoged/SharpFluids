@@ -223,8 +223,8 @@ namespace SharpFluids
             }
         }
 
-        [JsonProperty]
-        private Temperature tsat_Cache;
+        //[JsonProperty]
+        //private Temperature tsat_Cache;
 
         /// <summary>
         /// Get the Saturation temperature of the <see cref="Fluid"/>. 
@@ -236,8 +236,8 @@ namespace SharpFluids
 
             get
             {
-                if (tsat_Cache is object)                
-                    return tsat_Cache;
+                //if (tsat_Cache is object)                
+                   // return tsat_Cache;
                 
 
 
@@ -254,7 +254,7 @@ namespace SharpFluids
                         {
                             REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 1);
                             FailState = false;
-                            tsat_Cache = REF.T();
+                            //tsat_Cache = REF.T();
                             return REF.T();
                         }
                         else

@@ -52,9 +52,16 @@ namespace Sandbox
 
 
 
-            Fluid AmmoniaGas2 = new Fluid(FluidList.MixAmmoniaAQ);
-            AmmoniaGas2.UpdateXT(1, Temperature.FromDegreesCelsius(25));
+            Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
+            AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
 
+
+
+            var testsete = AmmoniaGas2.Tsat;
+            var testsete2 = AmmoniaGas2.Tsat;
+
+            AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(27));
+            var testsete3 = AmmoniaGas2.Tsat;
 
             Temperature testingTemp = new Temperature(-50,TemperatureUnit.DegreeCelsius);
 
