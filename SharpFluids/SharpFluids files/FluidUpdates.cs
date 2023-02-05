@@ -423,14 +423,17 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy)
+        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, double RepeatTolerance = 0)
         {
 
             //Check if we are close to previous lookup
+            if (RepeatTolerance > 0)
+            {
+                if ((pressure - Pressure).Abs() / pressure < RepeatTolerance &&
+                    (enthalpy - Enthalpy).Abs() / enthalpy < RepeatTolerance)
+                    return;
 
-            if ((pressure - Pressure).Abs() / pressure < 0.0001 &&
-                (enthalpy - Enthalpy).Abs() / enthalpy < 0.0001)
-                return;
+            }
 
 
 
