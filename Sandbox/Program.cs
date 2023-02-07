@@ -20,6 +20,30 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+
+            Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
+            AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
+
+            Pressure localp = AmmoniaGas2.Pressure;
+            SpecificEnergy locale = AmmoniaGas2.Enthalpy;
+
+
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // the code that you want to measure comes here
+
+            int Count = 100000;
+
+            for (int i = 0; i < Count; i++)
+            {
+                AmmoniaGas2.UpdatePH(localp, locale, 0.0000001);
+            }
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds / (double)Count;
+
+
+
+
             Fluid WaterIn = new Fluid(FluidList.Water);
             Fluid WaterOut = new Fluid(FluidList.Water);
 
@@ -52,8 +76,8 @@ namespace Sandbox
 
 
 
-            Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
-            AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
+            //Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
+            //AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
 
 
 
@@ -214,7 +238,7 @@ namespace Sandbox
 
 
             int totalcount = 10000;
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            //var watch = System.Diagnostics.Stopwatch.StartNew();
             
 
             for (int i = 0; i < totalcount; i++)

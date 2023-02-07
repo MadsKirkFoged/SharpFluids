@@ -107,6 +107,12 @@ public class AbstractState : IDisposable
        
     }
 
+    //public virtual void update_with_guesses(input_pairs input_pair, double Value1, double Value2, GuessesStructure guesses)
+    //{
+    //    CoolPropPINVOKE.AbstractState_update_with_guesses(swigCPtr, (int)input_pair, Value1, Value2, GuessesStructure.getCPtr(guesses));
+    //    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+    //}
+
     public static double updateAir(string jarg1, string jarg2, double jarg3, string jarg4, double jarg5, string jarg6, double jarg7)
     {
 

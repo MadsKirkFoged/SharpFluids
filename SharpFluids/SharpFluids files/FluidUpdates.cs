@@ -415,6 +415,10 @@ namespace SharpFluids
 
         }
 
+        private Pressure cache_pressure;
+        private SpecificEnergy cache_enthalpy;
+
+
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the Enthalpy<br></br>
         /// <br>Exemple:</br>
@@ -423,15 +427,30 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, double RepeatTolerance = 0)
+        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, double? RepeatTolerance = null)
         {
 
             //Check if we are close to previous lookup
-            if (RepeatTolerance > 0)
+            if (RepeatTolerance is object)
             {
-                if ((pressure - Pressure).Abs() / pressure < RepeatTolerance &&
-                    (enthalpy - Enthalpy).Abs() / enthalpy < RepeatTolerance)
-                    return;
+                if (cache_pressure is object && cache_enthalpy is object)
+                {
+
+                    if ((pressure - cache_pressure).Abs() / pressure < RepeatTolerance &&
+                       (enthalpy - cache_enthalpy).Abs() / enthalpy < RepeatTolerance)
+                    {
+
+                        //Saving old real values
+                        cache_pressure = Pressure;
+                        cache_enthalpy = Enthalpy;
+
+                        //Setting input as New value
+                        Pressure = pressure;
+                        Enthalpy = enthalpy;
+
+                        return;
+                    }
+                }
 
             }
 
@@ -464,8 +483,20 @@ namespace SharpFluids
 
             try
             {
-                REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulesPerKilogram, pressure.Pascals);
+
+                //GuessesStructure test = new GuessesStructure
+                //{
+                //    T = Temperature.SI,
+                //    p = Pressure.SI,
+                    
+                //};
+
+                //REF.update_with_guesses(input_pairs.PT_INPUTS, enthalpy.JoulePerKilogram, pressure.Pascal, test);
+                REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulePerKilogram, pressure.Pascal);
                 UpdateValues();
+
+                cache_pressure = Pressure;
+                cache_enthalpy = Enthalpy;
             }
             catch (System.ApplicationException e)
             {
