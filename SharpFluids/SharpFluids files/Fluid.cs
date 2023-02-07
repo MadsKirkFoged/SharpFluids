@@ -127,6 +127,9 @@ namespace SharpFluids
         {
             FailState = true;
 
+            //Removed cache values
+            tsat_Cache = null;
+
 
             if (Media.BackendType == "CustomFluid")
             {
@@ -170,6 +173,12 @@ namespace SharpFluids
         /// </summary>   
         protected virtual void UpdateValues()
         {
+
+
+                //Removed cache values
+                tsat_Cache = null;
+
+
             try
             {
                 if (Media.BackendType == "HEOS")
@@ -196,8 +205,6 @@ namespace SharpFluids
                 Phase = (Phases)REF.phase();
                 FailState = false;
 
-                //Removed cache values
-                tsat_Cache = null;
 
             }
             catch (Exception e)
@@ -236,6 +243,9 @@ namespace SharpFluids
             MolarMass = 0;
             Compressibility = 0;
             InternalEnergy = 0;
+
+            //Removed cache values
+            tsat_Cache = null;
         }
 
         public virtual void SetLimitsToZero()
@@ -279,6 +289,9 @@ namespace SharpFluids
             this.MolarMass = other.MolarMass;
             this.Compressibility = other.Compressibility;
             this.InternalEnergy = other.InternalEnergy;
+
+            //Removed cache values
+            this.tsat_Cache = null;
         }
 
         /// <summary>
