@@ -22,24 +22,24 @@ namespace SharpFluids
             //After the mixing an Update should be run
 
 
-            if (local.Enthalpy.IsZero() ||
-                local.Pressure.IsZero() ||
-                local.Entropy.IsZero() ||
-                local.Temperature.IsZero() ||
-                local.MassFlow.IsZero())
-            {
-                local.Copy(other);
-            }
-            else if (other.Enthalpy.IsZero() ||
-                     other.Pressure.IsZero() ||
-                     other.Entropy.IsZero() ||
-                     other.Temperature.IsZero() ||
-                     other.MassFlow.IsZero())
-            {
-                //Do nothing
-                Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
-            }
-            else
+            //if (local.Enthalpy.IsZero() ||
+            //    local.Pressure.IsZero() ||
+            //    local.Entropy.IsZero() ||
+            //    local.Temperature.IsZero() ||
+            //    local.MassFlow.IsZero())
+            //{
+            //    local.Copy(other);
+            //}
+            //else if (other.Enthalpy.IsZero() ||
+            //         other.Pressure.IsZero() ||
+            //         other.Entropy.IsZero() ||
+            //         other.Temperature.IsZero() ||
+            //         other.MassFlow.IsZero())
+            //{
+            //    //Do nothing
+            //    Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
+            //}
+            //else
             {
 
                 var TotalMassFlow = (other.MassFlow + local.MassFlow);
