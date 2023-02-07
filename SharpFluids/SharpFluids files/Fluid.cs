@@ -196,6 +196,9 @@ namespace SharpFluids
                 Phase = (Phases)REF.phase();
                 FailState = false;
 
+                //Removed cache values
+                tsat_Cache = null;
+
             }
             catch (Exception e)
             {
@@ -204,8 +207,6 @@ namespace SharpFluids
             }
 
 
-            //Removed cache values
-            //tsat_Cache = null;
 
 
 
