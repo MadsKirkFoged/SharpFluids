@@ -42,23 +42,28 @@ namespace SharpFluids
             else
             {
 
-                if ((other.MassFlow + local.MassFlow).IsNotZero())
+                var TotalMassFlow = (other.MassFlow + local.MassFlow);
+
+                if (TotalMassFlow.IsNotZero())
                 {
+                    var MassRatio1 = other.MassFlow / TotalMassFlow;
+                    var MassRatio2 = local.MassFlow / TotalMassFlow;
+
                     //Calculating the average H weighted on the massflow
-                    local.Enthalpy = other.Enthalpy * (other.MassFlow / (other.MassFlow + local.MassFlow)) + local.Enthalpy * (local.MassFlow / (other.MassFlow + local.MassFlow));
+                    local.Enthalpy = other.Enthalpy * MassRatio1 + local.Enthalpy * MassRatio2;
 
                     //Calculating the average P weighted on the massflow
-                    local.Pressure = other.Pressure * (other.MassFlow / (other.MassFlow + local.MassFlow)) + local.Pressure * (local.MassFlow / (other.MassFlow + local.MassFlow));
-
+                    local.Pressure = other.Pressure * MassRatio1 + local.Pressure * MassRatio2;
 
                     //Calculating the average S weighted on the massflow
-                    local.Entropy = other.Entropy * (other.MassFlow / (other.MassFlow + local.MassFlow)) + local.Entropy * (local.MassFlow / (other.MassFlow + local.MassFlow));
+                    local.Entropy = other.Entropy * MassRatio1 + local.Entropy * MassRatio2;
 
                     //Calculating the average T weighted on the massflow
-                    local.Temperature = Temperature.FromKelvins((double)(other.Temperature.Kelvins * (other.MassFlow / (other.MassFlow + local.MassFlow)) + local.Temperature.Kelvins * (local.MassFlow / (other.MassFlow + local.MassFlow))));
+                    //local.Temperature = Temperature.FromKelvins((double)(other.Temperature.Kelvins * MassRatio1 + local.Temperature.Kelvins * MassRatio2));
+                    local.Temperature = other.Temperature * MassRatio1 + local.Temperature * MassRatio2;
                 }
 
-                local.MassFlow = other.MassFlow + local.MassFlow;
+                local.MassFlow = TotalMassFlow;
 
                 //this.CheckForNaN();
 
