@@ -128,7 +128,9 @@ namespace SharpFluids
             FailState = true;
 
             //Removed cache values
-            tsat_Cache = null;
+            this.tsat_Cache = null;
+            cache_pressure = null;
+            cache_enthalpy = null;
 
 
             if (Media.BackendType == "CustomFluid")
@@ -175,8 +177,11 @@ namespace SharpFluids
         {
 
 
-                //Removed cache values
-                tsat_Cache = null;
+            //Removed cache values
+            tsat_Cache = null;
+            cache_pressure = null;
+            cache_enthalpy = null;
+
 
 
             try
@@ -246,6 +251,8 @@ namespace SharpFluids
 
             //Removed cache values
             tsat_Cache = null;
+            cache_pressure = null;
+            cache_enthalpy = null;
         }
 
         public virtual void SetLimitsToZero()
@@ -292,6 +299,8 @@ namespace SharpFluids
 
             //Removed cache values
             this.tsat_Cache = null;
+            cache_pressure = null;
+            cache_enthalpy = null;
         }
 
         /// <summary>
