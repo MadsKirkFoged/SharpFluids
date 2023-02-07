@@ -37,8 +37,13 @@ namespace Sandbox
             {
                 AmmoniaGas2.UpdatePH(localp, locale);
                 var testsat = AmmoniaGas2.Tsat;
-                var testsat2 = AmmoniaGas2.Tsat;
-                var testsat3 = AmmoniaGas2.Tsat;
+                //var testsat2 = AmmoniaGas2.Tsat;
+                //var testsat3 = AmmoniaGas2.Tsat;
+
+                AmmoniaGas2.Copy(AmmoniaGas2);
+
+                var testsat4 = AmmoniaGas2.Tsat;
+
             }
 
             watch.Stop();
