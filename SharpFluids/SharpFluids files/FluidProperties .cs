@@ -224,7 +224,7 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
-        private Temperature tsat_Cache;
+        private Temperature tsat_Cache = null;
 
         /// <summary>
         /// Get the Saturation temperature of the <see cref="Fluid"/>. 
