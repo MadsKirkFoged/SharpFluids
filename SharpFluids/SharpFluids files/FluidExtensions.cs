@@ -84,7 +84,6 @@ namespace SharpFluids
 
 
 
-
             if (local.MassFlow <= MassFlow.Zero)
             {
                 return local;
