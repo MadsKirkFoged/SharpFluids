@@ -83,6 +83,7 @@ namespace SharpFluids
             //Finding the new H
 
 
+
             if (local.MassFlow <= MassFlow.Zero)
             {
                 return local;
