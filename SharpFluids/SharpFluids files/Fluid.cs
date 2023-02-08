@@ -131,6 +131,7 @@ namespace SharpFluids
             this.tsat_Cache = null;
             cache_pressure = null;
             cache_enthalpy = null;
+            cache_temperature = null;
 
 
             if (Media.BackendType == "CustomFluid")
@@ -181,6 +182,7 @@ namespace SharpFluids
             tsat_Cache = null;
             cache_pressure = null;
             cache_enthalpy = null;
+            cache_temperature = null;
 
 
 
@@ -253,6 +255,7 @@ namespace SharpFluids
             tsat_Cache = null;
             cache_pressure = null;
             cache_enthalpy = null;
+            cache_temperature = null;
         }
 
         public virtual void SetLimitsToZero()
@@ -301,6 +304,7 @@ namespace SharpFluids
             this.tsat_Cache = null;
             cache_pressure = null;
             cache_enthalpy = null;
+            cache_temperature = null;
         }
 
         /// <summary>

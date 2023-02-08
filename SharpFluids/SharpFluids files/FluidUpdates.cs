@@ -229,6 +229,9 @@ namespace SharpFluids
 
         }
 
+         private Temperature cache_temperature;
+
+
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the <see cref="UnitsNet.Temperature"/><br></br>
         /// <br>Exemple:</br>
@@ -237,8 +240,34 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
-        public void UpdatePT(Pressure pressure, Temperature temperature)
+        public void UpdatePT(Pressure pressure, Temperature temperature, double? RepeatTolerance = null)
         {
+            //Check if we are close to previous lookup
+            if (RepeatTolerance is object)
+            {
+                if (cache_pressure is object && cache_temperature is object)
+                {
+
+                    if ((pressure - cache_pressure).Abs() / pressure < RepeatTolerance &&
+                       (temperature - cache_temperature).Abs() / temperature < RepeatTolerance)
+                    {
+
+                        //Saving old real values
+                        cache_pressure = Pressure;
+                        cache_temperature = Temperature;
+
+                        //Setting input as New value
+                        Pressure = pressure;
+                        Temperature = temperature;
+
+                        return;
+                    }
+                }
+
+            }
+
+
+
             CheckBeforeUpdate();
 
 
@@ -269,8 +298,11 @@ namespace SharpFluids
 
             try
             {
-                REF.update(input_pairs.PT_INPUTS, pressure.Pascals, temperature.Kelvins);
+                REF.update(input_pairs.PT_INPUTS, pressure.Pascal, temperature.Kelvins);
                 UpdateValues();
+
+                cache_pressure = Pressure;
+                cache_enthalpy = Enthalpy;
             }
             catch (System.ApplicationException e)
             {
