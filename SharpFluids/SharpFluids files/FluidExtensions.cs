@@ -46,8 +46,8 @@ namespace SharpFluids
 
                 if (TotalMassFlow.IsNotZero())
                 {
-                    var MassRatio1 = other.MassFlow / TotalMassFlow;
-                    var MassRatio2 = local.MassFlow / TotalMassFlow;
+                    double MassRatio1 = other.MassFlow / TotalMassFlow;
+                    double MassRatio2 = 1 - MassRatio1;
 
                     //Calculating the average H weighted on the massflow
                     local.Enthalpy = other.Enthalpy * MassRatio1 + local.Enthalpy * MassRatio2;

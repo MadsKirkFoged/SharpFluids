@@ -20,9 +20,14 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+            Fluid AmmoniaGas3 = new Fluid(FluidList.Ammonia);
+            AmmoniaGas3.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
+            AmmoniaGas3.MassFlow = MassFlow.FromKilogramPerSecond(3);
+
 
             Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
             AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
+            AmmoniaGas2.MassFlow = MassFlow.FromKilogramPerSecond(1);
 
             Pressure localp = AmmoniaGas2.Pressure;
             SpecificEnergy locale = AmmoniaGas2.Enthalpy;
@@ -36,6 +41,7 @@ namespace Sandbox
             for (int i = 0; i < Count; i++)
             {
                 AmmoniaGas2.UpdatePH(localp, locale);
+                AmmoniaGas2.AddTo(AmmoniaGas3);
                 var testsat = AmmoniaGas2.Tsat;
                 //var testsat2 = AmmoniaGas2.Tsat;
                 //var testsat3 = AmmoniaGas2.Tsat;
