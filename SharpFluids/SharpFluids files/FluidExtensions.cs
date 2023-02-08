@@ -23,18 +23,18 @@ namespace SharpFluids
 
 
             if (local.Enthalpy.IsZero() ||
-                local.Pressure.IsZero() ||
-                local.Entropy.IsZero() ||
-                local.Temperature.IsZero() ||
-                local.MassFlow.IsZero())
+                local.Pressure.IsZero())
+                //local.Entropy.IsZero() ||
+                //local.Temperature.IsZero() ||
+               //local.MassFlow.IsZero())
             {
                 local.Copy(other);
             }
             else if (other.Enthalpy.IsZero() ||
-                     other.Pressure.IsZero() ||
-                     other.Entropy.IsZero() ||
-                     other.Temperature.IsZero() ||
-                     other.MassFlow.IsZero())
+                     other.Pressure.IsZero())
+                     //other.Entropy.IsZero() ||
+                     //other.Temperature.IsZero() ||
+                     //other.MassFlow.IsZero())
             {
                 //Do nothing
                 Log.Debug($"SharpFluid -> AddTo -> {other.Enthalpy} or {other.Pressure} or {other.Entropy} or {other.Temperature} or {other.MassFlow} is zero and nothing is done!");
@@ -56,11 +56,11 @@ namespace SharpFluids
                     local.Pressure = other.Pressure * MassRatio1 + local.Pressure * MassRatio2;
 
                     //Calculating the average S weighted on the massflow
-                    local.Entropy = other.Entropy * MassRatio1 + local.Entropy * MassRatio2;
+                    //local.Entropy = other.Entropy * MassRatio1 + local.Entropy * MassRatio2;
 
                     //Calculating the average T weighted on the massflow
                     //local.Temperature = Temperature.FromKelvins((double)(other.Temperature.Kelvins * MassRatio1 + local.Temperature.Kelvins * MassRatio2));
-                    local.Temperature = other.Temperature * MassRatio1 + local.Temperature * MassRatio2;
+                    //local.Temperature = other.Temperature * MassRatio1 + local.Temperature * MassRatio2;
                 }
 
                 local.MassFlow = TotalMassFlow;
