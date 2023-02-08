@@ -147,11 +147,11 @@ namespace SharpFluids
         /// <remarks>
         /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
         /// </remarks>
-        public static Fluid RemovePower(this Fluid local, Power powerToBeRemoved)
+        public static Fluid RemovePower(this Fluid local, Power powerToBeRemoved, double? RepeatTolerance = null)
         {
             //TODO: If mass is selected 
 
-            local.AddPower(powerToBeRemoved * -1);
+            local.AddPower(powerToBeRemoved * -1, RepeatTolerance);
             return local;
         }
 
