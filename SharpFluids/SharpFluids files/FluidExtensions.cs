@@ -77,7 +77,7 @@ namespace SharpFluids
         /// Add <see cref="UnitsNet.Power"/> to the <see cref="Fluid"/>
         /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
         /// </summary>
-        public static Fluid AddPower(this Fluid local, Power powerToBeAdded)
+        public static Fluid AddPower(this Fluid local, Power powerToBeAdded, double? RepeatTolerance = null)
         {
             //TODO If mass is selected!
             //Finding the new H
@@ -94,7 +94,7 @@ namespace SharpFluids
                 SpecificEnergy localSpecificEnergy = ((local.Enthalpy * local.MassFlow) + powerToBeAdded) / local.MassFlow;
 
 
-                local.UpdatePH(local.Pressure, localSpecificEnergy);
+                local.UpdatePH(local.Pressure, localSpecificEnergy, RepeatTolerance);
 
                 if (local.FailState)
                 {
