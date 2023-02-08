@@ -92,22 +92,40 @@ namespace SharpFluids
             {
                 SpecificEnergy localSpecificEnergy = ((local.Enthalpy * local.MassFlow) + powerToBeAdded) / local.MassFlow;
 
+
+                local.UpdatePH(local.Pressure, localSpecificEnergy);
+
+                if (local.FailState)
+                {
+                    if (localSpecificEnergy > local.Enthalpy)
+                    {
+                        local.UpdatePT(local.Pressure, local.LimitTemperatureMax);
+                    }
+                    else
+                    {
+                        local.UpdatePT(local.Pressure, local.LimitTemperatureMin);
+                    }
+                }
+
+
+
+
                 //if (powerToBeAdded > Power.Zero)
-                if (localSpecificEnergy > local.Enthalpy)
-                {
-                    local.UpdatePT(local.Pressure, local.LimitTemperatureMax);
+                //if (localSpecificEnergy > local.Enthalpy)
+                //{
+                //    local.UpdatePT(local.Pressure, local.LimitTemperatureMax);
 
-                    if (local.Enthalpy > localSpecificEnergy)
-                        local.UpdatePH(local.Pressure, localSpecificEnergy);
-                }
-                else
-                {
-                    local.UpdatePT(local.Pressure, local.LimitTemperatureMin);
+                //    if (local.Enthalpy > localSpecificEnergy)
+                //        local.UpdatePH(local.Pressure, localSpecificEnergy);
+                //}
+                //else
+                //{
+                //    local.UpdatePT(local.Pressure, local.LimitTemperatureMin);
 
-                    if (local.Enthalpy < localSpecificEnergy)
-                        local.UpdatePH(local.Pressure, localSpecificEnergy);
+                //    if (local.Enthalpy < localSpecificEnergy)
+                //        local.UpdatePH(local.Pressure, localSpecificEnergy);
 
-                }
+                //}
 
             }
             catch (Exception e)
