@@ -267,7 +267,6 @@ namespace SharpFluids
             }
 
 
-
             CheckBeforeUpdate();
 
 
