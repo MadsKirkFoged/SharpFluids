@@ -236,8 +236,8 @@ namespace SharpFluids
 
             get
             {
-                //if (tsat_Cache is object)
-                //    return tsat_Cache;
+                if (tsat_Cache is object)
+                    return tsat_Cache;
 
 
 
