@@ -26,11 +26,13 @@ namespace Sandbox
 
 
             Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
+            Fluid AmmoniaGas4 = new Fluid(FluidList.Ammonia);
             AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
             AmmoniaGas2.MassFlow = MassFlow.FromKilogramPerSecond(1);
 
             Pressure localp = AmmoniaGas2.Pressure;
             SpecificEnergy locale = AmmoniaGas2.Enthalpy;
+            Temperature localt = AmmoniaGas2.Temperature;
 
 
             var watch = System.Diagnostics.Stopwatch.StartNew();
@@ -40,13 +42,14 @@ namespace Sandbox
 
             for (int i = 0; i < Count; i++)
             {
-                AmmoniaGas2.UpdatePH(localp, locale, 0.000001);
+                //AmmoniaGas2.UpdatePH(localp, locale, 0.000001);
+                AmmoniaGas4.UpdatePT(Pressure.Zero, localt, 0.000001);
                 //AmmoniaGas2.AddTo(AmmoniaGas3);
                 //var testsat = AmmoniaGas2.Tsat;
                 //var testsat2 = AmmoniaGas2.Tsat;
                 //var testsat3 = AmmoniaGas2.Tsat;
 
-               // AmmoniaGas2.Copy(AmmoniaGas2);
+                // AmmoniaGas2.Copy(AmmoniaGas2);
 
                 //var testsat4 = AmmoniaGas2.Tsat;
 
