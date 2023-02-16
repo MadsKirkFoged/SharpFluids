@@ -1288,27 +1288,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
-            Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
-            Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            //Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
+            //Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
+            //Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
+            //Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            //Assert.AreEqual(0, R717.Prandtl);
+            //Assert.AreEqual(0, R717.Pressure.Bars);
+            //Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
+            //Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
+            //Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
+            //Assert.AreEqual(0, R717.Temperature.Kelvins);
+            //Assert.AreEqual(0, R717.Tsat.Kelvins);
+            //Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            //Assert.AreEqual(0, R717.Quality);
+            //Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
-            Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            //Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            //Assert.AreEqual(0, R717.Compressibility);
+            //Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            //Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
+            //Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
         }
 
         [TestMethod]

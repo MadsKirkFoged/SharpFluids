@@ -242,56 +242,58 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdatePT(Pressure pressure, Temperature temperature, double? RepeatTolerance = null)
         {
-            //Check if we are close to previous lookup
-            if (RepeatTolerance is object)
-            {
-                if (cache_pressure is object && cache_temperature is object)
-                {
-
-                    if ((pressure - cache_pressure).Abs() / pressure < RepeatTolerance &&
-                       (temperature - cache_temperature).Abs() / temperature < RepeatTolerance)
-                    {
-
-                        //Saving old real values
-                        cache_pressure = Pressure;
-                        cache_temperature = Temperature;
-
-                        //Setting input as New value
-                        Pressure = pressure;
-                        Temperature = temperature;
-
-                        return;
-                    }
-                }
-
-            }
-
 
             CheckBeforeUpdate();
+            GuardFromCustomFluids();
 
+            ////Check if we are close to previous lookup
+            //if (RepeatTolerance is object)
+            //{
+            //    if (cache_pressure is object && cache_temperature is object)
+            //    {
 
+            //        if ((pressure - cache_pressure).Abs() / pressure < RepeatTolerance &&
+            //           (temperature - cache_temperature).Abs() / temperature < RepeatTolerance)
+            //        {
 
-            if (Media.BackendType == "CustomFluid")
+            //            //Saving old real values
+            //            cache_pressure = Pressure;
+            //            cache_temperature = Temperature;
+
+            //            //Setting input as New value
+            //            Pressure = pressure;
+            //            Temperature = temperature;
+
+            //            return;
+            //        }
+            //    }
+
+            //}
+
+            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+               ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
             {
-                UpdateCustomFluid(temperature, pressure);
+                CacheTemperature(temperature);
+                CachePressure(pressure);
                 return;
-
             }
 
 
 
-            if (pressure < LimitPressureMin || temperature < LimitTemperatureMin)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdatePT -> {pressure} cant be below {LimitPressureMin} and {temperature} cant be below {LimitTemperatureMin}");
-                return;
-            }
 
-            if (temperature > LimitTemperatureMax)
-                Log.Debug($"SharpFluid -> UpdatePT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
 
-            if (pressure > LimitPressureMax)
-                Log.Debug($"SharpFluid -> UpdatePT -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+            //if (pressure < LimitPressureMin || temperature < LimitTemperatureMin)
+            //{
+            //    FailState = true;
+            //    Log.Debug($"SharpFluid -> UpdatePT -> {pressure} cant be below {LimitPressureMin} and {temperature} cant be below {LimitTemperatureMin}");
+            //    return;
+            //}
+
+            //if (temperature > LimitTemperatureMax)
+            //    Log.Debug($"SharpFluid -> UpdatePT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
+
+            //if (pressure > LimitPressureMax)
+            //    Log.Debug($"SharpFluid -> UpdatePT -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
 
 
@@ -300,8 +302,6 @@ namespace SharpFluids
                 REF.update(input_pairs.PT_INPUTS, pressure.Pascal, temperature.Kelvins);
                 UpdateValues();
 
-                cache_pressure = Pressure;
-                cache_enthalpy = Enthalpy;
             }
             catch (System.ApplicationException e)
             {
@@ -325,26 +325,31 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "quality" > The Quality used in the update</param>
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
-        public void UpdateXT(double quality, Temperature temperature)
+        public void UpdateXT(double quality, Temperature temperature, double? RepeatTolerance = null)
         {
 
             CheckBeforeUpdate();
+            GuardFromCustomFluids();
 
-            if (Media.BackendType == "CustomFluid")
+            if (ShouldItBeCached(temperature, cache_temperature, RepeatTolerance) &&
+               ShouldItBeCached(quality, cache_quality, RepeatTolerance))
             {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-            if (temperature < LimitTemperatureMin)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdateXT -> {temperature} cant be below {LimitTemperatureMin}", temperature, LimitTemperatureMin);
+                CacheQuality(quality);
+                CacheTemperature(temperature);
                 return;
             }
 
 
-            if (temperature > LimitTemperatureMax)
-                Log.Debug($"SharpFluid -> UpdateXT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
+            //if (temperature < LimitTemperatureMin)
+            //{
+            //    FailState = true;
+            //    Log.Debug($"SharpFluid -> UpdateXT -> {temperature} cant be below {LimitTemperatureMin}", temperature, LimitTemperatureMin);
+            //    return;
+            //}
+
+
+            //if (temperature > LimitTemperatureMax)
+            //    Log.Debug($"SharpFluid -> UpdateXT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
 
             try
             {
@@ -353,14 +358,17 @@ namespace SharpFluids
                 {
                     Log.Debug($"SharpFluid -> UpdateXT -> {temperature} is above CriticalTemperature ({CriticalTemperature}) -> We will just return you the CriticalTemperature!");
                     REF.update(input_pairs.QT_INPUTS, quality, CriticalTemperature.Kelvins);
+                    UpdateValues();
+                    FailState = true;
 
                 }
                 else
                 {
                     REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
+                    UpdateValues();
                 }
 
-                UpdateValues();
+
             }
             catch (System.ApplicationException e)
             {
@@ -474,6 +482,16 @@ namespace SharpFluids
 
         }
 
+        private void CacheTemperature(Temperature temperature)
+        {
+            //Saving old real values
+            cache_temperature = Temperature;
+
+            //Setting input as New value
+            Temperature = temperature;
+
+        }
+
         private SpecificEnergy cache_enthalpy;
         private bool CanEnthalpyBeCached(SpecificEnergy enthalpy, double? RepeatTolerance)
         {
@@ -491,6 +509,22 @@ namespace SharpFluids
 
         }
 
+        private bool ShouldItBeCached(UnknownUnit value, UnknownUnit cache_value, double? RepeatTolerance)
+        {
+            if (RepeatTolerance is null)
+                return false;
+
+            if (cache_value is null)
+                return false;
+
+            if ((value - cache_value).Abs() / value > RepeatTolerance)
+                return false;
+
+
+            return true;
+
+        }
+
         private void CacheEnthalpy(SpecificEnergy enthalpy)
         {
             //Saving old real values
@@ -498,6 +532,16 @@ namespace SharpFluids
 
             //Setting input as New value
             Enthalpy = enthalpy;
+
+        }
+
+        private void CacheQuality(double quality)
+        {
+            //Saving old real values
+            cache_quality = Quality;
+
+            //Setting input as New value
+            Quality = quality;
 
         }
 
@@ -533,24 +577,13 @@ namespace SharpFluids
             GuardFromMixFluids();
 
 
-            if (CanPressureBeCached(pressure, RepeatTolerance) && 
-                CanEnthalpyBeCached(enthalpy, RepeatTolerance))
+            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+                ShouldItBeCached(enthalpy,cache_enthalpy, RepeatTolerance))
             {
                 CacheEnthalpy(enthalpy);
                 CachePressure(pressure);
                 return;
             }
-
-
-            //if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)
-            //{
-            //    FailState = true;
-            //    Log.Debug($"SharpFluid -> UpdatePH -> {pressure} cant be below {LimitPressureMin} and {enthalpy} cant be below {SpecificEnergy.Zero}");
-            //    return;
-            //}
-
-            //if (pressure > LimitPressureMax)
-            //    Log.Debug($"SharpFluid -> UpdatePH -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
 
             try
@@ -571,6 +604,8 @@ namespace SharpFluids
             }
         }
 
+        private double cache_quality;
+
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the Quality<br></br>
         /// <br>Exemple:</br>
@@ -579,25 +614,20 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         /// <param name = "quality" > The Quality used in the update</param>
-        public void UpdatePX(Pressure pressure, double quality)
+        public void UpdatePX(Pressure pressure, double quality, double? RepeatTolerance = null)
         {
 
             CheckBeforeUpdate();
+            GuardFromCustomFluids();
 
-            if (Media.BackendType == "CustomFluid")
+            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+                ShouldItBeCached(quality, cache_quality, RepeatTolerance))
             {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-            if (pressure < LimitPressureMin || quality < 0)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdatePX -> {pressure} cant be bolow {LimitPressureMin}", pressure, LimitPressureMin);
+                CacheQuality(quality);
+                CachePressure(pressure);
                 return;
             }
 
-            if (pressure > LimitPressureMax)
-                Log.Debug($"SharpFluid -> UpdatePX -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
             try
             {
@@ -607,14 +637,13 @@ namespace SharpFluids
                     UpdatePH(pressure, Enthalpy);
                     Log.Debug($"SharpFluid -> UpdatePX -> {pressure} is above CriticalPressure ({CriticalPressure}) -> We will just return you the Critical point!");
 
-                    if (FailState)
-                    {
-                        SetValuesToZero();
-                    }
+                    FailState = true;
+
+
                 }
                 else
                 {
-                    REF.update(input_pairs.PQ_INPUTS, pressure.Pascals, quality);
+                    REF.update(input_pairs.PQ_INPUTS, pressure.Pascal, quality);
                     UpdateValues();
                 }
             }

@@ -207,6 +207,8 @@ namespace SharpFluids
 
                 Entropy = REF.smass();
                 Quality = REF.Q();
+                cache_quality = Quality;
+
                 Density = REF.rhomass();
                 Cp = REF.cpmass();
                 Cv = REF.cvmass();
@@ -262,6 +264,7 @@ namespace SharpFluids
             cache_pressure = null;
             cache_enthalpy = null;
             cache_temperature = null;
+            cache_quality = -99999;
         }
 
         public virtual void SetLimitsToZero()
@@ -307,10 +310,11 @@ namespace SharpFluids
             this.InternalEnergy = other.InternalEnergy;
 
             //Removed cache values
-            this.tsat_Cache = null;
-            cache_pressure = null;
-            cache_enthalpy = null;
-            cache_temperature = null;
+            this.tsat_Cache = other.tsat_Cache;
+            this.cache_pressure = other.cache_pressure;
+            this.cache_enthalpy = other.cache_enthalpy;
+            this.cache_temperature = other.cache_temperature;
+            this.cache_quality = other.cache_quality;
         }
 
         /// <summary>

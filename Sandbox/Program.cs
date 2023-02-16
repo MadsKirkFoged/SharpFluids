@@ -40,15 +40,15 @@ namespace Sandbox
 
             for (int i = 0; i < Count; i++)
             {
-                AmmoniaGas2.UpdatePH(localp, locale);
-                AmmoniaGas2.AddTo(AmmoniaGas3);
-                var testsat = AmmoniaGas2.Tsat;
+                AmmoniaGas2.UpdatePH(localp, locale, 0.000001);
+                //AmmoniaGas2.AddTo(AmmoniaGas3);
+                //var testsat = AmmoniaGas2.Tsat;
                 //var testsat2 = AmmoniaGas2.Tsat;
                 //var testsat3 = AmmoniaGas2.Tsat;
 
-                AmmoniaGas2.Copy(AmmoniaGas2);
+               // AmmoniaGas2.Copy(AmmoniaGas2);
 
-                var testsat4 = AmmoniaGas2.Tsat;
+                //var testsat4 = AmmoniaGas2.Tsat;
 
             }
 

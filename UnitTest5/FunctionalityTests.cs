@@ -810,7 +810,7 @@ namespace UnitsTests
 
 
             //Assert
-            Assert.IsFalse(R717.FailState);
+            Assert.IsTrue(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.634, R717.CriticalPressure.Bars, 0.0001);
@@ -912,7 +912,7 @@ namespace UnitsTests
 
 
             //Assert
-            Assert.IsFalse(R717.FailState);
+            Assert.IsTrue(R717.FailState);
             Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(10000, R717.LimitPressureMax.Bars, 0.0001);
             Assert.AreEqual(113.634, R717.CriticalPressure.Bars, 0.0001);
