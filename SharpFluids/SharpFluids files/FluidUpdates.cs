@@ -447,7 +447,75 @@ namespace SharpFluids
         }
 
         private Pressure cache_pressure;
+
+        private bool CanPressureBeCached(Pressure pressure, double? RepeatTolerance)
+        {
+            if (RepeatTolerance is null)
+                return false;
+
+            if (cache_pressure is null)
+                return false;
+
+            if ((pressure - cache_pressure).Abs() / pressure > RepeatTolerance)
+                return false;
+
+
+            return true;
+
+        }
+
+        private void CachePressure(Pressure pressure)
+        {
+            //Saving old real values
+            cache_pressure = Pressure;
+
+            //Setting input as New value
+            Pressure = pressure;
+
+        }
+
         private SpecificEnergy cache_enthalpy;
+        private bool CanEnthalpyBeCached(SpecificEnergy enthalpy, double? RepeatTolerance)
+        {
+            if (RepeatTolerance is null)
+                return false;
+
+            if (cache_enthalpy is null)
+                return false;
+
+            if ((enthalpy - cache_enthalpy).Abs() / enthalpy > RepeatTolerance)
+                return false;
+
+
+            return true;
+
+        }
+
+        private void CacheEnthalpy(SpecificEnergy enthalpy)
+        {
+            //Saving old real values
+            cache_enthalpy = Enthalpy;
+
+            //Setting input as New value
+            Enthalpy = enthalpy;
+
+        }
+
+        private void GuardFromCustomFluids()
+        {
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+        }
+
+        private void GuardFromMixFluids()
+        {
+            if (Media.InternalName.Contains(".mix"))
+            {
+                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
+            }
+        }
 
 
         /// <summary>
@@ -460,74 +528,43 @@ namespace SharpFluids
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, double? RepeatTolerance = null)
         {
+            CheckBeforeUpdate();            
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
-            //Check if we are close to previous lookup
-            if (RepeatTolerance is object)
+
+
+            if (CanPressureBeCached(pressure, RepeatTolerance) && 
+                CanEnthalpyBeCached(enthalpy, RepeatTolerance))
             {
-                if (cache_pressure is object && cache_enthalpy is object)
-                {
-
-                    if ((pressure - cache_pressure).Abs() / pressure < RepeatTolerance &&
-                       (enthalpy - cache_enthalpy).Abs() / enthalpy < RepeatTolerance)
-                    {
-
-                        //Saving old real values
-                        cache_pressure = Pressure;
-                        cache_enthalpy = Enthalpy;
-
-                        //Setting input as New value
-                        Pressure = pressure;
-                        Enthalpy = enthalpy;
-
-                        return;
-                    }
-                }
-
-            }
-
-
-
-            CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-
-
-            if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdatePH -> {pressure} cant be below {LimitPressureMin} and {enthalpy} cant be below {SpecificEnergy.Zero}");
+                CacheEnthalpy(enthalpy);
+                CachePressure(pressure);
                 return;
             }
 
-            if (pressure > LimitPressureMax)
-                Log.Debug($"SharpFluid -> UpdatePH -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
+
+
+
+            //if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)
+            //{
+            //    FailState = true;
+            //    Log.Debug($"SharpFluid -> UpdatePH -> {pressure} cant be below {LimitPressureMin} and {enthalpy} cant be below {SpecificEnergy.Zero}");
+            //    return;
+            //}
+
+            //if (pressure > LimitPressureMax)
+            //    Log.Debug($"SharpFluid -> UpdatePH -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
 
             try
             {
 
-                //GuessesStructure test = new GuessesStructure
-                //{
-                //    T = Temperature.SI,
-                //    p = Pressure.SI,
-                    
-                //};
-
-                //REF.update_with_guesses(input_pairs.PT_INPUTS, enthalpy.JoulePerKilogram, pressure.Pascal, test);
                 REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulePerKilogram, pressure.Pascal);
                 UpdateValues();
 
-                cache_pressure = Pressure;
-                cache_enthalpy = Enthalpy;
+                //CacheEnthalpy(Enthalpy);
+                //CachePressure(Pressure);
+
             }
             catch (System.ApplicationException e)
             {

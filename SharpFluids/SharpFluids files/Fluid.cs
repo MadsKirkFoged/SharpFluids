@@ -180,9 +180,9 @@ namespace SharpFluids
 
             //Removed cache values
             tsat_Cache = null;
-            cache_pressure = null;
-            cache_enthalpy = null;
-            cache_temperature = null;
+            //cache_pressure = null;
+            //cache_enthalpy = null;
+            //cache_temperature = null;
 
 
 
@@ -197,8 +197,14 @@ namespace SharpFluids
                 }
 
                 Enthalpy = REF.hmass();
+                cache_enthalpy = Enthalpy;
+
                 Temperature = REF.T();
+                cache_temperature = Temperature;
+
                 Pressure = REF.p();
+                cache_pressure = Pressure;
+
                 Entropy = REF.smass();
                 Quality = REF.Q();
                 Density = REF.rhomass();
