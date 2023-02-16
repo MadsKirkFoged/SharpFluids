@@ -558,18 +558,13 @@ namespace SharpFluids
 
             try
             {
-
                 REF.update(input_pairs.HmassP_INPUTS, enthalpy.JoulePerKilogram, pressure.Pascal);
                 UpdateValues();
-
-                //CacheEnthalpy(Enthalpy);
-                //CachePressure(Pressure);
-
             }
             catch (System.ApplicationException e)
             {
                 FailState = true;
-                Log.Debug($"SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}");
+                Log.Error($"SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}");
             }
             catch (System.Exception e)
             {
