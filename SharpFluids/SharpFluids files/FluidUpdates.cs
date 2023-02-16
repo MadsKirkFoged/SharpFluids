@@ -533,7 +533,6 @@ namespace SharpFluids
             GuardFromMixFluids();
 
 
-
             if (CanPressureBeCached(pressure, RepeatTolerance) && 
                 CanEnthalpyBeCached(enthalpy, RepeatTolerance))
             {
@@ -541,8 +540,6 @@ namespace SharpFluids
                 CachePressure(pressure);
                 return;
             }
-
-
 
 
             //if (pressure < LimitPressureMin || enthalpy <= SpecificEnergy.Zero)

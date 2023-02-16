@@ -98,14 +98,13 @@ namespace SharpFluids
 
                 if (local.FailState)
                 {
-                    if (localSpecificEnergy > local.Enthalpy)
-                    {
-                        local.UpdatePT(local.Pressure, local.LimitTemperatureMax);
-                    }
-                    else
-                    {
+                    if (localSpecificEnergy > local.Enthalpy)                    
+                        local.UpdatePT(local.Pressure, local.LimitTemperatureMax);                    
+                    else                    
                         local.UpdatePT(local.Pressure, local.LimitTemperatureMin);
-                    }
+
+
+                    local.FailState= true;
                 }
 
 
