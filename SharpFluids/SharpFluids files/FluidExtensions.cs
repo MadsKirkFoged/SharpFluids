@@ -110,6 +110,7 @@ namespace SharpFluids
 
 
 
+
                 //if (powerToBeAdded > Power.Zero)
                 //if (localSpecificEnergy > local.Enthalpy)
                 //{
