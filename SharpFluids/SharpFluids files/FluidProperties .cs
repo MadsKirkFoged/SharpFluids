@@ -537,5 +537,15 @@ namespace SharpFluids
 
 
 
+
+        private Pressure cache_pressure;
+        private Temperature cache_temperature;
+        private SpecificEnergy cache_enthalpy;
+        private SpecificEntropy cache_entropy;
+        private double cache_quality;
+
+
+
+
     }
 }

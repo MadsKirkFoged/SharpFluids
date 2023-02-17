@@ -24,29 +24,13 @@ namespace SharpFluids
         public void UpdateDS(Density density, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-
-
-            if (density <= Density.Zero || entropy <= SpecificEntropy.Zero)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdateDS -> {density} cant be below {Density.Zero} and {entropy} cant be below {SpecificEntropy.Zero}");
-                return;
-            }
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
 
             try
             {
-                REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramsPerCubicMeter, entropy.JoulesPerKilogramKelvin);
+                REF.update(input_pairs.DmassSmass_INPUTS, density.KilogramPerCubicMeter, entropy.JoulePerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -58,11 +42,8 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}");
-                throw;
+                throw e;
             }
-
-
-
 
         }
 
@@ -78,34 +59,12 @@ namespace SharpFluids
         public void UpdateDP(Density density, Pressure pressure)
         {
             CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-
-
-            if (density <= Density.Zero || pressure <= Pressure.Zero)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdateDP -> {density} cant be below {Density.Zero} and {pressure} cant be below {Pressure.Zero}");
-
-                return;
-            }
-
-            if (pressure > LimitPressureMax)
-                Log.Debug($"SharpFluid -> UpdateDP -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
-
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
             try
             {
-                REF.update(input_pairs.DmassP_INPUTS, density.KilogramsPerCubicMeter, pressure.Pascals);
+                REF.update(input_pairs.DmassP_INPUTS, density.KilogramPerCubicMeter, pressure.Pascal);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -117,7 +76,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDP -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {pressure} {e}");
-                throw;
+                throw e;
             }
 
 
@@ -134,32 +93,12 @@ namespace SharpFluids
         public void UpdateDT(Density density, Temperature temperature)
         {
             CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-
-            if (density <= Density.Zero || temperature < LimitTemperatureMin)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdateDT -> {density} cant be below {Density.Zero} and {temperature} cant be below {LimitTemperatureMin}");
-                return;
-            }
-
-            if (temperature > LimitTemperatureMax)
-                Log.Debug($"SharpFluid -> UpdateDT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
-
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
             try
             {
-                REF.update(input_pairs.DmassT_INPUTS, density.KilogramsPerCubicMeter, temperature.Kelvins);
+                REF.update(input_pairs.DmassT_INPUTS, density.KilogramPerCubicMeter, temperature.Kelvins);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -171,7 +110,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {temperature} {e}");
-                throw;
+                throw e;
             }
 
 
@@ -189,30 +128,12 @@ namespace SharpFluids
         public void UpdateDH(Density density, SpecificEnergy enthalpy)
         {
             CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-
-            if (density <= Density.Zero)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdateDH -> {density} cant be below {Density.Zero} and {enthalpy} cant be below (limit unknown)");
-                return;
-            }
-
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
             try
             {
-                REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramsPerCubicMeter, enthalpy.JoulesPerKilogram);
+                REF.update(input_pairs.DmassHmass_INPUTS, density.KilogramPerCubicMeter, enthalpy.JoulePerKilogram);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -224,13 +145,10 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {enthalpy} {e}");
-                throw;
+                throw e;
             }
 
         }
-
-         private Temperature cache_temperature;
-
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the <see cref="UnitsNet.Temperature"/><br></br>
@@ -244,31 +162,7 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
-            GuardFromCustomFluids();
-
-            ////Check if we are close to previous lookup
-            //if (RepeatTolerance is object)
-            //{
-            //    if (cache_pressure is object && cache_temperature is object)
-            //    {
-
-            //        if ((pressure - cache_pressure).Abs() / pressure < RepeatTolerance &&
-            //           (temperature - cache_temperature).Abs() / temperature < RepeatTolerance)
-            //        {
-
-            //            //Saving old real values
-            //            cache_pressure = Pressure;
-            //            cache_temperature = Temperature;
-
-            //            //Setting input as New value
-            //            Pressure = pressure;
-            //            Temperature = temperature;
-
-            //            return;
-            //        }
-            //    }
-
-            //}
+            GuardFromCustomFluids();            
 
             if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
                ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
@@ -277,24 +171,6 @@ namespace SharpFluids
                 CachePressure(pressure);
                 return;
             }
-
-
-
-
-
-            //if (pressure < LimitPressureMin || temperature < LimitTemperatureMin)
-            //{
-            //    FailState = true;
-            //    Log.Debug($"SharpFluid -> UpdatePT -> {pressure} cant be below {LimitPressureMin} and {temperature} cant be below {LimitTemperatureMin}");
-            //    return;
-            //}
-
-            //if (temperature > LimitTemperatureMax)
-            //    Log.Debug($"SharpFluid -> UpdatePT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
-
-            //if (pressure > LimitPressureMax)
-            //    Log.Debug($"SharpFluid -> UpdatePT -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
-
 
 
             try
@@ -312,7 +188,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {temperature} {e}");
-                throw;
+                throw e;
             }
         }
 
@@ -340,17 +216,7 @@ namespace SharpFluids
             }
 
 
-            //if (temperature < LimitTemperatureMin)
-            //{
-            //    FailState = true;
-            //    Log.Debug($"SharpFluid -> UpdateXT -> {temperature} cant be below {LimitTemperatureMin}", temperature, LimitTemperatureMin);
-            //    return;
-            //}
-
-
-            //if (temperature > LimitTemperatureMax)
-            //    Log.Debug($"SharpFluid -> UpdateXT -> {temperature} is above 'LimitTemperatureMax' ({LimitTemperatureMax}) - This result is extrapolated hence precision is decreased");
-
+           
             try
             {
                 //If we are above transcritical we just return the Critical point 
@@ -408,35 +274,24 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
-        public void UpdatePS(Pressure pressure, SpecificEntropy entropy)
+        public void UpdatePS(Pressure pressure, SpecificEntropy entropy, double? RepeatTolerance = null)
         {
             CheckBeforeUpdate();
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
-            if (Media.BackendType == "CustomFluid")
+            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+                ShouldItBeCached(entropy, cache_entropy, RepeatTolerance))
             {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-
-
-            if (pressure < LimitPressureMin)
-            {
-                FailState = true;
-                Log.Debug($"SharpFluid -> UpdatePS -> {pressure} cant be below {LimitPressureMin} and {entropy} cant be below (limit unknown)");
+                CacheEntropy(entropy);
+                CachePressure(pressure);
                 return;
             }
 
-            if (pressure > LimitPressureMax)
-                Log.Debug($"SharpFluid -> UpdatePS -> {pressure} is above 'LimitPressureMax' ({LimitPressureMax}) - This result is extrapolated hence precision is decreased");
 
             try
             {
-                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascals, entropy.JoulesPerKilogramKelvin);
+                REF.update(input_pairs.PSmass_INPUTS, pressure.Pascal, entropy.JoulePerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -448,119 +303,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {entropy} {e}");
-                throw;
+                throw e;
             }
 
 
         }
 
-        private Pressure cache_pressure;
-
-        private bool CanPressureBeCached(Pressure pressure, double? RepeatTolerance)
-        {
-            if (RepeatTolerance is null)
-                return false;
-
-            if (cache_pressure is null)
-                return false;
-
-            if ((pressure - cache_pressure).Abs() / pressure > RepeatTolerance)
-                return false;
-
-
-            return true;
-
-        }
-
-        private void CachePressure(Pressure pressure)
-        {
-            //Saving old real values
-            cache_pressure = Pressure;
-
-            //Setting input as New value
-            Pressure = pressure;
-
-        }
-
-        private void CacheTemperature(Temperature temperature)
-        {
-            //Saving old real values
-            cache_temperature = Temperature;
-
-            //Setting input as New value
-            Temperature = temperature;
-
-        }
-
-        private SpecificEnergy cache_enthalpy;
-        private bool CanEnthalpyBeCached(SpecificEnergy enthalpy, double? RepeatTolerance)
-        {
-            if (RepeatTolerance is null)
-                return false;
-
-            if (cache_enthalpy is null)
-                return false;
-
-            if ((enthalpy - cache_enthalpy).Abs() / enthalpy > RepeatTolerance)
-                return false;
-
-
-            return true;
-
-        }
-
-        private bool ShouldItBeCached(UnknownUnit value, UnknownUnit cache_value, double? RepeatTolerance)
-        {
-            if (RepeatTolerance is null)
-                return false;
-
-            if (cache_value is null)
-                return false;
-
-            if ((value - cache_value).Abs() / value > RepeatTolerance)
-                return false;
-
-
-            return true;
-
-        }
-
-        private void CacheEnthalpy(SpecificEnergy enthalpy)
-        {
-            //Saving old real values
-            cache_enthalpy = Enthalpy;
-
-            //Setting input as New value
-            Enthalpy = enthalpy;
-
-        }
-
-        private void CacheQuality(double quality)
-        {
-            //Saving old real values
-            cache_quality = Quality;
-
-            //Setting input as New value
-            Quality = quality;
-
-        }
-
-        private void GuardFromCustomFluids()
-        {
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-        }
-
-        private void GuardFromMixFluids()
-        {
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
-        }
-
+        
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the Enthalpy<br></br>
@@ -600,11 +349,9 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {enthalpy} {e}");
-                throw;
+                throw e;
             }
         }
-
-        private double cache_quality;
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="UnitsNet.Pressure"/> and the Quality<br></br>
@@ -638,8 +385,6 @@ namespace SharpFluids
                     Log.Debug($"SharpFluid -> UpdatePX -> {pressure} is above CriticalPressure ({CriticalPressure}) -> We will just return you the Critical point!");
 
                     FailState = true;
-
-
                 }
                 else
                 {
@@ -656,7 +401,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePX -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {quality} {e}");
-                throw;
+                throw e;
             }
         }
 
@@ -675,20 +420,12 @@ namespace SharpFluids
         public void UpdateHS(SpecificEnergy enthalpy, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
             try
             {
-                REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulesPerKilogram, entropy.JoulesPerKilogramKelvin);
+                REF.update(input_pairs.HmassSmass_INPUTS, enthalpy.JoulePerKilogram, entropy.JoulePerKilogramKelvin);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -700,7 +437,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {enthalpy} and {entropy} {e}");
-                throw;
+                throw e;
             }
         }
 
@@ -715,20 +452,12 @@ namespace SharpFluids
         public void UpdateTS(Temperature temperature, SpecificEntropy entropy)
         {
             CheckBeforeUpdate();
-
-            if (Media.BackendType == "CustomFluid")
-            {
-                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
-            }
-
-            if (Media.InternalName.Contains(".mix"))
-            {
-                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
-            }
+            GuardFromCustomFluids();
+            GuardFromMixFluids();
 
             try
             {
-                REF.update(input_pairs.SmassT_INPUTS, entropy.JoulesPerKilogramKelvin, temperature.Kelvins);
+                REF.update(input_pairs.SmassT_INPUTS, entropy.JoulePerKilogramKelvin, temperature.Kelvins);
                 UpdateValues();
             }
             catch (System.ApplicationException e)
@@ -740,7 +469,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {temperature} and {entropy} {e}");
-                throw;
+                throw e;
             }
         }
 
@@ -764,6 +493,8 @@ namespace SharpFluids
             {
                 throw new NotImplementedException("This is in Beta and only works with CustomFluids!");
             }
+
+
 
 
             //Find the two closed points for Interpolation or Extrapolation
@@ -807,6 +538,84 @@ namespace SharpFluids
 
        
 
+        private void CachePressure(Pressure pressure)
+        {
+            //Saving old real values
+            cache_pressure = Pressure;
+
+            //Setting input as New value
+            Pressure = pressure;
+
+        }
+        private void CacheTemperature(Temperature temperature)
+        {
+            //Saving old real values
+            cache_temperature = Temperature;
+
+            //Setting input as New value
+            Temperature = temperature;
+
+        }
+        private void CacheEnthalpy(SpecificEnergy enthalpy)
+        {
+            //Saving old real values
+            cache_enthalpy = Enthalpy;
+
+            //Setting input as New value
+            Enthalpy = enthalpy;
+
+        }
+        private void CacheQuality(double quality)
+        {
+            //Saving old real values
+            cache_quality = Quality;
+
+            //Setting input as New value
+            Quality = quality;
+
+        }
+
+        private void CacheEntropy(SpecificEntropy entropy)
+        {
+            //Saving old real values
+            cache_entropy = Entropy;
+
+            //Setting input as New value
+            Entropy = entropy;
+        }
+
+        private bool ShouldItBeCached(UnknownUnit value, UnknownUnit cache_value, double? RepeatTolerance)
+        {
+            if (RepeatTolerance is null)
+                return false;
+
+            if (cache_value is null)
+                return false;
+
+            if ((value - cache_value).Abs() / value > RepeatTolerance)
+                return false;
+
+
+            return true;
+
+        }
+
+
+        private void GuardFromCustomFluids()
+        {
+            if (Media.BackendType == "CustomFluid")
+            {
+                throw new NotImplementedException("CustomFluid only works with UpdatePT()");
+            }
+        }
+
+        private void GuardFromMixFluids()
+        {
+            if (Media.InternalName.Contains(".mix"))
+            {
+                throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
+            }
+        }
     }
 }
 

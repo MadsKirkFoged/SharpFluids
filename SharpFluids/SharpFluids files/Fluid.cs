@@ -180,10 +180,6 @@ namespace SharpFluids
 
             //Removed cache values
             tsat_Cache = null;
-            //cache_pressure = null;
-            //cache_enthalpy = null;
-            //cache_temperature = null;
-
 
 
             try
@@ -206,6 +202,8 @@ namespace SharpFluids
                 cache_pressure = Pressure;
 
                 Entropy = REF.smass();
+                cache_entropy = Entropy;
+
                 Quality = REF.Q();
                 cache_quality = Quality;
 
@@ -264,6 +262,7 @@ namespace SharpFluids
             cache_pressure = null;
             cache_enthalpy = null;
             cache_temperature = null;
+            cache_entropy = null;
             cache_quality = -99999;
         }
 
@@ -313,6 +312,7 @@ namespace SharpFluids
             this.tsat_Cache = other.tsat_Cache;
             this.cache_pressure = other.cache_pressure;
             this.cache_enthalpy = other.cache_enthalpy;
+            this.cache_entropy = other.cache_entropy;
             this.cache_temperature = other.cache_temperature;
             this.cache_quality = other.cache_quality;
         }
