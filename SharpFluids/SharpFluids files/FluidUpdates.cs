@@ -169,6 +169,7 @@ namespace SharpFluids
             {
                 CacheTemperature(temperature);
                 CachePressure(pressure);
+                CacheMode = true;
                 return;
             }
 
@@ -212,6 +213,7 @@ namespace SharpFluids
             {
                 CacheQuality(quality);
                 CacheTemperature(temperature);
+                CacheMode = true;
                 return;
             }
 
@@ -285,6 +287,7 @@ namespace SharpFluids
             {
                 CacheEntropy(entropy);
                 CachePressure(pressure);
+                CacheMode = true;
                 return;
             }
 
@@ -331,6 +334,7 @@ namespace SharpFluids
             {
                 CacheEnthalpy(enthalpy);
                 CachePressure(pressure);
+                CacheMode = true;
                 return;
             }
 
@@ -372,6 +376,7 @@ namespace SharpFluids
             {
                 CacheQuality(quality);
                 CachePressure(pressure);
+                CacheMode = true;
                 return;
             }
 

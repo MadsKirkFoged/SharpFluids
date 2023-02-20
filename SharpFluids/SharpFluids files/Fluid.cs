@@ -180,6 +180,7 @@ namespace SharpFluids
 
             //Removed cache values
             tsat_Cache = null;
+            CacheMode = false;
 
 
             try

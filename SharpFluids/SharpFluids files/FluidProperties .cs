@@ -535,7 +535,9 @@ namespace SharpFluids
         //[JsonProperty]
         public bool FailState { get; set; }
 
-
+        [JsonProperty(PropertyName = "CM", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        //[JsonProperty]
+        public bool CacheMode { get; set; } = false;
 
 
         private Pressure cache_pressure;
