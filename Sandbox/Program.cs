@@ -20,6 +20,12 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+
+            Fluid Oil = new Fluid(FluidList.Custom_SHC226E);
+
+            Oil.UpdateCustomFluid(Pressure.FromBar(28.38), Temperature.FromDegreesCelsius(-40));
+
+
             Fluid AmmoniaGas3 = new Fluid(FluidList.Ammonia);
             AmmoniaGas3.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
             AmmoniaGas3.MassFlow = MassFlow.FromKilogramPerSecond(3);
@@ -84,9 +90,7 @@ namespace Sandbox
 
             double press = 101000;
             double temp = 273;
-            Fluid Oil = new Fluid(FluidList.Custom_SHC226E);
-
-            Oil.UpdatePT(Pressure.FromBar(28.38), Temperature.FromDegreesCelsius(-40));
+            
 
             //Console.WriteLine(CO2.LimitPressureMin.ToUnit(PressureUnit.Bar));
             //Console.WriteLine(CO2.LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius));

@@ -163,7 +163,7 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
-            //GuardFromCustomFluids();            
+            GuardFromCustomFluids();            
 
             if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
                ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
@@ -486,7 +486,7 @@ namespace SharpFluids
         /// <br><c>Water.UpdateCustomFluid(<see cref="UnitsNet.Temperature"/>.FromKelvins(286.15));</c></br>
         /// </summary> 
         /// <param name = "temperature" > The Temperature used in the update</param>
-        private void UpdateCustomFluid(Temperature temperature, Pressure pressure)
+        public void UpdateCustomFluid(Pressure pressure, Temperature temperature)
         {
 
             //THIS IS IN BETA MODE
@@ -495,10 +495,10 @@ namespace SharpFluids
             CheckBeforeUpdate();
 
 
-            if (Media.BackendType != "CustomFluid")
-            {
-                throw new NotImplementedException("This is in Beta and only works with CustomFluids!");
-            }
+            //if (Media.BackendType != "CustomFluid")
+            //{
+            //    throw new NotImplementedException("This is in Beta and only works with CustomFluids!");
+            //}
 
 
 
