@@ -162,7 +162,7 @@ namespace SharpFluids
         {
 
             CheckBeforeUpdate();
-            GuardFromCustomFluids();            
+            //GuardFromCustomFluids();            
 
             if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
                ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
