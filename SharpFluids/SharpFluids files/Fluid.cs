@@ -185,6 +185,10 @@ namespace SharpFluids
 
             try
             {
+                Phase = (Phases)REF.phase();
+                
+                
+                
                 if (Media.BackendType == "HEOS")
                 {
                     //Mixed fluids does not have these properties 
@@ -216,8 +220,13 @@ namespace SharpFluids
                 SurfaceTension = REF.surface_tension();
                 InternalEnergy = REF.umass();
                 Conductivity = REF.conductivity();
-                Phase = (Phases)REF.phase();
                 FailState = false;
+
+
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
 
 
             }
@@ -762,6 +771,7 @@ namespace SharpFluids
 
         }
 
+        
 
     }
 }

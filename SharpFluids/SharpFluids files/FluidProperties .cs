@@ -257,6 +257,11 @@ namespace SharpFluids
                             REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 1);
                             FailState = false;
                             tsat_Cache = REF.T();
+
+                            if (Environment.Is64BitProcess)
+                                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                            else
+                                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                             return REF.T();
                         }
                         else

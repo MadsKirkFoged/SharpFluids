@@ -44,6 +44,13 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdateDS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}");
                 throw e;
             }
+            finally 
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            }
 
         }
 
@@ -77,6 +84,13 @@ namespace SharpFluids
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDP -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {pressure} {e}");
                 throw e;
+            }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
 
 
@@ -112,6 +126,13 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdateDT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {temperature} {e}");
                 throw e;
             }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            }
 
 
         }
@@ -146,6 +167,13 @@ namespace SharpFluids
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {enthalpy} {e}");
                 throw e;
+            }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
 
 
@@ -191,6 +219,13 @@ namespace SharpFluids
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {temperature} {e}");
                 throw e;
+            }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
         }
 
@@ -249,6 +284,13 @@ namespace SharpFluids
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateXT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {quality} and {temperature} {e}");
                 throw;
+            }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
 
 
@@ -309,6 +351,13 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdatePS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {entropy} {e}");
                 throw e;
             }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            }
 
 
         }
@@ -355,6 +404,13 @@ namespace SharpFluids
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {enthalpy} {e}");
                 throw e;
+            }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
         }
 
@@ -409,6 +465,13 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdatePX -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {quality} {e}");
                 throw e;
             }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            }
         }
 
 
@@ -445,6 +508,13 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {enthalpy} and {entropy} {e}");
                 throw e;
             }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+            }
         }
 
         /// <summary>
@@ -476,6 +546,13 @@ namespace SharpFluids
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {temperature} and {entropy} {e}");
                 throw e;
+            }
+            finally
+            {
+                if (Environment.Is64BitProcess)
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                else
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
         }
 
