@@ -258,10 +258,6 @@ namespace SharpFluids
                             FailState = false;
                             tsat_Cache = REF.T();
 
-                            if (Environment.Is64BitProcess)
-                                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                            else
-                                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                             return REF.T();
                         }
                         else
@@ -279,6 +275,13 @@ namespace SharpFluids
                     {
                         Log.Error($"SharpFluid -> Tsat -> Failed {e}", e);
                         return Temperature;
+                    }
+                    finally 
+                    {
+                        if (Environment.Is64BitProcess)
+                            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                        else
+                            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                     }
                 }
                 else if (Pressure > CriticalPressure)

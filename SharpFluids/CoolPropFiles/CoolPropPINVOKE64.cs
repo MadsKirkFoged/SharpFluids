@@ -142,8 +142,11 @@ class CoolPropPINVOKE64
 
         public static void ResetErrors()
         {
-            pendingException = null;
-            numExceptionsPending = 0;
+            lock (typeof(CoolPropPINVOKE))
+            {
+                pendingException = null;
+                numExceptionsPending = 0;
+            }
         }
 
         public static bool Pending
