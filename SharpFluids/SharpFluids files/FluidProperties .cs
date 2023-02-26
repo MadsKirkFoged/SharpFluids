@@ -524,6 +524,7 @@ namespace SharpFluids
         protected AbstractState REF;
 
 
+
         /// <summary>
         /// Get the fluid type of the <see cref="Fluid"/>
         /// <br>The full list can be seen on <see cref="FluidList"/></br><br></br>
