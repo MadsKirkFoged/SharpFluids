@@ -782,5 +782,14 @@ namespace SharpFluids
 
         }
 
+        public Exception RetrieveErrors()
+        {
+            if (Environment.Is64BitProcess)
+                return CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+            else
+                return CoolPropPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
     }
 }
