@@ -480,7 +480,9 @@ namespace SharpFluids
 
 
             Media.Copy(Type);
-            REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+            if (Media.BackendType != "CustomFluid")            
+                REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+            
             UpdateFluidConstants();
 
 
