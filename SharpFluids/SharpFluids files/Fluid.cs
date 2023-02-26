@@ -773,7 +773,14 @@ namespace SharpFluids
 
         }
 
-        
+        public void ResetErrors()
+        {
+            if (Environment.Is64BitProcess)            
+                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();            
+            else            
+                CoolPropPINVOKE.SWIGPendingException.ResetErrors();            
+
+        }
 
     }
 }
