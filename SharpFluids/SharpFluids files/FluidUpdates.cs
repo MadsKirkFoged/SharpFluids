@@ -244,17 +244,17 @@ namespace SharpFluids
             CheckBeforeUpdate();
             GuardFromCustomFluids();
 
-            //if (ShouldItBeCached(temperature, cache_temperature, RepeatTolerance) &&
-            //   ShouldItBeCached(quality, cache_quality, RepeatTolerance))
-            //{
-            //    CacheQuality(quality);
-            //    CacheTemperature(temperature);
-            //    CacheMode = true;
-            //    return;
-            //}
+            if (ShouldItBeCached(temperature, cache_temperature, RepeatTolerance) &&
+               ShouldItBeCached(quality, cache_quality, RepeatTolerance))
+            {
+                CacheQuality(quality);
+                CacheTemperature(temperature);
+                CacheMode = true;
+                return;
+            }
 
 
-           
+
             try
             {
                 //If we are above transcritical we just return the Critical point 
@@ -428,14 +428,14 @@ namespace SharpFluids
             CheckBeforeUpdate();
             GuardFromCustomFluids();
 
-            //if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
-            //    ShouldItBeCached(quality, cache_quality, RepeatTolerance))
-            //{
-            //    CacheQuality(quality);
-            //    CachePressure(pressure);
-            //    CacheMode = true;
-            //    return;
-            //}
+            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+                ShouldItBeCached(quality, cache_quality, RepeatTolerance))
+            {
+                CacheQuality(quality);
+                CachePressure(pressure);
+                CacheMode = true;
+                return;
+            }
 
 
             try

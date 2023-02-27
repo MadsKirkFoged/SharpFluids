@@ -132,6 +132,7 @@ namespace SharpFluids
             cache_pressure = null;
             cache_enthalpy = null;
             cache_temperature = null;
+            cache_quality = null;
 
 
             if (Media.BackendType == "CustomFluid")
@@ -273,7 +274,7 @@ namespace SharpFluids
             cache_enthalpy = null;
             cache_temperature = null;
             cache_entropy = null;
-            cache_quality = -99999;
+            cache_quality = null;
         }
 
         public virtual void SetLimitsToZero()
