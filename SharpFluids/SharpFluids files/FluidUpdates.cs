@@ -254,7 +254,6 @@ namespace SharpFluids
             }
 
 
-
             try
             {
                 //If we are above transcritical we just return the Critical point 
