@@ -23,7 +23,7 @@ namespace Sandbox
 
             Fluid Oil = new Fluid(FluidList.Custom_SHC226E);
 
-            Oil.UpdateCustomFluid(Pressure.FromBar(28.38), Temperature.FromDegreesCelsius(-40));
+            Oil.UpdateCustomFluid(Pressure.FromBar(5), Temperature.FromDegreesCelsius(82));
 
 
             Fluid AmmoniaGas3 = new Fluid(FluidList.Ammonia);
