@@ -40,6 +40,7 @@ namespace SharpFluids
                 new CustomOil(Temperature.FromDegreesCelsius(   160 ),KinematicViscosity.FromCentistokes(   3.135   ), Density.FromKilogramsPerCubicMeter(  962.8   ), SpecificEntropy.FromKilojoulesPerKilogramKelvin( 2.135   ), ThermalConductivity.FromWattsPerMeterKelvin( 0.1476  )),
                 new CustomOil(Temperature.FromDegreesCelsius(   170 ),KinematicViscosity.FromCentistokes(   2.76    ), Density.FromKilogramsPerCubicMeter(  962.8   ), SpecificEntropy.FromKilojoulesPerKilogramKelvin( 2.115   ), ThermalConductivity.FromWattsPerMeterKelvin( 0.1397  )),
 
+
             };
 
 
