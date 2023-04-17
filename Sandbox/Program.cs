@@ -20,15 +20,32 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+            //Oil check
+            Fluid HotOil = new Fluid(FluidList.Custom_Number13);
+            Fluid CoolOil = new Fluid(FluidList.Custom_Number13);
 
-            Fluid Oil = new Fluid(FluidList.Custom_SHC226E);
+            HotOil.UpdateCustomFluid(Pressure.FromBar(5), Temperature.FromDegreesCelsius(88.9));
+            CoolOil.UpdateCustomFluid(Pressure.FromBar(5), Temperature.FromDegreesCelsius(75));
 
-            Oil.UpdateCustomFluid(Pressure.FromBar(5), Temperature.FromDegreesCelsius(82));
+            SpecificEntropy avgCp = (HotOil.Cp + CoolOil.Cp) / 2;
+
+            Enthalpy test1123 = avgCp * (Temperature.FromDegreesCelsius(88.9) - Temperature.FromDegreesCelsius(75));
+
+            Enthalpy test1123K = avgCp * Temperature.FromKelvins(13.9);
+
+            Enthalpy HotoilEnt = Temperature.FromKelvins(362.05) * avgCp;
+            Enthalpy CooloilEnt = Temperature.FromKelvins(348.15) * avgCp;
+
+            Enthalpy delta = HotoilEnt - CooloilEnt;
 
 
-            Fluid AmmoniaGas3 = new Fluid(FluidList.Ammonia);
-            AmmoniaGas3.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
-            AmmoniaGas3.MassFlow = MassFlow.FromKilogramPerSecond(3);
+            MassFlow OilFlow = VolumeFlow.FromLiterPerMinute(308.9) * HotOil.Density;
+
+
+            Power OilCapacity = (HotOil.Enthalpy - CoolOil.Enthalpy) * OilFlow;
+
+            Power OilCapacityFrick = Enthalpy.FromKilojoulePerKilogram(29.3) * OilFlow;
+
 
 
             Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
