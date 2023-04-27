@@ -30,8 +30,9 @@ namespace Sandbox
             SpecificEntropy avgCp = (HotOil.Cp + CoolOil.Cp) / 2;
 
             Enthalpy test1123 = avgCp * (Temperature.FromDegreesCelsius(88.9) - Temperature.FromDegreesCelsius(75));
-
             Enthalpy test1123K = avgCp * Temperature.FromKelvins(13.9);
+
+
 
             Enthalpy HotoilEnt = Temperature.FromKelvins(362.05) * avgCp;
             Enthalpy CooloilEnt = Temperature.FromKelvins(348.15) * avgCp;
