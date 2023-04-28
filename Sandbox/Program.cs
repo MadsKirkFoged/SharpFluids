@@ -52,6 +52,13 @@ namespace Sandbox
             Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
             Fluid AmmoniaGas4 = new Fluid(FluidList.Ammonia);
             AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
+
+
+
+
+            AmmoniaGas2.UpdatePT(AmmoniaGas2.Pressure, Temperature.FromDegreesCelsius(25));
+            AmmoniaGas2.UpdatePT(AmmoniaGas2.Pressure, Temperature.FromDegreesCelsius(25),0.01);
+
             AmmoniaGas2.MassFlow = MassFlow.FromKilogramPerSecond(1);
 
             Pressure localp = AmmoniaGas2.Pressure;

@@ -585,7 +585,7 @@ namespace SharpFluids
 
 
             Temperature = temperature;
-            Pressure = pressure;
+            Pressure = pressure.ToUnit(PressureReference.Absolute);
             Density = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Density, Above.Density);
             Cp = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Cp, Above.Cp);
             Conductivity = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.ThermalConductivity, Above.ThermalConductivity);

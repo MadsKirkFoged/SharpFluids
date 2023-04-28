@@ -275,12 +275,15 @@ public class AbstractState : IDisposable
         if (Environment.Is64BitProcess)
             {
             CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-            return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_pmax(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE64.AbstractState_pmax(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
+            //return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_pmax(swigCPtr));
         }
         else
         {
             CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-            return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_pmax(swigCPtr));
+            //return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_pmax(swigCPtr));
+            return Pressure.From(CoolPropPINVOKE.AbstractState_pmax(swigCPtr), PressureUnit.Pascal, PressureReference.Absolute);
+
         }
     }
     public Temperature T_critical()
