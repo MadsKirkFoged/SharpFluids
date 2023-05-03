@@ -632,7 +632,7 @@ namespace SharpFluids
             cache_pressure = Pressure;
 
             //Setting input as New value
-            Pressure = pressure;
+            Pressure = pressure.ToUnit(PressureReference.Absolute);
 
         }
         private void CacheTemperature(Temperature temperature)
