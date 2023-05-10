@@ -627,7 +627,7 @@ namespace SharpFluids
             //Units to specifig units
             Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
             Temperature = Temperature.ToUnit(TemperatureUnit.DegreeCelsius);
-            Pressure = Pressure.ToUnit(PressureUnit.Bar, PressureReference.Absolute);
+            Pressure = Pressure.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
             Entropy = Entropy.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
             Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
             Cp = Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
@@ -644,9 +644,9 @@ namespace SharpFluids
             LimitTemperatureMax = LimitTemperatureMax.ToUnit(TemperatureUnit.DegreeCelsius);
             LimitTemperatureMin = LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius);
             CriticalTemperature = CriticalTemperature.ToUnit(TemperatureUnit.DegreeCelsius);
-            CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Bar, PressureReference.Absolute);
-            LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Bar, PressureReference.Absolute);
-            LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Bar, PressureReference.Absolute);
+            CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
+            LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
+            LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
             CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
 
         }
