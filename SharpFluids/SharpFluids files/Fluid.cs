@@ -148,7 +148,7 @@ namespace SharpFluids
                 LimitTemperatureMin = REF.Tmin();
 
 
-                if (REF.backend_name() == "HelmholtzEOSBackend")
+                if (REF.backend_name() == "HelmholtzEOSBackend" && Media.InternalName.EndsWith(".mix") is false )
                 {
                     CriticalTemperature = REF.T_critical();
                     CriticalPressure = REF.p_critical();

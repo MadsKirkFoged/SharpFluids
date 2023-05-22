@@ -20,6 +20,17 @@ namespace Sandbox
         static void Main(string[] args)
         {
 
+
+            Fluid Issue49 = new Fluid(FluidList.R454B_mix);
+
+            Issue49.SetFraction(0.5);
+
+            Pressure P49 = Pressure.FromBar(10);
+            Temperature T49 = Temperature.FromDegreesCelsius(50);
+
+            Issue49.UpdatePT(P49, T49);
+
+
             //Oil check
             Fluid HotOil = new Fluid(FluidList.Custom_Number13);
             Fluid CoolOil = new Fluid(FluidList.Custom_Number13);
@@ -51,7 +62,7 @@ namespace Sandbox
 
             Fluid AmmoniaGas2 = new Fluid(FluidList.Ammonia);
             Fluid AmmoniaGas4 = new Fluid(FluidList.Ammonia);
-            AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(25));
+            AmmoniaGas2.UpdateXT(0.5, Temperature.FromDegreesCelsius(90));
 
 
 
