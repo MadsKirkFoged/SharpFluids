@@ -76,3 +76,62 @@ Console.WriteLine(area.ToUnit(AreaUnit.SquareFoot)); // 0.186 ft²
 Console.WriteLine(area.ToUnit(AreaUnit.SquareCentimeter)); // 172.8 cm²
 ```
 
+## Simple example simulating a heat pump
+```c#
+//Setting up the fluids
+ Fluid CompressorIn = new Fluid(FluidList.Ammonia);
+ Fluid CompressorOut = new Fluid(FluidList.Ammonia);
+
+ Fluid CondenserIn = new Fluid(FluidList.Ammonia);
+ Fluid CondenserOut = new Fluid(FluidList.Ammonia);
+
+ Fluid ExpansionValveIn = new Fluid(FluidList.Ammonia);
+ Fluid ExpansionValveOut = new Fluid(FluidList.Ammonia);
+
+ Fluid EvaporatorIn = new Fluid(FluidList.Ammonia);
+ Fluid EvaporatorOut = new Fluid(FluidList.Ammonia);
+
+ //Setting for heatpump
+ Pressure PEvap = Pressure.FromBar(10);
+ Pressure Pcond = Pressure.FromBar(20);
+ Temperature SuperHeat = Temperature.FromKelvins(10);
+ Temperature SubCooling = Temperature.FromKelvins(5);
+
+ //Starting guess for EvaporatorIn
+ EvaporatorIn.UpdatePX(PEvap, 0);
+
+
+ //Solving the heat pump
+ while (true) 
+ {
+     EvaporatorOut.UpdatePX(PEvap, 1);
+
+     //Adding superheat to evap
+     EvaporatorOut.UpdatePT(EvaporatorOut.Pressure, EvaporatorOut.Temperature + SuperHeat);
+
+     //Compresser
+     CompressorIn.Copy(EvaporatorOut);
+     CompressorOut.UpdatePS(Pcond, CompressorIn.Entropy);
+     SpecificEnergy H2s = CompressorOut.Enthalpy;
+
+     //Compressor equation
+     SpecificEnergy h2 = ((H2s - CompressorIn.Enthalpy) / 0.85) + CompressorIn.Enthalpy;
+     CompressorOut.UpdatePH(Pcond, h2);
+
+
+     CondenserIn.Copy(CompressorOut);
+     CondenserOut.UpdatePX(CondenserIn.Pressure, 0);
+     CondenserOut.UpdatePT(CondenserOut.Pressure, CondenserOut.Temperature - SubCooling);
+
+     ExpansionValveIn.Copy(CondenserOut);
+     ExpansionValveOut.UpdatePH(EvaporatorIn.Pressure, ExpansionValveIn.Enthalpy);
+
+     //Break out of the loop if it is stable
+     if ((ExpansionValveOut.Enthalpy - EvaporatorIn.Enthalpy).Abs() < SpecificEnergy.FromKilojoulePerKilogram(1))
+     {
+         break;
+     }
+
+     EvaporatorIn.Copy(ExpansionValveOut);
+ }
+```
