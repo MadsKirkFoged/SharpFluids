@@ -597,6 +597,9 @@ namespace SharpFluids
         public void UpdateCustomFluid(Pressure pressure, Temperature temperature)
         {
 
+            if (pressure is null || temperature is null)
+                return;
+
             //THIS IS IN BETA MODE
 
 
