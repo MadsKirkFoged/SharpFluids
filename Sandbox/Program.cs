@@ -19,9 +19,7 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-
-
-            //Setting up the fluids
+                        //Setting up the fluids
             Fluid CompressorIn = new Fluid(FluidList.Ammonia);
             Fluid CompressorOut = new Fluid(FluidList.Ammonia);
 
