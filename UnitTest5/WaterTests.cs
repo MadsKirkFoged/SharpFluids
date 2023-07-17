@@ -118,23 +118,23 @@ namespace UnitsTests
             //Assert
             Assert.IsTrue(Water.FailState);
 
-            Assert.AreEqual(0, Water.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, Water.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, Water.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, Water.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, Water.Conductivity?.WattPerMeterKelvin);
+            Assert.AreEqual(null, Water.Cp?.JoulePerKilogramKelvin);
+            Assert.AreEqual(null, Water.Cv?.JoulePerKilogramKelvin);
+            Assert.AreEqual(null, Water.Enthalpy?.JoulePerKilogram);
             Assert.AreEqual(0, Water.Prandtl);
-            Assert.AreEqual(0, Water.Pressure.Bars);
-            Assert.AreEqual(0, Water.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, Water.Entropy.KilocaloriesPerGramKelvin);
-            Assert.AreEqual(0, Water.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, Water.Temperature.Kelvins);
-            Assert.AreEqual(0, Water.Tsat.Kelvins);
-            Assert.AreEqual(0, Water.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, Water.Pressure?.Bar);
+            Assert.AreEqual(null, Water.Density?.KilogramPerCubicMeter);
+            Assert.AreEqual(null, Water.Entropy?.KilocaloriePerGramKelvin);
+            Assert.AreEqual(null, Water.SurfaceTension?.NewtonPerMeter);
+            Assert.AreEqual(null, Water.Temperature?.Kelvins);
+            Assert.AreEqual(null, Water.Tsat?.Kelvins);
+            Assert.AreEqual(null, Water.DynamicViscosity?.NewtonSecondPerMeterSquared);
             Assert.AreEqual(0, Water.Quality);
-            Assert.AreEqual(0, Water.SoundSpeed.MetersPerSecond);
-            Assert.AreEqual(0, Water.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, Water.SoundSpeed?.MeterPerSecond);
+            Assert.AreEqual(null, Water.MolarMass?.GramPerMole);
             Assert.AreEqual(0, Water.Compressibility);
-            Assert.AreEqual(0, Water.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, Water.InternalEnergy?.JoulePerKilogram);
         }
 
         private bool AreAproximativellyEqual(double expected, double actual, double abs_err) => Math.Abs(expected - actual) <= abs_err;

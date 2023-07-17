@@ -23,6 +23,9 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
         public void UpdateDS(Density density, SpecificEntropy entropy)
         {
+            if (density is null || entropy is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -65,6 +68,9 @@ namespace SharpFluids
         /// <param name = "pressure" > The <see cref="UnitsNet.Pressure"/> used in the update</param>
         public void UpdateDP(Density density, Pressure pressure)
         {
+            if (density is null || pressure is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -106,6 +112,9 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdateDT(Density density, Temperature temperature)
         {
+            if (density is null || temperature is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -148,6 +157,9 @@ namespace SharpFluids
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public void UpdateDH(Density density, SpecificEnergy enthalpy)
         {
+            if (density is null || enthalpy is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -189,6 +201,9 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdatePT(Pressure pressure, Temperature temperature, double? RepeatTolerance = null)
         {
+
+            if (pressure is null || temperature is null)
+                return;
 
             CheckBeforeUpdate();
             GuardFromCustomFluids();            
@@ -240,6 +255,9 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="UnitsNet.Temperature"/> used in the update</param>
         public void UpdateXT(double quality, Temperature temperature, double? RepeatTolerance = null)
         {
+
+            if (temperature is null)
+                return;
 
             CheckBeforeUpdate();
             GuardFromCustomFluids();
@@ -320,6 +338,9 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
         public void UpdatePS(Pressure pressure, SpecificEntropy entropy, double? RepeatTolerance = null)
         {
+            if (pressure is null || entropy is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -373,6 +394,9 @@ namespace SharpFluids
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, double? RepeatTolerance = null)
         {
+            if (pressure is null || enthalpy is null)
+                return;
+
             CheckBeforeUpdate();            
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -423,6 +447,8 @@ namespace SharpFluids
         /// <param name = "quality" > The Quality used in the update</param>
         public void UpdatePX(Pressure pressure, double quality, double? RepeatTolerance = null)
         {
+            if (pressure is null)
+                return;
 
             CheckBeforeUpdate();
             GuardFromCustomFluids();
@@ -487,6 +513,9 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
         public void UpdateHS(SpecificEnergy enthalpy, SpecificEntropy entropy)
         {
+            if (enthalpy is null || entropy is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
@@ -526,6 +555,9 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="UnitsNet.SpecificEntropy"/> used in the update</param>
         public void UpdateTS(Temperature temperature, SpecificEntropy entropy)
         {
+            if (temperature is null || entropy is null)
+                return;
+
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();

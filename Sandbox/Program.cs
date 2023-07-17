@@ -21,6 +21,65 @@ namespace Sandbox
         {
 
 
+            //Setting up the fluids
+            Fluid CompressorIn = new Fluid(FluidList.Ammonia);
+            Fluid CompressorOut = new Fluid(FluidList.Ammonia);
+
+            Fluid CondenserIn = new Fluid(FluidList.Ammonia);
+            Fluid CondenserOut = new Fluid(FluidList.Ammonia);
+
+            Fluid ExpansionValveIn = new Fluid(FluidList.Ammonia);
+            Fluid ExpansionValveOut = new Fluid(FluidList.Ammonia);
+
+            Fluid EvaporatorIn = new Fluid(FluidList.Ammonia);
+            Fluid EvaporatorOut = new Fluid(FluidList.Ammonia);
+
+            //Setting for heatpump
+            Pressure PEvap = Pressure.FromBar(10);
+            Pressure Pcond = Pressure.FromBar(20);
+            Temperature SuperHeat = Temperature.FromKelvins(10);
+            Temperature SubCooling = Temperature.FromKelvins(5);
+
+            //Starting guess for EvaporatorIn
+            EvaporatorIn.UpdatePX(PEvap, 0);
+
+
+            //Evap
+            while (true) 
+            {
+                EvaporatorOut.UpdatePX(PEvap, 1);
+
+                //Adding superheat to evap
+                EvaporatorOut.UpdatePT(EvaporatorOut.Pressure, EvaporatorOut.Temperature + SuperHeat);
+
+                //Compresser
+                CompressorIn.Copy(EvaporatorOut);
+                CompressorOut.UpdatePS(Pcond, CompressorIn.Entropy);
+                SpecificEnergy H2s = CompressorOut.Enthalpy;
+
+                //Compressor equation
+                SpecificEnergy h2 = ((H2s - CompressorIn.Enthalpy) / 0.85) + CompressorIn.Enthalpy;
+                CompressorOut.UpdatePH(Pcond, h2);
+
+
+                CondenserIn.Copy(CompressorOut);
+                CondenserOut.UpdatePX(CondenserIn.Pressure, 0);
+                CondenserOut.UpdatePT(CondenserOut.Pressure, CondenserOut.Temperature - SubCooling);
+
+                ExpansionValveIn.Copy(CondenserOut);
+                ExpansionValveOut.UpdatePH(EvaporatorIn.Pressure, ExpansionValveIn.Enthalpy);
+
+                if ((ExpansionValveOut.Enthalpy - EvaporatorIn.Enthalpy).Abs() < SpecificEnergy.FromKilojoulePerKilogram(1))
+                {
+                    break;
+                }
+
+                EvaporatorIn.Copy(ExpansionValveOut);
+            }
+
+
+
+
             Fluid Issue49 = new Fluid(FluidList.R454B_mix);
 
             Issue49.SetFraction(0.5);

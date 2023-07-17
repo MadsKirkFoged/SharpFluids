@@ -87,27 +87,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdateDHFailedTooHigh()
@@ -137,27 +137,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
 
@@ -240,27 +240,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdateDPTooHigh()
@@ -290,27 +290,27 @@ namespace UnitsTests
             Assert.AreEqual(132.41, R717.CriticalTemperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
 
@@ -390,27 +390,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdateDSTooHigh()
@@ -439,27 +439,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
         [TestMethod]
@@ -537,27 +537,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdateDTTooHigh()
@@ -654,27 +654,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdateHSTooHigh()
@@ -703,27 +703,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
         [TestMethod]
@@ -803,27 +803,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdatePHTooHigh()
@@ -853,27 +853,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
         [TestMethod]
@@ -953,27 +953,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdatePSTooHigh()
@@ -1003,27 +1003,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
         [TestMethod]
@@ -1102,27 +1102,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdatePTTooHigh()
@@ -1239,27 +1239,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
         [TestMethod]
         public void UpdatePXTooHigh()
@@ -1465,27 +1465,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
 
@@ -1516,27 +1516,27 @@ namespace UnitsTests
             Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreesCelsius, 0.0001);
 
 
-            Assert.AreEqual(0, R717.Conductivity.WattsPerMeterKelvin);
-            Assert.AreEqual(0, R717.Cp.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Cv.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.Enthalpy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.Conductivity);
+            Assert.AreEqual(null, R717.Cp);
+            Assert.AreEqual(null, R717.Cv);
+            Assert.AreEqual(null, R717.Enthalpy);
             Assert.AreEqual(0, R717.Prandtl);
-            Assert.AreEqual(0, R717.Pressure.Bars);
-            Assert.AreEqual(0, R717.Density.KilogramsPerCubicMeter);
-            Assert.AreEqual(0, R717.Entropy.JoulesPerKilogramKelvin);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter);
-            Assert.AreEqual(0, R717.Temperature.Kelvins);
-            Assert.AreEqual(0, R717.Tsat.Kelvins);
-            Assert.AreEqual(0, R717.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            Assert.AreEqual(null, R717.Pressure);
+            Assert.AreEqual(null, R717.Density);
+            Assert.AreEqual(null, R717.Entropy);
+            Assert.AreEqual(null, R717.SurfaceTension);
+            Assert.AreEqual(null, R717.Temperature);
+            Assert.AreEqual(null, R717.Tsat);
+            Assert.AreEqual(null, R717.DynamicViscosity);
             Assert.AreEqual(0, R717.Quality);
-            Assert.AreEqual(0, R717.SoundSpeed.MetersPerSecond);
+            Assert.AreEqual(null, R717.SoundSpeed);
 
-            Assert.AreEqual(0, R717.MolarMass.GramsPerMole);
+            Assert.AreEqual(null, R717.MolarMass);
             Assert.AreEqual(0, R717.Compressibility);
-            Assert.AreEqual(0, R717.InternalEnergy.JoulesPerKilogram);
+            Assert.AreEqual(null, R717.InternalEnergy);
 
-            Assert.AreEqual(2, R717.MassFlow.KilogramsPerSecond);
-            Assert.AreEqual(0, R717.VolumeFlow.CubicMetersPerSecond);
+            Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond);
+            Assert.AreEqual(null, R717.VolumeFlow);
         }
 
         [TestMethod]

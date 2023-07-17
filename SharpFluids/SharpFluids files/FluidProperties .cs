@@ -176,7 +176,8 @@ namespace SharpFluids
                 if (value is object)
                 {
 
-                    if (Mass is null || Mass == Mass.Zero || value == MassFlow.Zero)
+
+                    if (Mass is null)
                     {
                         _massflow = value;
                     }
@@ -185,6 +186,7 @@ namespace SharpFluids
                         Log.Error($"SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
                         throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                     }
+
                 }
 
 
@@ -209,7 +211,7 @@ namespace SharpFluids
                 if (value is object)
                 {
 
-                    if (MassFlow == MassFlow.Zero || value == Mass.Zero)
+                    if (MassFlow is null)
                     {
                         _mass = value;
                     }
@@ -236,6 +238,9 @@ namespace SharpFluids
 
             get
             {
+                if (Pressure is null)
+                    return null;
+                
                 if (tsat_Cache is object)
                     return tsat_Cache;
 
@@ -442,7 +447,7 @@ namespace SharpFluids
                 {
                     //This fires all the time because of serializing
                     //Log?.LogError("SharpFluid -> VolumeFlow -> Density is zero so we cant return you the VolumeFlow!");
-                    return VolumeFlow.Zero;
+                    return null;
                 }
 
             }

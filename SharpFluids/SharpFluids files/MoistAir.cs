@@ -27,8 +27,8 @@ namespace SharpFluids
 
         public MoistAir()
         {
-            SetValuesToZero();
-            SetLimitsToZero();
+            //SetValuesToZero();
+            //SetLimitsToZero();
             //SetDefalutDisplayUnits();
         }
 

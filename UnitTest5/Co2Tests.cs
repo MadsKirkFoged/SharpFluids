@@ -113,9 +113,9 @@ namespace UnitsTests
 
             //Arrange
             Fluid Co2 = new Fluid(FluidList.CO2);
-            Pressure setPressure = Pressure.FromBars(50);
+            Pressure setPressure = Pressure.FromBar(50);
             Temperature setTemperature = Temperature.FromDegreesCelsius(40);
-            Mass SetMass = Mass.FromKilograms(43);
+            Mass SetMass = Mass.FromKilogram(43);
 
 
             //Act

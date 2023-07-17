@@ -41,8 +41,8 @@ namespace SharpFluids
         /// </summary>
         public Fluid()
         {
-            SetValuesToZero();
-            SetLimitsToZero();
+            //SetValuesToZero();
+            //SetLimitsToZero();
         }
 
         /// <summary>
@@ -278,14 +278,45 @@ namespace SharpFluids
             cache_quality = null;
         }
 
+        public virtual void SetValuesToNull()
+        {
+            Enthalpy = null;
+            Temperature = null;
+            Pressure = null;
+            Entropy = null;
+            Quality = 0;
+            Density = null;
+            Cp = null;
+            Cv = null;
+            MassFlow = null;
+            Mass = null;
+            Prandtl = 0;
+            SurfaceTension = null;
+            SoundSpeed = null;
+            FailState = true;
+            DynamicViscosity = null;
+            Conductivity = null;
+            MolarMass = null;
+            Compressibility = 0;
+            InternalEnergy = null;
+
+            //Removed cache values
+            tsat_Cache = null;
+            cache_pressure = null;
+            cache_enthalpy = null;
+            cache_temperature = null;
+            cache_entropy = null;
+            cache_quality = null;
+        }
+
         public virtual void SetLimitsToZero()
         {
             LimitTemperatureMax = 0;
             LimitTemperatureMin = 0;
             CriticalTemperature = 0;
-            CriticalPressure = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); ;
-            LimitPressureMin = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); ;
-            LimitPressureMax = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); ;
+            CriticalPressure = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
+            LimitPressureMin = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
+            LimitPressureMax = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
             CriticalEnthalpy = 0;
         }
 
@@ -342,7 +373,8 @@ namespace SharpFluids
                 if (this.Media != other.Media)
                 {
                     //Since we are changing media when the old values doesn't make sense to keep
-                    SetValuesToZero();
+                    //SetValuesToZero();
+                    SetValuesToNull();
 
                     //Set new media
                     SetNewMedia(other.Media);

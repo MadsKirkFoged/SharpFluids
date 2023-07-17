@@ -22,9 +22,9 @@ namespace UnitsTests
             Fluid R717Json = JsonConvert.DeserializeObject<Fluid>(jsonString1);
             string jsonString2 = JsonConvert.SerializeObject(R717Json);
 
-            Density setDensity = Density.FromKilogramsPerCubicMeter(15.362783819911829);
-            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulesPerKilogram(1045846.5098055181);
-            MassFlow setMassFlow = MassFlow.FromKilogramsPerSecond(2);
+            Density setDensity = Density.FromKilogramPerCubicMeter(15.362783819911829);
+            SpecificEnergy setEnthalpy = SpecificEnergy.FromJoulePerKilogram(1045846.5098055181);
+            MassFlow setMassFlow = MassFlow.FromKilogramPerSecond(2);
 
 
             //Act
