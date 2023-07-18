@@ -38,10 +38,11 @@ namespace Sandbox
             Temperature SuperHeat = Temperature.FromKelvins(10);
             Temperature SubCooling = Temperature.FromKelvins(5);
 
-            //Starting guess for EvaporatorIn
+            EvaporatorIn.MassFlow = MassFlow.FromKilogramPerSecond(10);
             EvaporatorIn.UpdatePX(PEvap, 0);
+            CompressorOut.UpdatePX(PEvap, 1);
 
-            CompressorIn.AddTo(CompressorOut);
+            EvaporatorIn.AddTo(CompressorOut);
 
 
 
