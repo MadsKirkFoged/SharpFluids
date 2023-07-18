@@ -41,7 +41,6 @@ namespace Sandbox
             //Starting guess for EvaporatorIn
             EvaporatorIn.UpdatePX(PEvap, 0);
 
-
             CompressorIn.AddTo(CompressorOut);
 
 
