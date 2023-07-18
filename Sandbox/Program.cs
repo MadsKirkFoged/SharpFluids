@@ -42,6 +42,10 @@ namespace Sandbox
             EvaporatorIn.UpdatePX(PEvap, 0);
 
 
+            CompressorIn.AddTo(CompressorOut);
+
+
+
             //Evap
             while (true) 
             {
