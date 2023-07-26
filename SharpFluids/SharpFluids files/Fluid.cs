@@ -350,6 +350,7 @@ namespace SharpFluids
             this.MolarMass = other.MolarMass;
             this.Compressibility = other.Compressibility;
             this.InternalEnergy = other.InternalEnergy;
+            this.Phase = other.Phase;
 
             //Removed cache values
             this.tsat_Cache = other.tsat_Cache;
