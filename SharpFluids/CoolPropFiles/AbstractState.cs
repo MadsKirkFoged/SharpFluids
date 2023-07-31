@@ -98,8 +98,8 @@ public class AbstractState : IDisposable
         }
         catch(Exception e)
         {
-            Log.Error($"SharpFluid error: {e}");
-            throw e;
+            Log.Information($"SharpFluid error: {e}");
+            throw;
         }
 
         
