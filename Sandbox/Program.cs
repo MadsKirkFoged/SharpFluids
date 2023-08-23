@@ -19,8 +19,15 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            //Setting up the fluids
-            Fluid CompressorIn = new Fluid(FluidList.Ammonia);
+            while (true)
+            {
+                Fluid CompressorIn2 = new Fluid(FluidList.Ammonia);
+                CompressorIn2.UpdatePX(Pressure.FromBar(10), 1);
+            }
+
+
+                //Setting up the fluids
+                Fluid CompressorIn = new Fluid(FluidList.Ammonia);
             Fluid CompressorOut = new Fluid(FluidList.Ammonia);
 
             Fluid CondenserIn = new Fluid(FluidList.Ammonia);
@@ -71,10 +78,10 @@ namespace Sandbox
                 ExpansionValveIn.Copy(CondenserOut);
                 ExpansionValveOut.UpdatePH(EvaporatorIn.Pressure, ExpansionValveIn.Enthalpy);
 
-                if ((ExpansionValveOut.Enthalpy - EvaporatorIn.Enthalpy).Abs() < SpecificEnergy.FromKilojoulePerKilogram(1))
-                {
-                    break;
-                }
+                //if ((ExpansionValveOut.Enthalpy - EvaporatorIn.Enthalpy).Abs() < SpecificEnergy.FromKilojoulePerKilogram(1))
+                //{
+                //    break;
+                //}
 
                 EvaporatorIn.Copy(ExpansionValveOut);
             }
