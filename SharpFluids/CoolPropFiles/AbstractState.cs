@@ -100,9 +100,7 @@ public class AbstractState : IDisposable
         {
             Log.Information($"SharpFluid error: {e}");
             throw;
-        }
-
-        
+        }       
 
        
     }
