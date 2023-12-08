@@ -149,5 +149,55 @@ namespace UnitsTests
 
             Assert.IsTrue(AreAproximativellyEqual(expected, actual, 1e-5));
         }
+
+
+
+        //Test with InCompWater
+        [TestClass]
+        public class ICompWater
+        {
+            [TestMethod]
+            public void UpdatePT()
+            {
+
+                //Arrange
+                Fluid Water = new Fluid(FluidList.InCompWater);
+                Pressure setPressure = Pressure.FromBars(3);
+                Temperature setTemperature = Temperature.FromDegreesCelsius(30);
+
+
+                //Act
+                Water.UpdatePT(setPressure, setTemperature);
+
+                //Assert
+                Assert.IsFalse(Water.FailState);
+                Assert.AreEqual(0.61614464362, Water.Conductivity.WattsPerMeterKelvin, 0.0001);
+                Assert.AreEqual(4172.1560223, Water.Cp.JoulesPerKilogramKelvin, 0.0001);
+                Assert.AreEqual(4172.1560223, Water.Cv.JoulesPerKilogramKelvin, 0.0001);
+                Assert.AreEqual(41913.2094121788, Water.Enthalpy.JoulesPerKilogram, 0.0001);
+                Assert.AreEqual(5.4271676068075747, Water.Prandtl, 0.0001);
+                Assert.AreEqual(3, Water.Pressure.Bars, 0.0001);
+                Assert.IsNull(Water.CriticalPressure);
+                Assert.IsNull(Water.LimitPressureMax);
+                Assert.IsNull(Water.LimitPressureMin);
+                Assert.AreEqual(997.320588381, Water.Density.KilogramsPerCubicMeter, 0.0001);
+                Assert.AreEqual(0.033442597554993549, Water.Entropy.CaloriesPerGramKelvin, 0.0001);
+                Assert.IsNull(Water.SurfaceTension);
+                Assert.AreEqual(30, Water.Temperature.DegreesCelsius, 0.0001);
+                Assert.AreEqual(30, Water.Tsat.DegreesCelsius, 0.0001);
+                Assert.IsNull(Water.CriticalTemperature);
+                Assert.AreEqual(200, Water.LimitTemperatureMax.DegreesCelsius, 0.0001);
+                Assert.AreEqual(0, Water.LimitTemperatureMin.DegreesCelsius, 0.0001);
+                Assert.AreEqual(0.000801484947612061, Water.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
+                Assert.AreEqual(0,Water.Quality, 0.0001);
+                Assert.IsNull(Water.SoundSpeed);
+                Assert.IsNull(Water.MolarMass);
+                Assert.AreEqual(0, Water.Compressibility, 0.0001);
+                Assert.AreEqual(41612.4034291328, Water.InternalEnergy.JoulesPerKilogram, 0.001);
+
+
+            }
+        }
+    
     }
 }

@@ -484,12 +484,12 @@ namespace SharpFluids
         //[JsonProperty]
         public Temperature CriticalTemperature { get; protected set; }
 
-        /// <summary>
-        /// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
-        /// </summary>
-        [JsonProperty(PropertyName = "CE", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        //[JsonProperty]
-        public SpecificEnergy CriticalEnthalpy { get; protected set; }
+        ///// <summary>
+        ///// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
+        ///// </summary>
+        //[JsonProperty(PropertyName = "CE", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        ////[JsonProperty]
+        //public SpecificEnergy CriticalEnthalpy { get; protected set; }
 
         /// <summary>
         /// <see cref="EngineeringUnits.Pressure"/> at the critical point for the selected <see cref="Fluid"/>.

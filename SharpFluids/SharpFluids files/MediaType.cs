@@ -10,6 +10,7 @@ namespace SharpFluids
 
     public enum MixType
     {
+        None = 0,
         Mass,
         Vol
     }
@@ -42,7 +43,7 @@ namespace SharpFluids
         }
             
 
-        public MediaType(string backendType, string internalName, MixType mix = MixType.Mass, double massFration = 1)
+        public MediaType(string backendType, string internalName, MixType mix = MixType.None, double massFration = 1)
         {
 
             BackendType = backendType;

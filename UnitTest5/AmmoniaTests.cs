@@ -45,7 +45,7 @@ namespace UnitsTests
             Assert.AreEqual(117.968517492664, R717.Pressure.Bars, 0.0001);
             Assert.AreEqual(50, R717.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(6000, R717.Entropy.JoulesPerKilogramKelvin, 0.0001);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(R717.SurfaceTension);
             Assert.AreEqual(278.392108051419, R717.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(132.41, R717.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(2.0869708899873E-05, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
@@ -349,7 +349,7 @@ namespace UnitsTests
             Assert.AreEqual(117.968517492664, R717.Pressure.Bars, 0.0001);
             Assert.AreEqual(50, R717.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(1.434034416826004, R717.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            //Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
             Assert.AreEqual(278.39210805142, R717.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(132.41, R717.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(2.08697088998702E-05, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
@@ -1061,7 +1061,7 @@ namespace UnitsTests
             Assert.AreEqual(10, R717.Pressure.Bars, 0.0001);
             Assert.AreEqual(5.7513489580705048, R717.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(1.5308777308424815, R717.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(R717.SurfaceTension);
             Assert.AreEqual(100, R717.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(24.912702090001176, R717.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(1.2855599076541866E-05, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
@@ -1348,7 +1348,7 @@ namespace UnitsTests
             Assert.AreEqual(R717.CriticalPressure.Bars, R717.Pressure.Bars, 0.0001);
             Assert.AreEqual(233.25000192, R717.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.95486829094462955, R717.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(R717.SurfaceTension);
             Assert.AreEqual(R717.CriticalTemperature.DegreesCelsius, R717.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(R717.CriticalTemperature.DegreesCelsius, R717.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(2.7906634676727E-05, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
@@ -1372,7 +1372,7 @@ namespace UnitsTests
             Assert.AreEqual(R717X0.Pressure.Bars, R717.Pressure.Bars, 0.0001);
             Assert.AreEqual(R717X0.Density.KilogramsPerCubicMeter, R717.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(R717X0.Entropy.CaloriesPerGramKelvin, R717.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(R717X0.SurfaceTension.NewtonsPerMeter, R717.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(R717X0.SurfaceTension);
             Assert.AreEqual(R717X0.Temperature.DegreesCelsius, R717.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(R717X0.Tsat.DegreesCelsius, R717.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(R717X0.DynamicViscosity.NewtonSecondsPerMeterSquared, R717.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);

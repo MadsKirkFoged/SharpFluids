@@ -89,7 +89,7 @@ namespace UnitsTests
             Assert.AreEqual(5.1796434344772573, Co2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(940.51699029972065, Co2.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.23630359663511932, Co2.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, Co2.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(Co2.SurfaceTension);
             Assert.AreEqual(0, Co2.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(14.283923802417348, Co2.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(30.978200000000015, Co2.CriticalTemperature.DegreesCelsius, 0.0001);
@@ -136,7 +136,7 @@ namespace UnitsTests
             Assert.AreEqual(5.1796434344772573, Co2.LimitPressureMin.Bars, 0.0001);
             Assert.AreEqual(113.05213925800003, Co2.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.4588969385489618, Co2.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, Co2.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(Co2.SurfaceTension);
             Assert.AreEqual(40, Co2.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(14.283923802417348, Co2.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(30.978200000000015, Co2.CriticalTemperature.DegreesCelsius, 0.0001);
@@ -187,7 +187,7 @@ namespace UnitsTests
             Assert.AreEqual(90, Co2.Pressure.Bars, 0.0001);
             Assert.AreEqual(744.30948867565462, Co2.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.29681456863586464, Co2.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, Co2.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(Co2.SurfaceTension);
             Assert.AreEqual(30, Co2.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(30.978200000000015, Co2.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(6.1934810653208115E-05, Co2.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);
@@ -235,7 +235,7 @@ namespace UnitsTests
             Assert.AreEqual(73.773000000060662, Co2.Pressure.Bars, 0.0001);
             Assert.AreEqual(480.99114269329687, Co2.Density.KilogramsPerCubicMeter, 0.0001);
             Assert.AreEqual(0.34020247992073177, Co2.Entropy.CaloriesPerGramKelvin, 0.0001);
-            Assert.AreEqual(0, Co2.SurfaceTension.NewtonsPerMeter, 0.0001);
+            Assert.IsNull(Co2.SurfaceTension);
             Assert.AreEqual(30.978200000000015, Co2.Temperature.DegreesCelsius, 0.0001);
             Assert.AreEqual(30.978200000012691, Co2.Tsat.DegreesCelsius, 0.0001);
             Assert.AreEqual(3.4039568893124446E-05, Co2.DynamicViscosity.NewtonSecondsPerMeterSquared, 0.0001);

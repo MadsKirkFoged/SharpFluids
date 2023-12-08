@@ -19,20 +19,31 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            //while (true)
-            //{
-            //    Fluid CompressorIn2 = new Fluid(FluidList.Ammonia);
-            //    CompressorIn2.UpdatePX(Pressure.FromBar(10), 1);
-            //}
+            //Fluid Water26 = new Fluid(FluidList.InCompWater);
 
+
+            Fluid Water = new Fluid(FluidList.Water);
+            Water.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
+
+            Fluid WaterInCOMP = new Fluid(FluidList.InCompWater);
+            WaterInCOMP.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
 
             Fluid brine = new Fluid(FluidList.MixPropyleneGlycolAQ);
             brine.SetFraction(0.5);
+            brine.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
 
-            brine.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(0));
 
-                //Setting up the fluids
-                Fluid CompressorIn = new Fluid(FluidList.Ammonia);
+            Fluid Ammonia = new Fluid(FluidList.Ammonia);
+            Ammonia.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(25));
+
+
+            Fluid CO2 = new Fluid(FluidList.CO2);
+            CO2.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(25));
+
+
+
+            //Setting up the fluids
+            Fluid CompressorIn = new Fluid(FluidList.Ammonia);
             Fluid CompressorOut = new Fluid(FluidList.Ammonia);
 
             Fluid CondenserIn = new Fluid(FluidList.Ammonia);
@@ -245,7 +256,7 @@ namespace Sandbox
 
             Log.Information("Hello, world!");
 
-            Fluid Water = new Fluid(FluidList.Water);
+            //Fluid Water = new Fluid(FluidList.Water);
             Water.UpdatePT(Pressure.FromBar(1), Temperature.FromDegreesCelsius(40));
 
             Fluid Water2 = new Fluid(FluidList.Water);
@@ -299,7 +310,7 @@ namespace Sandbox
 
 
 
-            Fluid Ammonia = new Fluid(FluidList.Ammonia);
+            //Fluid Ammonia = new Fluid(FluidList.Ammonia);
 
 
             var test11 = Ammonia.GetEnvelopePhase();

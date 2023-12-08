@@ -135,10 +135,9 @@ namespace SharpFluids
             cache_quality = null;
 
 
-            if (Media.BackendType == "CustomFluid")
-            {
+            if (Media.BackendType == "CustomFluid")            
                 return;
-            }
+            
 
 
             try
@@ -148,24 +147,22 @@ namespace SharpFluids
                 LimitTemperatureMin = REF.Tmin();
 
 
-                if (REF.backend_name() == "HelmholtzEOSBackend" && Media.InternalName.EndsWith(".mix") is false )
+                if (Media.Mix is not MixType.None)
+                {
+                    //Fraction
+                    FractionMin = REF.keyed_output(parameters.ifraction_min);
+                    FractionMax = REF.keyed_output(parameters.ifraction_max);
+                }
+
+                if (REF.backend_name() is "HelmholtzEOSBackend" && Media.Mix is MixType.None )
                 {
                     CriticalTemperature = REF.T_critical();
                     CriticalPressure = REF.p_critical();
                     LimitPressureMin = REF.p_triple();
                     LimitPressureMax = REF.pmax();
-
-
-                    //Finding H_crit
-                    REF.update(input_pairs.PQ_INPUTS, CriticalPressure.Pascal, 1);
-                    CriticalEnthalpy = REF.hmass();
                 }
-
-                //Fraction
-                FractionMin = REF.keyed_output(parameters.ifraction_min);
-                FractionMax = REF.keyed_output(parameters.ifraction_max);
-
-
+           
+  
             }
             catch (Exception e)
             {
@@ -188,16 +185,32 @@ namespace SharpFluids
             try
             {
                 Phase = (Phases)REF.phase();
-                
-                
-                
-                if (Media.BackendType == "HEOS")
+
+
+                if (REF.backend_name() is not "IncompressibleBackend")
                 {
-                    //Mixed fluids does not have these properties 
-                    SoundSpeed = REF.speed_sound();
-                    MolarMass = REF.molar_mass();
-                    Compressibility = REF.compressibility_factor();
+                    if (Media.Mix is MixType.None)
+                    {
+                        SoundSpeed = REF.speed_sound();
+                        MolarMass = REF.molar_mass();
+                        Compressibility = REF.compressibility_factor();
+
+                    }
+
+                    Quality = REF.Q();
+                    cache_quality = Quality;
+
+                    if (Phase is Phases.Twophase)
+                        SurfaceTension = REF.surface_tension();
+
+
                 }
+                else
+                {
+                    T_freeze = Temperature.FromKelvins(REF.keyed_output(parameters.iT_freeze));
+                }
+
+
 
                 Enthalpy = REF.hmass();
                 cache_enthalpy = Enthalpy;
@@ -211,18 +224,17 @@ namespace SharpFluids
                 Entropy = REF.smass();
                 cache_entropy = Entropy;
 
-                Quality = REF.Q();
-                cache_quality = Quality;
-
                 Density = REF.rhomass();
                 Cp = REF.cpmass();
                 Cv = REF.cvmass();
                 DynamicViscosity = REF.viscosity();
                 Prandtl = REF.Prandtl();
-                SurfaceTension = REF.surface_tension();
+
                 InternalEnergy = REF.umass();
                 Conductivity = REF.conductivity();
                 FailState = false;
+
+   
 
 
                 if (Environment.Is64BitProcess)
@@ -244,39 +256,39 @@ namespace SharpFluids
 
         }
 
-        /// <summary>
-        /// Set all values of <see cref="Fluid"/> to Zero
-        /// </summary>   
-        public virtual void SetValuesToZero()
-        {
-            Enthalpy = 0;
-            Temperature = 0;
-            Pressure = new Pressure(0, PressureUnit.SI,PressureReference.Absolute);
-            Entropy = 0;
-            Quality = 0;
-            Density = 0;
-            Cp = 0;
-            Cv = 0;
-            MassFlow = 0;
-            Mass = 0;
-            Prandtl = 0;
-            SurfaceTension = 0;
-            SoundSpeed = 0;
-            FailState = true;
-            DynamicViscosity = 0;
-            Conductivity = 0;
-            MolarMass = 0;
-            Compressibility = 0;
-            InternalEnergy = 0;
+        ///// <summary>
+        ///// Set all values of <see cref="Fluid"/> to Zero
+        ///// </summary>   
+        //public virtual void SetValuesToZero()
+        //{
+        //    Enthalpy = 0;
+        //    Temperature = 0;
+        //    Pressure = new Pressure(0, PressureUnit.SI,PressureReference.Absolute);
+        //    Entropy = 0;
+        //    Quality = 0;
+        //    Density = 0;
+        //    Cp = 0;
+        //    Cv = 0;
+        //    MassFlow = 0;
+        //    Mass = 0;
+        //    Prandtl = 0;
+        //    SurfaceTension = 0;
+        //    SoundSpeed = 0;
+        //    FailState = true;
+        //    DynamicViscosity = 0;
+        //    Conductivity = 0;
+        //    MolarMass = 0;
+        //    Compressibility = 0;
+        //    InternalEnergy = 0;
 
-            //Removed cache values
-            tsat_Cache = null;
-            cache_pressure = null;
-            cache_enthalpy = null;
-            cache_temperature = null;
-            cache_entropy = null;
-            cache_quality = null;
-        }
+        //    //Removed cache values
+        //    tsat_Cache = null;
+        //    cache_pressure = null;
+        //    cache_enthalpy = null;
+        //    cache_temperature = null;
+        //    cache_entropy = null;
+        //    cache_quality = null;
+        //}
 
         public virtual void SetValuesToNull()
         {
@@ -309,16 +321,16 @@ namespace SharpFluids
             cache_quality = null;
         }
 
-        public virtual void SetLimitsToZero()
-        {
-            LimitTemperatureMax = 0;
-            LimitTemperatureMin = 0;
-            CriticalTemperature = 0;
-            CriticalPressure = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
-            LimitPressureMin = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
-            LimitPressureMax = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
-            CriticalEnthalpy = 0;
-        }
+        //public virtual void SetLimitsToZero()
+        //{
+        //    LimitTemperatureMax = 0;
+        //    LimitTemperatureMin = 0;
+        //    CriticalTemperature = 0;
+        //    CriticalPressure = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
+        //    LimitPressureMin = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
+        //    LimitPressureMax = new Pressure(0, PressureUnit.SI, PressureReference.Absolute); 
+        //    //CriticalEnthalpy = 0;
+        //}
 
 
         /// <summary>
@@ -374,7 +386,6 @@ namespace SharpFluids
                 if (this.Media != other.Media)
                 {
                     //Since we are changing media when the old values doesn't make sense to keep
-                    //SetValuesToZero();
                     SetValuesToNull();
 
                     //Set new media
@@ -463,40 +474,40 @@ namespace SharpFluids
         }
 
 
-        /// <summary>
-        /// Set a new fluid type to the <see cref="Fluid"/>
-        /// </summary> 
-        public void SetNewType(string RefType)
-        {
+        ///// <summary>
+        ///// Set a new fluid type to the <see cref="Fluid"/>
+        ///// </summary> 
+        //public void SetNewType(string RefType)
+        //{
 
-            if (RefType.ToLower() == REF?.name().ToLower())
-            {
-                Log.Debug($"SharpFluid -> SetNewType -> The two fluids is already the same");
-                return;
-            }
+        //    if (RefType.ToLower() == REF?.name().ToLower())
+        //    {
+        //        Log.Debug($"SharpFluid -> SetNewType -> The two fluids is already the same");
+        //        return;
+        //    }
 
-            if (RefType == "")
-            {
-                Log.Debug($"SharpFluid -> SetNewType -> You are trying to set a new fluid to nothing!");
-                return;
-            }
+        //    if (RefType == "")
+        //    {
+        //        Log.Debug($"SharpFluid -> SetNewType -> You are trying to set a new fluid to nothing!");
+        //        return;
+        //    }
 
 
 
-            //if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
+        //    //if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
 
-            REF = AbstractState.factory("HEOS", RefType);
-            UpdateFluidConstants();
+        //    REF = AbstractState.factory("HEOS", RefType);
+        //    UpdateFluidConstants();
 
-        }
+        //}
 
-        /// <summary>
-        /// Set a new fluid type to the <see cref="Fluid"/>
-        /// </summary> 
-        public void SetNewMedia(FluidList Type)
-        {
-            SetNewMedia(FluidListToMediaType(Type));
-        }
+        ///// <summary>
+        ///// Set a new fluid type to the <see cref="Fluid"/>
+        ///// </summary> 
+        //public void SetNewMedia(FluidList Type)
+        //{
+        //    SetNewMedia(FluidListToMediaType(Type));
+        //}
 
         /// <summary>
         /// Set a new fluid type to the <see cref="Fluid"/>
@@ -656,36 +667,36 @@ namespace SharpFluids
         /// <summary>
         /// Override this function and you can set new defaul (display) units
         /// </summary> 
-        public virtual void SetDefalutDisplayUnits()
-        {
+        //public virtual void SetDefalutDisplayUnits()
+        //{
 
 
-            //Units to specifig units
-            Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
-            Temperature = Temperature.ToUnit(TemperatureUnit.DegreeCelsius);
-            Pressure = Pressure.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
-            Entropy = Entropy.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
-            Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
-            Cp = Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
-            Cv = Cv.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
-            MassFlow = MassFlow.ToUnit(MassFlowUnit.KilogramPerSecond);
-            Mass = Mass.ToUnit(MassUnit.Kilogram);
-            SurfaceTension = SurfaceTension.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
-            SoundSpeed = SoundSpeed.ToUnit(SpeedUnit.MeterPerSecond);
-            DynamicViscosity = DynamicViscosity.ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
-            Conductivity = Conductivity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
-            MolarMass = MolarMass.ToUnit(MolarMassUnit.KilogramPerMole);
-            InternalEnergy = InternalEnergy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+        //    //Units to specifig units
+        //    Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+        //    Temperature = Temperature.ToUnit(TemperatureUnit.DegreeCelsius);
+        //    Pressure = Pressure.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
+        //    Entropy = Entropy.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
+        //    Density = Density.ToUnit(DensityUnit.KilogramPerCubicMeter);
+        //    Cp = Cp.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
+        //    Cv = Cv.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
+        //    MassFlow = MassFlow.ToUnit(MassFlowUnit.KilogramPerSecond);
+        //    Mass = Mass.ToUnit(MassUnit.Kilogram);
+        //    SurfaceTension = SurfaceTension.ToUnit(ForcePerLengthUnit.NewtonPerMeter);
+        //    SoundSpeed = SoundSpeed.ToUnit(SpeedUnit.MeterPerSecond);
+        //    DynamicViscosity = DynamicViscosity.ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+        //    Conductivity = Conductivity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
+        //    MolarMass = MolarMass.ToUnit(MolarMassUnit.KilogramPerMole);
+        //    InternalEnergy = InternalEnergy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
 
-            LimitTemperatureMax = LimitTemperatureMax.ToUnit(TemperatureUnit.DegreeCelsius);
-            LimitTemperatureMin = LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius);
-            CriticalTemperature = CriticalTemperature.ToUnit(TemperatureUnit.DegreeCelsius);
-            CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
-            LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
-            LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
-            CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+        //    LimitTemperatureMax = LimitTemperatureMax.ToUnit(TemperatureUnit.DegreeCelsius);
+        //    LimitTemperatureMin = LimitTemperatureMin.ToUnit(TemperatureUnit.DegreeCelsius);
+        //    CriticalTemperature = CriticalTemperature.ToUnit(TemperatureUnit.DegreeCelsius);
+        //    CriticalPressure = CriticalPressure.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
+        //    LimitPressureMin = LimitPressureMin.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
+        //    LimitPressureMax = LimitPressureMax.ToUnit(PressureUnit.Bar).ToUnit(PressureReference.Absolute);
+        //    //CriticalEnthalpy = CriticalEnthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
 
-        }
+        //}
 
 
 
@@ -779,7 +790,7 @@ namespace SharpFluids
             Local.Compressibility = Compressibility;
             Local.Conductivity = Conductivity;
             Local.Cp = Cp;
-            Local.CriticalEnthalpy = CriticalEnthalpy;
+            //Local.CriticalEnthalpy = CriticalEnthalpy;
             Local.CriticalPressure = CriticalPressure;
             Local.CriticalTemperature = CriticalTemperature;
             Local.Cv = Cv;
