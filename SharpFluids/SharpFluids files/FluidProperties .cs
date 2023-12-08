@@ -484,6 +484,7 @@ namespace SharpFluids
         //[JsonProperty]
         public Temperature CriticalTemperature { get; protected set; }
 
+
         ///// <summary>
         ///// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
         ///// </summary>
