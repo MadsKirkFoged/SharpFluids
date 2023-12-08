@@ -10,8 +10,8 @@ namespace SharpFluids
     {
         /// <summary>
         /// Mixing <paramref name="other"/> into this <see cref="Fluid"/>
-        /// <br>This makes a simple mixing based on <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> </br>
-        /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
+        /// <br>This makes a simple mixing based on <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/> </br>
+        /// <br>Both <see cref="Fluid"/>s should use either <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/>!</br>
         /// </summary> 
         /// <param name="other"><see cref="Fluid"/> to be copied from</param>
         public static Fluid AddTo(this Fluid local, Fluid other)
@@ -77,8 +77,8 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Add <see cref="UnitsNet.Power"/> to the <see cref="Fluid"/>
-        /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        /// Add <see cref="EngineeringUnits.Power"/> to the <see cref="Fluid"/>
+        /// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         /// </summary>
         public static Fluid AddPower(this Fluid local, Power powerToBeAdded, double? RepeatTolerance = null)
         {
@@ -145,10 +145,10 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Remove <see cref="UnitsNet.Power"/> from the <see cref="Fluid"/>
+        /// Remove <see cref="EngineeringUnits.Power"/> from the <see cref="Fluid"/>
         /// </summary> 
         /// <remarks>
-        /// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        /// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         /// </remarks>
         public static Fluid RemovePower(this Fluid local, Power powerToBeRemoved, double? RepeatTolerance = null)
         {

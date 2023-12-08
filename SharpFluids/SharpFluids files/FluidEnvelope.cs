@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using UnitsNet;
+//using EngineeringUnits;
 using EngineeringUnits;
-//using UnitsNet.Serialization.JsonNet;
+//using EngineeringUnits.Serialization.JsonNet;
 
 namespace SharpFluids
 {

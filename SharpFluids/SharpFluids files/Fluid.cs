@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-//using UnitsNet;
+//using EngineeringUnits;
 using EngineeringUnits;
-//using UnitsNet.Units;
-//using UnitsNet.Serialization.JsonNet;
+//using EngineeringUnits.Units;
+//using EngineeringUnits.Serialization.JsonNet;
 using Newtonsoft.Json;
 //using Microsoft.Extensions.Logging;
 using EngineeringUnits.Units;
@@ -23,7 +23,7 @@ namespace SharpFluids
     /// <br> Example:</br>
     /// <br> </br>
     /// <br><c> <see cref="Fluid"/> Water = <see langword="new" /> <see cref="Fluid"/>(<see cref="FluidList"/>.Water); </c></br>
-    /// <br><c>Water.UpdatePT(<see cref="UnitsNet.Pressure"/>.FromBars(1.013), <see cref="UnitsNet.Temperature"/>.FromDegreesCelsius(13));</c></br>
+    /// <br><c>Water.UpdatePT(<see cref="EngineeringUnits.Pressure"/>.FromBars(1.013), <see cref="EngineeringUnits.Temperature"/>.FromDegreesCelsius(13));</c></br>
     /// <br><c><see langword="Debug" />.Print("Density of water is: " + Water.Density);</c></br>
     /// </summary>
 
@@ -389,8 +389,8 @@ namespace SharpFluids
         /**
                 /// <summary>
                 /// Mixing <paramref name="other"/> into this <see cref="Fluid"/>
-                /// <br>This makes a simple mixing based on <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> </br>
-                /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
+                /// <br>This makes a simple mixing based on <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/> </br>
+                /// <br>Both <see cref="Fluid"/>s should use either <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/>!</br>
                 /// </summary> 
                 /// <param name="other"><see cref="Fluid"/> to be copied from</param>
                 public void AddTo(Fluid other)
@@ -447,8 +447,8 @@ namespace SharpFluids
                 }**/
 
         /// <summary>
-        /// Check if two <see cref="Fluid"/> have almost the same <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>
-        /// <br>Both <see cref="Fluid"/>s should use either <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/>!</br>
+        /// Check if two <see cref="Fluid"/> have almost the same <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/>
+        /// <br>Both <see cref="Fluid"/>s should use either <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/>!</br>
         /// <br>Tolerence is set to: 0.00001 [kg/s] or 0.00001 [kg]</br>
         /// </summary>
         /// <param name="other"><see cref="Fluid"/> to be copied from</param> 
@@ -558,8 +558,8 @@ namespace SharpFluids
 
 
         ///// <summary>
-        ///// Add <see cref="UnitsNet.Power"/> to the <see cref="Fluid"/>
-        ///// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        ///// Add <see cref="EngineeringUnits.Power"/> to the <see cref="Fluid"/>
+        ///// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         ///// </summary>
         //public void AddPower(Power powerToBeAdded)
         //{
@@ -607,10 +607,10 @@ namespace SharpFluids
         //}
 
         ///// <summary>
-        ///// Remove <see cref="UnitsNet.Power"/> from the <see cref="Fluid"/>
+        ///// Remove <see cref="EngineeringUnits.Power"/> from the <see cref="Fluid"/>
         ///// </summary> 
         ///// <remarks>
-        ///// <br>This does only work when using <see cref="UnitsNet.MassFlow"/></br>
+        ///// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         ///// </remarks>
         //public void RemovePower(Power powerToBeRemoved)
         //{

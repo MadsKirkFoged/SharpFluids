@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using UnitsNet;
+//using EngineeringUnits;
 using EngineeringUnits;
 using Serilog;
-//using UnitsNet.Serialization.JsonNet;
+//using EngineeringUnits.Serialization.JsonNet;
 
 namespace SharpFluids
 {
@@ -25,15 +25,22 @@ namespace SharpFluids
         private MassFlow _massflow;
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.Temperature"/> of the <see cref="Fluid"/>.
+        /// Get the <see cref="EngineeringUnits.Temperature"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "T", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Temperature Temperature { get; set; }
 
+        /// <summary>
+        /// Get the <see cref="EngineeringUnits.Temperature"/> of the <see cref="Fluid"/>.
+        /// </summary>
+        [JsonProperty(PropertyName = "Tfrez", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        //[JsonProperty]
+        public Temperature T_freeze { get; set; }
+
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.Pressure"/> of the <see cref="Fluid"/>.
+        /// Get the <see cref="EngineeringUnits.Pressure"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "P", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -41,8 +48,8 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.SpecificEnergy"/> of the <see cref="Fluid"/>. 
-        /// <br> <see cref="UnitsNet.SpecificEnergy"/> is also called Enthalpy or H </br>
+        /// Get the <see cref="EngineeringUnits.SpecificEnergy"/> of the <see cref="Fluid"/>. 
+        /// <br> <see cref="EngineeringUnits.SpecificEnergy"/> is also called Enthalpy or H </br>
         /// </summary>
         [JsonProperty(PropertyName = "E", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -50,7 +57,7 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.SpecificEntropy"/> of the <see cref="Fluid"/>. 
+        /// Get the <see cref="EngineeringUnits.SpecificEntropy"/> of the <see cref="Fluid"/>. 
         /// <br>Engineers may refers to this as "S".</br>
         /// </summary>
         [JsonProperty(PropertyName = "S", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -59,7 +66,7 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.Density"/> of the <see cref="Fluid"/>. 
+        /// Get the <see cref="EngineeringUnits.Density"/> of the <see cref="Fluid"/>. 
         /// <br>Engineers may refers to this as "RHO".</br>
         /// </summary>
         [JsonProperty(PropertyName = "D", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -68,15 +75,15 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.DynamicViscosity"/> of the <see cref="Fluid"/>. 
+        /// Get the <see cref="EngineeringUnits.DynamicViscosity"/> of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "DV", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public DynamicViscosity DynamicViscosity { get; protected set; }
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.ThermalConductivity"/> of the <see cref="Fluid"/>. 
-        /// <br> <see cref="UnitsNet.ThermalConductivity"/> is also just called Conductivity</br>
+        /// Get the <see cref="EngineeringUnits.ThermalConductivity"/> of the <see cref="Fluid"/>. 
+        /// <br> <see cref="EngineeringUnits.ThermalConductivity"/> is also just called Conductivity</br>
         /// </summary>
         [JsonProperty(PropertyName = "C", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -99,7 +106,7 @@ namespace SharpFluids
         public SpecificEntropy Cv { get; protected set; }
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.Speed"/> of Sound of the <see cref="Fluid"/>. 
+        /// Get the <see cref="EngineeringUnits.Speed"/> of Sound of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "SS", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -114,7 +121,7 @@ namespace SharpFluids
         public ForcePerLength SurfaceTension { get; protected set; }
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.MolarMass"/> of the <see cref="Fluid"/>. 
+        /// Get the <see cref="EngineeringUnits.MolarMass"/> of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "MM", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -159,10 +166,10 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Set the <see cref="UnitsNet.MassFlow"/> of the <see cref="Fluid"/>. 
-        /// <br> The <see cref="UnitsNet.MassFlow"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
-        /// <br>You can choose between using <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> when defining a fluid.</br>
-        /// <br>Once the <see cref="UnitsNet.MassFlow"/> is set you cannot set the <see cref="UnitsNet.Mass"/> anymore.</br>
+        /// Set the <see cref="EngineeringUnits.MassFlow"/> of the <see cref="Fluid"/>. 
+        /// <br> The <see cref="EngineeringUnits.MassFlow"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
+        /// <br>You can choose between using <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/> when defining a fluid.</br>
+        /// <br>Once the <see cref="EngineeringUnits.MassFlow"/> is set you cannot set the <see cref="EngineeringUnits.Mass"/> anymore.</br>
         /// </summary>
         [JsonProperty(PropertyName = "MF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -195,10 +202,10 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Set the <see cref="UnitsNet.Mass"/> of the <see cref="Fluid"/>. 
-        /// <br> The <see cref="UnitsNet.Mass"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
-        /// <br>You can choose between using <see cref="UnitsNet.MassFlow"/> or <see cref="UnitsNet.Mass"/> when defining a fluid.</br>
-        /// <br>Once the <see cref="UnitsNet.Mass"/> is set you cannot set the <see cref="UnitsNet.MassFlow"/> anymore.</br>
+        /// Set the <see cref="EngineeringUnits.Mass"/> of the <see cref="Fluid"/>. 
+        /// <br> The <see cref="EngineeringUnits.Mass"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
+        /// <br>You can choose between using <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/> when defining a fluid.</br>
+        /// <br>Once the <see cref="EngineeringUnits.Mass"/> is set you cannot set the <see cref="EngineeringUnits.MassFlow"/> anymore.</br>
         /// </summary>
         //[JsonProperty(PropertyName = "M", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
         //[JsonProperty]
@@ -404,8 +411,8 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.Volume"/> of the <see cref="Fluid"/>. 
-        /// <br>This can ONLY be used when the <see cref="UnitsNet.Mass"/> of the <see cref="Fluid"/> is set</br>
+        /// Get the <see cref="EngineeringUnits.Volume"/> of the <see cref="Fluid"/>. 
+        /// <br>This can ONLY be used when the <see cref="EngineeringUnits.Mass"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
         //[JsonProperty(PropertyName = "V", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         [JsonIgnore]
@@ -429,8 +436,8 @@ namespace SharpFluids
         }
 
         /// <summary>
-        /// Get the <see cref="UnitsNet.VolumeFlow"/> of the fluid. 
-        /// <br>This can ONLY be used when the <see cref="UnitsNet.MassFlow"/> of the <see cref="Fluid"/> is set</br>
+        /// Get the <see cref="EngineeringUnits.VolumeFlow"/> of the fluid. 
+        /// <br>This can ONLY be used when the <see cref="EngineeringUnits.MassFlow"/> of the <see cref="Fluid"/> is set</br>
         /// </summary>
         //[JsonProperty(PropertyName = "VF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         [JsonIgnore]
@@ -457,21 +464,21 @@ namespace SharpFluids
 
 
         /// <summary>
-        /// This library's maximum <see cref="UnitsNet.Temperature"/> for the selected <see cref="Fluid"/>.
+        /// This library's maximum <see cref="EngineeringUnits.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Tma", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Temperature LimitTemperatureMax { get; protected set; }
 
         /// <summary>
-        /// This library's minimum <see cref="UnitsNet.Temperature"/> for the selected <see cref="Fluid"/>.
+        /// This library's minimum <see cref="EngineeringUnits.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Tmi", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Temperature LimitTemperatureMin { get; protected set; }
 
         /// <summary>
-        /// <see cref="UnitsNet.Temperature"/> at the critical point for the selected <see cref="Fluid"/>.
+        /// <see cref="EngineeringUnits.Temperature"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "CT", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -485,21 +492,21 @@ namespace SharpFluids
         public SpecificEnergy CriticalEnthalpy { get; protected set; }
 
         /// <summary>
-        /// <see cref="UnitsNet.Pressure"/> at the critical point for the selected <see cref="Fluid"/>.
+        /// <see cref="EngineeringUnits.Pressure"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "CP", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Pressure CriticalPressure { get; protected set; }
 
         /// <summary>
-        /// This library's minimum <see cref="UnitsNet.Pressure"/> for the selected <see cref="Fluid"/>.
+        /// This library's minimum <see cref="EngineeringUnits.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Pmi", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Pressure LimitPressureMin { get; protected set; }
 
         /// <summary>
-        /// This library's maximum <see cref="UnitsNet.Pressure"/> for the selected <see cref="Fluid"/>.
+        /// This library's maximum <see cref="EngineeringUnits.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Pma", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]

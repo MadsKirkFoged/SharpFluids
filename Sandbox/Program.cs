@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using UnitsNet;
+//using EngineeringUnits;
 using EngineeringUnits;
-//using UnitsNet.Units;
+//using EngineeringUnits.Units;
 using SharpFluids;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -19,12 +19,17 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Fluid CompressorIn2 = new Fluid(FluidList.Ammonia);
-                CompressorIn2.UpdatePX(Pressure.FromBar(10), 1);
-            }
+            //while (true)
+            //{
+            //    Fluid CompressorIn2 = new Fluid(FluidList.Ammonia);
+            //    CompressorIn2.UpdatePX(Pressure.FromBar(10), 1);
+            //}
 
+
+            Fluid brine = new Fluid(FluidList.MixPropyleneGlycolAQ);
+            brine.SetFraction(0.5);
+
+            brine.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(0));
 
                 //Setting up the fluids
                 Fluid CompressorIn = new Fluid(FluidList.Ammonia);
