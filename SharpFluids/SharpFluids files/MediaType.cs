@@ -40,8 +40,7 @@ namespace SharpFluids
         public MediaType()
         {
 
-        }
-            
+        }            
 
         public MediaType(string backendType, string internalName, MixType mix = MixType.None, double massFration = 1)
         {
