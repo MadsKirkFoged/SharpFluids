@@ -501,13 +501,13 @@ namespace SharpFluids
 
         //}
 
-        ///// <summary>
-        ///// Set a new fluid type to the <see cref="Fluid"/>
-        ///// </summary> 
-        //public void SetNewMedia(FluidList Type)
-        //{
-        //    SetNewMedia(FluidListToMediaType(Type));
-        //}
+        /// <summary>
+        /// Set a new fluid type to the <see cref="Fluid"/>
+        /// </summary> 
+        public void SetNewMedia(FluidList Type)
+        {
+            SetNewMedia(FluidListToMediaType(Type));
+        }
 
         /// <summary>
         /// Set a new fluid type to the <see cref="Fluid"/>
