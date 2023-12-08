@@ -529,9 +529,10 @@ namespace SharpFluids
             if (Media.BackendType != "CustomFluid")            
                 REF = AbstractState.factory(Media.BackendType, Media.InternalName);
             
+            //Set fraction again
+            SetFraction(Type.MassFration);
+
             UpdateFluidConstants();
-
-
         }
 
         /// <summary>

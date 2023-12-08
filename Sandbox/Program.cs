@@ -37,11 +37,12 @@ namespace Sandbox
            
             Fluid brine = new Fluid(FluidList.MixPropyleneGlycolAQ);
             brine.SetFraction(50);
-            brine.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
+            brine.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(-5));
 
+            Fluid brineCopy = new Fluid(FluidList.MixPropyleneGlycolAQ);
 
-
-
+            brineCopy.Copy(brine);
+            brineCopy.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(-5));
 
 
             Fluid brine2 = new Fluid(FluidList.MixPropyleneGlycolAQ);
