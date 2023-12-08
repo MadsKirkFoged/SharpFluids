@@ -642,8 +642,8 @@ namespace SharpFluids
                 double min = 0;
                 double max = 0;
 
-                min = REF.keyed_output(parameters.ifraction_min);
-                max = REF.keyed_output(parameters.ifraction_max);
+                min = REF.keyed_output(parameters.ifraction_min) * 100;
+                max = REF.keyed_output(parameters.ifraction_max) * 100;
 
                 if (fraction < min)
                     throw new System.ArgumentException("Selected fraction is below the limit");

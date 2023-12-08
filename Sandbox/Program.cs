@@ -23,18 +23,41 @@ namespace Sandbox
 
 
             Fluid Water = new Fluid(FluidList.Water);
-            Water.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
+            //Water.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
 
-            Fluid WaterInCOMP = new Fluid(FluidList.InCompWater);
-            WaterInCOMP.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
 
+
+
+
+            //Fluid WaterInCOMP = new Fluid(FluidList.InCompWater);
+            //WaterInCOMP.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
+
+
+
+           
             Fluid brine = new Fluid(FluidList.MixPropyleneGlycolAQ);
-            brine.SetFraction(0.5);
+            brine.SetFraction(50);
             brine.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
+
+
+
+
+
+
+            Fluid brine2 = new Fluid(FluidList.MixPropyleneGlycolAQ);
+            brine2.SetFraction(0);
+            brine2.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(30));
+
+
+
+
 
 
             Fluid Ammonia = new Fluid(FluidList.Ammonia);
             Ammonia.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreesCelsius(25));
+
+
+
 
 
             Fluid CO2 = new Fluid(FluidList.CO2);
