@@ -30,7 +30,7 @@ namespace SharpFluids
 
         [JsonProperty(PropertyName = "MF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public double MassFration { get; set; }
+        public double? MassFration { get; set; }
 
         [JsonProperty(PropertyName = "Mix", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -42,14 +42,14 @@ namespace SharpFluids
 
         }            
 
-        public MediaType(string backendType, string internalName, MixType mix = MixType.None, double massFration = 1)
+        public MediaType(string backendType, string internalName, MixType mix = MixType.None)
         {
 
             BackendType = backendType;
 
             InternalName = internalName;
 
-            MassFration = massFration;
+            //MassFration = massFration;
 
             Mix = mix;
 
