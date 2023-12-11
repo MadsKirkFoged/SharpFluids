@@ -372,6 +372,7 @@ namespace SharpFluids
             this.cache_entropy = other.cache_entropy;
             this.cache_temperature = other.cache_temperature;
             this.cache_quality = other.cache_quality;
+
         }
 
         /// <summary>
