@@ -363,6 +363,7 @@ namespace SharpFluids
             this.Compressibility = other.Compressibility;
             this.InternalEnergy = other.InternalEnergy;
             this.Phase = other.Phase;
+            this.T_freeze = other.T_freeze;
 
             //Removed cache values
             this.tsat_Cache = other.tsat_Cache;
