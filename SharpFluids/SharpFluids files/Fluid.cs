@@ -543,6 +543,8 @@ namespace SharpFluids
 
         }
 
+        object lockObj2 = new();
+
         /// <summary>
         /// Set a mass fraction to the <see cref="Fluid"/> in procent
         /// <br>It might work but it is still in Beta!</br>
@@ -552,19 +554,20 @@ namespace SharpFluids
             if (fraction is null)
                 return;
 
-
-
-            CheckFractionLimits((double)fraction);
-
-            if (Media.Mix == MixType.Mass)
+            lock(lockObj2)
             {
-                Media.MassFration = fraction;
-                REF.set_mass_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
-            }
-            else if (Media.Mix == MixType.Vol)
-            {
-                Media.MassFration = fraction;
-                REF.set_volu_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                CheckFractionLimits((double)fraction);
+
+                if (Media.Mix == MixType.Mass)
+                {
+                    Media.MassFration = fraction;
+                    REF.set_mass_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                }
+                else if (Media.Mix == MixType.Vol)
+                {
+                    Media.MassFration = fraction;
+                    REF.set_volu_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                }
             }
         }
 
