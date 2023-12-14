@@ -511,6 +511,8 @@ namespace SharpFluids
             SetNewMedia(FluidListToMediaType(Type));
         }
 
+        object lockObj = new();
+
         /// <summary>
         /// Set a new fluid type to the <see cref="Fluid"/>
         /// </summary> 
@@ -526,15 +528,19 @@ namespace SharpFluids
             if (Media is null)
                 Media = new MediaType();
 
-
-            Media.Copy(Type);
-            if (Media.BackendType != "CustomFluid")            
-                REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+            lock(lockObj)
+            {
+                Media.Copy(Type);
+                if (Media.BackendType != "CustomFluid")            
+                    REF = AbstractState.factory(Media.BackendType, Media.InternalName);
             
-            //Set fraction again
-            SetFraction(Type.MassFration);
+                //Set fraction again
+                SetFraction(Type.MassFration);
 
-            UpdateFluidConstants();
+                UpdateFluidConstants();
+
+            }
+
         }
 
         /// <summary>
