@@ -511,7 +511,7 @@ namespace SharpFluids
             SetNewMedia(FluidListToMediaType(Type));
         }
 
-        object lockObj = new();
+        static object lockObj = new();
 
         /// <summary>
         /// Set a new fluid type to the <see cref="Fluid"/>
@@ -543,7 +543,7 @@ namespace SharpFluids
 
         }
 
-        object lockObj2 = new();
+        static object lockObj2 = new();
 
         /// <summary>
         /// Set a mass fraction to the <see cref="Fluid"/> in procent
