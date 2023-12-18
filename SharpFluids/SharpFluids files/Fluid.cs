@@ -511,7 +511,7 @@ namespace SharpFluids
             SetNewMedia(FluidListToMediaType(Type));
         }
 
-        static object lockObj = new();
+        //static object lockObj = new();
 
         /// <summary>
         /// Set a new fluid type to the <see cref="Fluid"/>
@@ -528,7 +528,7 @@ namespace SharpFluids
             if (Media is null)
                 Media = new MediaType();
 
-            lock(lockObj)
+            //lock(lockObj)
             {
                 Media.Copy(Type);
                 if (Media.BackendType != "CustomFluid")            
@@ -543,7 +543,7 @@ namespace SharpFluids
 
         }
 
-        static object lockObj2 = new();
+        //static object lockObj2 = new();
 
         /// <summary>
         /// Set a mass fraction to the <see cref="Fluid"/> in procent
@@ -554,7 +554,7 @@ namespace SharpFluids
             if (fraction is null)
                 return;
 
-            lock(lockObj2)
+            //lock(lockObj2)
             {
                 CheckFractionLimits((double)fraction);
 
