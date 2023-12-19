@@ -69,6 +69,7 @@ namespace SharpFluids
 
             BackendType = other.BackendType;
             InternalName = other.InternalName;
+            DisplayName = other.DisplayName;
             MassFration = other.MassFration;
             Mix = other.Mix;
         }
@@ -84,6 +85,7 @@ namespace SharpFluids
             else if 
                (other1.BackendType == other2.BackendType &&
                 other1.InternalName == other2.InternalName &&
+                other1.DisplayName == other2.DisplayName &&
                 other1.MassFration == other2.MassFration &&
                 other1.Mix == other2.Mix)
             {
