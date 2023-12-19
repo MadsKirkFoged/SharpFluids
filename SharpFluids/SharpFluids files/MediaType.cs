@@ -36,18 +36,26 @@ namespace SharpFluids
         //[JsonProperty]
         public MixType Mix { get; set; }
 
+        public string DisplayName { get; set; }
 
         public MediaType()
         {
 
         }            
 
-        public MediaType(string backendType, string internalName, MixType mix = MixType.None)
+        public MediaType(string backendType, string internalName,string displayname = "", MixType mix = MixType.None)
         {
 
             BackendType = backendType;
 
             InternalName = internalName;
+
+            if (displayname != "")            
+                DisplayName = displayname;            
+            else            
+                DisplayName = InternalName;
+            
+
 
             //MassFration = massFration;
 
