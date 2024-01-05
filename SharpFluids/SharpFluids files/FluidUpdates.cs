@@ -199,7 +199,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
-        public void UpdatePT(Pressure pressure, Temperature temperature, double? RepeatTolerance = null)
+        public void UpdatePT(Pressure pressure, Temperature temperature, Ratio RepeatTolerance = null)
         {
 
             if (pressure is null || temperature is null)
@@ -208,14 +208,14 @@ namespace SharpFluids
             CheckBeforeUpdate();
             GuardFromCustomFluids();            
 
-            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
-               ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
-            {
-                CacheTemperature(temperature);
-                CachePressure(pressure);
-                CacheMode = true;
-                return;
-            }
+            //if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+            //   ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
+            //{
+            //    CacheTemperature(temperature);
+            //    CachePressure(pressure);
+            //    CacheMode = true;
+            //    return;
+            //}
 
 
             try
@@ -336,7 +336,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
-        public void UpdatePS(Pressure pressure, SpecificEntropy entropy, double? RepeatTolerance = null)
+        public void UpdatePS(Pressure pressure, SpecificEntropy entropy, Ratio RepeatTolerance = null)
         {
             if (pressure is null || entropy is null)
                 return;
@@ -345,14 +345,14 @@ namespace SharpFluids
             GuardFromCustomFluids();
             GuardFromMixFluids();
 
-            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
-                ShouldItBeCached(entropy, cache_entropy, RepeatTolerance))
-            {
-                CacheEntropy(entropy);
-                CachePressure(pressure);
-                CacheMode = true;
-                return;
-            }
+            //if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+            //    ShouldItBeCached(entropy, cache_entropy, RepeatTolerance))
+            //{
+            //    CacheEntropy(entropy);
+            //    CachePressure(pressure);
+            //    CacheMode = true;
+            //    return;
+            //}
 
 
             try
@@ -393,7 +393,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, double? RepeatTolerance = null)
+        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, Ratio RepeatTolerance = null)
         {
             if (pressure is null || enthalpy is null)
                 return;
@@ -403,14 +403,14 @@ namespace SharpFluids
             GuardFromMixFluids();
 
 
-            if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
-                ShouldItBeCached(enthalpy,cache_enthalpy, RepeatTolerance))
-            {
-                CacheEnthalpy(enthalpy);
-                CachePressure(pressure);
-                CacheMode = true;
-                return;
-            }
+            //if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
+            //    ShouldItBeCached(enthalpy,cache_enthalpy, RepeatTolerance))
+            //{
+            //    CacheEnthalpy(enthalpy);
+            //    CachePressure(pressure);
+            //    CacheMode = true;
+            //    return;
+            //}
 
 
 
@@ -709,7 +709,7 @@ namespace SharpFluids
             Entropy = entropy;
         }
 
-        private bool ShouldItBeCached(UnknownUnit value, UnknownUnit cache_value, double? RepeatTolerance)
+        private bool ShouldItBeCached(UnknownUnit value, UnknownUnit cache_value, Ratio RepeatTolerance)
         {
             if (RepeatTolerance is null)
                 return false;

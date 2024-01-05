@@ -47,8 +47,8 @@ namespace SharpFluids
 
                 if (TotalMassFlow.IsNotZero())
                 {
-                    double MassRatio1 = other.MassFlow / TotalMassFlow;
-                    double MassRatio2 = 1 - MassRatio1;
+                    Ratio MassRatio1 = other.MassFlow / TotalMassFlow;
+                    Ratio MassRatio2 = 1 - MassRatio1;
 
                     //Calculating the average H weighted on the massflow
                     local.Enthalpy = other.Enthalpy * MassRatio1 + local.Enthalpy * MassRatio2;
@@ -80,7 +80,7 @@ namespace SharpFluids
         /// Add <see cref="EngineeringUnits.Power"/> to the <see cref="Fluid"/>
         /// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         /// </summary>
-        public static Fluid AddPower(this Fluid local, Power powerToBeAdded, double? RepeatTolerance = null)
+        public static Fluid AddPower(this Fluid local, Power powerToBeAdded, Ratio RepeatTolerance = null)
         {
             //TODO If mass is selected!
             //Finding the new H
@@ -150,7 +150,7 @@ namespace SharpFluids
         /// <remarks>
         /// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         /// </remarks>
-        public static Fluid RemovePower(this Fluid local, Power powerToBeRemoved, double? RepeatTolerance = null)
+        public static Fluid RemovePower(this Fluid local, Power powerToBeRemoved, Ratio RepeatTolerance = null)
         {
             //TODO: If mass is selected 
 
