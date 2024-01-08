@@ -8,6 +8,7 @@ class CoolPropPINVOKE
     protected class SWIGExceptionHelper
     {
 
+
         public delegate void ExceptionDelegate(string message);
         public delegate void ExceptionArgumentDelegate(string message, string paramName);
 
