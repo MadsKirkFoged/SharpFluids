@@ -22,7 +22,7 @@
 	<files>
 		
 		<file src="..\SharpFluids\SharpFluids.targets" target="build\" />
-		<file src="..\SharpFluids\CoolProp.dll" target="build\" />
+		<file src="..\SharpFluids\CoolProp32.dll" target="build\" />
 		<file src="..\SharpFluids\CoolProp64.dll" target="build\" />
 		<file src="..\SharpFluids\libCoolProp64.so" target="build\" />
   
