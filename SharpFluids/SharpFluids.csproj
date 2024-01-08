@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <None Include="SharpFluids.targets" PackagePath="build\" Pack="true" />
+	<None Include="CoolProp32.dll" PackagePath="build\" Pack="true" />
     <None Include="CoolProp64.dll" PackagePath="build\" Pack="true" />
     <None Include="libCoolProp64.so" PackagePath="build\" Pack="true" />
   
