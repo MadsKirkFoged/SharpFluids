@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EngineeringUnits" Version="2.2.7" />
+    <PackageReference Include="EngineeringUnits" Version="2.2.10" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Serilog" Version="2.11.0" />
@@ -26,11 +26,10 @@
 
   <ItemGroup>
     <None Include="SharpFluids.targets" PackagePath="build\" Pack="true" />
-    <None Include="CoolProp.dll" PackagePath="build\" Pack="true" />
     <None Include="CoolProp64.dll" PackagePath="build\" Pack="true" />
     <None Include="libCoolProp64.so" PackagePath="build\" Pack="true" />
   
-	<None Update="CoolProp.dll">
+	<None Update="CoolProp32.dll">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		<PackagePath>build\</PackagePath>
 		<Pack>true</Pack>

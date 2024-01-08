@@ -176,7 +176,7 @@ namespace Sandbox
 
 
             AmmoniaGas2.UpdatePT(AmmoniaGas2.Pressure, Temperature.FromDegreesCelsius(25));
-            AmmoniaGas2.UpdatePT(AmmoniaGas2.Pressure, Temperature.FromDegreesCelsius(25),0.01);
+            AmmoniaGas2.UpdatePT(AmmoniaGas2.Pressure, Temperature.FromDegreesCelsius(25),(Ratio)0.01);
 
             AmmoniaGas2.MassFlow = MassFlow.FromKilogramPerSecond(1);
 
@@ -193,7 +193,7 @@ namespace Sandbox
             for (int i = 0; i < Count; i++)
             {
                 //AmmoniaGas2.UpdatePH(localp, locale, 0.000001);
-                AmmoniaGas4.UpdatePT(Pressure.Zero, localt, 0.000001);
+                AmmoniaGas4.UpdatePT(Pressure.Zero, localt, (Ratio)0.000001);
                 //AmmoniaGas2.AddTo(AmmoniaGas3);
                 //var testsat = AmmoniaGas2.Tsat;
                 //var testsat2 = AmmoniaGas2.Tsat;
