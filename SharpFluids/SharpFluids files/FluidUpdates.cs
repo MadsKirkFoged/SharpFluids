@@ -21,7 +21,7 @@ namespace SharpFluids
         /// </summary> 
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
-        public void UpdateDS(Density density, SpecificEntropy entropy)
+        public virtual void UpdateDS(Density density, SpecificEntropy entropy)
         {
             if (density is null || entropy is null)
                 return;
@@ -66,7 +66,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
-        public void UpdateDP(Density density, Pressure pressure)
+        public virtual void UpdateDP(Density density, Pressure pressure)
         {
             if (density is null || pressure is null)
                 return;
@@ -110,7 +110,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
-        public void UpdateDT(Density density, Temperature temperature)
+        public virtual void UpdateDT(Density density, Temperature temperature)
         {
             if (density is null || temperature is null)
                 return;
@@ -155,7 +155,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        public void UpdateDH(Density density, SpecificEnergy enthalpy)
+        public virtual void UpdateDH(Density density, SpecificEnergy enthalpy)
         {
             if (density is null || enthalpy is null)
                 return;
@@ -199,7 +199,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
-        public void UpdatePT(Pressure pressure, Temperature temperature, Ratio RepeatTolerance = null)
+        public virtual void UpdatePT(Pressure pressure, Temperature temperature, Ratio RepeatTolerance = null)
         {
 
             if (pressure is null || temperature is null)
@@ -253,7 +253,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "quality" > The Quality used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
-        public void UpdateXT(double quality, Temperature temperature, double? RepeatTolerance = null)
+        public virtual void UpdateXT(double quality, Temperature temperature, double? RepeatTolerance = null)
         {
 
             if (temperature is null)
@@ -319,7 +319,7 @@ namespace SharpFluids
         /// </summary>        ///
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
-        public void UpdateHT(SpecificEnergy enthalpy, Temperature temperature)
+        public virtual void UpdateHT(SpecificEnergy enthalpy, Temperature temperature)
         {
             //Not yet supported by CoolProp!
             Log.Debug($"SharpFluid -> UpdateHT -> Not yet supported by CoolProp!");
@@ -336,7 +336,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
-        public void UpdatePS(Pressure pressure, SpecificEntropy entropy, Ratio RepeatTolerance = null)
+        public virtual void UpdatePS(Pressure pressure, SpecificEntropy entropy, Ratio RepeatTolerance = null)
         {
             if (pressure is null || entropy is null)
                 return;
@@ -393,7 +393,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        public void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, Ratio RepeatTolerance = null)
+        public virtual void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, Ratio RepeatTolerance = null)
         {
             if (pressure is null || enthalpy is null)
                 return;
@@ -447,7 +447,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "quality" > The Quality used in the update</param>
-        public void UpdatePX(Pressure pressure, double quality, double? RepeatTolerance = null)
+        public virtual void UpdatePX(Pressure pressure, double quality, double? RepeatTolerance = null)
         {
             if (pressure is null)
                 return;
@@ -513,7 +513,7 @@ namespace SharpFluids
         /// </summary> 
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
-        public void UpdateHS(SpecificEnergy enthalpy, SpecificEntropy entropy)
+        public virtual void UpdateHS(SpecificEnergy enthalpy, SpecificEntropy entropy)
         {
             if (enthalpy is null || entropy is null)
                 return;
@@ -555,7 +555,7 @@ namespace SharpFluids
         /// </summary> 
         /// <param name = "temperature" > The Temperature used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
-        public void UpdateTS(Temperature temperature, SpecificEntropy entropy)
+        public virtual void UpdateTS(Temperature temperature, SpecificEntropy entropy)
         {
             if (temperature is null || entropy is null)
                 return;

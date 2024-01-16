@@ -366,7 +366,7 @@ namespace SharpFluids
         [MediaType("CustomFluid", "SHC228",  "",  MixType.Mass)] Custom_SHC228,
         [MediaType("CustomFluid", "SHC230",  "",  MixType.Mass)] Custom_SHC230,
         [MediaType("CustomFluid", "Number13","",  MixType.Mass)] Custom_Number13,
-
+        [MediaType("CustomFluid", "AmmoniaWater", "", MixType.Mass)] AWMix,
 
     }
 
