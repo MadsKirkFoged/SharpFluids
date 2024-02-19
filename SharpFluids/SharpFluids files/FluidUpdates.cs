@@ -622,7 +622,7 @@ namespace SharpFluids
 
 
             Temperature = temperature;
-            Pressure = pressure.ToUnit(PressureReference.Absolute);
+            Pressure = pressure;
             Density = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Density, Above.Density);
             Cp = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.Cp, Above.Cp);
             Conductivity = UnitMath.LinearInterpolation(temperature, Below.Temperature, Above.Temperature, Below.ThermalConductivity, Above.ThermalConductivity);
@@ -669,7 +669,7 @@ namespace SharpFluids
             cache_pressure = Pressure;
 
             //Setting input as New value
-            Pressure = pressure.ToUnit(PressureReference.Absolute);
+            //Pressure = pressure.ToUnit(PressureReference.Absolute);
 
         }
         private void CacheTemperature(Temperature temperature)

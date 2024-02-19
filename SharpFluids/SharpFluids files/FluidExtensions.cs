@@ -56,7 +56,7 @@ namespace SharpFluids
                     //Calculating the average P weighted on the massflow
                     local.Pressure = other.Pressure * MassRatio1 + local.Pressure * MassRatio2;
 
-                    local.Pressure = local.Pressure.ToUnit(PressureReference.Absolute);
+                    //local.Pressure = local.Pressure.ToUnit(PressureReference.Absolute);
 
                     //Calculating the average S weighted on the massflow
                     //local.Entropy = other.Entropy * MassRatio1 + local.Entropy * MassRatio2;
