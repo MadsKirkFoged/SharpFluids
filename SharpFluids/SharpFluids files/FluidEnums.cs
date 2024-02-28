@@ -16,6 +16,10 @@ namespace SharpFluids
     public enum FluidList
     {
         [MediaType("HEOS", "AMMONIA")                       ] Ammonia,
+        [MediaType("HEOS", "AMMONIA")                       ] R717,
+        [MediaType("HEOS", "N-BUTANE")                      ] R600,
+
+
         [MediaType("HEOS", "AIR")                           ] Air,
         [MediaType("HEOS", "CARBONDIOXIDE")                 ] CO2,
         [MediaType("HEOS", "1BUTENE")                       ] Butene1,
@@ -116,6 +120,9 @@ namespace SharpFluids
         [MediaType("HEOS", "R41")                           ] R41,
         [MediaType("HEOS", "R410A")                         ] R410A,
         [MediaType("HEOS", "R507A")                         ] R507A,
+
+        
+
         [MediaType("HEOS", "RC318")                         ] RC318,
         [MediaType("HEOS", "SES36")                         ] SES36,
         [MediaType("HEOS", "SULFURDIOXIDE")                 ] SulfurDioxide,
