@@ -20,7 +20,6 @@ namespace SharpFluids
         [MediaType("HEOS", "N-BUTANE")                      ] R600,
         [MediaType("HEOS", "ISOBUTANE")                     ] R600a,
 
-
         [MediaType("HEOS", "AIR")                           ] Air,
         [MediaType("HEOS", "CARBONDIOXIDE")                 ] CO2,
         [MediaType("HEOS", "1BUTENE")                       ] Butene1,
