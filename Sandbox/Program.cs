@@ -19,7 +19,16 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            //Fluid Water26 = new Fluid(FluidList.InCompWater);
+            Fluid R6001 = new Fluid(FluidList.R600);
+            Fluid R6002 = new Fluid(FluidList.R600);
+            Fluid R6003 = new Fluid(FluidList.R600);
+            Fluid R6004 = new Fluid(FluidList.R600);
+
+
+            R6001.UpdatePX(Pressure.FromBar(2), 1);
+            R6002.UpdatePT(Pressure.FromBar(2), R6001.Temperature + Temperature.FromKelvin(5));
+            R6003.UpdatePT(Pressure.FromBar(2), R6001.Temperature + Temperature.FromKelvin(20));
+            R6004.UpdatePT(Pressure.FromBar(2), R6001.Temperature + Temperature.FromKelvin(50));
 
 
             Fluid Water = new Fluid(FluidList.Water);
