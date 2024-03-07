@@ -18,6 +18,7 @@ namespace SharpFluids
         [MediaType("HEOS", "AMMONIA")                       ] Ammonia,
         [MediaType("HEOS", "AMMONIA")                       ] R717,
         [MediaType("HEOS", "N-BUTANE")                      ] R600,
+        [MediaType("HEOS", "ISOBUTANE")                     ] R600a,
 
 
         [MediaType("HEOS", "AIR")                           ] Air,
