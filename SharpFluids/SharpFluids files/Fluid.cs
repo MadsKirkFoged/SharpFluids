@@ -1,18 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-//using EngineeringUnits;
+﻿//using EngineeringUnits;
 using EngineeringUnits;
 //using EngineeringUnits.Units;
 //using EngineeringUnits.Serialization.JsonNet;
 using Newtonsoft.Json;
 //using Microsoft.Extensions.Logging;
-using EngineeringUnits.Units;
 using Serilog;
+using System;
 //using Serilog.Context;
 
 namespace SharpFluids
 {
-
 
     /// <summary>
     /// A <see cref="Fluid"/> object carries the condition and properties of a real fluid.         
@@ -23,16 +20,12 @@ namespace SharpFluids
     /// <br> Example:</br>
     /// <br> </br>
     /// <br><c> <see cref="Fluid"/> Water = <see langword="new" /> <see cref="Fluid"/>(<see cref="FluidList"/>.Water); </c></br>
-    /// <br><c>Water.UpdatePT(<see cref="EngineeringUnits.Pressure"/>.FromBars(1.013), <see cref="EngineeringUnits.Temperature"/>.FromDegreesCelsius(13));</c></br>
+    /// <br><c>Water.UpdatePT(<see cref="EngineeringUnits.Pressure"/>.FromBar(1.013), <see cref="EngineeringUnits.Temperature"/>.FromDegreeCelsius(13));</c></br>
     /// <br><c><see langword="Debug" />.Print("Density of water is: " + Water.Density);</c></br>
     /// </summary>
 
-
     public partial class Fluid
     {
-
-
-
 
         /// <summary>
         /// Create an empty <see cref="Fluid"/> that does not have a fluid type!
@@ -65,7 +58,6 @@ namespace SharpFluids
             //This is just converting from One media type to another
         }
 
-
         /// <summary>
         /// Get Saturation Temperature from a given Pressure using the type of <see cref="Fluid"/>
         /// </summary> 
@@ -77,7 +69,6 @@ namespace SharpFluids
                 Log.Debug($"SharpFluid -> GetSatTemperature -> {FromThisPressure} cant be bolow {LimitPressureMin}");
                 return Temperature.Zero;
             }
-
 
             if (FromThisPressure > CriticalPressure)
             {
@@ -91,7 +82,6 @@ namespace SharpFluids
             }
         }
 
-
         /// <summary>
         /// Get Saturation Pressure from a given Temperature using the type of <see cref="Fluid"/>
         /// </summary> 
@@ -104,7 +94,6 @@ namespace SharpFluids
                 return Pressure.Zero;
             }
 
-
             if (FromThisTemperature >= CriticalTemperature)
             {
                 Log.Debug($"SharpFluid -> GetSatPressure -> Temperature ({FromThisTemperature}) is above CriticalTemperature {CriticalTemperature}. CriticalTemperature is returned instead!");
@@ -116,8 +105,6 @@ namespace SharpFluids
                 return REF.p();
             }
         }
-
-
 
         /// <summary>
         /// Updates the constants of the <see cref="Fluid"/>
@@ -134,18 +121,14 @@ namespace SharpFluids
             cache_temperature = null;
             cache_quality = null;
 
-
-            if (Media.BackendType == "CustomFluid")            
+            if (Media.BackendType == "CustomFluid")
                 return;
-            
-
 
             try
             {
                 //Setting the constant values up
                 LimitTemperatureMax = REF.Tmax();
                 LimitTemperatureMin = REF.Tmin();
-
 
                 if (Media.Mix is not MixType.None)
                 {
@@ -154,15 +137,13 @@ namespace SharpFluids
                     FractionMax = REF.keyed_output(parameters.ifraction_max);
                 }
 
-                if (REF.backend_name() is "HelmholtzEOSBackend" && Media.Mix is MixType.None )
+                if (REF.backend_name() is "HelmholtzEOSBackend" && Media.Mix is MixType.None)
                 {
                     CriticalTemperature = REF.T_critical();
                     CriticalPressure = REF.p_critical();
                     LimitPressureMin = REF.p_triple();
                     LimitPressureMax = REF.pmax();
                 }
-           
-  
             }
             catch (Exception e)
             {
@@ -172,20 +153,17 @@ namespace SharpFluids
 
         /// <summary>
         /// Updates the values of the <see cref="Fluid"/> after an update
-        /// </summary>   
+        /// </summary>           
         protected virtual void UpdateValues()
         {
-
 
             //Removed cache values
             tsat_Cache = null;
             CacheMode = false;
 
-
             try
             {
                 Phase = (Phases)REF.phase();
-
 
                 if (REF.backend_name() is not "IncompressibleBackend")
                 {
@@ -203,14 +181,11 @@ namespace SharpFluids
                     if (Phase is Phases.Twophase)
                         SurfaceTension = REF.surface_tension();
 
-
                 }
                 else
                 {
                     T_freeze = Temperature.FromKelvins(REF.keyed_output(parameters.iT_freeze));
                 }
-
-
 
                 Enthalpy = REF.hmass();
                 cache_enthalpy = Enthalpy;
@@ -234,14 +209,10 @@ namespace SharpFluids
                 Conductivity = REF.conductivity();
                 FailState = false;
 
-   
-
-
                 if (Environment.Is64BitProcess)
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-
 
             }
             catch (Exception e)
@@ -249,11 +220,6 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdateValues -> {e}");
                 throw new Exception("UpdateValues", e);
             }
-
-
-
-
-
         }
 
         ///// <summary>
@@ -332,7 +298,6 @@ namespace SharpFluids
         //    //CriticalEnthalpy = 0;
         //}
 
-
         /// <summary>
         /// Copy all the values from <paramref name="other"/> to this <see cref="Fluid"/>
         /// </summary>  
@@ -382,7 +347,7 @@ namespace SharpFluids
         public void CopyType(Fluid other)
         {
             //Null check
-            if (!(other.Media is null))
+            if (other.Media is not null)
             {
                 //Actually changing media
                 if (this.Media != other.Media)
@@ -458,7 +423,6 @@ namespace SharpFluids
 
 
                 }**/
-
         /// <summary>
         /// Check if two <see cref="Fluid"/> have almost the same <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/>
         /// <br>Both <see cref="Fluid"/>s should use either <see cref="EngineeringUnits.MassFlow"/> or <see cref="EngineeringUnits.Mass"/>!</br>
@@ -469,12 +433,11 @@ namespace SharpFluids
         {
             //TODO Split this up in MassFlow and Mass
 
-            MassFlow tolerence = MassFlow.FromKilogramsPerSecond(0.0001);
+            var tolerence = MassFlow.FromKilogramPerSecond(0.0001);
             MassFlow MassFlowDiss = (this.MassFlow - other.MassFlow).Abs();
 
             return MassFlowDiss <= tolerence;
         }
-
 
         ///// <summary>
         ///// Set a new fluid type to the <see cref="Fluid"/>
@@ -494,8 +457,6 @@ namespace SharpFluids
         //        return;
         //    }
 
-
-
         //    //if (RefType.ToLower() != REF?.name().ToLower() && RefType != "")
 
         //    REF = AbstractState.factory("HEOS", RefType);
@@ -506,10 +467,7 @@ namespace SharpFluids
         /// <summary>
         /// Set a new fluid type to the <see cref="Fluid"/>
         /// </summary> 
-        public void SetNewMedia(FluidList Type)
-        {
-            SetNewMedia(FluidListToMediaType(Type));
-        }
+        public void SetNewMedia(FluidList Type) => SetNewMedia(FluidListToMediaType(Type));
 
         //static object lockObj = new();
 
@@ -531,16 +489,15 @@ namespace SharpFluids
             //lock(lockObj)
             {
                 Media.Copy(Type);
-                if (Media.BackendType != "CustomFluid")            
+                if (Media.BackendType != "CustomFluid")
                     REF = AbstractState.factory(Media.BackendType, Media.InternalName);
-            
+
                 //Set fraction again
                 SetFraction(Type.MassFration);
 
                 UpdateFluidConstants();
 
             }
-
         }
 
         //static object lockObj2 = new();
@@ -578,12 +535,11 @@ namespace SharpFluids
         {
             //This Converts FluidList object to MediaType object
 
-            var type = Type.GetType();
-            var memInfo = type.GetMember(Type.ToString());
+            Type type = Type.GetType();
+            System.Reflection.MemberInfo[] memInfo = type.GetMember(Type.ToString());
             var attributes = memInfo[0].GetCustomAttributes(typeof(MediaType), false);
             return (attributes.Length > 0) ? (MediaType)attributes[0] : null;
         }
-
 
         ///// <summary>
         ///// Add <see cref="EngineeringUnits.Power"/> to the <see cref="Fluid"/>
@@ -594,13 +550,10 @@ namespace SharpFluids
         //    //TODO If mass is selected!
         //    //Finding the new H
 
-
         //    if (MassFlow == MassFlow.Zero)
         //    {
         //        return;
         //    }
-
-
 
         //    try
         //    {
@@ -631,7 +584,6 @@ namespace SharpFluids
         //        Log.Error($"SharpFluid -> AddPower -> {e}");
         //    }
 
-
         //}
 
         ///// <summary>
@@ -647,7 +599,6 @@ namespace SharpFluids
         //    AddPower(powerToBeRemoved * -1);
         //}
 
-
         /// <summary>
         /// Fractions er still in Beta! And is not yet tested!
         /// </summary> 
@@ -656,21 +607,14 @@ namespace SharpFluids
 
             if (Media.BackendType == "INCOMP")
             {
-                double min = 0;
-                double max = 0;
-
-                min = REF.keyed_output(parameters.ifraction_min) * 100;
-                max = REF.keyed_output(parameters.ifraction_max) * 100;
-
+                var min = REF.keyed_output(parameters.ifraction_min) * 100;
+                var max = REF.keyed_output(parameters.ifraction_max) * 100;
                 if (fraction < min)
                     throw new System.ArgumentException("Selected fraction is below the limit");
                 else if (fraction > max)
                     throw new System.ArgumentException("Selected fraction is above the limit");
             }
-
-
         }
-
 
         private void CheckBeforeUpdate()
         {
@@ -681,13 +625,11 @@ namespace SharpFluids
                 throw new System.InvalidOperationException("No Media is selected - Cant do an update on nothing!");
         }
 
-
         /// <summary>
         /// Override this function and you can set new defaul (display) units
         /// </summary> 
         //public virtual void SetDefalutDisplayUnits()
         //{
-
 
         //    //Units to specifig units
         //    Enthalpy = Enthalpy.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
@@ -716,9 +658,6 @@ namespace SharpFluids
 
         //}
 
-
-
-
         /// <summary>
         /// Checks if the two <see cref="Fluid"/> are almost then same
         /// </summary>
@@ -726,19 +665,15 @@ namespace SharpFluids
         {
             //TODO If mass is selected!
 
-            MassFlow MassFlowTolerance = MassFlow.FromKilogramsPerSecond(0.00001);
-            SpecificEnergy HTolerance = SpecificEnergy.FromKilojoulesPerKilogram(0.001);
-            Pressure PTolerance = Pressure.FromBars(0.001);
-            Temperature TTolerance = Temperature.FromKelvins(0.0001);
-
-
+            var MassFlowTolerance = MassFlow.FromKilogramPerSecond(0.00001);
+            var HTolerance = SpecificEnergy.FromKilojoulePerKilogram(0.001);
+            var PTolerance = Pressure.FromBar(0.001);
+            var TTolerance = Temperature.FromKelvins(0.0001);
 
             MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow).Abs();
             SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy).Abs();
             Pressure PDiss = (other1.Pressure - other2.Pressure).Abs();
             Temperature TDiss = (other1.Temperature - other2.Temperature).Abs();
-
-
 
             return (MassFlowDiss <= MassFlowTolerance) &&
                     (HDiss <= HTolerance) &&
@@ -750,13 +685,10 @@ namespace SharpFluids
         {
             return !(Input1 == Input2);
         }
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
+        public override bool Equals(object obj) => base.Equals(obj);
         public override int GetHashCode()
         {
-            HashCode hashCode = new HashCode();
+            var hashCode = new HashCode();
             hashCode.Add(_mass);
             hashCode.Add(_massflow);
             hashCode.Add(Temperature);
@@ -777,9 +709,7 @@ namespace SharpFluids
             hashCode.Add(Quality);
             hashCode.Add(_massflow);
 
-
             return hashCode.ToHashCode();
-
 
         }
         public void Dispose()
@@ -789,51 +719,44 @@ namespace SharpFluids
             this.Dispose();
         }
 
-        public string SaveAsJSON()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
+        public string SaveAsJSON() => JsonConvert.SerializeObject(this);
 
-        public Fluid LoadFromJSON(string json)
-        {
-            return JsonConvert.DeserializeObject<Fluid>(json);
-        }
-
+        public Fluid LoadFromJSON(string json) => JsonConvert.DeserializeObject<Fluid>(json);
 
         public Fluid Clone()
         {
-            Fluid Local = new Fluid(Media);
-
-
-            Local.Compressibility = Compressibility;
-            Local.Conductivity = Conductivity;
-            Local.Cp = Cp;
-            //Local.CriticalEnthalpy = CriticalEnthalpy;
-            Local.CriticalPressure = CriticalPressure;
-            Local.CriticalTemperature = CriticalTemperature;
-            Local.Cv = Cv;
-            Local.Density = Density;
-            Local.DynamicViscosity = DynamicViscosity;
-            Local.Enthalpy = Enthalpy;
-            Local.Entropy = Entropy;
-            Local.FailState = FailState;
-            Local.FractionMax = FractionMax;
-            Local.FractionMin = FractionMin;
-            Local.InternalEnergy = InternalEnergy;
-            Local.LimitPressureMax = LimitPressureMax;
-            Local.LimitPressureMin = LimitPressureMin;
-            Local.LimitTemperatureMax = LimitTemperatureMax;
-            Local.LimitTemperatureMin = LimitTemperatureMin;
-            Local.Mass = Mass;
-            Local.MassFlow = MassFlow;
-            Local.MolarMass = MolarMass;
-            Local.Phase = Phase;
-            Local.Prandtl = Prandtl;
-            Local.Pressure = Pressure;
-            Local.Quality = Quality;
-            Local.SoundSpeed = SoundSpeed;
-            Local.SurfaceTension = SurfaceTension;
-            Local.Temperature = Temperature;
+            var Local = new Fluid(Media)
+            {
+                Compressibility = Compressibility,
+                Conductivity = Conductivity,
+                Cp = Cp,
+                //Local.CriticalEnthalpy = CriticalEnthalpy;
+                CriticalPressure = CriticalPressure,
+                CriticalTemperature = CriticalTemperature,
+                Cv = Cv,
+                Density = Density,
+                DynamicViscosity = DynamicViscosity,
+                Enthalpy = Enthalpy,
+                Entropy = Entropy,
+                FailState = FailState,
+                FractionMax = FractionMax,
+                FractionMin = FractionMin,
+                InternalEnergy = InternalEnergy,
+                LimitPressureMax = LimitPressureMax,
+                LimitPressureMin = LimitPressureMin,
+                LimitTemperatureMax = LimitTemperatureMax,
+                LimitTemperatureMin = LimitTemperatureMin,
+                Mass = Mass,
+                MassFlow = MassFlow,
+                MolarMass = MolarMass,
+                Phase = Phase,
+                Prandtl = Prandtl,
+                Pressure = Pressure,
+                Quality = Quality,
+                SoundSpeed = SoundSpeed,
+                SurfaceTension = SurfaceTension,
+                Temperature = Temperature
+            };
 
             return Local;
 
@@ -841,10 +764,10 @@ namespace SharpFluids
 
         public void ResetErrors()
         {
-            if (Environment.Is64BitProcess)            
-                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();            
-            else            
-                CoolPropPINVOKE.SWIGPendingException.ResetErrors();            
+            if (Environment.Is64BitProcess)
+                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+            else
+                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
 
         }
 
@@ -856,6 +779,5 @@ namespace SharpFluids
                 return CoolPropPINVOKE.SWIGPendingException.Retrieve();
 
         }
-
     }
 }

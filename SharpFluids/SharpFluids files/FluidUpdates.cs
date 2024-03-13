@@ -1,12 +1,10 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 //using EngineeringUnits;
 using EngineeringUnits;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SharpFluids
 {
@@ -17,7 +15,7 @@ namespace SharpFluids
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Density"/> and the <see cref="EngineeringUnits.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateDS(<see cref="EngineeringUnits.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdateDS(<see cref="EngineeringUnits.Density"/>.FromKilogramPerCubicMeter(999.38), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulePerKilogramKelvin(195.27));</c></br>
         /// </summary> 
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
@@ -29,7 +27,6 @@ namespace SharpFluids
             CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
-
 
             try
             {
@@ -47,22 +44,20 @@ namespace SharpFluids
                 Log.Error($"SharpFluid -> UpdateDS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}");
                 throw e;
             }
-            finally 
+            finally
             {
                 if (Environment.Is64BitProcess)
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
-
         }
-
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Density"/> and the <see cref="EngineeringUnits.Pressure"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateDP(<see cref="EngineeringUnits.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="EngineeringUnits.Pressure"/>.FromBars(1.013));</c></br>
+        /// <br><c>Water.UpdateDP(<see cref="EngineeringUnits.Density"/>.FromKilogramPerCubicMeter(999.38), <see cref="EngineeringUnits.Pressure"/>.FromBar(1.013));</c></br>
         /// </summary>
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
@@ -98,15 +93,13 @@ namespace SharpFluids
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
-
-
         }
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Density"/> and the <see cref="EngineeringUnits.Temperature"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateDT(<see cref="EngineeringUnits.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="EngineeringUnits.Temperature"/>.FromDegreesCelsius(13));</c></br>
+        /// <br><c>Water.UpdateDT(<see cref="EngineeringUnits.Density"/>.FromKilogramPerCubicMeter(999.38), <see cref="EngineeringUnits.Temperature"/>.FromDegreeCelsius(13));</c></br>
         /// </summary>
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
@@ -142,16 +135,13 @@ namespace SharpFluids
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
-
-
         }
-
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Density"/> and the Enthalpy<br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateDH(<see cref="EngineeringUnits.Density"/>.FromKilogramsPerCubicMeter(999.38), <see cref="EngineeringUnits.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59));</c></br>
+        /// <br><c>Water.UpdateDH(<see cref="EngineeringUnits.Density"/>.FromKilogramPerCubicMeter(999.38), <see cref="EngineeringUnits.SpecificEnergy"/>.FromJoulePerKilogram(54697.59));</c></br>
         /// </summary>
         /// <param name = "density" > The <see cref="EngineeringUnits.Density"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
@@ -187,15 +177,13 @@ namespace SharpFluids
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
-
-
         }
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Pressure"/> and the <see cref="EngineeringUnits.Temperature"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdatePT(<see cref="EngineeringUnits.Pressure"/>.FromBars(1.013), <see cref="EngineeringUnits.Temperature"/>.FromDegreesCelsius(13));</c></br>
+        /// <br><c>Water.UpdatePT(<see cref="EngineeringUnits.Pressure"/>.FromBar(1.013), <see cref="EngineeringUnits.Temperature"/>.FromDegreeCelsius(13));</c></br>
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
@@ -206,7 +194,7 @@ namespace SharpFluids
                 return;
 
             CheckBeforeUpdate();
-            GuardFromCustomFluids();            
+            GuardFromCustomFluids();
 
             //if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
             //   ShouldItBeCached(temperature, cache_temperature, RepeatTolerance))
@@ -216,7 +204,6 @@ namespace SharpFluids
             //    CacheMode = true;
             //    return;
             //}
-
 
             try
             {
@@ -244,12 +231,11 @@ namespace SharpFluids
             }
         }
 
-
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the Quality and the <see cref="EngineeringUnits.Temperature"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> CO2 = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.CO2"/>);</c></br>
-        /// <br><c>CO2.UpdateXT(0.7, <see cref="EngineeringUnits.Temperature"/>.FromDegreesCelsius(13));</c></br>
+        /// <br><c>CO2.UpdateXT(0.7, <see cref="EngineeringUnits.Temperature"/>.FromDegreeCelsius(13));</c></br>
         /// </summary>
         /// <param name = "quality" > The Quality used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
@@ -271,7 +257,6 @@ namespace SharpFluids
             //    return;
             //}
 
-
             try
             {
                 //If we are above transcritical we just return the Critical point 
@@ -288,8 +273,6 @@ namespace SharpFluids
                     REF.update(input_pairs.QT_INPUTS, quality, temperature.Kelvins);
                     UpdateValues();
                 }
-
-
             }
             catch (System.ApplicationException e)
             {
@@ -309,9 +292,6 @@ namespace SharpFluids
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
-
-
-
         }
 
         /// <summary>
@@ -324,15 +304,14 @@ namespace SharpFluids
             //Not yet supported by CoolProp!
             Log.Debug($"SharpFluid -> UpdateHT -> Not yet supported by CoolProp!");
             throw new NotImplementedException($"SharpFluid -> UpdateHT -> Not (yet) supported by CoolProp!");
-            REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulesPerKilogram, temperature.Kelvins);
+            //REF.update(input_pairs.HmassT_INPUTS, enthalpy.JoulePerKilogram, temperature.Kelvins);
         }
-
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Pressure"/> and the <see cref="EngineeringUnits.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdatePS(<see cref="EngineeringUnits.Pressure"/>.FromBars(1.013), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdatePS(<see cref="EngineeringUnits.Pressure"/>.FromBar(1.013), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulePerKilogramKelvin(195.27));</c></br>
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
@@ -353,7 +332,6 @@ namespace SharpFluids
             //    CacheMode = true;
             //    return;
             //}
-
 
             try
             {
@@ -378,18 +356,13 @@ namespace SharpFluids
                 else
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
             }
-
-
         }
-
-
-        
 
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Pressure"/> and the Enthalpy<br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdatePH(<see cref="EngineeringUnits.Pressure"/>.FromBars(1.013), <see cref="EngineeringUnits.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59));</c></br>
+        /// <br><c>Water.UpdatePH(<see cref="EngineeringUnits.Pressure"/>.FromBar(1.013), <see cref="EngineeringUnits.SpecificEnergy"/>.FromJoulePerKilogram(54697.59));</c></br>
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
@@ -398,10 +371,9 @@ namespace SharpFluids
             if (pressure is null || enthalpy is null)
                 return;
 
-            CheckBeforeUpdate();            
+            CheckBeforeUpdate();
             GuardFromCustomFluids();
             GuardFromMixFluids();
-
 
             //if (ShouldItBeCached(pressure, cache_pressure, RepeatTolerance) &&
             //    ShouldItBeCached(enthalpy,cache_enthalpy, RepeatTolerance))
@@ -411,8 +383,6 @@ namespace SharpFluids
             //    CacheMode = true;
             //    return;
             //}
-
-
 
             try
             {
@@ -443,7 +413,7 @@ namespace SharpFluids
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.Pressure"/> and the Quality<br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> CO2 = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.CO2"/>);</c></br>
-        /// <br><c>CO2.UpdatePX(<see cref="EngineeringUnits.Pressure"/>.FromBars(25), 0.7);</c></br>
+        /// <br><c>CO2.UpdatePX(<see cref="EngineeringUnits.Pressure"/>.FromBar(25), 0.7);</c></br>
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "quality" > The Quality used in the update</param>
@@ -463,7 +433,6 @@ namespace SharpFluids
             //    CacheMode = true;
             //    return;
             //}
-
 
             try
             {
@@ -501,15 +470,11 @@ namespace SharpFluids
             }
         }
 
-
-
-
-
         /// <summary>
         /// Update the condition of the <see cref="Fluid"/> when you know the Enthalpy and the <see cref="EngineeringUnits.SpecificEntropy"/><br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateHS(<see cref="EngineeringUnits.SpecificEnergy"/>.FromJoulesPerKilogram(54697.59), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdateHS(<see cref="EngineeringUnits.SpecificEnergy"/>.FromJoulePerKilogram(54697.59), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulePerKilogramKelvin(195.27));</c></br>
         /// </summary> 
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
@@ -551,7 +516,7 @@ namespace SharpFluids
         /// Update the condition of the <see cref="Fluid"/> when you know the <see cref="EngineeringUnits.SpecificEntropy"/> and the Temperature.<br></br>
         /// <br>Exemple:</br>
         /// <br><c><see cref="Fluid"/> Water = <see langword="new"/> <see cref="Fluid"/>(<see cref="FluidList.Water"/>);</c></br>
-        /// <br><c>Water.UpdateTS(<see cref="EngineeringUnits.Temperature"/>.FromKelvins(286.15), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulesPerKilogramKelvin(195.27));</c></br>
+        /// <br><c>Water.UpdateTS(<see cref="EngineeringUnits.Temperature"/>.FromKelvins(286.15), <see cref="EngineeringUnits.SpecificEntropy"/>.FromJoulePerKilogramKelvin(195.27));</c></br>
         /// </summary> 
         /// <param name = "temperature" > The Temperature used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
@@ -604,22 +569,16 @@ namespace SharpFluids
 
             //THIS IS IN BETA MODE
 
-
             CheckBeforeUpdate();
-
 
             //if (Media.BackendType != "CustomFluid")
             //{
             //    throw new NotImplementedException("This is in Beta and only works with CustomFluids!");
             //}
 
-
-
-
             //Find the two closed points for Interpolation or Extrapolation
             CustomOil Above = GetCustomFluidFromDatabase().OrderBy(p => (p.Temperature - temperature).Abs()).First();
             CustomOil Below = GetCustomFluidFromDatabase().OrderBy(p => (p.Temperature - temperature).Abs()).Skip(1).First();
-
 
             Temperature = temperature;
             Pressure = pressure;
@@ -631,7 +590,6 @@ namespace SharpFluids
             FailState = false;
 
         }
-
 
         public List<CustomOil> GetCustomFluidFromDatabase()
         {
@@ -656,22 +614,13 @@ namespace SharpFluids
                 return Number13.GetList();
             }
 
-
             throw new NotImplementedException("GetCustomFluidFromDatabase didnt return anything");
 
         }
 
-       
-
-        private void CachePressure(Pressure pressure)
-        {
+        private void CachePressure(Pressure pressure) =>
             //Saving old real values
-            cache_pressure = Pressure;
-
-            //Setting input as New value
-            //Pressure = pressure.ToUnit(PressureReference.Absolute);
-
-        }
+            cache_pressure = Pressure;//Setting input as New value//Pressure = pressure.ToUnit(PressureReference.Absolute);
         private void CacheTemperature(Temperature temperature)
         {
             //Saving old real values
@@ -720,11 +669,9 @@ namespace SharpFluids
             if ((value - cache_value).Abs() / value > RepeatTolerance)
                 return false;
 
-
             return true;
 
         }
-
 
         private void GuardFromCustomFluids()
         {
@@ -741,7 +688,6 @@ namespace SharpFluids
                 throw new NotImplementedException("For mixtures only UpdatePX, UpdateXT and UpdatePT works");
             }
         }
-    
     }
 }
 

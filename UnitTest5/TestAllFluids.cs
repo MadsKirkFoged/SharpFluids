@@ -38,7 +38,7 @@ namespace UnitsTests
             //    }
 
 
-            //    Pressure Reduce = TestFluid.CriticalPressure - Pressure.FromBars(5);
+            //    Pressure Reduce = TestFluid.CriticalPressure - Pressure.FromBar(5);
             //    if (Reduce < TestFluid.LimitPressureMin)
             //        Reduce = TestFluid.LimitPressureMin;
 
@@ -55,27 +55,27 @@ namespace UnitsTests
             //    Assert.AreNotEqual(0, TestFluid.LimitTemperatureMax.DegreesCelsius);
 
 
-            //    //Assert.AreNotEqual(0, TestFluid.Conductivity.WattsPerMeterKelvin);
-            //    Assert.AreNotEqual(0, TestFluid.Cp.JoulesPerKilogramKelvin);
-            //    Assert.AreNotEqual(0, TestFluid.Cv.JoulesPerKilogramKelvin);
-            //    Assert.AreNotEqual(0, TestFluid.Enthalpy.JoulesPerKilogram);
+            //    //Assert.AreNotEqual(0, TestFluid.Conductivity.WattPerMeterKelvin);
+            //    Assert.AreNotEqual(0, TestFluid.Cp.JoulePerKilogramKelvin);
+            //    Assert.AreNotEqual(0, TestFluid.Cv.JoulePerKilogramKelvin);
+            //    Assert.AreNotEqual(0, TestFluid.Enthalpy.JoulePerKilogram);
             //    //Assert.AreNotEqual(0, TestFluid.Prandtl);
             //    Assert.AreNotEqual(0, TestFluid.Pressure.Bars);
-            //    Assert.AreNotEqual(0, TestFluid.Density.KilogramsPerCubicMeter);
+            //    Assert.AreNotEqual(0, TestFluid.Density.KilogramPerCubicMeter);
             //    Assert.AreNotEqual(0, TestFluid.Entropy.JoulesPerKelvin);
             //    //Assert.AreNotEqual(0, TestFluid.SurfaceTension.NewtonsPerMeter);
             //    Assert.AreNotEqual(0, TestFluid.Temperature.DegreesCelsius);
             //    Assert.AreNotEqual(0, TestFluid.Tsat.DegreesCelsius);
-            //    //Assert.AreNotEqual(0, TestFluid.DynamicViscosity.NewtonSecondsPerMeterSquared);
+            //    //Assert.AreNotEqual(0, TestFluid.DynamicViscosity.NewtonSecondPerMeterSquared);
             //    Assert.AreNotEqual(0, TestFluid.Quality);
-            //    //Assert.AreNotEqual(0, TestFluid.SoundSpeed.MetersPerSecond);
+            //    //Assert.AreNotEqual(0, TestFluid.SoundSpeed.MeterPerSecond);
 
-            //    Assert.AreNotEqual(0, TestFluid.MolarMass.GramsPerMole);
+            //    Assert.AreNotEqual(0, TestFluid.MolarMass.GramPerMole);
             //    Assert.AreNotEqual(0, TestFluid.Compressibility);
-            //    Assert.AreNotEqual(0, TestFluid.InternalEnergy.JoulesPerKilogram);
+            //    Assert.AreNotEqual(0, TestFluid.InternalEnergy.JoulePerKilogram);
 
             //    //Assert.AreNotEqual(0, TestFluid.MassFlow.KilogramsPerSecond);
-            //    //Assert.AreNotEqual(0, TestFluid.VolumeFlow.CubicMetersPerSecond);
+            //    //Assert.AreNotEqual(0, TestFluid.VolumeFlow.CubicMeterPerSecond);
 
                 
 

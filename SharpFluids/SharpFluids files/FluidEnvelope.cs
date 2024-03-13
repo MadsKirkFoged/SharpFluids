@@ -44,7 +44,7 @@ namespace SharpFluids
 
 
 
-            for (Pressure i = CriticalPressure - Pressure.FromBars(1); i > LimitPressureMin; i -= Increment)
+            for (Pressure i = CriticalPressure - Pressure.FromBar(1); i > LimitPressureMin; i -= Increment)
             {
                 UpdatePX(i, 0);
 

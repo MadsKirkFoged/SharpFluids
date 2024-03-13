@@ -1,17 +1,14 @@
-
-using Newtonsoft.Json;
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 //using EngineeringUnits;
 using EngineeringUnits;
 using EngineeringUnits.Units;
 using Serilog;
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 public class AbstractState : IDisposable
 {
-
-    static object lockObj = new();
+    private static readonly object lockObj = new();
 
     public HandleRef swigCPtr;
     public bool swigCMemOwn;
@@ -44,6 +41,7 @@ public class AbstractState : IDisposable
 
                 swigCPtr = new HandleRef(null, IntPtr.Zero);
             }
+
             GC.SuppressFinalize(this);
         }
     }
@@ -71,12 +69,9 @@ public class AbstractState : IDisposable
                 }
             }
         }
-
-
     }
     public virtual void update(input_pairs input_pair, double Value1, double Value2)
     {
-
 
         //Internal look up
 
@@ -90,13 +85,15 @@ public class AbstractState : IDisposable
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                     CoolPropPINVOKE64.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
-                    if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+                    if (CoolPropPINVOKE64.SWIGPendingException.Pending)
+                        throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                     CoolPropPINVOKE.AbstractState_update(swigCPtr, (int)input_pair, Value1, Value2);
-                    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+                    if (CoolPropPINVOKE.SWIGPendingException.Pending)
+                        throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
             catch (NullReferenceException e)
@@ -109,9 +106,7 @@ public class AbstractState : IDisposable
                 Log.Information($"SharpFluid error: {e}");
                 throw;
             }
-
         }
-       
     }
 
     //public virtual void update_with_guesses(input_pairs input_pair, double Value1, double Value2, GuessesStructure guesses)
@@ -128,25 +123,23 @@ public class AbstractState : IDisposable
             //Internal look up
             double local = 0;
 
-
-
             //CoolProp Lookup
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                 local = CoolPropPINVOKE64.HAPropsSI(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
-                if (CoolPropPINVOKE64.SWIGPendingException.Pending) throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
+                if (CoolPropPINVOKE64.SWIGPendingException.Pending)
+                    throw CoolPropPINVOKE64.SWIGPendingException.Retrieve();
             }
             else
             {
                 CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                 local = CoolPropPINVOKE.HAPropsSI(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
-                if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
+                if (CoolPropPINVOKE.SWIGPendingException.Pending)
+                    throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             }
 
-
             return local;
-
         }
     }
 
@@ -159,18 +152,17 @@ public class AbstractState : IDisposable
             {
                 if (Environment.Is64BitProcess)
                 {
-                    string ret = CoolPropPINVOKE64.AbstractState_backend_name(swigCPtr);
+                    var ret = CoolPropPINVOKE64.AbstractState_backend_name(swigCPtr);
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                     return ret;
                 }
                 else
                 {
-                    string ret = CoolPropPINVOKE.AbstractState_backend_name(swigCPtr);
+                    var ret = CoolPropPINVOKE.AbstractState_backend_name(swigCPtr);
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                     return ret;
                 }
             }
-
         }
     }
     public virtual bool using_mass_fractions()
@@ -182,21 +174,18 @@ public class AbstractState : IDisposable
             {
                 if (Environment.Is64BitProcess)
                 {
-                    bool ret = CoolPropPINVOKE64.AbstractState_using_mass_fractions(swigCPtr);
+                    var ret = CoolPropPINVOKE64.AbstractState_using_mass_fractions(swigCPtr);
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                     return ret;
                 }
                 else
                 {
-                    bool ret = CoolPropPINVOKE.AbstractState_using_mass_fractions(swigCPtr);
+                    var ret = CoolPropPINVOKE.AbstractState_using_mass_fractions(swigCPtr);
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                     return ret;
                 }
             }
-
-
         }
-
     }
     public void set_mass_fractions(DoubleVector mass_fractions)
     {
@@ -218,7 +207,6 @@ public class AbstractState : IDisposable
                 //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             }
         }
-
     }
     public void set_volu_fractions(DoubleVector volu_fractions)
     {
@@ -236,7 +224,6 @@ public class AbstractState : IDisposable
                 CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                 //if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
             }
-
         }
     }
 
@@ -259,14 +246,8 @@ public class AbstractState : IDisposable
                     return CoolPropPINVOKE.get_global_param_string(ParamName);
                 }
             }
-
-
-
         }
-
-
     }
-
 
     public Temperature Tmin()
     {
@@ -286,7 +267,6 @@ public class AbstractState : IDisposable
                     return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_Tmin(swigCPtr));
                 }
             }
-
         }
     }
     public Temperature Tmax()
@@ -307,7 +287,6 @@ public class AbstractState : IDisposable
                     return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_Tmax(swigCPtr));
                 }
             }
-
         }
     }
     public Pressure pmax()
@@ -344,7 +323,6 @@ public class AbstractState : IDisposable
                     Debug.Print("It could not return T_critical!");
                     return Tmax(); //Workaround for when T_critical does not get returned by coolprop
                 }
-
             }
             else
             {
@@ -357,7 +335,6 @@ public class AbstractState : IDisposable
                     return Tmax(); //Workaround for when T_critical does not get returned by coolprop
                 }
             }
-
         }
     }
     public Pressure p_critical()
@@ -377,7 +354,6 @@ public class AbstractState : IDisposable
                     Debug.Print("It could not return p_critical!");
                     return pmax(); //Workaround for when p_critical does not get returned by coolprop
                 }
-
             }
             else if (CoolPropPINVOKE.AbstractState_p_critical(swigCPtr) != 0)
             {
@@ -409,9 +385,7 @@ public class AbstractState : IDisposable
                     return Pressure.From(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr), PressureUnit.Pascal);
                 }
             }
-
         }
-
     }
 
     public phases phase()
@@ -432,7 +406,6 @@ public class AbstractState : IDisposable
                     return (phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
                 }
             }
-
         }
     }
     public string name()
@@ -453,7 +426,6 @@ public class AbstractState : IDisposable
                     return CoolPropPINVOKE.AbstractState_name(swigCPtr);
                 }
             }
-
         }
     }
     public double keyed_output(parameters key)
@@ -476,7 +448,6 @@ public class AbstractState : IDisposable
                     return test;
                 }
             }
-
         }
     }
     public Temperature T()
@@ -497,7 +468,6 @@ public class AbstractState : IDisposable
                     return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_T(swigCPtr));
                 }
             }
-
         }
     }
     public Density rhomass()
@@ -510,15 +480,14 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return Density.FromKilogramsPerCubicMeter(CoolPropPINVOKE64.AbstractState_rhomass(swigCPtr));
+                    return Density.FromKilogramPerCubicMeter(CoolPropPINVOKE64.AbstractState_rhomass(swigCPtr));
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return Density.FromKilogramsPerCubicMeter(CoolPropPINVOKE.AbstractState_rhomass(swigCPtr));
+                    return Density.FromKilogramPerCubicMeter(CoolPropPINVOKE.AbstractState_rhomass(swigCPtr));
                 }
             }
-
         }
     }
     public Pressure p()
@@ -539,7 +508,6 @@ public class AbstractState : IDisposable
                     return Pressure.From(CoolPropPINVOKE.AbstractState_p(swigCPtr), PressureUnit.Pascal);
                 }
             }
-
         }
     }
     public double Q()
@@ -560,9 +528,9 @@ public class AbstractState : IDisposable
                     return CoolPropPINVOKE.AbstractState_Q(swigCPtr);
                 }
             }
-
         }
     }
+
     public MolarMass molar_mass()
     {
         lock (lockObj)
@@ -573,15 +541,14 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return MolarMass.FromKilogramsPerMole(CoolPropPINVOKE64.AbstractState_molar_mass(swigCPtr));
+                    return MolarMass.FromKilogramPerMole(CoolPropPINVOKE64.AbstractState_molar_mass(swigCPtr));
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return MolarMass.FromKilogramsPerMole(CoolPropPINVOKE.AbstractState_molar_mass(swigCPtr));
+                    return MolarMass.FromKilogramPerMole(CoolPropPINVOKE.AbstractState_molar_mass(swigCPtr));
                 }
             }
-
         }
     }
     public double compressibility_factor()
@@ -615,12 +582,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return SpecificEnergy.FromJoulesPerKilogram(CoolPropPINVOKE64.AbstractState_hmass(swigCPtr));
+                    return SpecificEnergy.FromJoulePerKilogram(CoolPropPINVOKE64.AbstractState_hmass(swigCPtr));
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return SpecificEnergy.FromJoulesPerKilogram(CoolPropPINVOKE.AbstractState_hmass(swigCPtr));
+                    return SpecificEnergy.FromJoulePerKilogram(CoolPropPINVOKE.AbstractState_hmass(swigCPtr));
                 }
             }
         }
@@ -632,14 +599,14 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE64.AbstractState_smass(swigCPtr));
+                return SpecificEntropy.FromJoulePerKilogramKelvin(CoolPropPINVOKE64.AbstractState_smass(swigCPtr));
             }
             else
             {
                 CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE.AbstractState_smass(swigCPtr));
+                return SpecificEntropy.FromJoulePerKilogramKelvin(CoolPropPINVOKE.AbstractState_smass(swigCPtr));
             }
-        }        
+        }
     }
     public SpecificEnergy umass()
     {
@@ -648,14 +615,14 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return SpecificEnergy.FromJoulesPerKilogram(CoolPropPINVOKE64.AbstractState_umass(swigCPtr));
+                return SpecificEnergy.FromJoulePerKilogram(CoolPropPINVOKE64.AbstractState_umass(swigCPtr));
             }
             else
             {
                 CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                return SpecificEnergy.FromJoulesPerKilogram(CoolPropPINVOKE.AbstractState_umass(swigCPtr));
+                return SpecificEnergy.FromJoulePerKilogram(CoolPropPINVOKE.AbstractState_umass(swigCPtr));
             }
-        }      
+        }
     }
     public SpecificEntropy cpmass()
     {
@@ -664,14 +631,14 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE64.AbstractState_cpmass(swigCPtr));
+                return SpecificEntropy.FromJoulePerKilogramKelvin(CoolPropPINVOKE64.AbstractState_cpmass(swigCPtr));
             }
             else
             {
                 CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE.AbstractState_cpmass(swigCPtr));
+                return SpecificEntropy.FromJoulePerKilogramKelvin(CoolPropPINVOKE.AbstractState_cpmass(swigCPtr));
             }
-        }        
+        }
     }
     public SpecificEntropy cvmass()
     {
@@ -680,33 +647,34 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE64.AbstractState_cvmass(swigCPtr));
+                return SpecificEntropy.FromJoulePerKilogramKelvin(CoolPropPINVOKE64.AbstractState_cvmass(swigCPtr));
             }
             else
             {
                 CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                return SpecificEntropy.FromJoulesPerKilogramKelvin(CoolPropPINVOKE.AbstractState_cvmass(swigCPtr));
+                return SpecificEntropy.FromJoulePerKilogramKelvin(CoolPropPINVOKE.AbstractState_cvmass(swigCPtr));
             }
-        }        
+        }
     }
+
     public Speed speed_sound()
     {
         lock (lockObj)
         {
             if (Environment.Is64BitProcess)
             {
-                if (!(0 <= Q() && Q() <= 1))
+                if (Q() is not (>=0 and <=1))
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return Speed.FromMetersPerSecond(CoolPropPINVOKE64.AbstractState_speed_sound(swigCPtr));
+                    return Speed.FromMeterPerSecond(CoolPropPINVOKE64.AbstractState_speed_sound(swigCPtr));
                 }
             }
             else
             {
-                if (!(0 <= Q() && Q() <= 1))
+                if (Q() is not (>=0 and <=1))
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return Speed.FromMetersPerSecond(CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr));
+                    return Speed.FromMeterPerSecond(CoolPropPINVOKE.AbstractState_speed_sound(swigCPtr));
                 }
             }
 
@@ -714,14 +682,12 @@ public class AbstractState : IDisposable
         }
     }
 
-
     //public PhaseEnvelopeData get_phase_envelope_data()
     //{
     //    PhaseEnvelopeData ret = new PhaseEnvelopeData(CoolPropPINVOKE.AbstractState_get_phase_envelope_data(swigCPtr), false);
     //    if (CoolPropPINVOKE.SWIGPendingException.Pending) throw CoolPropPINVOKE.SWIGPendingException.Retrieve();
     //    return ret;
     //}
-
 
     public DynamicViscosity viscosity()
     {
@@ -741,14 +707,14 @@ public class AbstractState : IDisposable
                 localVis = CoolPropPINVOKE.AbstractState_viscosity(swigCPtr);
             }
 
-
-            if (double.IsNaN(localVis) || localVis < (double)Decimal.MinValue || localVis > (double)Decimal.MaxValue)
+            if (double.IsNaN(localVis) || localVis < (double)decimal.MinValue || localVis > (double)decimal.MaxValue)
                 return DynamicViscosity.Zero;
             else
-                return DynamicViscosity.FromPascalSeconds(localVis);
+                return DynamicViscosity.FromPascalSecond(localVis);
 
         }
     }
+
     public ThermalConductivity conductivity()
     {
         lock (lockObj)
@@ -759,21 +725,19 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return ThermalConductivity.FromWattsPerMeterKelvin(CoolPropPINVOKE64.AbstractState_conductivity(swigCPtr));
+                    return ThermalConductivity.FromWattPerMeterKelvin(CoolPropPINVOKE64.AbstractState_conductivity(swigCPtr));
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return ThermalConductivity.FromWattsPerMeterKelvin(CoolPropPINVOKE.AbstractState_conductivity(swigCPtr));
+                    return ThermalConductivity.FromWattPerMeterKelvin(CoolPropPINVOKE.AbstractState_conductivity(swigCPtr));
                 }
-
             }
             catch (ArgumentException)
             {
                 //NaN error
                 return ThermalConductivity.Zero;
             }
-
         }
     }
     public ForcePerLength surface_tension()
@@ -783,21 +747,20 @@ public class AbstractState : IDisposable
 
             if (Environment.Is64BitProcess)
             {
-                if (0 < Q() && Q() < 1)
+                if (Q() is>0 and <1)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return ForcePerLength.FromNewtonsPerMeter(CoolPropPINVOKE64.AbstractState_surface_tension(swigCPtr));
+                    return ForcePerLength.FromNewtonPerMeter(CoolPropPINVOKE64.AbstractState_surface_tension(swigCPtr));
                 }
             }
             else
             {
-                if (0 < Q() && Q() < 1)
+                if (Q() is>0 and <1)
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return ForcePerLength.FromNewtonsPerMeter(CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr));
+                    return ForcePerLength.FromNewtonPerMeter(CoolPropPINVOKE.AbstractState_surface_tension(swigCPtr));
                 }
             }
-
 
             return ForcePerLength.Zero;
 
@@ -828,5 +791,4 @@ public class AbstractState : IDisposable
 
         }
     }
-
 }

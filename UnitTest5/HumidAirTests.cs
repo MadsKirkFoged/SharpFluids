@@ -17,7 +17,7 @@ namespace UnitTest5
             Func<double, double, double, bool> AlmostEqual = (expect, actual, prec) =>
                 Math.Abs(expect - actual) <= prec;
 
-            Temperature tatm = Temperature.FromDegreesCelsius(20.0);
+            Temperature tatm = Temperature.FromDegreeCelsius(20.0);
             Pressure patm = Pressure.FromAtmosphere(1.0);
             double rh = 0.4; // 40 %
 
