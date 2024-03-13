@@ -1,20 +1,15 @@
 ﻿
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 //using EngineeringUnits;
 using EngineeringUnits;
+using Newtonsoft.Json;
 using Serilog;
+using System;
 //using EngineeringUnits.Serialization.JsonNet;
 
 namespace SharpFluids
 {
     public partial class Fluid
     {
-
 
         [JsonProperty(PropertyName = "_m", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
@@ -38,14 +33,12 @@ namespace SharpFluids
         //[JsonProperty]
         public Temperature T_freeze { get; set; }
 
-
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Pressure"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "P", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Pressure Pressure { get; set; }
-
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.SpecificEnergy"/> of the <see cref="Fluid"/>. 
@@ -55,7 +48,6 @@ namespace SharpFluids
         //[JsonProperty]
         public SpecificEnergy Enthalpy { get; set; }
 
-
         /// <summary>
         /// Get the <see cref="EngineeringUnits.SpecificEntropy"/> of the <see cref="Fluid"/>. 
         /// <br>Engineers may refers to this as "S".</br>
@@ -64,7 +56,6 @@ namespace SharpFluids
         //[JsonProperty]
         public SpecificEntropy Entropy { get; set; }
 
-
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Density"/> of the <see cref="Fluid"/>. 
         /// <br>Engineers may refers to this as "RHO".</br>
@@ -72,7 +63,6 @@ namespace SharpFluids
         [JsonProperty(PropertyName = "D", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Density Density { get; protected set; }
-
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.DynamicViscosity"/> of the <see cref="Fluid"/>. 
@@ -163,8 +153,6 @@ namespace SharpFluids
         //[JsonProperty]
         public double Quality { get; protected set; }
 
-
-
         /// <summary>
         /// Set the <see cref="EngineeringUnits.MassFlow"/> of the <see cref="Fluid"/>. 
         /// <br> The <see cref="EngineeringUnits.MassFlow"/> is not changed inside the library - It will also remain at the value the user has set it to </br>
@@ -175,14 +163,13 @@ namespace SharpFluids
         //[JsonProperty]
         public MassFlow MassFlow
         {
-            get { return _massflow; }
+            get => _massflow;
 
             set
             {
 
-                if (value is object)
+                if (value is not null)
                 {
-
 
                     if (Mass is null)
                     {
@@ -193,11 +180,7 @@ namespace SharpFluids
                         Log.Error($"SharpFluid -> MassFlow -> You can either set a fluids massflow or mass - not both!");
                         throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                     }
-
                 }
-
-
-
             }
         }
 
@@ -211,11 +194,11 @@ namespace SharpFluids
         //[JsonProperty]
         public Mass Mass
         {
-            get { return _mass; }
+            get => _mass;
 
             set
             {
-                if (value is object)
+                if (value is not null)
                 {
 
                     if (MassFlow is null)
@@ -228,7 +211,6 @@ namespace SharpFluids
                         throw new System.InvalidOperationException("You can either set a fluids massflow or mass - not both!");
                     }
                 }
-
             }
         }
 
@@ -247,13 +229,9 @@ namespace SharpFluids
             {
                 if (Pressure is null)
                     return null;
-                
-                if (tsat_Cache is object)
+
+                if (tsat_Cache is not null)
                     return tsat_Cache;
-
-
-
-
 
                 CheckBeforeUpdate();
 
@@ -262,9 +240,7 @@ namespace SharpFluids
                     try
                     {
 
-
-
-                        if (!(REF is null))
+                        if (REF is not null)
                         {
                             REF.update(input_pairs.PQ_INPUTS, Pressure.Pascal, 1);
                             FailState = false;
@@ -277,18 +253,13 @@ namespace SharpFluids
                             Log.Error($"SharpFluid -> Tsat -> REF is null");
                             return Temperature;
                         }
-
-
-
-
-
                     }
                     catch (Exception e)
                     {
                         Log.Error($"SharpFluid -> Tsat -> Failed {e}", e);
                         return Temperature;
                     }
-                    finally 
+                    finally
                     {
                         if (Environment.Is64BitProcess)
                             CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
@@ -307,13 +278,7 @@ namespace SharpFluids
                     //Log.Error($"SharpFluid -> Tsat -> Something unexpected went wrong!");
                     return Temperature;
                 }
-
-
-
             }
-
-
-
         }
 
         [JsonIgnore]
@@ -370,8 +335,6 @@ namespace SharpFluids
                         Log.Error($"SharpFluid -> GasDensity -> {e}");
                         return Density;
                     }
-
-      
                 }
 
                 return Density;
@@ -401,14 +364,11 @@ namespace SharpFluids
                         Log.Error($"SharpFluid -> GasDensity -> {e}");
                         return Density;
                     }
-
-
                 }
 
                 return Density;
             }
         }
-
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Volume"/> of the <see cref="Fluid"/>. 
@@ -421,7 +381,7 @@ namespace SharpFluids
             get
             {
                 //Calculate the volume
-                if (Density is object && Density != Density.Zero)
+                if (Density is not null && Density != Density.Zero)
                 {
                     return Mass / Density;
                 }
@@ -431,7 +391,6 @@ namespace SharpFluids
                     //Log?.LogError("SharpFluid -> Volume -> Density is zero so we cant return you the Volume!");
                     return Volume.Zero;
                 }
-
             }
         }
 
@@ -446,7 +405,7 @@ namespace SharpFluids
             get
             {
                 //Calculate the volumeflow
-                if (Density is object && Density != Density.Zero)
+                if (Density is not null && Density != Density.Zero)
                 {
                     return MassFlow / Density;
                 }
@@ -456,12 +415,8 @@ namespace SharpFluids
                     //Log?.LogError("SharpFluid -> VolumeFlow -> Density is zero so we cant return you the VolumeFlow!");
                     return null;
                 }
-
             }
         }
-
-
-
 
         /// <summary>
         /// This library's maximum <see cref="EngineeringUnits.Temperature"/> for the selected <see cref="Fluid"/>.
@@ -483,7 +438,6 @@ namespace SharpFluids
         [JsonProperty(PropertyName = "CT", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         public Temperature CriticalTemperature { get; protected set; }
-
 
         ///// <summary>
         ///// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
@@ -533,13 +487,10 @@ namespace SharpFluids
         [JsonProperty(PropertyName = "Phase", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public Phases Phase { get; protected set; }
 
-
         /// <summary>
         /// Used to access the CoolProp DLL.
         /// </summary>
         protected AbstractState REF;
-
-
 
         /// <summary>
         /// Get the fluid type of the <see cref="Fluid"/>
@@ -561,15 +512,11 @@ namespace SharpFluids
         //[JsonProperty]
         public bool CacheMode { get; set; } = false;
 
-
         private Pressure cache_pressure;
         private Temperature cache_temperature;
         private SpecificEnergy cache_enthalpy;
         private SpecificEntropy cache_entropy;
         private double? cache_quality;
-
-
-
 
     }
 }

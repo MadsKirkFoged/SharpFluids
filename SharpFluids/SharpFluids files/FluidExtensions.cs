@@ -1,8 +1,6 @@
 ﻿using EngineeringUnits;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SharpFluids
 {
@@ -20,9 +18,6 @@ namespace SharpFluids
 
             //This makes a simple mixing based on the massflow (weigted)
             //After the mixing an Update should be run
-
-
-
 
             if (local.Enthalpy is null ||
                 local.Pressure is null ||
@@ -43,7 +38,7 @@ namespace SharpFluids
             else
             {
 
-                var TotalMassFlow = (other.MassFlow + local.MassFlow);
+                UnknownUnit TotalMassFlow = other.MassFlow + local.MassFlow;
 
                 if (TotalMassFlow.IsNotZero())
                 {
@@ -51,10 +46,10 @@ namespace SharpFluids
                     Ratio MassRatio2 = 1 - MassRatio1;
 
                     //Calculating the average H weighted on the massflow
-                    local.Enthalpy = other.Enthalpy * MassRatio1 + local.Enthalpy * MassRatio2;
+                    local.Enthalpy = (other.Enthalpy * MassRatio1) + (local.Enthalpy * MassRatio2);
 
                     //Calculating the average P weighted on the massflow
-                    local.Pressure = other.Pressure * MassRatio1 + local.Pressure * MassRatio2;
+                    local.Pressure = (other.Pressure * MassRatio1) + (local.Pressure * MassRatio2);
 
                     //local.Pressure = local.Pressure.ToUnit(PressureReference.Absolute);
 
@@ -71,8 +66,8 @@ namespace SharpFluids
                 //this.CheckForNaN();
 
             }
-            return local;
 
+            return local;
 
         }
 
@@ -85,8 +80,6 @@ namespace SharpFluids
             //TODO If mass is selected!
             //Finding the new H
 
-
-
             if (local.MassFlow <= MassFlow.Zero)
             {
                 return local;
@@ -96,23 +89,17 @@ namespace SharpFluids
             {
                 SpecificEnergy localSpecificEnergy = ((local.Enthalpy * local.MassFlow) + powerToBeAdded) / local.MassFlow;
 
-
                 local.UpdatePH(local.Pressure, localSpecificEnergy, RepeatTolerance);
 
                 if (local.FailState)
                 {
-                    if (localSpecificEnergy > local.Enthalpy)                    
-                        local.UpdatePT(local.Pressure, local.LimitTemperatureMax);                    
-                    else                    
+                    if (localSpecificEnergy > local.Enthalpy)
+                        local.UpdatePT(local.Pressure, local.LimitTemperatureMax);
+                    else
                         local.UpdatePT(local.Pressure, local.LimitTemperatureMin);
-
 
                     local.FailState= true;
                 }
-
-
-
-
 
                 //if (powerToBeAdded > Power.Zero)
                 //if (localSpecificEnergy > local.Enthalpy)
@@ -131,7 +118,6 @@ namespace SharpFluids
 
                 //}
 
-
             }
             catch (Exception e)
             {
@@ -139,10 +125,10 @@ namespace SharpFluids
                 local.FailState = true;
                 Log.Error($"SharpFluid -> AddPower -> {e}");
             }
+
             return local;
 
         }
-
 
         /// <summary>
         /// Remove <see cref="EngineeringUnits.Power"/> from the <see cref="Fluid"/>
@@ -154,15 +140,11 @@ namespace SharpFluids
         {
             //TODO: If mass is selected 
 
-            local.AddPower(powerToBeRemoved * -1, RepeatTolerance);
+            _=local.AddPower(powerToBeRemoved * -1, RepeatTolerance);
             return local;
         }
 
-        public static Speed FluidVelocity(this Fluid local, Area SizeOfPipe)
-        {
-            return local.VolumeFlow / SizeOfPipe;
-        }
-
+        public static Speed FluidVelocity(this Fluid local, Area SizeOfPipe) => local.VolumeFlow / SizeOfPipe;
 
     }
 }

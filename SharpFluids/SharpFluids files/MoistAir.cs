@@ -1,16 +1,10 @@
 ﻿using EngineeringUnits;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpFluids
 {
-    public class MoistAir: Fluid
+    public class MoistAir : Fluid
     {
-
 
         [JsonProperty(PropertyName = "Twb", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public Temperature WetBulbTemperature { get; private set; }
@@ -24,7 +18,6 @@ namespace SharpFluids
         [JsonProperty(PropertyName = "HumR", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public double HumidityRatio { get; private set; }
 
-
         public MoistAir()
         {
             //SetValuesToZero();
@@ -32,32 +25,27 @@ namespace SharpFluids
             //SetDefalutDisplayUnits();
         }
 
-
-        public void UpdateAir(  Pressure pressure,
+        public void UpdateAir(Pressure pressure,
                                 Temperature WetBulbTemperature = null,
                                 Temperature DewPointTemperature = null,
                                 SpecificEnergy Enthalpy = null,
                                 double? RelativeHumidity = null,
-                                SpecificEntropy Entropy  = null,
+                                SpecificEntropy Entropy = null,
                                 Temperature DryBulbTemperature = null,
                                 Density Density = null,
                                 double? HumidityRatio = null)
         {
 
+            var input1 = "P";
+            var input1Value = pressure.SI;
 
-            string input1 = "P";
-            double input1Value = pressure.SI;
-
-
-            string input2 = "";
+            var input2 = "";
             double input2Value = 0;
 
-
-            string input3 = "";
+            var input3 = "";
             double input3Value = 0;
 
-
-            if (WetBulbTemperature is object)
+            if (WetBulbTemperature is not null)
             {
                 if (input1 == "")
                 {
@@ -70,15 +58,14 @@ namespace SharpFluids
                     input2Value = WetBulbTemperature.SI;
 
                 }
-                else if(input3 == "")
+                else if (input3 == "")
                 {
                     input3 = "B";
                     input3Value = WetBulbTemperature.SI;
                 }
             }
 
-
-            if (DewPointTemperature is object)
+            if (DewPointTemperature is not null)
             {
                 if (input1 == "")
                 {
@@ -98,9 +85,7 @@ namespace SharpFluids
                 }
             }
 
-
-
-            if (Enthalpy is object)
+            if (Enthalpy is not null)
             {
                 if (input1 == "")
                 {
@@ -120,7 +105,7 @@ namespace SharpFluids
                 }
             }
 
-            if (RelativeHumidity is object)
+            if (RelativeHumidity is not null)
             {
                 if (input1 == "")
                 {
@@ -140,9 +125,7 @@ namespace SharpFluids
                 }
             }
 
-
-
-            if (Entropy is object)
+            if (Entropy is not null)
             {
                 if (input1 == "")
                 {
@@ -162,7 +145,7 @@ namespace SharpFluids
                 }
             }
 
-            if (DryBulbTemperature is object)
+            if (DryBulbTemperature is not null)
             {
                 if (input1 == "")
                 {
@@ -182,7 +165,7 @@ namespace SharpFluids
                 }
             }
 
-            if (Density is object)
+            if (Density is not null)
             {
                 if (input1 == "")
                 {
@@ -202,7 +185,7 @@ namespace SharpFluids
                 }
             }
 
-            if (HumidityRatio is object)
+            if (HumidityRatio is not null)
             {
                 if (input1 == "")
                 {
@@ -221,10 +204,6 @@ namespace SharpFluids
                     input3Value = (double)HumidityRatio;
                 }
             }
-
-
-
-
 
             this.WetBulbTemperature = Temperature.FromSI(AbstractState.updateAir("Twb", input1, input1Value, input2, input2Value, input3, input3Value));
 
@@ -249,20 +228,13 @@ namespace SharpFluids
             this.Temperature = Temperature.FromSI(AbstractState.updateAir("T", input1, input1Value, input2, input2Value, input3, input3Value));
 
             this.Density = Density.FromSI(1/AbstractState.updateAir("Vha", input1, input1Value, input2, input2Value, input3, input3Value));
-            
+
             this.HumidityRatio = AbstractState.updateAir("W", input1, input1Value, input2, input2Value, input3, input3Value);
 
             this.Compressibility = AbstractState.updateAir("Z", input1, input1Value, input2, input2Value, input3, input3Value);
 
-
             //Vi mangler Humidity Ratio
 
-
         }
-
-
-       
-        
-
     }
 }

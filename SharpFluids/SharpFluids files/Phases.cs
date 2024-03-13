@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SharpFluids
+﻿namespace SharpFluids
 {
     public enum Phases : int
     {
         /// <summary>
         /// Subcritical liquid
         /// </summary>
-        Liquid =0,          
+        Liquid = 0,
 
         /// <summary>
         /// Supercritical (p>pc, T>Tc)
@@ -40,7 +36,7 @@ namespace SharpFluids
         /// Twophase
         /// </summary>
         Twophase,
-        
+
         /// <summary>
         /// Unknown phase
         /// </summary>

@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpFluids
 {
@@ -14,8 +10,6 @@ namespace SharpFluids
         Mass,
         Vol
     }
-
-
 
     public class MediaType : Attribute
     {
@@ -41,28 +35,25 @@ namespace SharpFluids
         public MediaType()
         {
 
-        }            
+        }
 
-        public MediaType(string backendType, string internalName,string displayname = "", MixType mix = MixType.None)
+        public MediaType(string backendType, string internalName, string displayname = "", MixType mix = MixType.None)
         {
 
             BackendType = backendType;
 
             InternalName = internalName;
 
-            if (displayname != "")            
-                DisplayName = displayname;            
-            else            
+            if (displayname != "")
+                DisplayName = displayname;
+            else
                 DisplayName = InternalName;
-            
-
 
             //MassFration = massFration;
 
             Mix = mix;
 
         }
-
 
         public void Copy(MediaType other)
         {
@@ -74,15 +65,14 @@ namespace SharpFluids
             Mix = other.Mix;
         }
 
-
         public static bool operator ==(MediaType other1, MediaType other2)
         {
 
             if (other1 is null || other2 is null)
             {
                 return false;
-            }  
-            else if 
+            }
+            else if
                (other1.BackendType == other2.BackendType &&
                 other1.InternalName == other2.InternalName &&
                 other1.DisplayName == other2.DisplayName &&
@@ -92,9 +82,7 @@ namespace SharpFluids
                 return true;
             }
 
-
             return false;
-
 
         }
         public static bool operator !=(MediaType other1, MediaType other2)
@@ -102,9 +90,5 @@ namespace SharpFluids
 
             return !(other1 == other2);
         }
-
-
-
-
     }
 }

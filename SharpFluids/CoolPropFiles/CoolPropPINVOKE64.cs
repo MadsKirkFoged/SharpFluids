@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-class CoolPropPINVOKE64
+internal class CoolPropPINVOKE64
 {
 
     protected class SWIGExceptionHelper
@@ -11,21 +11,20 @@ class CoolPropPINVOKE64
         public delegate void ExceptionDelegate(string message);
         public delegate void ExceptionArgumentDelegate(string message, string paramName);
 
-        static ExceptionDelegate applicationDelegate = new ExceptionDelegate(SetPendingApplicationException);
-        static ExceptionDelegate arithmeticDelegate = new ExceptionDelegate(SetPendingArithmeticException);
-        static ExceptionDelegate divideByZeroDelegate = new ExceptionDelegate(SetPendingDivideByZeroException);
-        static ExceptionDelegate indexOutOfRangeDelegate = new ExceptionDelegate(SetPendingIndexOutOfRangeException);
-        static ExceptionDelegate invalidCastDelegate = new ExceptionDelegate(SetPendingInvalidCastException);
-        static ExceptionDelegate invalidOperationDelegate = new ExceptionDelegate(SetPendingInvalidOperationException);
-        static ExceptionDelegate ioDelegate = new ExceptionDelegate(SetPendingIOException);
-        static ExceptionDelegate nullReferenceDelegate = new ExceptionDelegate(SetPendingNullReferenceException);
-        static ExceptionDelegate outOfMemoryDelegate = new ExceptionDelegate(SetPendingOutOfMemoryException);
-        static ExceptionDelegate overflowDelegate = new ExceptionDelegate(SetPendingOverflowException);
-        static ExceptionDelegate systemDelegate = new ExceptionDelegate(SetPendingSystemException);
-
-        static ExceptionArgumentDelegate argumentDelegate = new ExceptionArgumentDelegate(SetPendingArgumentException);
-        static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
-        static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
+        private static readonly ExceptionDelegate applicationDelegate = new ExceptionDelegate(SetPendingApplicationException);
+        private static readonly ExceptionDelegate arithmeticDelegate = new ExceptionDelegate(SetPendingArithmeticException);
+        private static readonly ExceptionDelegate divideByZeroDelegate = new ExceptionDelegate(SetPendingDivideByZeroException);
+        private static readonly ExceptionDelegate indexOutOfRangeDelegate = new ExceptionDelegate(SetPendingIndexOutOfRangeException);
+        private static readonly ExceptionDelegate invalidCastDelegate = new ExceptionDelegate(SetPendingInvalidCastException);
+        private static readonly ExceptionDelegate invalidOperationDelegate = new ExceptionDelegate(SetPendingInvalidOperationException);
+        private static readonly ExceptionDelegate ioDelegate = new ExceptionDelegate(SetPendingIOException);
+        private static readonly ExceptionDelegate nullReferenceDelegate = new ExceptionDelegate(SetPendingNullReferenceException);
+        private static readonly ExceptionDelegate outOfMemoryDelegate = new ExceptionDelegate(SetPendingOutOfMemoryException);
+        private static readonly ExceptionDelegate overflowDelegate = new ExceptionDelegate(SetPendingOverflowException);
+        private static readonly ExceptionDelegate systemDelegate = new ExceptionDelegate(SetPendingSystemException);
+        private static readonly ExceptionArgumentDelegate argumentDelegate = new ExceptionArgumentDelegate(SetPendingArgumentException);
+        private static readonly ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
+        private static readonly ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
 
         [DllImport("CoolProp64", EntryPoint = "SWIGRegisterExceptionCallbacks_CoolProp")]
         public static extern void SWIGRegisterExceptionCallbacks_CoolProp(
@@ -47,65 +46,43 @@ class CoolPropPINVOKE64
                                     ExceptionArgumentDelegate argumentNullDelegate,
                                     ExceptionArgumentDelegate argumentOutOfRangeDelegate);
 
-        static void SetPendingApplicationException(string message)
-        {
-            SWIGPendingException.Set(new ApplicationException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingArithmeticException(string message)
-        {
-            SWIGPendingException.Set(new ArithmeticException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingDivideByZeroException(string message)
-        {
-            SWIGPendingException.Set(new DivideByZeroException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingIndexOutOfRangeException(string message)
-        {
-            SWIGPendingException.Set(new IndexOutOfRangeException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingInvalidCastException(string message)
-        {
-            SWIGPendingException.Set(new InvalidCastException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingInvalidOperationException(string message)
-        {
-            SWIGPendingException.Set(new InvalidOperationException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingIOException(string message)
-        {
-            SWIGPendingException.Set(new IOException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingNullReferenceException(string message)
-        {
-            SWIGPendingException.Set(new NullReferenceException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingOutOfMemoryException(string message)
-        {
-            SWIGPendingException.Set(new OutOfMemoryException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingOverflowException(string message)
-        {
-            SWIGPendingException.Set(new OverflowException(message, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingSystemException(string message)
-        {
-            SWIGPendingException.Set(new SystemException(message, SWIGPendingException.Retrieve()));
-        }
+        private static void SetPendingApplicationException(string message) => SWIGPendingException.Set(new ApplicationException(message, SWIGPendingException.Retrieve()));
 
-        static void SetPendingArgumentException(string message, string paramName)
-        {
-            SWIGPendingException.Set(new ArgumentException(message, paramName, SWIGPendingException.Retrieve()));
-        }
-        static void SetPendingArgumentNullException(string message, string paramName)
+        private static void SetPendingArithmeticException(string message) => SWIGPendingException.Set(new ArithmeticException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingDivideByZeroException(string message) => SWIGPendingException.Set(new DivideByZeroException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingIndexOutOfRangeException(string message) => SWIGPendingException.Set(new IndexOutOfRangeException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingInvalidCastException(string message) => SWIGPendingException.Set(new InvalidCastException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingInvalidOperationException(string message) => SWIGPendingException.Set(new InvalidOperationException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingIOException(string message) => SWIGPendingException.Set(new IOException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingNullReferenceException(string message) => SWIGPendingException.Set(new NullReferenceException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingOutOfMemoryException(string message) => SWIGPendingException.Set(new OutOfMemoryException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingOverflowException(string message) => SWIGPendingException.Set(new OverflowException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingSystemException(string message) => SWIGPendingException.Set(new SystemException(message, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingArgumentException(string message, string paramName) => SWIGPendingException.Set(new ArgumentException(message, paramName, SWIGPendingException.Retrieve()));
+
+        private static void SetPendingArgumentNullException(string message, string paramName)
         {
             Exception e = SWIGPendingException.Retrieve();
-            if (e != null) message = message + " Inner Exception: " + e.Message;
+            if (e != null)
+                message = message + " Inner Exception: " + e.Message;
             SWIGPendingException.Set(new ArgumentNullException(paramName, message));
         }
-        static void SetPendingArgumentOutOfRangeException(string message, string paramName)
+
+        private static void SetPendingArgumentOutOfRangeException(string message, string paramName)
         {
             Exception e = SWIGPendingException.Retrieve();
-            if (e != null) message = message + " Inner Exception: " + e.Message;
+            if (e != null)
+                message = message + " Inner Exception: " + e.Message;
             SWIGPendingException.Set(new ArgumentOutOfRangeException(paramName, message));
         }
 
@@ -139,7 +116,6 @@ class CoolPropPINVOKE64
         private static Exception pendingException = null;
         private static int numExceptionsPending = 0;
 
-
         public static void ResetErrors()
         {
             lock (typeof(CoolPropPINVOKE))
@@ -153,7 +129,7 @@ class CoolPropPINVOKE64
         {
             get
             {
-                bool pending = false;
+                var pending = false;
                 if (numExceptionsPending > 0)
                     if (pendingException != null)
                         pending = true;
@@ -187,24 +163,22 @@ class CoolPropPINVOKE64
                     }
                 }
             }
+
             return e;
         }
     }
-
 
     protected class SWIGStringHelper
     {
 
         public delegate string SWIGStringDelegate(string message);
-        static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
+
+        private static readonly SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 
         [DllImport("CoolProp64", EntryPoint = "SWIGRegisterStringCallback_CoolProp")]
         public static extern void SWIGRegisterStringCallback_CoolProp(SWIGStringDelegate stringDelegate);
 
-        static string CreateString(string cString)
-        {
-            return cString;
-        }
+        private static string CreateString(string cString) => cString;
 
         static SWIGStringHelper()
         {
@@ -212,14 +186,11 @@ class CoolPropPINVOKE64
         }
     }
 
-    static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
-
+    protected static SWIGStringHelper swigStringHelper = new SWIGStringHelper();
 
     static CoolPropPINVOKE64()
     {
     }
-
-
 
     [DllImport("CoolProp64", EntryPoint = "CSharp_DoubleVector_Clear")]
     public static extern void DoubleVector_Clear(HandleRef jarg1);
