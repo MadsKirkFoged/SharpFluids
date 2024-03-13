@@ -491,7 +491,7 @@ namespace Sandbox
             //Set the fraction between ammonia(80%) and water(20%)
             ref2.SetFraction(0.3);
 
-            //Update it with 10bars and 10°C
+            //Update it with 10Bar and 10°C
             ref2.UpdatePT(Pressure.FromBar(10), Temperature.FromDegreeCelsius(10));
 
             //Copy fluid type

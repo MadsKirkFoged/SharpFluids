@@ -27,7 +27,7 @@ namespace UnitTest5
             Assert.AreEqual(3568.61888590578, brine.Cv.JoulePerKilogramKelvin, 0.0001);
             Assert.AreEqual(36187.9355749803, brine.Enthalpy.JoulePerKilogram, 0.0001);
             Assert.AreEqual(40.877565694763696, brine.Prandtl, 0.0001);
-            Assert.AreEqual(10, brine.Pressure.Bars, 0.0001);
+            Assert.AreEqual(10, brine.Pressure.Bar, 0.0001);
             Assert.IsNull(brine.CriticalPressure);
             Assert.IsNull(brine.LimitPressureMax);
             Assert.IsNull(brine.LimitPressureMin);

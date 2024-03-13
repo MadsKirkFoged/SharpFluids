@@ -47,9 +47,9 @@ namespace UnitsTests
 
             //    //Assert
             //    Assert.IsFalse(TestFluid.FailState);
-            //    Assert.AreNotEqual(0, TestFluid.LimitPressureMin.Bars);
-            //    Assert.AreNotEqual(0, TestFluid.LimitPressureMax.Bars);
-            //    Assert.AreNotEqual(0, TestFluid.CriticalPressure.Bars);
+            //    Assert.AreNotEqual(0, TestFluid.LimitPressureMin.Bar);
+            //    Assert.AreNotEqual(0, TestFluid.LimitPressureMax.Bar);
+            //    Assert.AreNotEqual(0, TestFluid.CriticalPressure.Bar);
             //    Assert.AreNotEqual(0, TestFluid.LimitTemperatureMin.DegreesCelsius);
             //    Assert.AreNotEqual(0, TestFluid.CriticalTemperature.DegreesCelsius);
             //    Assert.AreNotEqual(0, TestFluid.LimitTemperatureMax.DegreesCelsius);
@@ -60,10 +60,10 @@ namespace UnitsTests
             //    Assert.AreNotEqual(0, TestFluid.Cv.JoulePerKilogramKelvin);
             //    Assert.AreNotEqual(0, TestFluid.Enthalpy.JoulePerKilogram);
             //    //Assert.AreNotEqual(0, TestFluid.Prandtl);
-            //    Assert.AreNotEqual(0, TestFluid.Pressure.Bars);
+            //    Assert.AreNotEqual(0, TestFluid.Pressure.Bar);
             //    Assert.AreNotEqual(0, TestFluid.Density.KilogramPerCubicMeter);
             //    Assert.AreNotEqual(0, TestFluid.Entropy.JoulesPerKelvin);
-            //    //Assert.AreNotEqual(0, TestFluid.SurfaceTension.NewtonsPerMeter);
+            //    //Assert.AreNotEqual(0, TestFluid.SurfaceTension.NewtonPerMeter);
             //    Assert.AreNotEqual(0, TestFluid.Temperature.DegreesCelsius);
             //    Assert.AreNotEqual(0, TestFluid.Tsat.DegreesCelsius);
             //    //Assert.AreNotEqual(0, TestFluid.DynamicViscosity.NewtonSecondPerMeterSquared);
@@ -74,7 +74,7 @@ namespace UnitsTests
             //    Assert.AreNotEqual(0, TestFluid.Compressibility);
             //    Assert.AreNotEqual(0, TestFluid.InternalEnergy.JoulePerKilogram);
 
-            //    //Assert.AreNotEqual(0, TestFluid.MassFlow.KilogramsPerSecond);
+            //    //Assert.AreNotEqual(0, TestFluid.MassFlow.KilogramPerSecond);
             //    //Assert.AreNotEqual(0, TestFluid.VolumeFlow.CubicMeterPerSecond);
 
                 

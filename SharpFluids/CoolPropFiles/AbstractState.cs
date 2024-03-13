@@ -346,7 +346,7 @@ public class AbstractState : IDisposable
             {
                 if (CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr) != 0)
                 {
-                    //return Pressure.FromPascals(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
+                    //return Pressure.FromPascal(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
                     return Pressure.From(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr), PressureUnit.Pascal);
                 }
                 else
@@ -357,7 +357,7 @@ public class AbstractState : IDisposable
             }
             else if (CoolPropPINVOKE.AbstractState_p_critical(swigCPtr) != 0)
             {
-                //return Pressure.FromPascals(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));
+                //return Pressure.FromPascal(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));
                 return Pressure.From(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr), PressureUnit.Pascal);
             }
             else
