@@ -133,13 +133,13 @@ namespace SharpFluids
                 if (Media.Mix is not MixType.None)
                 {
                     //Fraction
-                    FractionMin = REF.keyed_output(parameters.ifraction_min);
-                    FractionMax = REF.keyed_output(parameters.ifraction_max);
+                    FractionMin = REF.keyed_output(Parameters.ifraction_min);
+                    FractionMax = REF.keyed_output(Parameters.ifraction_max);
                 }
 
                 if (REF.backend_name() is "HelmholtzEOSBackend" && Media.Mix is MixType.None)
                 {
-                    CriticalTemperature = REF.T_critical();
+                    CriticalTemperature = REF.TCritical();
                     CriticalPressure = REF.p_critical();
                     LimitPressureMin = REF.p_triple();
                     LimitPressureMax = REF.pmax();
@@ -184,7 +184,7 @@ namespace SharpFluids
                 }
                 else
                 {
-                    T_freeze = Temperature.FromKelvins(REF.keyed_output(parameters.iT_freeze));
+                    T_freeze = Temperature.FromKelvins(REF.keyed_output(Parameters.iT_freeze));
                 }
 
                 Enthalpy = REF.hmass();
@@ -307,28 +307,28 @@ namespace SharpFluids
             //Copying Refrigerant type
             CopyType(other);
 
-            this.Enthalpy = other.Enthalpy;
-            this.MassFlow = other.MassFlow;
-            this.Mass = other.Mass;
-            this.Pressure = other.Pressure;
-            this.Temperature = other.Temperature;
-            this.Entropy = other.Entropy;
-            this.Quality = other.Quality;
-            this.Density = other.Density;
-            this.Cp = other.Cp;
-            this.Cv = other.Cv;
-            this.CriticalPressure = other.CriticalPressure;
-            this.DynamicViscosity = other.DynamicViscosity;
-            this.Conductivity = other.Conductivity;
-            this.Prandtl = other.Prandtl;
-            this.SoundSpeed = other.SoundSpeed;
-            this.SurfaceTension = other.SurfaceTension;
-            this.FailState = other.FailState;
-            this.MolarMass = other.MolarMass;
-            this.Compressibility = other.Compressibility;
-            this.InternalEnergy = other.InternalEnergy;
-            this.Phase = other.Phase;
-            this.T_freeze = other.T_freeze;
+            Enthalpy = other.Enthalpy;
+            MassFlow = other.MassFlow;
+            Mass = other.Mass;
+            Pressure = other.Pressure;
+            Temperature = other.Temperature;
+            Entropy = other.Entropy;
+            Quality = other.Quality;
+            Density = other.Density;
+            Cp = other.Cp;
+            Cv = other.Cv;
+            CriticalPressure = other.CriticalPressure;
+            DynamicViscosity = other.DynamicViscosity;
+            Conductivity = other.Conductivity;
+            Prandtl = other.Prandtl;
+            SoundSpeed = other.SoundSpeed;
+            SurfaceTension = other.SurfaceTension;
+            FailState = other.FailState;
+            MolarMass = other.MolarMass;
+            Compressibility = other.Compressibility;
+            InternalEnergy = other.InternalEnergy;
+            Phase = other.Phase;
+            T_freeze = other.T_freeze;
 
             //Removed cache values
             this.tsat_Cache = other.tsat_Cache;
@@ -350,7 +350,7 @@ namespace SharpFluids
             if (other.Media is not null)
             {
                 //Actually changing media
-                if (this.Media != other.Media)
+                if (Media != other.Media)
                 {
                     //Since we are changing media when the old values doesn't make sense to keep
                     SetValuesToNull();
@@ -434,7 +434,7 @@ namespace SharpFluids
             //TODO Split this up in MassFlow and Mass
 
             var tolerence = MassFlow.FromKilogramPerSecond(0.0001);
-            MassFlow MassFlowDiss = (this.MassFlow - other.MassFlow).Abs();
+            MassFlow MassFlowDiss = (MassFlow - other.MassFlow).Abs();
 
             return MassFlowDiss <= tolerence;
         }
@@ -607,8 +607,8 @@ namespace SharpFluids
 
             if (Media.BackendType == "INCOMP")
             {
-                var min = REF.keyed_output(parameters.ifraction_min) * 100;
-                var max = REF.keyed_output(parameters.ifraction_max) * 100;
+                var min = REF.keyed_output(Parameters.ifraction_min) * 100;
+                var max = REF.keyed_output(Parameters.ifraction_max) * 100;
                 if (fraction < min)
                     throw new System.ArgumentException("Selected fraction is below the limit");
                 else if (fraction > max)
@@ -716,7 +716,7 @@ namespace SharpFluids
         {
             REF.Dispose();
             REF = null;
-            this.Dispose();
+            Dispose();
         }
 
         public string SaveAsJSON() => JsonConvert.SerializeObject(this);

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-public enum parameters {
+public enum Parameters {
     INVALID_PARAMETER = 0,
     igas_constant,
     imolar_mass,

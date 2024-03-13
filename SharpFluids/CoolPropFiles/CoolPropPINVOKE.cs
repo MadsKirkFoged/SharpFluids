@@ -508,7 +508,7 @@ internal class CoolPropPINVOKE
     [DllImport("CoolProp32", EntryPoint = "CSharp_AbstractState_update_with_guesses")]
     public static extern void AbstractState_update_with_guesses(HandleRef jarg1, int jarg2, double jarg3, double jarg4, HandleRef jarg5);
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_T_set")]
+    [DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_T_set")]
     public static extern void GuessesStructure_T_set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
 
     [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_T_get")]
@@ -553,23 +553,23 @@ internal class CoolPropPINVOKE
     [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_x_set")]
     public static extern void GuessesStructure_x_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_x_get")]
-    public static extern global::System.IntPtr GuessesStructure_x_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+    [DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_x_get")]
+    public static extern IntPtr GuessesStructure_x_get(HandleRef jarg1);
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_y_set")]
-    public static extern void GuessesStructure_y_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+    [DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_y_set")]
+    public static extern void GuessesStructure_y_set(HandleRef jarg1, HandleRef jarg2);
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_y_get")]
-    public static extern global::System.IntPtr GuessesStructure_y_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+    [DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_y_get")]
+    public static extern IntPtr GuessesStructure_y_get(HandleRef jarg1);
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_new_GuessesStructure")]
-    public static extern global::System.IntPtr new_GuessesStructure();
+    [DllImport("CoolProp32", EntryPoint = "CSharp_new_GuessesStructure")]
+    public static extern IntPtr new_GuessesStructure();
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_clear")]
-    public static extern void GuessesStructure_clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+    [DllImport("CoolProp32", EntryPoint = "CSharp_GuessesStructure_clear")]
+    public static extern void GuessesStructure_clear(HandleRef jarg1);
 
-    [global::System.Runtime.InteropServices.DllImport("CoolProp32", EntryPoint = "CSharp_delete_GuessesStructure")]
-    public static extern void delete_GuessesStructure(global::System.Runtime.InteropServices.HandleRef jarg1);
+    [DllImport("CoolProp32", EntryPoint = "CSharp_delete_GuessesStructure")]
+    public static extern void delete_GuessesStructure(HandleRef jarg1);
 
     [DllImport("CoolProp32", EntryPoint = "CSharp_AbstractState_Tmin")]
     public static extern double AbstractState_Tmin(HandleRef jarg1);

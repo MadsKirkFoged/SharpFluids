@@ -31,7 +31,7 @@ public class AbstractState : IDisposable
     {
         lock (this)
         {
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            if (swigCPtr.Handle != IntPtr.Zero)
             {
                 swigCMemOwn = false;
                 if (Environment.Is64BitProcess)
@@ -227,27 +227,27 @@ public class AbstractState : IDisposable
         }
     }
 
-    public string GetInfo(string ParamName)
-    {
+    //public string GetInfo(string ParamName)
+    //{
 
-        lock (lockObj)
-        {
+    //    lock (lockObj)
+    //    {
 
-            lock (lockObj)
-            {
-                if (Environment.Is64BitProcess)
-                {
-                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.get_global_param_string(ParamName);
-                }
-                else
-                {
-                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE.get_global_param_string(ParamName);
-                }
-            }
-        }
-    }
+    //        lock (lockObj)
+    //        {
+    //            if (Environment.Is64BitProcess)
+    //            {
+    //                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+    //                return CoolPropPINVOKE64.get_global_param_string(ParamName);
+    //            }
+    //            else
+    //            {
+    //                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+    //                return CoolPropPINVOKE.get_global_param_string(ParamName);
+    //            }
+    //        }
+    //    }
+    //}
 
     public Temperature Tmin()
     {
@@ -309,7 +309,7 @@ public class AbstractState : IDisposable
             }
         }
     }
-    public Temperature T_critical()
+    public Temperature TCritical()
     {
         lock (lockObj)
         {
@@ -388,7 +388,7 @@ public class AbstractState : IDisposable
         }
     }
 
-    public phases phase()
+    public Phases phase()
     {
 
         lock (lockObj)
@@ -398,12 +398,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return (phases)CoolPropPINVOKE64.AbstractState_phase(swigCPtr);
+                    return (Phases)CoolPropPINVOKE64.AbstractState_phase(swigCPtr);
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return (phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
+                    return (Phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
                 }
             }
         }
@@ -428,7 +428,7 @@ public class AbstractState : IDisposable
             }
         }
     }
-    public double keyed_output(parameters key)
+    public double keyed_output(Parameters key)
     {
         lock (lockObj)
         {

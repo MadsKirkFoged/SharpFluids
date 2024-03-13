@@ -24,7 +24,7 @@ namespace SharpFluids
             ThermalConductivity = thermalConductivity;
         }
 
-        public override string ToString() => $"{Temperature.DegreesCelsius}";
+        public override string ToString() => $"{Temperature.DegreeCelsius}";
 
     }
 }

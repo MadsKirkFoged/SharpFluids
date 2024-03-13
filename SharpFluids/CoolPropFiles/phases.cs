@@ -1,5 +1,5 @@
 ﻿
-public enum phases : int
+public enum Phases : int
 {
     iphase_liquid = 0,
     iphase_supercritical,

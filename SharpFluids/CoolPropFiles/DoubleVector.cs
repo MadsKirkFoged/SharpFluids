@@ -34,7 +34,7 @@ public class DoubleVector : IDisposable
             throw new ArgumentNullException("c");
         foreach (double element in c)
         {
-            this.Add(element);
+            Add(element);
         }
     }
 
