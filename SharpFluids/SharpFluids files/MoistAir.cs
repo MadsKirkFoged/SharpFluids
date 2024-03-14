@@ -26,13 +26,13 @@ namespace SharpFluids
         }
 
         public void UpdateAir(Pressure pressure,
-                                Temperature WetBulbTemperature = null,
-                                Temperature DewPointTemperature = null,
-                                SpecificEnergy Enthalpy = null,
+                                Temperature? WetBulbTemperature = null,
+                                Temperature? DewPointTemperature = null,
+                                SpecificEnergy? Enthalpy = null,
                                 double? RelativeHumidity = null,
-                                SpecificEntropy Entropy = null,
-                                Temperature DryBulbTemperature = null,
-                                Density Density = null,
+                                SpecificEntropy? Entropy = null,
+                                Temperature? DryBulbTemperature = null,
+                                Density? Density = null,
                                 double? HumidityRatio = null)
         {
 

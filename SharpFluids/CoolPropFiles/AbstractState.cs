@@ -46,7 +46,7 @@ public class AbstractState : IDisposable
         }
     }
 
-    public static AbstractState factory(string backend, string fluid_names)
+    public static AbstractState? factory(string backend, string fluid_names)
     {
 
         lock (lockObj)
@@ -57,14 +57,14 @@ public class AbstractState : IDisposable
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
                     IntPtr cPtr = CoolPropPINVOKE64.AbstractState_factory__SWIG_0(backend, fluid_names);
-                    AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
+                    AbstractState? ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
                     return ret;
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
                     IntPtr cPtr = CoolPropPINVOKE.AbstractState_factory__SWIG_0(backend, fluid_names);
-                    AbstractState ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
+                    AbstractState? ret = (cPtr == IntPtr.Zero) ? null : new AbstractState(cPtr, false);
                     return ret;
                 }
             }
@@ -388,7 +388,7 @@ public class AbstractState : IDisposable
         }
     }
 
-    public Phases phase()
+    public PhasesCoolProp phase()
     {
 
         lock (lockObj)
@@ -398,12 +398,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return (Phases)CoolPropPINVOKE64.AbstractState_phase(swigCPtr);
+                    return (PhasesCoolProp)CoolPropPINVOKE64.AbstractState_phase(swigCPtr);
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return (Phases)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
+                    return (PhasesCoolProp)CoolPropPINVOKE.AbstractState_phase(swigCPtr);
                 }
             }
         }

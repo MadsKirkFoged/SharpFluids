@@ -12,7 +12,7 @@
     <PackageTags>CoolProp Fluid SharpFluids REFPROP Thermodynamics thermophysical properties Temperature</PackageTags>
     <IsPackable>true</IsPackable>
 	<LangVersion>9.0</LangVersion>
-	  
+	<Nullable>enable</Nullable>
     
   </PropertyGroup>
 
@@ -20,6 +20,10 @@
     <PackageReference Include="EngineeringUnits" Version="2.2.42" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Nullable" Version="1.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Serilog" Version="2.11.0" />
   </ItemGroup>
 

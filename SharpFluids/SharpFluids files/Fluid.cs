@@ -3,9 +3,12 @@ using EngineeringUnits;
 //using EngineeringUnits.Units;
 //using EngineeringUnits.Serialization.JsonNet;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 //using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Diagnostics.CodeAnalysis;
 //using Serilog.Context;
 
 namespace SharpFluids
@@ -34,8 +37,7 @@ namespace SharpFluids
         /// </summary>
         public Fluid()
         {
-            //SetValuesToZero();
-            //SetLimitsToZero();
+            REF = new AbstractState();
         }
 
         /// <summary>
@@ -61,13 +63,16 @@ namespace SharpFluids
         /// <summary>
         /// Get Saturation Temperature from a given Pressure using the type of <see cref="Fluid"/>
         /// </summary> 
-        public Temperature GetSatTemperature(Pressure FromThisPressure)
+        public Temperature? GetSatTemperature(Pressure? FromThisPressure)
         {
+            if (FromThisPressure is null)            
+                return null;            
+
 
             if (FromThisPressure < LimitPressureMin)
             {
                 Log.Debug($"SharpFluid -> GetSatTemperature -> {FromThisPressure} cant be bolow {LimitPressureMin}");
-                return Temperature.Zero;
+                return null;
             }
 
             if (FromThisPressure > CriticalPressure)
@@ -85,13 +90,16 @@ namespace SharpFluids
         /// <summary>
         /// Get Saturation Pressure from a given Temperature using the type of <see cref="Fluid"/>
         /// </summary> 
-        public Pressure GetSatPressure(Temperature FromThisTemperature)
+        public Pressure? GetSatPressure(Temperature? FromThisTemperature)
         {
+            if (FromThisTemperature is null)
+                return null;
+
 
             if (FromThisTemperature < LimitTemperatureMin)
             {
                 Log.Debug($"SharpFluid -> GetSatPressure -> {FromThisTemperature} cant be bolow {LimitTemperatureMin}");
-                return Pressure.Zero;
+                return null;
             }
 
             if (FromThisTemperature >= CriticalTemperature)
@@ -112,6 +120,9 @@ namespace SharpFluids
         /// </summary>   
         protected virtual void UpdateFluidConstants()
         {
+            if (Media is null)
+                return;
+
             FailState = true;
 
             //Removed cache values
@@ -429,15 +440,15 @@ namespace SharpFluids
         /// <br>Tolerence is set to: 0.00001 [kg/s] or 0.00001 [kg]</br>
         /// </summary>
         /// <param name="other"><see cref="Fluid"/> to be copied from</param> 
-        public bool MassBalance(Fluid other)
-        {
-            //TODO Split this up in MassFlow and Mass
+        //public bool MassBalance(Fluid other)
+        //{
+        //    //TODO Split this up in MassFlow and Mass
 
-            var tolerence = MassFlow.FromKilogramPerSecond(0.0001);
-            MassFlow MassFlowDiss = (MassFlow - other.MassFlow).Abs();
+        //    var tolerence = MassFlow.FromKilogramPerSecond(0.0001);
+        //    MassFlow? MassFlowDiss = (MassFlow - other.MassFlow).Abs();
 
-            return MassFlowDiss <= tolerence;
-        }
+        //    return MassFlowDiss <= tolerence;
+        //}
 
         ///// <summary>
         ///// Set a new fluid type to the <see cref="Fluid"/>
@@ -670,10 +681,10 @@ namespace SharpFluids
             var PTolerance = Pressure.FromBar(0.001);
             var TTolerance = Temperature.FromKelvins(0.0001);
 
-            MassFlow MassFlowDiss = (other1.MassFlow - other2.MassFlow).Abs();
-            SpecificEnergy HDiss = (other1.Enthalpy - other2.Enthalpy).Abs();
-            Pressure PDiss = (other1.Pressure - other2.Pressure).Abs();
-            Temperature TDiss = (other1.Temperature - other2.Temperature).Abs();
+            MassFlow? MassFlowDiss = (other1.MassFlow - other2.MassFlow).Abs();
+            SpecificEnergy? HDiss = (other1.Enthalpy - other2.Enthalpy).Abs();
+            Pressure? PDiss = (other1.Pressure - other2.Pressure).Abs();
+            Temperature? TDiss = (other1.Temperature - other2.Temperature).Abs();
 
             return (MassFlowDiss <= MassFlowTolerance) &&
                     (HDiss <= HTolerance) &&

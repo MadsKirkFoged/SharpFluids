@@ -187,7 +187,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
-        public virtual void UpdatePT(Pressure pressure, Temperature temperature, Ratio RepeatTolerance = null)
+        public virtual void UpdatePT(Pressure pressure, Temperature temperature, Ratio? RepeatTolerance = null)
         {
 
             if (pressure is null || temperature is null)
@@ -315,7 +315,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
-        public virtual void UpdatePS(Pressure pressure, SpecificEntropy entropy, Ratio RepeatTolerance = null)
+        public virtual void UpdatePS(Pressure pressure, SpecificEntropy entropy, Ratio? RepeatTolerance = null)
         {
             if (pressure is null || entropy is null)
                 return;
@@ -366,7 +366,7 @@ namespace SharpFluids
         /// </summary>
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
-        public virtual void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, Ratio RepeatTolerance = null)
+        public virtual void UpdatePH(Pressure pressure, SpecificEnergy enthalpy, Ratio? RepeatTolerance = null)
         {
             if (pressure is null || enthalpy is null)
                 return;

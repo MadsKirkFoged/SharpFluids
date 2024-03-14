@@ -13,32 +13,32 @@ namespace SharpFluids
 
         [JsonProperty(PropertyName = "_m", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        private Mass _mass;
+        private Mass? _mass;
 
         [JsonProperty(PropertyName = "_mf", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        private MassFlow _massflow;
+        private MassFlow? _massflow;
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Temperature"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "T", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Temperature Temperature { get; set; }
+        public Temperature? Temperature { get; set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Temperature"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Tfrez", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Temperature T_freeze { get; set; }
+        public Temperature? T_freeze { get; set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Pressure"/> of the <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "P", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Pressure Pressure { get; set; }
+        public Pressure? Pressure { get; set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.SpecificEnergy"/> of the <see cref="Fluid"/>. 
@@ -46,7 +46,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "E", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEnergy Enthalpy { get; set; }
+        public SpecificEnergy? Enthalpy { get; set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.SpecificEntropy"/> of the <see cref="Fluid"/>. 
@@ -54,7 +54,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "S", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEntropy Entropy { get; set; }
+        public SpecificEntropy? Entropy { get; set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Density"/> of the <see cref="Fluid"/>. 
@@ -62,14 +62,14 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "D", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Density Density { get; protected set; }
+        public Density? Density { get; protected set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.DynamicViscosity"/> of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "DV", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public DynamicViscosity DynamicViscosity { get; protected set; }
+        public DynamicViscosity? DynamicViscosity { get; protected set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.ThermalConductivity"/> of the <see cref="Fluid"/>. 
@@ -77,7 +77,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "C", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public ThermalConductivity Conductivity { get; protected set; }
+        public ThermalConductivity? Conductivity { get; protected set; }
 
         /// <summary>
         /// Get the Cp of the <see cref="Fluid"/>. 
@@ -85,7 +85,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "Cp", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEntropy Cp { get; protected set; }
+        public SpecificEntropy? Cp { get; protected set; }
 
         /// <summary>
         /// Get the Cv of the <see cref="Fluid"/>. 
@@ -93,14 +93,14 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "Cv", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEntropy Cv { get; protected set; }
+        public SpecificEntropy? Cv { get; protected set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.Speed"/> of Sound of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "SS", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Speed SoundSpeed { get; protected set; }
+        public Speed? SoundSpeed { get; protected set; }
 
         /// <summary>
         /// Get the Surface Tension of the <see cref="Fluid"/>. 
@@ -108,21 +108,21 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "ST", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public ForcePerLength SurfaceTension { get; protected set; }
+        public ForcePerLength? SurfaceTension { get; protected set; }
 
         /// <summary>
         /// Get the <see cref="EngineeringUnits.MolarMass"/> of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "MM", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public MolarMass MolarMass { get; protected set; }
+        public MolarMass? MolarMass { get; protected set; }
 
         /// <summary>
         /// Get the Internal Energy of the <see cref="Fluid"/>. 
         /// </summary>
         [JsonProperty(PropertyName = "IE", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public SpecificEnergy InternalEnergy { get; protected set; }
+        public SpecificEnergy? InternalEnergy { get; protected set; }
 
         /// <summary>
         /// Get the Prandtl number of the <see cref="Fluid"/>. 
@@ -161,7 +161,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "MF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public MassFlow MassFlow
+        public MassFlow? MassFlow
         {
             get => _massflow;
 
@@ -192,7 +192,7 @@ namespace SharpFluids
         /// </summary>
         //[JsonProperty(PropertyName = "M", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
         //[JsonProperty]
-        public Mass Mass
+        public Mass? Mass
         {
             get => _mass;
 
@@ -215,14 +215,14 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
-        private Temperature tsat_Cache = null;
+        private Temperature? tsat_Cache = null;
 
         /// <summary>
         /// Get the Saturation temperature of the <see cref="Fluid"/>. 
         /// <br>Beware: If you are above the critical pressure of the <see cref="Fluid"/> this will just return the Saturation temperature AT the critical pressure!</br>
         /// </summary>
         [JsonIgnore]
-        public Temperature Tsat
+        public Temperature? Tsat
         {
 
             get
@@ -282,7 +282,7 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
-        public MassFlow GasMassFlow
+        public MassFlow? GasMassFlow
         {
 
             get
@@ -298,7 +298,7 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
-        public MassFlow LiquidMassFlow
+        public MassFlow? LiquidMassFlow
         {
 
             get
@@ -313,7 +313,7 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
-        public Density GasDensity
+        public Density? GasDensity
         {
 
             get
@@ -342,7 +342,7 @@ namespace SharpFluids
         }
 
         [JsonIgnore]
-        public Density LiquidDensity
+        public Density? LiquidDensity
         {
 
             get
@@ -376,7 +376,7 @@ namespace SharpFluids
         /// </summary>
         //[JsonProperty(PropertyName = "V", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         [JsonIgnore]
-        public Volume Volume
+        public Volume? Volume
         {
             get
             {
@@ -400,7 +400,7 @@ namespace SharpFluids
         /// </summary>
         //[JsonProperty(PropertyName = "VF", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         [JsonIgnore]
-        public VolumeFlow VolumeFlow
+        public VolumeFlow? VolumeFlow
         {
             get
             {
@@ -423,21 +423,21 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "Tma", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Temperature LimitTemperatureMax { get; protected set; }
+        public Temperature? LimitTemperatureMax { get; protected set; }
 
         /// <summary>
         /// This library's minimum <see cref="EngineeringUnits.Temperature"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Tmi", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Temperature LimitTemperatureMin { get; protected set; }
+        public Temperature? LimitTemperatureMin { get; protected set; }
 
         /// <summary>
         /// <see cref="EngineeringUnits.Temperature"/> at the critical point for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "CT", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Temperature CriticalTemperature { get; protected set; }
+        public Temperature? CriticalTemperature { get; protected set; }
 
         ///// <summary>
         ///// Enthalpy at the critical point for the selected <see cref="Fluid"/>.
@@ -451,21 +451,21 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "CP", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Pressure CriticalPressure { get; protected set; }
+        public Pressure? CriticalPressure { get; protected set; }
 
         /// <summary>
         /// This library's minimum <see cref="EngineeringUnits.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Pmi", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Pressure LimitPressureMin { get; protected set; }
+        public Pressure? LimitPressureMin { get; protected set; }
 
         /// <summary>
         /// This library's maximum <see cref="EngineeringUnits.Pressure"/> for the selected <see cref="Fluid"/>.
         /// </summary>
         [JsonProperty(PropertyName = "Pma", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public Pressure LimitPressureMax { get; protected set; }
+        public Pressure? LimitPressureMax { get; protected set; }
 
         /// <summary>
         /// This library's maximum fraction for the selected mixture of <see cref="Fluid"/>.
@@ -485,7 +485,7 @@ namespace SharpFluids
         /// This library's fluid phase. For available phases see: <see cref="Phase"/>
         /// </summary>
         [JsonProperty(PropertyName = "Phase", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public Phases Phase { get; protected set; }
+        public Phases? Phase { get; protected set; }
 
         /// <summary>
         /// Used to access the CoolProp DLL.
@@ -499,7 +499,7 @@ namespace SharpFluids
         /// </summary>
         [JsonProperty(PropertyName = "Me", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
-        public MediaType Media { get; private set; }
+        public MediaType? Media { get; private set; }
 
         /// <summary>
         /// When an Update fails this it set to <see langword="true"/>
@@ -512,10 +512,10 @@ namespace SharpFluids
         //[JsonProperty]
         public bool CacheMode { get; set; } = false;
 
-        private Pressure cache_pressure;
-        private Temperature cache_temperature;
-        private SpecificEnergy cache_enthalpy;
-        private SpecificEntropy cache_entropy;
+        private Pressure? cache_pressure;
+        private Temperature? cache_temperature;
+        private SpecificEnergy? cache_enthalpy;
+        private SpecificEntropy? cache_entropy;
         private double? cache_quality;
 
     }

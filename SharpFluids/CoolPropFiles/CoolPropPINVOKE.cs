@@ -112,7 +112,7 @@ internal class CoolPropPINVOKE
     public class SWIGPendingException
     {
         [ThreadStatic]
-        private static Exception pendingException = null;
+        private static Exception? pendingException = null;
         private static int numExceptionsPending = 0;
 
         public static void ResetErrors()
@@ -149,9 +149,9 @@ internal class CoolPropPINVOKE
             }
         }
 
-        public static Exception Retrieve()
+        public static Exception? Retrieve()
         {
-            Exception e = null;
+            Exception? e = null;
             if (numExceptionsPending > 0)
             {
                 if (pendingException != null)

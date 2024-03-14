@@ -1,5 +1,5 @@
 ﻿
-public enum Phases : int
+public enum PhasesCoolProp : int
 {
     iphase_liquid = 0,
     iphase_supercritical,
