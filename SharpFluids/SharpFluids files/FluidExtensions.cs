@@ -38,7 +38,7 @@ namespace SharpFluids
             else
             {
 
-                UnknownUnit TotalMassFlow = other.MassFlow + local.MassFlow;
+                MassFlow? TotalMassFlow = other.MassFlow + local.MassFlow;
 
                 if (TotalMassFlow.IsNotZero())
                 {
