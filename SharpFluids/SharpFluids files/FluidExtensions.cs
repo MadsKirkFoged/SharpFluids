@@ -75,7 +75,7 @@ namespace SharpFluids
         /// Add <see cref="EngineeringUnits.Power"/> to the <see cref="Fluid"/>
         /// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         /// </summary>
-        public static Fluid AddPower(this Fluid local, Power powerToBeAdded, Ratio? RepeatTolerance = null)
+        public static Fluid AddPower(this Fluid local, Power? powerToBeAdded, Ratio? RepeatTolerance = null)
         {
             //TODO If mass is selected!
             //Finding the new H
@@ -136,7 +136,7 @@ namespace SharpFluids
         /// <remarks>
         /// <br>This does only work when using <see cref="EngineeringUnits.MassFlow"/></br>
         /// </remarks>
-        public static Fluid RemovePower(this Fluid local, Power powerToBeRemoved, Ratio? RepeatTolerance = null)
+        public static Fluid RemovePower(this Fluid local, Power? powerToBeRemoved, Ratio? RepeatTolerance = null)
         {
             //TODO: If mass is selected 
 
