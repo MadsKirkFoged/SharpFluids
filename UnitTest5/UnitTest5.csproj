@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net470;net6.0;net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
 	  <LangVersion>12.0</LangVersion>
   </PropertyGroup>
@@ -8,7 +8,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EngineeringUnits" Version="2.2.44" />
+    <PackageReference Include="EngineeringUnits" Version="2.2.48" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.2.2" />
     <PackageReference Include="MSTest.TestFramework" Version="3.2.2" />
