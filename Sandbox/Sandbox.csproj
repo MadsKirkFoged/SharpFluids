@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>Sandbox</AssemblyTitle>
@@ -29,7 +29,7 @@
     <ProjectReference Include="..\SharpFluids\SharpFluids.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EngineeringUnits" Version="2.2.42" />
+    <PackageReference Include="EngineeringUnits" Version="2.2.44" />
     <PackageReference Include="Fractions" Version="7.3.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Serilog" Version="2.11.0" />

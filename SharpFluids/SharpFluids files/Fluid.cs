@@ -37,7 +37,7 @@ namespace SharpFluids
         /// </summary>
         public Fluid()
         {
-            REF = new AbstractState();
+            //REF = new AbstractState();
         }
 
         /// <summary>
