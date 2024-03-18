@@ -695,7 +695,7 @@ namespace SharpFluids
         {
             return !(Input1 == Input2);
         }
-        public override bool Equals(object obj) => base.Equals(obj);
+        public override bool Equals(object? obj) => base.Equals(obj);
         public override int GetHashCode()
         {
             var hashCode = new HashCode();
