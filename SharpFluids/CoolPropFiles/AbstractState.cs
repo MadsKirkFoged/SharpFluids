@@ -625,7 +625,8 @@ public class AbstractState : IDisposable
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_dalpha0_dTau(swigCPtr);
+                    //return CoolPropPINVOKE.AbstractState_dalpha0_dTau(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
             }
