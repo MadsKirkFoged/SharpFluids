@@ -534,6 +534,7 @@ public class AbstractState : IDisposable
         }
     }
 
+
     public double AlphaR()
     {
 
