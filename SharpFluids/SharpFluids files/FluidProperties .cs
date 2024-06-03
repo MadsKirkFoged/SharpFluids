@@ -11,6 +11,13 @@ namespace SharpFluids
     public partial class Fluid
     {
 
+        public double Alpha0 { get; set; }
+        public double AlphaR { get; set; }
+
+        public double AlphaR_dDelta { get; set; }
+        public double AlphaR_dTau { get; set; }
+        public double Alpha0_dTau { get; set; }
+
         [JsonProperty(PropertyName = "_m", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         private Mass? _mass;

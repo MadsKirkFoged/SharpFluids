@@ -204,6 +204,11 @@ namespace SharpFluids
                 cache_temperature = Temperature;
 
                 Pressure = REF.p();
+                Alpha0 = REF.Alpha0();
+                AlphaR = REF.AlphaR();
+                AlphaR_dDelta = REF.AlphaR_dDelta();
+                AlphaR_dTau = REF.AlphaR_dTau();
+                Alpha0_dTau = REF.Alpha0_dTau();
                 cache_pressure = Pressure;
 
                 Entropy = REF.smass();

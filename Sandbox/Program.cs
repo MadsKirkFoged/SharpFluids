@@ -6,7 +6,7 @@ Console.WriteLine("Hello, World!");
 
 var test = new Fluid(FluidList.Ammonia);
 
-test.UpdatePX(Pressure.FromBar(45), 0);
+test.UpdateDT(Density.FromKilogramsPerCubicMeter(9), Temperature.FromKelvin(400));
 
 Console.WriteLine("Hello, World!");
 
