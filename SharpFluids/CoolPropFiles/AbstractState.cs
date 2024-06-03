@@ -527,7 +527,8 @@ public class AbstractState : IDisposable
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_alpha0(swigCPtr);
+                    //return CoolPropPINVOKE.AbstractState_alpha0(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
             }
@@ -551,7 +552,8 @@ public class AbstractState : IDisposable
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                    //return CoolPropPINVOKE.AbstractState_alphar(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
             }
@@ -574,7 +576,8 @@ public class AbstractState : IDisposable
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_dalphar_dDelta(swigCPtr);
+                    //return CoolPropPINVOKE.AbstractState_dalphar_dDelta(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
             }
@@ -597,7 +600,8 @@ public class AbstractState : IDisposable
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_dalphar_dTau(swigCPtr);
+                    //return CoolPropPINVOKE.AbstractState_dalphar_dTau(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
             }
