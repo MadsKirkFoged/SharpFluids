@@ -11,6 +11,7 @@ namespace SharpFluids
     public partial class Fluid
     {
 
+
         public double Alpha0 { get; set; }
         public double AlphaR { get; set; }
 
