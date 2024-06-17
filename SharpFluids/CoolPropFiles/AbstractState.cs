@@ -490,6 +490,32 @@ public class AbstractState : IDisposable
             }
         }
     }
+
+    public double rhomolar()
+    {
+
+        lock (lockObj)
+        {
+            lock (lockObj)
+            {
+                if (Environment.Is64BitProcess)
+                {
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                    return CoolPropPINVOKE64.AbstractState_rhomolar(swigCPtr);
+                    //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                }
+                else
+                {
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                    //return CoolPropPINVOKE.AbstractState_alpha0(swigCPtr);
+                    return 0;
+                    //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                }
+            }
+        }
+    }
+
+
     public Pressure p()
     {
 
@@ -510,6 +536,55 @@ public class AbstractState : IDisposable
             }
         }
     }
+
+    public double Tau()
+    {
+
+        lock (lockObj)
+        {
+            lock (lockObj)
+            {
+                if (Environment.Is64BitProcess)
+                {
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                    return CoolPropPINVOKE64.AbstractState_tau(swigCPtr);
+                    //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                }
+                else
+                {
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                    //return CoolPropPINVOKE.AbstractState_alpha0(swigCPtr);
+                    return 0;
+                    //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                }
+            }
+        }
+    }
+
+    public double Delta()
+    {
+
+        lock (lockObj)
+        {
+            lock (lockObj)
+            {
+                if (Environment.Is64BitProcess)
+                {
+                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                    return CoolPropPINVOKE64.AbstractState_delta(swigCPtr);
+                    //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                }
+                else
+                {
+                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                    //return CoolPropPINVOKE.AbstractState_alpha0(swigCPtr);
+                    return 0;
+                    //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                }
+            }
+        }
+    }
+
 
     public double Alpha0()
     {

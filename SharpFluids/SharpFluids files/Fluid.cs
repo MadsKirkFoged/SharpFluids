@@ -204,6 +204,11 @@ namespace SharpFluids
                 cache_temperature = Temperature;
 
                 Pressure = REF.p();
+
+                Tau = REF.Tau();
+                Delta = REF.Delta();
+
+                rhomolar = REF.rhomolar();
                 Alpha0 = REF.Alpha0();
                 AlphaR = REF.AlphaR();
                 AlphaR_dDelta = REF.AlphaR_dDelta();
