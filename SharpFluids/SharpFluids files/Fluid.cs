@@ -203,6 +203,7 @@ namespace SharpFluids
                 Temperature = REF.T();
                 cache_temperature = Temperature;
 
+
                 Pressure = REF.p();
 
                 Tau = REF.Tau();
