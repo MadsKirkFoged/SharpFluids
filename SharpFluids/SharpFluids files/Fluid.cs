@@ -209,6 +209,10 @@ namespace SharpFluids
                 Tau = REF.Tau();
                 Delta = REF.Delta();
 
+                fugacity_coefficient = REF.fugacity_coefficient();
+                fugacity= REF.fugacity();
+
+                umolar = REF.umolar();
                 rhomolar = REF.rhomolar();
                 Alpha0 = REF.Alpha0();
                 AlphaR = REF.AlphaR();

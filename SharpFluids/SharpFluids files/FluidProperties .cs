@@ -22,6 +22,13 @@ namespace SharpFluids
 
         public double rhomolar { get; set; }
 
+        
+        public double umolar { get; set; }
+
+        public double fugacity_coefficient { get; set; }
+        public double fugacity { get; set; }
+
+
         [JsonProperty(PropertyName = "_m", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
         private Mass? _mass;
