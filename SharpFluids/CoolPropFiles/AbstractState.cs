@@ -875,6 +875,39 @@ public class AbstractState : IDisposable
             }
         }
     }
+    public double gibbsmolar()
+    {
+        lock (lockObj)
+        {
+            if (Environment.Is64BitProcess)
+            {
+                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                return CoolPropPINVOKE64.AbstractState_gibbsmolar(swigCPtr);
+            }
+            else
+            {
+                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                return 0;
+            }
+        }
+    }
+
+    public double gibbsmolar_excess()
+    {
+        lock (lockObj)
+        {
+            if (Environment.Is64BitProcess)
+            {
+                CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
+                return CoolPropPINVOKE64.AbstractState_gibbsmolar_excess(swigCPtr);
+            }
+            else
+            {
+                CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                return 0;
+            }
+        }
+    }
 
     public SpecificEntropy cpmass()
     {

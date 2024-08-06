@@ -8,7 +8,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EngineeringUnits" Version="2.2.92" />
+    <PackageReference Include="EngineeringUnits" Version="2.2.97" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.2.2" />
     <PackageReference Include="MSTest.TestFramework" Version="3.2.2" />

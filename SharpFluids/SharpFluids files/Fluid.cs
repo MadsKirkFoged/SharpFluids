@@ -211,6 +211,9 @@ namespace SharpFluids
 
                 fugacity_coefficient = REF.fugacity_coefficient();
                 fugacity= REF.fugacity();
+                gibbsmolar =  REF.gibbsmolar();
+
+                gibbsmolar_excess = REF.gibbsmolar_excess();
 
                 umolar = REF.umolar();
                 rhomolar = REF.rhomolar();

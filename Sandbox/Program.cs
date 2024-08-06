@@ -25,10 +25,22 @@ Console.WriteLine("Hello, World!");
 
 var test = new Fluid(FluidList.Ammonia);
 
-//test.UpdateDT(Density.FromKilogramsPerCubicMeter(9), Temperature.FromKelvin(400));
+test.UpdateDT(Density.FromKilogramPerCubicMeter(592.2), Temperature.FromDegreeCelsius(26));
+
+for (int i = 0; i < 610; i++)
+{
+    test.UpdateDT(Density.FromKilogramPerCubicMeter(610) - i * Density.FromKilogramPerCubicMeter(1), Temperature.FromDegreeCelsius(26));
+    Console.WriteLine($"{test.Density:G5} {test.Pressure} {test.gibbsmolar_excess}");
+}
+
+
+
+
+
 
 //26.85C and 10.6bar
-test.UpdatePT(Pressure.FromBar(10.6), Temperature.FromDegreeCelsius(26));
+test.UpdatePT(Pressure.FromBar(10.80381017402795), Temperature.FromDegreeCelsius(26));
+
 
 test.UpdateXT(0, Temperature.FromKelvin(300)); //{344 kg/m³}
 test.UpdateXT(1, Temperature.FromKelvin(300));  //{130.9 kg/m³}

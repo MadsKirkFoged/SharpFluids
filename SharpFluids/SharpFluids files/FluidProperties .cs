@@ -28,6 +28,12 @@ namespace SharpFluids
         public double fugacity_coefficient { get; set; }
         public double fugacity { get; set; }
 
+        public double gibbsmolar { get; set; }
+
+        public double gibbsmolar_excess { get; set; }
+
+        
+
 
         [JsonProperty(PropertyName = "_m", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         //[JsonProperty]
