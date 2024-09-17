@@ -308,7 +308,6 @@ namespace SharpFluids
         [JsonIgnore]
         public MassFlow? GasMassFlow
         {
-
             get
             {
 
@@ -329,7 +328,6 @@ namespace SharpFluids
         [JsonIgnore]
         public MassFlow? LiquidMassFlow
         {
-
             get
             {
                 if (Phase is Phases.Twophase)
