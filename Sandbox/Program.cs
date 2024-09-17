@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using EngineeringUnits;
 using SharpFluids;
+using System.Diagnostics;
 
 Console.WriteLine("Hello, World!");
 
@@ -24,6 +25,16 @@ Console.WriteLine("Hello, World!");
 
 
 var test = new Fluid(FluidList.Ammonia);
+
+
+test.UpdateXT(1, Temperature.FromDegreeCelsius(45));
+test.UpdatePT(test.Pressure, test.Temperature + Temperature.FromKelvin(50));
+
+
+Debug.Print($"Vicosity: {test.DynamicViscosity.ToString()}");
+Debug.Print($"Coeff. of thermal expansion: {"missing"}");
+Debug.Print($"Specific heat capacity: {test.Cp.ToString()}");
+Debug.Print($"Thermal conductivity: {test.Conductivity.ToString()}");
 
 test.UpdateDT(Density.FromKilogramPerCubicMeter(592.2), Temperature.FromDegreeCelsius(26));
 

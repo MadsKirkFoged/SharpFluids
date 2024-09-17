@@ -1128,4 +1128,73 @@ public class FunctionalityTests
         Assert.IsTrue(Density != Density.Zero);
 
     }
+
+    [TestMethod]
+    public void GasLiqMassFlow()
+    {
+
+        Log.Logger = new LoggerConfiguration()
+           .WriteTo.Debug()
+           .CreateLogger();
+
+        //Arrange
+        var R717 = new Fluid(FluidList.Ammonia);
+
+        
+        //Act
+        R717.UpdatePX(Pressure.FromBar(10), 0.5);
+        R717.MassFlow = MassFlow.FromKilogramPerSecond(1);
+
+
+        //Assert
+        Assert.AreEqual(0.5, R717.GasMassFlow.KilogramPerSecond, 0.001);
+        Assert.AreEqual(0.5, R717.LiquidMassFlow.KilogramPerSecond, 0.001);
+    }
+
+
+    [TestMethod]
+    public void LiqMassFlow()
+    {
+
+        Log.Logger = new LoggerConfiguration()
+           .WriteTo.Debug()
+           .CreateLogger();
+
+        //Arrange
+        var R717 = new Fluid(FluidList.Ammonia);
+
+
+        //Act
+        R717.UpdatePX(Pressure.FromBar(10), 0);
+        R717.UpdatePT(R717.Pressure, R717.Temperature - Temperature.FromKelvin(10));
+        R717.MassFlow = MassFlow.FromKilogramPerSecond(1);
+
+
+        //Assert
+        Assert.AreEqual(0, R717.GasMassFlow.KilogramPerSecond, 0.001);
+        Assert.AreEqual(1, R717.LiquidMassFlow.KilogramPerSecond, 0.001);
+    }
+
+    [TestMethod]
+    public void GasMassFlow()
+    {
+
+        Log.Logger = new LoggerConfiguration()
+           .WriteTo.Debug()
+           .CreateLogger();
+
+        //Arrange
+        var R717 = new Fluid(FluidList.Ammonia);
+
+
+        //Act
+        R717.UpdatePX(Pressure.FromBar(10), 1);
+        R717.UpdatePT(R717.Pressure, R717.Temperature + Temperature.FromKelvin(10));
+        R717.MassFlow = MassFlow.FromKilogramPerSecond(1);
+
+
+        //Assert
+        Assert.AreEqual(1, R717.GasMassFlow.KilogramPerSecond, 0.001);
+        Assert.AreEqual(0, R717.LiquidMassFlow.KilogramPerSecond, 0.001);
+    }
 }

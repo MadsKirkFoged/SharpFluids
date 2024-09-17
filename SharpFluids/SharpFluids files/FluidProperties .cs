@@ -316,8 +316,13 @@ namespace SharpFluids
                 {
                     return MassFlow * Quality;
                 }
+                else if (Phase is Phases.Gas or Phases.SupercriticalGas)
+                {
+                    return MassFlow;
+                }
 
-                return MassFlow;
+                return MassFlow.Zero;
+                
             }
         }
 
@@ -331,8 +336,12 @@ namespace SharpFluids
                 {
                     return MassFlow * (1 - Quality);
                 }
+                else if (Phase is Phases.Liquid or Phases.SupercriticalLiquid)
+                {
+                    return MassFlow;
+                }
 
-                return MassFlow;
+                return MassFlow.Zero;
             }
         }
 
