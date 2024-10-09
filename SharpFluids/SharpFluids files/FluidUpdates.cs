@@ -37,6 +37,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDS -> CoolProp could not return your request on {density} and {entropy} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -79,6 +80,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDP -> CoolProp could not return your request on {density} and {pressure} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -121,6 +123,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDT -> CoolProp could not return your request on {density} and {temperature} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -163,6 +166,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDH -> CoolProp could not return your request on {density} and {enthalpy} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -215,6 +219,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -278,6 +283,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateXT -> CoolProp could not return your request on {quality} and {temperature} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -342,6 +348,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePS -> CoolProp could not return your request on {pressure} and {entropy} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -393,6 +400,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -454,6 +462,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePX -> CoolProp could not return your request on {pressure} and {quality} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -496,6 +505,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {enthalpy} and {entropy} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
@@ -538,6 +548,7 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {temperature} and {entropy} and returns the followering error: {e}");
+                throw;
             }
             catch (System.Exception e)
             {
