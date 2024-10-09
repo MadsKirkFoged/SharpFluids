@@ -124,6 +124,7 @@ namespace SharpFluids
 
                 local.FailState = true;
                 Log.Error($"SharpFluid -> AddPower -> {e}");
+                throw;
             }
 
             return local;

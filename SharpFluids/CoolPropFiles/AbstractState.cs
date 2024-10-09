@@ -100,6 +100,7 @@ public class AbstractState : IDisposable
             {
                 Log.Error($"SharpFluid created a null error that we are yet to figure out! {e}");
                 Log.Error($"SharpFluid: What was swigCPtr: {swigCPtr}");
+                throw;
             }
             catch (Exception e)
             {

@@ -158,6 +158,7 @@ namespace SharpFluids
             catch (Exception e)
             {
                 Log.Error($"SharpFluid -> UpdateFluidConstants -> {e}");
+                throw;
             }
         }
 
