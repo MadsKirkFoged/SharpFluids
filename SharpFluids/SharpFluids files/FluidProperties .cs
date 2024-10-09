@@ -31,7 +31,6 @@ namespace SharpFluids
         public double gibbsmolar { get; set; }
 
         public double gibbsmolar_excess { get; set; }
-
         
 
 
