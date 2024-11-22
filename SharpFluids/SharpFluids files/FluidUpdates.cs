@@ -21,6 +21,12 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
         public virtual void UpdateDS(Density? density, SpecificEntropy? entropy)
         {
+            //if (density is not null)
+            //    Density = density;
+
+            //if (entropy is not null)
+            //    Entropy = entropy;
+
             if (density is null || entropy is null)
                 return;
 
@@ -37,13 +43,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDS -> CoolProp could not return your request on {density} and {entropy} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {entropy} {e}");
-                throw;
+               // throw;
             }
             finally
             {
@@ -64,6 +70,13 @@ namespace SharpFluids
         /// <param name = "pressure" > The <see cref="EngineeringUnits.Pressure"/> used in the update</param>
         public virtual void UpdateDP(Density? density, Pressure? pressure)
         {
+
+            //if (density is not null)
+            //    Density = density;
+
+            //if(pressure is not null)
+            //    Pressure = pressure;
+
             if (density is null || pressure is null)
                 return;
 
@@ -80,13 +93,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDP -> CoolProp could not return your request on {density} and {pressure} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDP -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {pressure} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -107,6 +120,13 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
         public virtual void UpdateDT(Density? density, Temperature? temperature)
         {
+            //if (density is not null)
+            //    Density = density;
+
+            //if (temperature is not null)
+            //    Temperature = temperature;
+
+
             if (density is null || temperature is null)
                 return;
 
@@ -123,13 +143,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDT -> CoolProp could not return your request on {density} and {temperature} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {temperature} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -150,6 +170,12 @@ namespace SharpFluids
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public virtual void UpdateDH(Density? density, SpecificEnergy? enthalpy)
         {
+            //if (density is not null)
+            //    Density = density;
+
+            //if (enthalpy is not null)
+            //    Enthalpy = enthalpy;
+
             if (density is null || enthalpy is null)
                 return;
 
@@ -166,13 +192,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateDH -> CoolProp could not return your request on {density} and {enthalpy} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateDH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {density} and {enthalpy} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -193,6 +219,12 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
         public virtual void UpdatePT(Pressure? pressure, Temperature? temperature, Ratio? RepeatTolerance = null)
         {
+            //if (pressure is not null)
+            //    Pressure = pressure;
+
+            //if (temperature is not null)
+            //    Temperature = temperature;
+
 
             if (pressure is null || temperature is null)
                 return;
@@ -219,13 +251,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
-                throw;
+               // throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {temperature} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -246,6 +278,12 @@ namespace SharpFluids
         /// <param name = "temperature" > The <see cref="EngineeringUnits.Temperature"/> used in the update</param>
         public virtual void UpdateXT(double quality, Temperature? temperature, double? RepeatTolerance = null)
         {
+
+            //if (temperature is not null)
+            //    Temperature = temperature;
+
+            //Quality = quality;
+
 
             if (temperature is null)
                 return;
@@ -283,12 +321,12 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateXT -> CoolProp could not return your request on {quality} and {temperature} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
-                Log.Error($"SharpFluid -> UpdateXT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {quality} and {temperature} {e}");
+                //Log.Error($"SharpFluid -> UpdateXT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {quality} and {temperature} {e}");
                 throw;
             }
             finally
@@ -323,6 +361,12 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
         public virtual void UpdatePS(Pressure? pressure, SpecificEntropy? entropy, Ratio? RepeatTolerance = null)
         {
+            //if (entropy is not null)
+            //    Entropy = entropy;
+
+            //if (pressure is not null)
+            //    Pressure = pressure;
+
             if (pressure is null || entropy is null)
                 return;
 
@@ -348,13 +392,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePS -> CoolProp could not return your request on {pressure} and {entropy} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {entropy} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -375,6 +419,12 @@ namespace SharpFluids
         /// <param name = "enthalpy" > The Enthalpy used in the update</param>
         public virtual void UpdatePH(Pressure? pressure, SpecificEnergy? enthalpy, Ratio? RepeatTolerance = null)
         {
+            //if (enthalpy is not null)
+            //    Enthalpy = enthalpy;
+
+            //if (pressure is not null)
+            //    Pressure = pressure;
+
             if (pressure is null || enthalpy is null)
                 return;
 
@@ -400,13 +450,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePH -> CoolProp could not return your request on {pressure} and {enthalpy} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePH -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {enthalpy} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -427,6 +477,11 @@ namespace SharpFluids
         /// <param name = "quality" > The Quality used in the update</param>
         public virtual void UpdatePX(Pressure? pressure, double quality, double? RepeatTolerance = null)
         {
+            //if (pressure is not null)
+            //    Pressure = pressure;
+
+            //Quality = quality;
+
             if (pressure is null)
                 return;
 
@@ -462,13 +517,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdatePX -> CoolProp could not return your request on {pressure} and {quality} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdatePX -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {quality} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -489,6 +544,13 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
         public virtual void UpdateHS(SpecificEnergy? enthalpy, SpecificEntropy? entropy)
         {
+            //if (entropy is not null)
+            //    Entropy = entropy;
+
+            //if (enthalpy is not null)
+            //    Enthalpy = enthalpy;
+
+
             if (enthalpy is null || entropy is null)
                 return;
 
@@ -505,13 +567,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {enthalpy} and {entropy} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {enthalpy} and {entropy} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -532,6 +594,13 @@ namespace SharpFluids
         /// <param name = "entropy" > The <see cref="EngineeringUnits.SpecificEntropy"/> used in the update</param>
         public virtual void UpdateTS(Temperature? temperature, SpecificEntropy? entropy)
         {
+            //if (entropy is not null)
+            //    Entropy = entropy;
+
+            //if (temperature is not null)
+            //    Temperature = temperature;
+
+
             if (temperature is null || entropy is null)
                 return;
 
@@ -548,13 +617,13 @@ namespace SharpFluids
             {
                 FailState = true;
                 Log.Warning($"SharpFluid -> UpdateHS -> CoolProp could not return your request on {temperature} and {entropy} and returns the followering error: {e}");
-                throw;
+                //throw;
             }
             catch (System.Exception e)
             {
                 FailState = true;
                 Log.Error($"SharpFluid -> UpdateHS -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {temperature} and {entropy} {e}");
-                throw;
+                //throw;
             }
             finally
             {
@@ -574,6 +643,11 @@ namespace SharpFluids
         /// <param name = "temperature" > The Temperature used in the update</param>
         public void UpdateCustomFluid(Pressure? pressure, Temperature? temperature)
         {
+            //if (pressure is not null)
+            //    Pressure = pressure;
+
+            //if (temperature is not null)
+            //    Temperature = temperature;
 
             if (pressure is null || temperature is null)
                 return;

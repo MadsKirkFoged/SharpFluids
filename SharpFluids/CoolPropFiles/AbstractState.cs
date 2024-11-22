@@ -548,7 +548,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_tau(swigCPtr);
+                    return 0;
+                    //return CoolPropPINVOKE64.AbstractState_tau(swigCPtr);
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -572,7 +573,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_delta(swigCPtr);
+                    return 0;
+                    //return CoolPropPINVOKE64.AbstractState_delta(swigCPtr);
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -597,7 +599,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_alpha0(swigCPtr);
+                    return 0;
+                    //return CoolPropPINVOKE64.AbstractState_alpha0(swigCPtr);
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -623,7 +626,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                    //return CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -647,7 +651,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_dalphar_dDelta(swigCPtr);
+                    //return CoolPropPINVOKE64.AbstractState_dalphar_dDelta(swigCPtr)
+                        return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -671,7 +676,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_dalphar_dTau(swigCPtr);
+                    //return CoolPropPINVOKE64.AbstractState_dalphar_dTau(swigCPtr);
+                    return 0;
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -695,7 +701,8 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return CoolPropPINVOKE64.AbstractState_dalpha0_dTau(swigCPtr);
+                    return 0;
+                    //return CoolPropPINVOKE64.AbstractState_dalpha0_dTau(swigCPtr);
                     //var AlphaR = CoolPropPINVOKE64.AbstractState_alphar(swigCPtr);
                 }
                 else
@@ -833,7 +840,8 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return CoolPropPINVOKE64.AbstractState_umolar(swigCPtr);
+                return 0;
+                //return CoolPropPINVOKE64.AbstractState_umolar(swigCPtr);
             }
             else
             {
@@ -850,7 +858,8 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return CoolPropPINVOKE64.AbstractState_fugacity_coefficient(swigCPtr,(uint)0);
+                //return CoolPropPINVOKE64.AbstractState_fugacity_coefficient(swigCPtr,(uint)0);
+                return 0;
             }
             else
             {
@@ -867,7 +876,8 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return CoolPropPINVOKE64.AbstractState_fugacity(swigCPtr, (uint)0);
+                //return CoolPropPINVOKE64.AbstractState_fugacity(swigCPtr, (uint)0);
+                return 0;
             }
             else
             {
@@ -883,7 +893,8 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return CoolPropPINVOKE64.AbstractState_gibbsmolar(swigCPtr);
+                return 0;
+                //return CoolPropPINVOKE64.AbstractState_gibbsmolar(swigCPtr);
             }
             else
             {
@@ -900,7 +911,8 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                return CoolPropPINVOKE64.AbstractState_gibbsmolar_excess(swigCPtr);
+                return 0;
+                //return CoolPropPINVOKE64.AbstractState_gibbsmolar_excess(swigCPtr);
             }
             else
             {
