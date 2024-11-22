@@ -28,7 +28,8 @@ public class AbstractState : IDisposable
     }
 
     public virtual void Dispose()
-    {
+    
+
         lock (this)
         {
             if (swigCPtr.Handle != IntPtr.Zero)
