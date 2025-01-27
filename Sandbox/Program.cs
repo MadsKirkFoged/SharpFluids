@@ -24,24 +24,42 @@ Console.WriteLine("Hello, World!");
 
 
 
-var test = new Fluid(FluidList.Ammonia);
+var input = new Fluid(FluidList.Ammonia);
+input.SetFraction(50);
 
 
-test.UpdateXT(1, Temperature.FromDegreeCelsius(45));
-test.UpdatePT(test.Pressure, test.Temperature + Temperature.FromKelvin(50));
+input.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreeCelsius(50));
 
 
-Debug.Print($"Vicosity: {test.DynamicViscosity.ToString()}");
+
+
+
+input.UpdatePH(Pressure.FromBar(15.98), input.Enthalpy);
+
+
+Enthalpy InputEnthalpy = input.Enthalpy;
+
+input.UpdatePT(input.Pressure, Temperature.FromDegreeCelsius(44));
+
+Enthalpy OutputEnthalpy = input.Enthalpy;
+
+
+Power capacity = (OutputEnthalpy - InputEnthalpy) * MassFlow.FromKilogramPerSecond(1.595);
+
+
+
+
+Debug.Print($"Vicosity: {input.DynamicViscosity.ToString()}");
 Debug.Print($"Coeff. of thermal expansion: {"missing"}");
-Debug.Print($"Specific heat capacity: {test.Cp.ToString()}");
-Debug.Print($"Thermal conductivity: {test.Conductivity.ToString()}");
+Debug.Print($"Specific heat capacity: {input.Cp.ToString()}");
+Debug.Print($"Thermal conductivity: {input.Conductivity.ToString()}");
 
-test.UpdateDT(Density.FromKilogramPerCubicMeter(592.2), Temperature.FromDegreeCelsius(26));
+input.UpdateDT(Density.FromKilogramPerCubicMeter(592.2), Temperature.FromDegreeCelsius(26));
 
 for (int i = 0; i < 610; i++)
 {
-    test.UpdateDT(Density.FromKilogramPerCubicMeter(610) - i * Density.FromKilogramPerCubicMeter(1), Temperature.FromDegreeCelsius(26));
-    Console.WriteLine($"{test.Density:G5} {test.Pressure} {test.gibbsmolar_excess}");
+    input.UpdateDT(Density.FromKilogramPerCubicMeter(610) - i * Density.FromKilogramPerCubicMeter(1), Temperature.FromDegreeCelsius(26));
+    Console.WriteLine($"{input.Density:G5} {input.Pressure} {input.gibbsmolar_excess}");
 }
 
 
@@ -50,11 +68,11 @@ for (int i = 0; i < 610; i++)
 
 
 //26.85C and 10.6bar
-test.UpdatePT(Pressure.FromBar(10.80381017402795), Temperature.FromDegreeCelsius(26));
+input.UpdatePT(Pressure.FromBar(10.80381017402795), Temperature.FromDegreeCelsius(26));
 
 
-test.UpdateXT(0, Temperature.FromKelvin(300)); //{344 kg/m³}
-test.UpdateXT(1, Temperature.FromKelvin(300));  //{130.9 kg/m³}
+input.UpdateXT(0, Temperature.FromKelvin(300)); //{344 kg/m³}
+input.UpdateXT(1, Temperature.FromKelvin(300));  //{130.9 kg/m³}
 
 
 
@@ -64,13 +82,13 @@ test.UpdateXT(1, Temperature.FromKelvin(300));  //{130.9 kg/m³}
 //test.UpdateDT(Density.FromKilogramsPerCubicMeter(130.9/2), Temperature.FromKelvin(400));
 
 
-var span = (test.CriticalTemperature - test.LimitTemperatureMin);
+var span = (input.CriticalTemperature - input.LimitTemperatureMin);
 var step = span / 1000;
 
 for (int i = 0; i < 1000; i++)
 {
-    test.UpdateXT(1, test.CriticalTemperature - step*i);
-    Console.WriteLine($"{test.umolar}");
+    input.UpdateXT(1, input.CriticalTemperature - step*i);
+    Console.WriteLine($"{input.umolar}");
 }
 Console.WriteLine("Hello, World!");
 

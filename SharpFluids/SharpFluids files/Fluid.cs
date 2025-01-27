@@ -139,6 +139,7 @@ namespace SharpFluids
                 //Setting the constant values up
                 LimitTemperatureMax = REF.Tmax();
                 LimitTemperatureMin = REF.Tmin();
+                T_freeze = REF.Tmin();
 
                 if (Media.Mix is not MixType.None)
                 {
@@ -548,13 +549,17 @@ namespace SharpFluids
                 {
                     Media.MassFration = fraction;
                     REF.set_mass_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                    T_freeze = Temperature.FromKelvins(REF.keyed_output(Parameters.iT_freeze));
                 }
                 else if (Media.Mix == MixType.Vol)
                 {
                     Media.MassFration = fraction;
                     REF.set_volu_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                    T_freeze = Temperature.FromKelvins(REF.keyed_output(Parameters.iT_freeze));
                 }
             }
+
+            
         }
 
         /// <summary>
