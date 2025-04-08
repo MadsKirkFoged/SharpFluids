@@ -249,9 +249,20 @@ namespace SharpFluids
             }
             catch (System.ApplicationException e)
             {
-                FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
-               // throw;
+
+                if (e.Message.StartsWith("options.p is not valid in saturation_T_pure_1D_P for T") && temperature < Temperature.FromSI(405.7) && temperature > Temperature.FromSI(405.3))
+                {
+                    Log.Warning($"This is a known coolprop error");
+
+                    UpdatePT(pressure, Temperature.FromSI(405.3));
+                }
+                else
+                {
+                    FailState = true;
+                    Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
+
+                }
+
             }
             catch (System.Exception e)
             {

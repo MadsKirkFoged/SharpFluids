@@ -25,12 +25,14 @@ Console.WriteLine("Hello, World!");
 
 
 var input = new Fluid(FluidList.Ammonia);
-input.SetFraction(50);
 
 
-input.UpdatePT(Pressure.FromBar(5), Temperature.FromDegreeCelsius(50));
+input.UpdatePT(Pressure.FromSI(2293443.57087332), Temperature.FromKelvin(405.55873230045091));
 
 
+input.UpdatePT(Pressure.FromSI(2193443.57087332), Temperature.FromKelvin(405.4));
+
+//4857593 Pa and 405.5 K
 
 
 
