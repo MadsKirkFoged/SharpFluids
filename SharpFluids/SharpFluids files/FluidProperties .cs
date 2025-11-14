@@ -279,7 +279,7 @@ namespace SharpFluids
                     }
                     catch (Exception e)
                     {
-                        Log.Error($"SharpFluid -> Tsat -> Failed {e}", e);
+                        Log.Warning($"SharpFluid -> Tsat -> Failed with pressure {Pressure} {e}", e);
                         return Temperature;
                     }
                     finally
