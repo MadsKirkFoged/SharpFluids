@@ -26,7 +26,9 @@ Console.WriteLine("Hello, World!");
 
 var input = new Fluid(FluidList.Ammonia);
 
+input.UpdatePX(Pressure.FromBarA(16.88), 0);
 
+input.UpdatePT(Pressure.FromBar(21), Temperature.FromDegreeCelsius(100));
 input.UpdatePT(Pressure.FromSI(2293443.57087332), Temperature.FromKelvin(405.55873230045091));
 
 
