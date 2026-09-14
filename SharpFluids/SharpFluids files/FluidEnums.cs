@@ -83,7 +83,7 @@
         [MediaType("HEOS", "R1234ZE")] R1234zeE,
         [MediaType("HEOS", "R1234ZE(Z)")] R1234zeZ,
         [MediaType("HEOS", "R124")] R124,
-        [MediaType("HEOS", "R1234ZF")] R1243zf,
+        [MediaType("HEOS", "R1243ZF")] R1243zf,
         [MediaType("HEOS", "R125")] R125,
         [MediaType("HEOS", "R13")] R13,
         [MediaType("HEOS", "R134A")] R134a,
