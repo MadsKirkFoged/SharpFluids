@@ -26,7 +26,7 @@ namespace SharpFluids
     /// <br><c><see langword="Debug" />.Print("Density of water is: " + Water.Density);</c></br>
     /// </summary>
 
-    public partial class Fluid
+    public partial class Fluid : IDisposable
     {
 
         /// <summary>
@@ -239,11 +239,7 @@ namespace SharpFluids
                 Conductivity = REF.conductivity();
                 FailState = false;
 
-                if (Environment.Is64BitProcess)
-                    CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                else
-                    CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-
+                ResetErrors();
             }
             catch (Exception e)
             {
@@ -697,6 +693,12 @@ namespace SharpFluids
         /// </summary>
         public static bool operator ==(Fluid other1, Fluid other2)
         {
+            if (ReferenceEquals(other1, other2))
+                return true;
+
+            if (other1 is null || other2 is null)
+                return false;
+
             //TODO If mass is selected!
 
             var MassFlowTolerance = MassFlow.FromKilogramPerSecond(0.00001);
@@ -719,7 +721,7 @@ namespace SharpFluids
         {
             return !(Input1 == Input2);
         }
-        public override bool Equals(object? obj) => base.Equals(obj);
+        public override bool Equals(object? obj) => this == obj as Fluid;
         public override int GetHashCode()
         {
             var hashCode = new HashCode();
@@ -748,9 +750,9 @@ namespace SharpFluids
         }
         public void Dispose()
         {
-            REF.Dispose();
+            REF?.Dispose();
             REF = null;
-            Dispose();
+            GC.SuppressFinalize(this);
         }
 
         public string SaveAsJSON() => JsonConvert.SerializeObject(this);

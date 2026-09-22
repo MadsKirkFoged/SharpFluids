@@ -284,10 +284,7 @@ namespace SharpFluids
                     }
                     finally
                     {
-                        if (Environment.Is64BitProcess)
-                            CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                        else
-                            CoolPropPINVOKE.SWIGPendingException.ResetErrors();
+                        ResetErrors();
                     }
                 }
                 else if (Pressure > CriticalPressure)

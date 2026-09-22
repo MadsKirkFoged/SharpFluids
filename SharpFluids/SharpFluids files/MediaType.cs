@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace SharpFluids
 {
@@ -66,11 +65,15 @@ namespace SharpFluids
             Mix = other.Mix;
         }
 
-        public override bool Equals(object obj) => obj is MediaType type&&base.Equals(obj)&&EqualityComparer<object>.Default.Equals(TypeId, type.TypeId)&&BackendType==type.BackendType&&InternalName==type.InternalName&&MassFration==type.MassFration&&Mix==type.Mix&&DisplayName==type.DisplayName;
-        public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), TypeId, BackendType, InternalName, MassFration, Mix, DisplayName);
+        public override bool Equals(object obj) => this == obj as MediaType;
+        public override int GetHashCode() => HashCode.Combine(BackendType, InternalName, MassFration, Mix, DisplayName);
 
         public static bool operator ==(MediaType other1, MediaType other2)
         {
+            if (ReferenceEquals(other1, other2))
+            {
+                return true;
+            }
 
             if (other1 is null || other2 is null)
             {
