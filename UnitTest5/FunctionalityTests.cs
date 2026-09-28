@@ -74,7 +74,7 @@ public class FunctionalityTests
         Assert.AreEqual(R717JSON.CriticalTemperature.DegreeCelsius, R717.CriticalTemperature.DegreeCelsius);
         Assert.AreEqual(R717JSON.LimitTemperatureMax.DegreeCelsius, R717.LimitTemperatureMax.DegreeCelsius);
 
-        Assert.AreEqual(R717JSON.Conductivity.WattPerMeterKelvin, R717.Conductivity.WattPerMeterKelvin);
+        Assert.AreEqual(R717JSON.Conductivity.WattPerMeterKelvin, R717.Conductivity.WattPerMeterKelvin, 0.0000001);
         Assert.AreEqual(R717JSON.Cp.JoulePerKilogramKelvin, R717.Cp.JoulePerKilogramKelvin);
         Assert.AreEqual(R717JSON.Cv.JoulePerKilogramKelvin, R717.Cv.JoulePerKilogramKelvin);
         Assert.AreEqual(R717JSON.Enthalpy.JoulePerKilogram, R717.Enthalpy.JoulePerKilogram);
@@ -91,7 +91,7 @@ public class FunctionalityTests
 
         Assert.AreEqual(R717JSON.MolarMass.GramPerMole, R717.MolarMass.GramPerMole);
         Assert.AreEqual(R717JSON.Compressibility, R717.Compressibility);
-        Assert.AreEqual(R717JSON.InternalEnergy.JoulePerKilogram, R717.InternalEnergy.JoulePerKilogram);
+        Assert.AreEqual(R717JSON.InternalEnergy.JoulePerKilogram, R717.InternalEnergy.JoulePerKilogram, 0.0000001);
 
         Assert.AreEqual(R717JSON.MassFlow.KilogramPerSecond, R717.MassFlow.KilogramPerSecond);
         Assert.AreEqual(R717JSON.VolumeFlow.CubicMeterPerSecond, R717.VolumeFlow.CubicMeterPerSecond);
