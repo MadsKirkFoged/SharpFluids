@@ -721,7 +721,10 @@ namespace SharpFluids
         {
             return !(Input1 == Input2);
         }
-        public override bool Equals(object? obj) => this == obj as Fluid;
+        //Reference equality on purpose: a Fluid is mutable, and == compares its state with tolerances (not transitive).
+        //Consumers use Equals() for identity, e.g. COMP2.PlantSolver's Port.IsConnectedTo - value equality there made
+        //two different connections with the same state look connected (StackOverflow in its plant graph walk).
+        public override bool Equals(object? obj) => base.Equals(obj);
         public override int GetHashCode()
         {
             var hashCode = new HashCode();

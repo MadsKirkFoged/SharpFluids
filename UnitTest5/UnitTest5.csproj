@@ -10,10 +10,10 @@
 	  <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-    <PackageReference Include="EngineeringUnits.Fast" Version="2.2.149" />
+    <PackageReference Include="EngineeringUnits.Fast" Version="2.2.152" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EngineeringUnits" Version="2.2.147" />
+    <PackageReference Include="EngineeringUnits" Version="2.2.152" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.8.3" />
     <PackageReference Include="MSTest.TestFramework" Version="3.8.3" />
