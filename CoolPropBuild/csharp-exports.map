@@ -1,0 +1,9 @@
+/* Exports only the SWIG C# entry points SharpFluids calls. Everything else stays local,
+   including the statically linked libc++, so it can't clash with other native libraries in the process. */
+{
+  global:
+    CSharp_*;
+    SWIGRegister*;
+  local:
+    *;
+};

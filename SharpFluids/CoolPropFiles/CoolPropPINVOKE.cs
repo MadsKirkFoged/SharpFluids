@@ -196,6 +196,12 @@ internal class CoolPropPINVOKE
     [DllImport("CoolProp32", EntryPoint = "CSharp_get_global_param_string")]
     public static extern string get_global_param_string(string jarg1);
 
+    [DllImport("CoolProp32", EntryPoint = "CSharp_get_parameter_index")]
+    public static extern int get_parameter_index(string jarg1);
+
+    [DllImport("CoolProp32", EntryPoint = "CSharp_get_input_pair_index")]
+    public static extern int get_input_pair_index(string jarg1);
+
     [DllImport("CoolProp32", EntryPoint = "CSharp_DoubleVector_Clear")]
     public static extern void DoubleVector_Clear(HandleRef jarg1);
 

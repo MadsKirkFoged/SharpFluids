@@ -1,0 +1,1 @@
+@"%ZIG_EXE%" ranlib %*

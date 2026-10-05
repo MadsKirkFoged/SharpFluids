@@ -36,7 +36,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -76,7 +76,8 @@ public class FunctionalityTests
 
         Assert.AreEqual(R717JSON.Conductivity.WattPerMeterKelvin, R717.Conductivity.WattPerMeterKelvin, 0.0000001);
         Assert.AreEqual(R717JSON.Cp.JoulePerKilogramKelvin, R717.Cp.JoulePerKilogramKelvin);
-        Assert.AreEqual(R717JSON.Cv.JoulePerKilogramKelvin, R717.Cv.JoulePerKilogramKelvin);
+        //Cv can lose its last binary digit going through EngineeringUnits' decimal storage and the JSON round trip
+        Assert.AreEqual(R717JSON.Cv.JoulePerKilogramKelvin, R717.Cv.JoulePerKilogramKelvin, 1e-9);
         Assert.AreEqual(R717JSON.Enthalpy.JoulePerKilogram, R717.Enthalpy.JoulePerKilogram);
         Assert.AreEqual(R717JSON.Prandtl, R717.Prandtl);
         Assert.AreEqual(R717JSON.Pressure.Bar, R717.Pressure.Bar);
@@ -151,7 +152,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -282,7 +283,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -346,7 +347,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsTrue(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -390,7 +391,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsTrue(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -434,7 +435,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -478,7 +479,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, CO2.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, CO2.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, CO2.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, CO2.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, CO2.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -705,7 +706,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -750,7 +751,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsTrue(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -797,7 +798,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -844,7 +845,7 @@ public class FunctionalityTests
 
         //Assert
         Assert.IsTrue(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -902,7 +903,8 @@ public class FunctionalityTests
         Temperature Tsat = R717.Tsat;
 
         //Assert
-        Assert.AreEqual(Tsat, R717.CriticalTemperature);
+        //CoolProp 8.0.0: Tsat(p_crit) = 405.559999973264 K vs CriticalTemperature = 405.5599999732635 K (difference 5.1e-13 K), so exact equality no longer holds
+        Assert.AreEqual(R717.CriticalTemperature.Kelvins, Tsat.Kelvins, 1e-9);
 
     }
 

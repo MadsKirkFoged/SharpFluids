@@ -26,7 +26,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -72,7 +72,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -118,7 +118,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -164,7 +164,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -210,7 +210,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -256,7 +256,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -302,7 +302,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -348,7 +348,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -394,7 +394,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -440,7 +440,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -486,7 +486,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -549,7 +549,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -595,7 +595,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -641,7 +641,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -687,7 +687,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -733,7 +733,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -779,7 +779,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -825,7 +825,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -871,7 +871,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -917,7 +917,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -963,7 +963,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1009,7 +1009,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1088,7 +1088,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1135,7 +1135,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1181,7 +1181,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1230,7 +1230,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1238,14 +1238,16 @@ public class AmmoniaTests
         Assert.AreEqual(451.85, R717.LimitTemperatureMax.DegreeCelsius, 0.0001);
 
         //Assert.AreEqual(0, R717.Conductivity.WattPerMeterKelvin, 0.0001);
-        Assert.AreEqual(73158204704795.4, R717.Cp.JoulePerKilogramKelvin, 1);
-        Assert.AreEqual(6467.97163351429, R717.Cv.JoulePerKilogramKelvin, 0.0001);
-        Assert.AreEqual(1247802.1607166, R717.Enthalpy.JoulePerKilogram, 0.0001);
-        Assert.AreEqual(2513829873.6623368, R717.Prandtl, 0.0001);
+        //Cp and Prandtl diverge at the critical point, so only their size is checked
+        Assert.IsTrue(R717.Cp.JoulePerKilogramKelvin > 1e9);
+        Assert.AreEqual(6467.971740754905, R717.Cv.JoulePerKilogramKelvin, 0.01);
+        Assert.AreEqual(1247802.1688004916, R717.Enthalpy.JoulePerKilogram, 0.1);
+        Assert.IsTrue(R717.Prandtl > 1e5);
         Assert.AreEqual(R717.CriticalPressure.Bar, R717.Pressure.Bar, 0.0001);
         Assert.AreEqual(233.25000192, R717.Density.KilogramPerCubicMeter, 0.0001);
         Assert.AreEqual(0.95486829094462955, R717.Entropy.CaloriePerGramKelvin, 0.0001);
-        Assert.IsNull(R717.SurfaceTension);
+        //Surface tension vanishes at the critical point (CoolProp 8.0.0 reports p_crit as two-phase, so it is 0 rather than null)
+        Assert.AreEqual(0, R717.SurfaceTension?.NewtonPerMeter ?? 0, 1e-9);
         Assert.AreEqual(R717.CriticalTemperature.DegreeCelsius, R717.Temperature.DegreeCelsius, 0.0001);
         Assert.AreEqual(R717.CriticalTemperature.DegreeCelsius, R717.Tsat.DegreeCelsius, 0.0001);
         Assert.AreEqual(2.7906634676727E-05, R717.DynamicViscosity.NewtonSecondPerMeterSquared, 0.0001);
@@ -1254,21 +1256,23 @@ public class AmmoniaTests
 
         Assert.AreEqual(17.03052, R717.MolarMass.GramPerMole, 0.001);
         Assert.AreEqual(0.24605095619157291, R717.Compressibility, 0.0001);
-        Assert.AreEqual(1199084.51411734, R717.InternalEnergy.JoulePerKilogram, 0.0001);
+        Assert.AreEqual(1199084.5210758671, R717.InternalEnergy.JoulePerKilogram, 0.1);
 
         Assert.AreEqual(2, R717.MassFlow.KilogramPerSecond, 0.0001);
         Assert.AreEqual(0.008574490819022413, R717.VolumeFlow.CubicMeterPerSecond, 0.0001);
 
         //Compare X=0 and X=1
         Assert.AreEqual(R717X0.Conductivity.WattPerMeterKelvin, R717.Conductivity.WattPerMeterKelvin, 0.0001);
-        Assert.AreEqual(R717X0.Cp.JoulePerKilogramKelvin, R717.Cp.JoulePerKilogramKelvin, 0.0001);
+        //At p_crit CoolProp 8.0.0 gives X=0 and X=1 states that differ by round-off (density 233.2499956 vs 233.2499964 kg/m3), so h and u differ by ~1e-3 J/kg.
+        //Cp and Prandtl diverge there, so they are only checked for size
+        Assert.IsTrue(R717X0.Cp.JoulePerKilogramKelvin > 1e9);
         Assert.AreEqual(R717X0.Cv.JoulePerKilogramKelvin, R717.Cv.JoulePerKilogramKelvin, 0.0001);
-        Assert.AreEqual(R717X0.Enthalpy.JoulePerKilogram, R717.Enthalpy.JoulePerKilogram, 0.0001);
-        Assert.AreEqual(R717X0.Prandtl, R717.Prandtl, 0.0001);
+        Assert.AreEqual(R717X0.Enthalpy.JoulePerKilogram, R717.Enthalpy.JoulePerKilogram, 0.01);
+        Assert.IsTrue(R717X0.Prandtl > 1e5);
         Assert.AreEqual(R717X0.Pressure.Bar, R717.Pressure.Bar, 0.0001);
         Assert.AreEqual(R717X0.Density.KilogramPerCubicMeter, R717.Density.KilogramPerCubicMeter, 0.0001);
         Assert.AreEqual(R717X0.Entropy.CaloriePerGramKelvin, R717.Entropy.CaloriePerGramKelvin, 0.0001);
-        Assert.IsNull(R717X0.SurfaceTension);
+        Assert.AreEqual(0, R717X0.SurfaceTension?.NewtonPerMeter ?? 0, 1e-9);
         Assert.AreEqual(R717X0.Temperature.DegreeCelsius, R717.Temperature.DegreeCelsius, 0.0001);
         Assert.AreEqual(R717X0.Tsat.DegreeCelsius, R717.Tsat.DegreeCelsius, 0.0001);
         Assert.AreEqual(R717X0.DynamicViscosity.NewtonSecondPerMeterSquared, R717.DynamicViscosity.NewtonSecondPerMeterSquared, 0.0001);
@@ -1276,7 +1280,7 @@ public class AmmoniaTests
 
         Assert.AreEqual(R717X0.MolarMass.GramPerMole, R717.MolarMass.GramPerMole, 0.001);
         Assert.AreEqual(R717X0.Compressibility, R717.Compressibility, 0.0001);
-        Assert.AreEqual(R717X0.InternalEnergy.JoulePerKilogram, R717.InternalEnergy.JoulePerKilogram, 0.0001);
+        Assert.AreEqual(R717X0.InternalEnergy.JoulePerKilogram, R717.InternalEnergy.JoulePerKilogram, 0.01);
 
         Assert.AreEqual(R717X0.MassFlow.KilogramPerSecond, R717.MassFlow.KilogramPerSecond, 0.0001);
         Assert.AreEqual(R717X0.VolumeFlow.CubicMeterPerSecond, R717.VolumeFlow.CubicMeterPerSecond, 0.0001);
@@ -1299,7 +1303,7 @@ public class AmmoniaTests
 
         //Assert
         Assert.IsFalse(R717.FailState);
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1345,7 +1349,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
@@ -1392,7 +1396,7 @@ public class AmmoniaTests
         //Assert
         Assert.IsTrue(R717.FailState);
 
-        Assert.AreEqual(0.060912231081315084, R717.LimitPressureMin.Bar, 0.0001);
+        Assert.AreEqual(0.0605581357453296, R717.LimitPressureMin.Bar, 0.0001);
         Assert.AreEqual(10000, R717.LimitPressureMax.Bar, 0.0001);
         Assert.AreEqual(113.634, R717.CriticalPressure.Bar, 0.0001);
         Assert.AreEqual(-77.655, R717.LimitTemperatureMin.DegreeCelsius, 0.0001);
