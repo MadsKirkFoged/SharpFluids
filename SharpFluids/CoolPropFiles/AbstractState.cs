@@ -251,6 +251,30 @@ public class AbstractState : IDisposable
     //    }
     //}
 
+    //EngineeringUnits keeps 15 significant digits of a double, which can put one of CoolProp's limits just outside CoolProp's own
+    //range: Ammonia's critical pressure 11363391.157414673 Pa becomes 11363391.1574147 Pa, above the critical point.
+    //These give the nearest value inside a (positive) limit that survives that rounding, so the limits can be handed back to CoolProp
+    private static double KeptBelow(double limit)
+    {
+        double value = limit;
+        while (Kept(value) > limit)
+            value = BitConverter.Int64BitsToDouble(BitConverter.DoubleToInt64Bits(value) - 1);
+
+        return Kept(value);
+    }
+
+    private static double KeptAbove(double limit)
+    {
+        double value = limit;
+        while (Kept(value) < limit)
+            value = BitConverter.Int64BitsToDouble(BitConverter.DoubleToInt64Bits(value) + 1);
+
+        return Kept(value);
+    }
+
+    //What EngineeringUnits keeps of a double
+    private static double Kept(double value) => Math.Abs(value) < 7.9e28 ? (double)(decimal)value : value;
+
     public Temperature Tmin()
     {
         lock (lockObj)
@@ -261,12 +285,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return Temperature.FromKelvins(CoolPropPINVOKE64.AbstractState_Tmin(swigCPtr));
+                    return Temperature.FromKelvins(KeptAbove(CoolPropPINVOKE64.AbstractState_Tmin(swigCPtr)));
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_Tmin(swigCPtr));
+                    return Temperature.FromKelvins(KeptAbove(CoolPropPINVOKE.AbstractState_Tmin(swigCPtr)));
                 }
             }
         }
@@ -281,12 +305,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return Temperature.FromKelvins(CoolPropPINVOKE64.AbstractState_Tmax(swigCPtr));
+                    return Temperature.FromKelvins(KeptBelow(CoolPropPINVOKE64.AbstractState_Tmax(swigCPtr)));
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_Tmax(swigCPtr));
+                    return Temperature.FromKelvins(KeptBelow(CoolPropPINVOKE.AbstractState_Tmax(swigCPtr)));
                 }
             }
         }
@@ -301,12 +325,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return Pressure.From(CoolPropPINVOKE64.AbstractState_pmax(swigCPtr), PressureUnit.Pascal);
+                    return Pressure.From(KeptBelow(CoolPropPINVOKE64.AbstractState_pmax(swigCPtr)), PressureUnit.Pascal);
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return Pressure.From(CoolPropPINVOKE.AbstractState_pmax(swigCPtr), PressureUnit.Pascal);
+                    return Pressure.From(KeptBelow(CoolPropPINVOKE.AbstractState_pmax(swigCPtr)), PressureUnit.Pascal);
                 }
             }
         }
@@ -319,7 +343,7 @@ public class AbstractState : IDisposable
             if (Environment.Is64BitProcess)
             {
                 if (CoolPropPINVOKE64.AbstractState_T_critical(swigCPtr) != 0)
-                    return Temperature.FromKelvins(CoolPropPINVOKE64.AbstractState_T_critical(swigCPtr));
+                    return Temperature.FromKelvins(KeptBelow(CoolPropPINVOKE64.AbstractState_T_critical(swigCPtr)));
                 else
                 {
                     Debug.Print("It could not return T_critical!");
@@ -330,7 +354,7 @@ public class AbstractState : IDisposable
             {
 
                 if (CoolPropPINVOKE.AbstractState_T_critical(swigCPtr) != 0)
-                    return Temperature.FromKelvins(CoolPropPINVOKE.AbstractState_T_critical(swigCPtr));
+                    return Temperature.FromKelvins(KeptBelow(CoolPropPINVOKE.AbstractState_T_critical(swigCPtr)));
                 else
                 {
                     Debug.Print("It could not return T_critical!");
@@ -349,7 +373,7 @@ public class AbstractState : IDisposable
                 if (CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr) != 0)
                 {
                     //return Pressure.FromPascal(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr));
-                    return Pressure.From(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr), PressureUnit.Pascal);
+                    return Pressure.From(KeptBelow(CoolPropPINVOKE64.AbstractState_p_critical(swigCPtr)), PressureUnit.Pascal);
                 }
                 else
                 {
@@ -360,7 +384,7 @@ public class AbstractState : IDisposable
             else if (CoolPropPINVOKE.AbstractState_p_critical(swigCPtr) != 0)
             {
                 //return Pressure.FromPascal(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr));
-                return Pressure.From(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr), PressureUnit.Pascal);
+                return Pressure.From(KeptBelow(CoolPropPINVOKE.AbstractState_p_critical(swigCPtr)), PressureUnit.Pascal);
             }
             else
             {
@@ -379,12 +403,12 @@ public class AbstractState : IDisposable
                 if (Environment.Is64BitProcess)
                 {
                     CoolPropPINVOKE64.SWIGPendingException.ResetErrors();
-                    return Pressure.From(CoolPropPINVOKE64.AbstractState_p_triple(swigCPtr), PressureUnit.Pascal);
+                    return Pressure.From(KeptAbove(CoolPropPINVOKE64.AbstractState_p_triple(swigCPtr)), PressureUnit.Pascal);
                 }
                 else
                 {
                     CoolPropPINVOKE.SWIGPendingException.ResetErrors();
-                    return Pressure.From(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr), PressureUnit.Pascal);
+                    return Pressure.From(KeptAbove(CoolPropPINVOKE.AbstractState_p_triple(swigCPtr)), PressureUnit.Pascal);
                 }
             }
         }
