@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 //using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 //using Serilog.Context;
 
@@ -113,10 +114,25 @@ namespace SharpFluids
             }
         }
 
+        private sealed class FluidConstantValues
+        {
+            public Temperature? Tmax, Tmin, TCritical;
+            public Pressure? PCritical, PTriple, PMax;
+            public double FractionMin, FractionMax;
+            public bool IsHelmholtz;
+        }
+
+        // Per fluid (backend, name, fraction, mix): the constants and the freeze temperatures read from CoolProp.
+        // Capped, so callers that use many different fractions do not grow them without end; past the cap the values are read
+        // from CoolProp every time, as before.
+        private const int MaxCachedFluids = 1000;
+        private static readonly ConcurrentDictionary<(string, string, double?, MixType), FluidConstantValues> FluidConstants = new();
+        private static readonly ConcurrentDictionary<(string, string, double?, MixType), double> FreezeTemperatures = new();
+
         /// <summary>
         /// Updates the constants of the <see cref="Fluid"/>
         /// <br><see cref="Fluid"/> constants are Limits and Criticalpoint values</br>
-        /// </summary>   
+        /// </summary>
         protected virtual void UpdateFluidConstants()
         {
             if (Media is null)
@@ -136,24 +152,54 @@ namespace SharpFluids
 
             try
             {
+                // The constants depend only on the fluid, so CoolProp is asked once per fluid instead of for every new Fluid
+                // (which also means a new Fluid does not need its own CoolProp state until it is updated)
+                var key = (Media.BackendType, Media.InternalName, Media.MassFration, Media.Mix);
+                if (!FluidConstants.TryGetValue(key, out FluidConstantValues? c))
+                {
+                    c = new FluidConstantValues
+                    {
+                        Tmax = REF.Tmax(),
+                        Tmin = REF.Tmin(),
+                    };
+
+                    if (Media.Mix is not MixType.None)
+                    {
+                        c.FractionMin = REF.keyed_output(Parameters.ifraction_min);
+                        c.FractionMax = REF.keyed_output(Parameters.ifraction_max);
+                    }
+
+                    c.IsHelmholtz = REF.backend_name() is "HelmholtzEOSBackend" && Media.Mix is MixType.None;
+                    if (c.IsHelmholtz)
+                    {
+                        c.TCritical = REF.TCritical();
+                        c.PCritical = REF.p_critical();
+                        c.PTriple = REF.p_triple();
+                        c.PMax = REF.pmax();
+                    }
+
+                    if (FluidConstants.Count < MaxCachedFluids)
+                        FluidConstants.TryAdd(key, c);
+                }
+
                 //Setting the constant values up
-                LimitTemperatureMax = REF.Tmax();
-                LimitTemperatureMin = REF.Tmin();
-                T_freeze = REF.Tmin();
+                LimitTemperatureMax = c.Tmax;
+                LimitTemperatureMin = c.Tmin;
+                T_freeze = c.Tmin;
 
                 if (Media.Mix is not MixType.None)
                 {
                     //Fraction
-                    FractionMin = REF.keyed_output(Parameters.ifraction_min);
-                    FractionMax = REF.keyed_output(Parameters.ifraction_max);
+                    FractionMin = c.FractionMin;
+                    FractionMax = c.FractionMax;
                 }
 
-                if (REF.backend_name() is "HelmholtzEOSBackend" && Media.Mix is MixType.None)
+                if (c.IsHelmholtz)
                 {
-                    CriticalTemperature = REF.TCritical();
-                    CriticalPressure = REF.p_critical();
-                    LimitPressureMin = REF.p_triple();
-                    LimitPressureMax = REF.pmax();
+                    CriticalTemperature = c.TCritical;
+                    CriticalPressure = c.PCritical;
+                    LimitPressureMin = c.PTriple;
+                    LimitPressureMax = c.PMax;
                 }
             }
             catch (Exception e)
@@ -164,8 +210,14 @@ namespace SharpFluids
         }
 
         /// <summary>
+        /// Read fugacity, Gibbs energy, molar values and the Helmholtz terms (alpha and derivatives) after every update.
+        /// <br>They cost CoolProp calls under the global lock; set to false when they are not used.</br>
+        /// </summary>
+        public static bool ReadExtendedProperties { get; set; } = true;
+
+        /// <summary>
         /// Updates the values of the <see cref="Fluid"/> after an update
-        /// </summary>           
+        /// </summary>
         protected virtual void UpdateValues()
         {
 
@@ -173,6 +225,8 @@ namespace SharpFluids
             tsat_Cache = null;
             CacheMode = false;
 
+            // One acquisition of the CoolProp lock for all the reads below (each AbstractState call re-enters it at no cost)
+            lock (AbstractState.lockObj)
             try
             {
                 Phase = (Phases)REF.phase();
@@ -211,19 +265,22 @@ namespace SharpFluids
                 Tau = REF.Tau();
                 Delta = REF.Delta();
 
-                fugacity_coefficient = REF.fugacity_coefficient();
-                fugacity= REF.fugacity();
-                gibbsmolar =  REF.gibbsmolar();
+                if (ReadExtendedProperties)
+                {
+                    fugacity_coefficient = REF.fugacity_coefficient();
+                    fugacity= REF.fugacity();
+                    gibbsmolar =  REF.gibbsmolar();
 
-                gibbsmolar_excess = REF.gibbsmolar_excess();
+                    gibbsmolar_excess = REF.gibbsmolar_excess();
 
-                umolar = REF.umolar();
-                rhomolar = REF.rhomolar();
-                Alpha0 = REF.Alpha0();
-                AlphaR = REF.AlphaR();
-                AlphaR_dDelta = REF.AlphaR_dDelta();
-                AlphaR_dTau = REF.AlphaR_dTau();
-                Alpha0_dTau = REF.Alpha0_dTau();
+                    umolar = REF.umolar();
+                    rhomolar = REF.rhomolar();
+                    Alpha0 = REF.Alpha0();
+                    AlphaR = REF.AlphaR();
+                    AlphaR_dDelta = REF.AlphaR_dDelta();
+                    AlphaR_dTau = REF.AlphaR_dTau();
+                    Alpha0_dTau = REF.Alpha0_dTau();
+                }
                 cache_pressure = Pressure;
 
                 Entropy = REF.smass();
@@ -514,9 +571,21 @@ namespace SharpFluids
 
             //lock(lockObj)
             {
+                // The same fluid again keeps its CoolProp state: a new one costs ~0.5 ms under the global CoolProp lock,
+                // and callers (e.g. compressors in a plant solver) set the same media on every iteration
+                bool sameMedia = (state is not null || stateDeferred) && Media == Type;
+
                 Media.Copy(Type);
-                if (Media.BackendType != "CustomFluid")
-                    REF = AbstractState.factory(Media.BackendType, Media.InternalName);
+                if (Media.BackendType != "CustomFluid" && !sameMedia)
+                {
+                    // The CoolProp state is created by the first use of REF, with this media and the fraction set below
+                    state = null;
+                    stateBackend = Media.BackendType;
+                    stateName = Media.InternalName;
+                    stateFraction = null;
+                    stateMix = Media.Mix;
+                    stateDeferred = true;
+                }
 
                 //Set fraction again
                 SetFraction(Type.MassFration);
@@ -544,18 +613,39 @@ namespace SharpFluids
                 if (Media.Mix == MixType.Mass)
                 {
                     Media.MassFration = fraction;
-                    REF.set_mass_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
-                    T_freeze = Temperature.FromKelvins(REF.keyed_output(Parameters.iT_freeze));
+                    // A state that is not created yet gets the fraction when it is
+                    if (state is null && stateDeferred)
+                        stateFraction = fraction;
+                    else
+                        REF.set_mass_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                    T_freeze = Temperature.FromKelvins(FreezeTemperature(fraction));
                 }
                 else if (Media.Mix == MixType.Vol)
                 {
                     Media.MassFration = fraction;
-                    REF.set_volu_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
-                    T_freeze = Temperature.FromKelvins(REF.keyed_output(Parameters.iT_freeze));
+                    if (state is null && stateDeferred)
+                        stateFraction = fraction;
+                    else
+                        REF.set_volu_fractions(new DoubleVector(new double[] { (double)fraction/100 }));
+                    T_freeze = Temperature.FromKelvins(FreezeTemperature(fraction));
                 }
             }
 
             
+        }
+
+        // The freeze temperature depends only on the fluid and fraction, so a fluid without a state yet does not need one for it
+        private double FreezeTemperature(double? fraction)
+        {
+            // Only called from SetFraction, which has already used Media
+            var key = (Media!.BackendType, Media.InternalName, fraction, Media.Mix);
+            if (!FreezeTemperatures.TryGetValue(key, out double kelvin))
+            {
+                kelvin = REF.keyed_output(Parameters.iT_freeze);
+                if (FreezeTemperatures.Count < MaxCachedFluids)
+                    FreezeTemperatures.TryAdd(key, kelvin);
+            }
+            return kelvin;
         }
 
         /// <summary>
@@ -648,7 +738,8 @@ namespace SharpFluids
 
         private void CheckBeforeUpdate()
         {
-            if (REF is null)
+            // A deferred state counts as present: REF creates it
+            if (state is null && !stateDeferred)
                 SetNewMedia(Media);
 
             if (Media is null)
@@ -753,7 +844,8 @@ namespace SharpFluids
         }
         public void Dispose()
         {
-            REF?.Dispose();
+            // Not through REF, which would create a deferred state just to dispose it
+            state?.Dispose();
             REF = null;
             GC.SuppressFinalize(this);
         }

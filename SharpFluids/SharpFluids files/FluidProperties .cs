@@ -515,10 +515,54 @@ namespace SharpFluids
         [JsonProperty(PropertyName = "Phase", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public Phases? Phase { get; protected set; }
 
+        // The CoolProp state is created on first use instead of in SetNewMedia: copies and clones that are only read never
+        // need one. For a pure fluid each state costs ~0.5 ms under the global CoolProp lock and ~0.5 MB native memory that
+        // only the finalizer frees, and a process that creates and frees hundreds of thousands of them gets slower at it.
+        private AbstractState? state;
+        // SetNewMedia ran and left the creation to the first use, with the media and fraction kept here
+        private bool stateDeferred;
+        private string? stateBackend, stateName;
+        private double? stateFraction;
+        private MixType stateMix;
+
+        // For the unit tests: the CoolProp state if it has been created, without creating it
+        internal AbstractState? CoolPropStateIfCreated => state;
+
         /// <summary>
         /// Used to access the CoolProp DLL.
         /// </summary>
-        protected AbstractState REF;
+        protected AbstractState REF
+        {
+            get
+            {
+                var s = state;
+                if (s is null && stateDeferred)
+                {
+                    s = AbstractState.factory(stateBackend!, stateName!);
+                    if (s is not null && stateFraction is double fraction)
+                    {
+                        if (stateMix == MixType.Mass)
+                            s.set_mass_fractions(new DoubleVector(new double[] { fraction / 100 }));
+                        else if (stateMix == MixType.Vol)
+                            s.set_volu_fractions(new DoubleVector(new double[] { fraction / 100 }));
+                    }
+
+                    // Another thread may have created it first: keep that one
+                    var existing = System.Threading.Interlocked.CompareExchange(ref state, s, null);
+                    if (existing is not null)
+                    {
+                        s?.Dispose();
+                        s = existing;
+                    }
+                }
+                return s!;
+            }
+            set
+            {
+                state = value;
+                stateDeferred = false;
+            }
+        }
 
         /// <summary>
         /// Get the fluid type of the <see cref="Fluid"/>

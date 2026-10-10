@@ -472,7 +472,9 @@ namespace SharpFluids
         {
             try
             {
-                updateAction();
+                // One acquisition of the CoolProp lock for the update and all property reads after it
+                lock (AbstractState.lockObj)
+                    updateAction();
             }
             catch (ApplicationException e)
             {

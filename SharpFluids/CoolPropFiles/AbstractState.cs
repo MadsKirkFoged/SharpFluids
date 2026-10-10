@@ -8,7 +8,9 @@ using System.Runtime.InteropServices;
 
 public class AbstractState : IDisposable
 {
-    private static readonly object lockObj = new();
+    // CoolProp is not safe for concurrent use (INCOMP results go wrong, crashes seen), so every call takes this lock.
+    // Internal so Fluid can hold it once for a whole update instead of once per property.
+    internal static readonly object lockObj = new();
 
     public HandleRef swigCPtr;
     public bool swigCMemOwn;
