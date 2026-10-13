@@ -131,13 +131,11 @@ namespace SharpFluids
             }
             catch (System.ApplicationException e)
             {
-                FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
+                ReportUpdateFailure(nameof(UpdatePT), $"{pressure} and {temperature}", e, unexpected: false);
             }
             catch (System.Exception e)
             {
-                FailState = true;
-                Log.Error($"SharpFluid -> UpdatePT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {temperature} {e}");
+                ReportUpdateFailure(nameof(UpdatePT), $"{pressure} and {temperature}", e, unexpected: true);
             }
             finally
             {
@@ -465,8 +463,8 @@ namespace SharpFluids
         /// <summary>
         /// Runs <paramref name="updateAction"/> (a REF.update() call followed by <see cref="UpdateValues"/>) with the
         /// error handling shared by all the Update* methods: on a known CoolProp <see cref="ApplicationException"/> it
-        /// logs and sets <see cref="FailState"/>; on anything else it does the same unless <paramref name="rethrowUnexpected"/>
-        /// is set, in which case the exception propagates. <see cref="ResetErrors"/> always runs afterwards.
+        /// sets <see cref="FailState"/> and logs or throws (see <see cref="OnUpdateFailure"/>); on anything else it does the same
+        /// unless <paramref name="rethrowUnexpected"/> is set, in which case the exception propagates. <see cref="ResetErrors"/> always runs afterwards.
         /// </summary>
         private void ExecuteUpdate(Action updateAction, string methodName, string argsDescription, bool rethrowUnexpected = false)
         {
@@ -476,19 +474,24 @@ namespace SharpFluids
                 lock (AbstractState.lockObj)
                     updateAction();
             }
+            catch (FluidUpdateException)
+            {
+                //Already reported by a nested Update (UpdatePX calls UpdatePT and UpdatePH) - let it through as it is
+                throw;
+            }
             catch (ApplicationException e)
             {
-                FailState = true;
-                Log.Warning($"SharpFluid -> {methodName} -> CoolProp could not return your request on {argsDescription} and returns the followering error: {e}");
+                ReportUpdateFailure(methodName, argsDescription, e, unexpected: false);
             }
             catch (Exception e)
             {
-                FailState = true;
-
                 if (rethrowUnexpected)
+                {
+                    FailState = true;
                     throw;
+                }
 
-                Log.Error($"SharpFluid -> {methodName} -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {argsDescription} {e}");
+                ReportUpdateFailure(methodName, argsDescription, e, unexpected: true);
             }
             finally
             {

@@ -118,13 +118,11 @@ namespace SharpFluids
             }
             catch (System.ApplicationException e)
             {
-                FailState = true;
-                Log.Warning($"SharpFluid -> UpdatePT -> CoolProp could not return your request on {pressure} and {temperature} and returns the followering error: {e}");
+                ReportUpdateFailure(nameof(UpdatePT), $"{pressure} and {temperature}", e, unexpected: false);
             }
             catch (System.Exception e)
             {
-                FailState = true;
-                Log.Error($"SharpFluid -> UpdatePT -> Report this on https://github.com/MadsKirkFoged/SharpFluids -  CoolProp returned unexpected result! {pressure} and {temperature} {e}");
+                ReportUpdateFailure(nameof(UpdatePT), $"{pressure} and {temperature}", e, unexpected: true);
             }
             finally
             {
