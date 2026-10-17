@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SharpFluids;
 //using EngineeringUnits;
 //using Microsoft.Extensions.Logging;
 
@@ -70,6 +71,20 @@ public class TestAllFluids
 
         //    //Assert.AreNotEqual(0, TestFluid.MassFlow.KilogramPerSecond);
         //    //Assert.AreNotEqual(0, TestFluid.VolumeFlow.CubicMeterPerSecond);
+
+    }
+
+    [TestMethod]
+    public void R1243zfWorks()
+    {
+
+        //Arrange
+        //Act
+        var fluid = new Fluid(FluidList.R1243zf);
+
+        //Assert
+        Assert.IsNotNull(fluid.CriticalPressure);
+        Assert.AreNotEqual(0, fluid.CriticalPressure.Bar);
 
     }
 }
